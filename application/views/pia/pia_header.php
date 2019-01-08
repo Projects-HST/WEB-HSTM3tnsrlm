@@ -241,11 +241,15 @@
                       </div> -->
                       <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="inbox.html">Inbox</a>
+                              <li><a href="">Period Plan</a>
                               </li>
-                              <li><a href="view-email.html">View Email</a>
+                              <li><a href="">Centers</a>
                               </li>
-                              <li><a href="compose-email.html">Compose Email</a>
+                              <li><a href="">Schemes</a>
+                              </li>
+                              <li><a href="">Sessions</a>
+                              </li>
+                              <li><a href="">Trade and Batch</a>
                               </li>
                           </ul>
                       </div>
