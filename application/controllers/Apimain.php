@@ -519,7 +519,7 @@ class Apimain extends CI_Controller {
 
 	public function pia_plan_list()
 	{
-	   //$_POST = json_decode(file_get_contents("php://input"), TRUE);
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
 		{
