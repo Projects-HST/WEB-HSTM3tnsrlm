@@ -13,10 +13,10 @@
 </body>
 <!-- jquery
 ============================================ -->
-<script src="<?php echo base_url(); ?>assets/admin/js/vendor/jquery-1.12.4.min.js"></script>
-<!-- bootstrap JS
+<!-- datapicker JS
 ============================================ -->
-<script src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/js/datapicker/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/js/datapicker/datepicker-active.js"></script>
 <!-- wow JS
 ============================================ -->
 <script src="<?php echo base_url(); ?>assets/admin/js/wow.min.js"></script>
@@ -77,8 +77,18 @@
 <!-- main JS
 ============================================ -->
 <script src="<?php echo base_url(); ?>assets/admin/js/main.js"></script>
-<!-- tawk chat JS
-============================================ -->
+<script src="<?php echo base_url(); ?>assets/admin/js/bootstrap-select/bootstrap-select.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/js/data-table/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/admin/js/data-table/data-table-act.js"></script>
+  <script src="<?php echo base_url(); ?>assets/admin/js/dialog/sweetalert2.min.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/admin/js/dialog/dialog-active.js"></script> -->
+<script type="text/javascript">
+$(function () {
+    $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy',maxDate: new Date
+    });
+});
+</script>
 
 
 </html>

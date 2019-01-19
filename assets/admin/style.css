@@ -2787,7 +2787,7 @@ hr {
 	margin-top:0px;
 }
 .nk-int-st .form-control[disabled], .nk-int-st .form-control[readonly], fieldset[disabled] .form-control {
-    background-color: #fff;
+    background-color: #d7d7d7d7;
     opacity: 1;
 }
 .fm-checkbox label{
@@ -3320,10 +3320,10 @@ textarea.auto-size {
     height: 40px;
 }
 .datepicker-days .table-condensed thead tr th:first-child {
-    display:none;
+
 }
 .datepicker-days .table-condensed tbody tr td:first-child {
-    display:none;
+
 }
 .datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover{
 	background:#00c292;
@@ -4585,4 +4585,12 @@ body.box-layout {
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
   cursor: pointer;
+}
+.datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover{
+  background: #00c292 !important;
+}
+.error{
+  color: red !important;
+  font-weight: 500;
+  font-size: 13px !important;
 }

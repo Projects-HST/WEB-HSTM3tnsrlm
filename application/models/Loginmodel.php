@@ -64,30 +64,62 @@ Class Loginmodel extends CI_Model
 
        }
        function getuser($user_id){
-         $query="SELECT * FROM edu_users WHERE user_id='$user_id'";
+         $query="SELECT ep.*,eu.* From edu_users as eu left join edu_pia as ep on eu.user_id=ep.id AND eu.user_type='3' WHERE eu.user_id='$user_id'";
          $resultset=$this->db->query($query);
          return $resultset->result();
        }
 
-       function updateprofile($user_id,$oldpassword,$newpassword){
-         $checkpassword="SELECT user_id FROM edu_users WHERE user_password='$oldpassword' AND user_id='$user_id'";
-         $res=$this->db->query($checkpassword);
-         if($res->num_rows()==1){
-           $query="UPDATE edu_users SET user_password='$newpassword',	updated_date=NOW() WHERE user_id='$user_id'";
+       function password_update($new_password,$user_id){
+            $pwd=md5($new_password);
+            $query="UPDATE edu_users SET user_password='$pwd',	updated_date=NOW() WHERE user_id='$user_id'";
            $ex=$this->db->query($query);
-            $data= array("status" => "success");
-           return $data;
-         }else{
-           $data= array("status" => "failure");
-          return $data;
+           if($ex){
+             echo "success";
+           }else{
+             echo "failed";
+           }
+
+       }
+
+       function profile_update($pia_name,$pia_phone,$pia_email,$pia_address,$pia_id){
+         $id=base64_decode($pia_id)/98765;
+         $query="UPDATE edu_pia SET pia_address='$pia_address',pia_name='$pia_name',pia_phone='$pia_phone',pia_email='$pia_email' WHERE id='$id'";
+         $ex=$this->db->query($query);
+          if($ex){
+            echo "success";
+          }else{
+              echo "failed";
+          }
+       }
+
+       function checkemail_edit($email,$staff_id){
+         $select="SELECT * FROM edu_pia Where pia_email='$email' AND id!='$staff_id'";
+         $result=$this->db->query($select);
+         if($result->num_rows()>0){
+           echo "false";
+           }else{
+             echo "true";
+         }
+       }
+       function checkmobile_edit($mobile,$staff_id){
+       $select="SELECT * FROM edu_pia Where pia_phone='$mobile' AND id!='$staff_id'";
+         $result=$this->db->query($select);
+         if($result->num_rows()>0){
+           echo "false";
+           }else{
+             echo "true";
          }
        }
 
-       function profileupdate($userFileName,$user_id,$name){
-         $query="UPDATE edu_users SET user_pic='$userFileName',name='$name' WHERE user_id='$user_id'";
-          $ex=$this->db->query($query);
-         $data= array("status" => "success");
-         return $data;
+       function check_password_match($old_password,$staff_id){
+         $pwd=md5($old_password);
+         $select="SELECT * FROM edu_users Where user_password='$pwd' AND user_id='$staff_id'";
+           $result=$this->db->query($select);
+           if($result->num_rows()==0){
+             echo "false";
+             }else{
+               echo "true";
+           }
        }
 
 
