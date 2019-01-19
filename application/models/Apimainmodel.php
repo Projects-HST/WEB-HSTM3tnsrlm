@@ -163,8 +163,7 @@ class Apimainmodel extends CI_Model {
 
 	public function Login($username,$password,$gcmkey,$mobiletype)
 	{
-
- 		$sql = "SELECT * FROM edu_users A, edu_role B  WHERE A.user_type = B.id AND A.user_name ='".$username."' and A.user_password = md5('".$password."') and A.status='Active'";
+ 		$sql = "SELECT * FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.user_name ='".$username."' and A.user_password = md5('".$password."') and A.status='Active'";
 		$user_result = $this->db->query($sql);
 		$ress = $user_result->result();
 
@@ -456,6 +455,300 @@ class Apimainmodel extends CI_Model {
 			return $response;
 	}
 //#################### Change Password End ####################//
+
+
+//#################### User Creation ####################//
+	public function createUser($user_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification)
+	{
+		$select = "SELECT * FROM edu_staff_details Where email='$email' OR phone='$phone'";
+		$result=$this->db->query($select);
+	   
+		if($result->num_rows()>0){
+			$response = array("status" => "error", "msg" => "User Already Exist");
+         }else{
+           $insert = "INSERT INTO edu_staff_details (role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('2','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$user_id',NOW())";
+           $result=$this->db->query($insert);
+           $insert_id = $this->db->insert_id();
+			
+            $digits = 6;
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+			$md5pwd = md5($OTP);
+
+			
+            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,status) VALUES('$name','$phone','$md5pwd','2','$insert_id',NOW(),'Active')";
+			$result_user=$this->db->query($user_table);
+			$profile_id = $this->db->insert_id();
+			
+			$mobile_message = 'Username :'. $phone .'Password:'.$OTP;
+			$this->sendSMS($phone,$mobile_message);
+
+			$subject = "M3 - User Details";
+			$email_message = 'Username:'.$phone.'<br>Password:'.$OTP.'<br><br>';
+			$this->sendMail($email,$subject,$email_message);
+			
+			$response = array("status" => "success", "msg" => "User Created","profile_id"=>$profile_id);
+		  }
+			
+			return $response;
+	}
+//#################### User Creation End ####################//
+
+
+//#################### User List ####################//
+	public function userList($user_id)
+	{
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.user_type ='2'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User List End ####################//
+
+//#################### User Details ####################//
+	public function userDetails ($user_master_id)
+	{
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User Details End ####################//
+
+//#################### User Update ####################//
+	public function updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status)
+	{
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
+			$user_result = $this->db->query($sQuery);
+			$ress = $user_result->result();
+			if($user_result->num_rows()>0)
+			{
+				foreach ($user_result->result() as $rows)
+				{
+					$old_phone = $rows->phone;
+				}
+			}
+
+			if ($old_phone != $phone){
+				
+				$sQuery = "SELECT * FROM edu_staff_details WHERE id != '$user_master_id' AND phone='$phone'";
+				$user_result = $this->db->query($sQuery);
+				if($user_result->num_rows()>0)
+				{
+					$response = array("status" => "error", "msg" => "Phone number already exist.");
+				} else {
+					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$user_master_id'";
+					$result=$this->db->query($update);
+					
+					$update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='2' AND user_master_id='$user_master_id'";
+					$result_user=$this->db->query($update_user);
+					
+						$mobile_message = 'Username :'. $phone;
+						$this->sendSMS($phone,$mobile_message);
+
+						$subject = "M3 - User Name Update";
+						$email_message = 'Username:'.$phone.'<br><br>';
+						$this->sendMail($email,$subject,$email_message);
+
+						$response = array("status" => "success", "msg" => "User Updated Successfully");
+				}	
+			
+			} else {
+				
+					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$user_master_id'";
+					$result=$this->db->query($update);
+			
+					$update_user="UPDATE edu_users SET name='$name', status='$status' WHERE user_type='2' AND user_master_id='$user_master_id'";
+					$result_user=$this->db->query($update_user);
+					
+					$response = array("status" => "success", "msg" => "User Updated Successfully");
+			
+			}
+					
+			return $response;
+	}
+//#################### User Update End ####################//
+
+
+//#################### PIA Creation ####################//
+	public function createPia($user_id,$unique_number,$name,$address,$phone,$email)
+	{
+		$select = "SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
+		$result=$this->db->query($select);
+	   
+		if($result->num_rows()>0){
+			$response = array("status" => "error", "msg" => "PIA Already Exist");
+         }else{
+           $insert = "INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,status,created_by,created_at) VALUES('$unique_number','$name','$address','$phone','$email','Active','$user_id',NOW())";
+           $result=$this->db->query($insert);
+           $insert_id = $this->db->insert_id();
+			
+            $digits = 6;
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+			$md5pwd = md5($OTP);
+			
+            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,status) VALUES('$name','$unique_number','$md5pwd','3','$insert_id',NOW(),'Active')";
+			$result_user=$this->db->query($user_table);
+			$profile_id = $this->db->insert_id();
+			
+			$mobile_message = 'Username :'. $unique_number .'Password:'.$OTP;
+			$this->sendSMS($phone,$mobile_message);
+
+			$subject = "M3 - User Details";
+			$email_message = 'Username:'.$unique_number.'<br>Password:'.$OTP.'<br><br>';
+			$this->sendMail($email,$subject,$email_message);
+			
+			$response = array("status" => "success", "msg" => "User Created","profile_id"=>$profile_id);
+		  }
+			
+			return $response;
+	}
+//#################### PIA Creation End ####################//
+
+
+//#################### PIA List ####################//
+	public function piaList($user_id)
+	{
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.user_type ='3'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### PIA List End ####################//
+
+//#################### PIA Details ####################//
+	public function piaDetails ($user_master_id)
+	{
+			$sQuery = "SELECT * FROM edu_pia WHERE id = '$user_master_id'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### PIA Details End ####################//
+
+//#################### PIA Update ####################//
+	public function updatePia($user_id,$pia_id,$unique_number,$name,$address,$phone,$email,$status)
+	{
+			$sQuery = "SELECT * FROM edu_pia WHERE id = '$pia_id'";
+			$user_result = $this->db->query($sQuery);
+			$ress = $user_result->result();
+			if($user_result->num_rows()>0)
+			{
+				foreach ($user_result->result() as $rows)
+				{
+					$old_unique_number = $rows->pia_unique_number;
+				}
+			}
+
+			if ($old_unique_number != $unique_number){
+				
+				$sQuery = "SELECT * FROM edu_pia WHERE id != '$pia_id' AND pia_unique_number='$unique_number'";
+				$user_result = $this->db->query($sQuery);
+				if($user_result->num_rows()>0)
+				{
+					$response = array("status" => "error", "msg" => "Unique number already exist.");
+				} else {
+					
+					
+					 $insert = "INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,status,created_by,created_at) VALUES('$unique_number','$name','$address','$phone','$email','Active','$user_id',NOW())";
+					 
+					
+					$update="UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_address='$address',pia_phone='$phone',pia_email='$email',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
+					$result=$this->db->query($update);
+					
+					$update_user="UPDATE edu_users SET user_name = '$unique_number', name='$name', status='$status' WHERE user_type='3' AND user_master_id='$pia_id'";
+					$result_user=$this->db->query($update_user);
+					
+
+						$mobile_message = 'Username :'. $phone;
+						$this->sendSMS($phone,$mobile_message);
+
+						$subject = "M3 - User Name Update";
+						$email_message = 'Username:'.$phone.'<br><br>';
+						$this->sendMail($email,$subject,$email_message);
+
+					$response = array("status" => "success", "msg" => "User Updated Successfully");
+				}	
+			
+			} else {
+				
+					$update="UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_address='$address',pia_phone='$phone',pia_email='$email',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
+					$result=$this->db->query($update);
+			
+					$update_user="UPDATE edu_users SET name='$name', status='$status' WHERE user_type='3' AND user_master_id='$pia_id'";
+					$result_user=$this->db->query($update_user);
+					
+					$response = array("status" => "success", "msg" => "User Updated Successfully");
+			
+			}
+					
+			return $response;
+	}
+//#################### PIA Update End ####################//
+
+//#################### Plan List ####################//
+	public function piaPlanlist($user_id)
+	{
+			$sQuery = "SELECT
+						A.pia_id,
+						B.name,
+						A.doc_name,
+						A.doc_file,
+						A.doc_month_year,
+						A.created_at
+					FROM
+						edu_mobilization_plan A,
+						edu_users B
+					WHERE
+						A.pia_id = B.user_id ORDER BY A.created_at DESC";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+				foreach ($s_res->result() as $rows)
+				{
+				 $planDetails[]  = array(
+						"pia_id" => $rows->pia_id,
+						"name" => $rows->name,
+						"doc_name " => $rows->doc_name,
+						"doc_month_year " => $rows->doc_month_year,
+						"doc_file" => base_url().'assets/mobilization_plan/'.$rows->doc_file,
+						"created_at" => $rows->created_at
+				);
+			}
+			     	$response = array("status" => "success", "msg" => "Plan List","planList"=>$planDetails);
+			}else{
+			        $response = array("status" => "error", "msg" => "Plans Not Found");
+			}
+			return $response;
+	}
+//#################### Plan List End ####################//
+
+
+
 
 }
 ?>

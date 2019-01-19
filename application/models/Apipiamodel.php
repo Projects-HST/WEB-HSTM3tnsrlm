@@ -386,7 +386,7 @@ class Apipiamodel extends CI_Model {
 		if($result->num_rows()>0){
 			$response = array("status" => "error", "msg" => "User Already Exist");
          }else{
-           $insert = "INSERT INTO edu_staff_details (pia_id,role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('$pia_id,','$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$pia_id',NOW())";
+           $insert = "INSERT INTO edu_staff_details (pia_id,role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('$pia_id','$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$pia_id',NOW())";
            $result=$this->db->query($insert);
            $insert_id = $this->db->insert_id();
 			
@@ -395,7 +395,7 @@ class Apipiamodel extends CI_Model {
 			$md5pwd = md5($OTP);
 
 			
-            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,pia_id,status,last_login_date) VALUES('$name','$phone','$md5pwd','$select_role','$insert_id',NOW(),'$pia_id','Active',NOW())";
+            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,pia_id,status) VALUES('$name','$phone','$md5pwd','$select_role','$insert_id',NOW(),'$pia_id','Active')";
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
 
@@ -443,6 +443,38 @@ class Apipiamodel extends CI_Model {
 	}
 //#################### User List End ####################//
 
+//#################### User List ####################//
+	public function userListstaff ($pia_id)
+	{
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.pia_id='$pia_id' AND A.user_type ='4'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User List End ####################//
+
+//#################### User List ####################//
+	public function userListmobilizer ($pia_id)
+	{
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.pia_id='$pia_id' AND A.user_type ='4'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User List End ####################//
+
 //#################### User Details ####################//
 	public function userDetails ($pia_id,$user_master_id)
 	{
@@ -469,7 +501,7 @@ class Apipiamodel extends CI_Model {
 			{
 				foreach ($user_result->result() as $rows)
 				{
-					  echo $old_phone = $rows->phone;
+					$old_phone = $rows->phone;
 				}
 			}
 
@@ -481,8 +513,7 @@ class Apipiamodel extends CI_Model {
 				{
 					$response = array("status" => "error", "msg" => "Phone number already exist.");
 				} else {
-					$update="UPDATE edu_staff_details SET name='
-$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',
+					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 					
@@ -516,5 +547,202 @@ $name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone
 			return $response;
 	}
 //#################### User Update End ####################//
+
+//#################### Add Student ####################//
+	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate)
+	{
+        $chk_query = "SELECT * from edu_student_prospects WHERE aadhaar_card_number = '$aadhaar_card_number'";
+		$chk_res = $this->db->query($chk_query);
+
+			 if($chk_res->num_rows()>0){
+			     	$response = array("status" => "error", "msg" => "Already Exist");
+				 
+			}else{
+			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id `,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', 'Active', '$pia_id', now())";
+	                $student_res = $this->db->query($student_query);
+                    $student_id = $this->db->insert_id();
+                    
+                	if($student_res) {
+        			    $response = array("status" => "success", "msg" => "Student Added", "admission_id"=>$student_id);
+        			} else {
+        			    $response = array("status" => "error");
+        			}
+			}  
+			return $response;
+	}
+//#################### Add Student End ####################//
+
+
+//#################### Student Pic Update ####################//
+	public function studentPic($student_id,$userFileName)
+	{
+            $update_sql= "UPDATE edu_student_prospects SET student_pic ='$userFileName' WHERE id='$student_id'";
+			$update_result = $this->db->query($update_sql);
+
+			$response = array("status" => "success", "msg" => "Student Picture Updated","student_picture"=>$userFileName);
+			return $response;
+	}
+//#################### Student Pic Update End ####################//
+
+//#################### List Students ####################//
+	public function listStudents($pia_id)
+	{
+		 	$student_query = "SELECT name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id  ='$pia_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
+
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
+			return $response;
+	}
+//#################### List Students End ####################//
+
+//#################### View Student ####################//
+	public function viewStudent($student_id)
+	{
+		 	$student_query = "SELECT * FROM `edu_student_prospects` WHERE id ='$student_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$student_result);
+			}
+
+			return $response;
+	}
+//#################### View Student End ####################//
+
+//#################### Update Student ####################//
+	public function updateStudent($student_id,$pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at)
+	{
+		 	$student_query = "UPDATE `edu_student_prospects` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$pia_id',`updated_at`=now() WHERE id ='$student_id'";
+			$student_res = $this->db->query($student_query);
+			
+			if($student_res) {
+			    $response = array("status" => "success", "msg" => "Student Details Updated");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+	}
+//#################### Update Student End ####################//
+
+//#################### Add Task ####################//
+	public function addTask ($user_master_id,$task_title,$task_description,$task_date,$pia_id)
+	{
+            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`) VALUES ('$user_master_id', '$task_title', '$task_description', '$task_date', '$pia_id', 'Active', '$pia_id', now())";
+	        $task_res = $this->db->query($task_query);
+            $task_id = $this->db->insert_id();
+            
+			if($task_res) {
+			    $response = array("status" => "success", "msg" => "Task Added", "task_id"=>$task_id);
+			} else {
+			    $response = array("status" => "error");
+			}
+			return $response;
+	}
+//#################### Add Task End ####################//
+
+//#################### List Task ####################//
+	public function listTask ($mob_id)
+	{
+            $task_query = "SELECT * FROM `edu_task` WHERE user_id  ='$mob_id'";
+			$task_res = $this->db->query($task_query);
+			$task_result= $task_res->result();
+			
+			 if($task_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Task Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "List Task", "taskDetails"=>$task_result);
+			}
+
+			return $response;
+	}
+//#################### Add List End ####################//
+
+//#################### List Task ####################//
+	public function viewTask ($task_id)
+	{
+            $task_query = "SELECT * FROM `edu_task` WHERE id  ='$task_id'";
+			$task_res = $this->db->query($task_query);
+			$task_result= $task_res->result();
+			
+			 if($task_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Task Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Task", "taskDetails"=>$task_result);
+			}
+
+			return $response;
+	}
+//#################### Add List End ####################//
+
+//#################### Update Task ####################//
+	public function updateTask($task_id,$pia_id,$task_title,$task_description,$task_date,$status)
+	{
+		 	$task_query = "UPDATE `edu_task` SET `task_title`='$task_description',`task_description`='$task_description',`task_date`='$task_date',`status`='$status',`updated_by`='$pia_id',`updated_at`=now() WHERE id ='$task_id'";
+			$task_res = $this->db->query($task_query);
+			
+			if($task_res) {
+			    $response = array("status" => "success", "msg" => "Task Details Updated");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+	}
+//#################### Update Task End ####################//
+
+//#################### Update Task ####################//
+	public function userTracking($mob_id,$track_date)
+	{
+		
+		 $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
+			$track_res = $this->db->query($track_query);
+			$track_result= $track_res->result();
+			
+			 if($track_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Track Not Found");
+			}else{
+				
+			foreach($track_result as $rows){
+				$lat=$rows->lat;
+				$lng=$rows->lng;
+				$loca=$rows->address;
+				$address[] = array ("Latitude" => $lat, "Longitude" => $lng);
+             }
+			 
+			 $km_query="SELECT (6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) ) AS distance,SUM((6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) )) AS km FROM edu_tracking_details WHERE user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date'";
+				$km_result=$this->db->query($km_query);
+				$km_distance_calc= $km_result->result(); 
+				
+				$response = array("status" => "success", "msg" => "View Task", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
+			}
+			return $response;			
+				
+	}
+//#################### Update Task End ####################//
+
+
+
 }
 ?>
