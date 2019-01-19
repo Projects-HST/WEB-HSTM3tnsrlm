@@ -68,9 +68,10 @@ class Login extends CI_Controller {
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id,"msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 					// $datas['user_details']=$this->dashboard->dash_teacher($user_id);
 					$session_data=$this->session->set_userdata($datas);
-					$this->load->view('pia/pia_header');
-					$this->load->view('pia/pia_home',$datas);
-					$this->load->view('pia/pia_footer');
+					redirect('dashboard/home');
+					// $this->load->view('pia/pia_header');
+					// $this->load->view('pia/pia_home',$datas);
+					// $this->load->view('pia/pia_footer');
 					break;
 
 				}
@@ -86,4 +87,14 @@ class Login extends CI_Controller {
 			 redirect('/');
 		}
 	}
+
+
+	public function logout(){
+		$datas=$this->session->userdata();
+		$this->session->unset_userdata($datas);
+		$this->session->sess_destroy();
+		redirect('/');
+	}
+
+
 }
