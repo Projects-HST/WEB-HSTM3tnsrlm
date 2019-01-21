@@ -96,5 +96,10 @@ class Login extends CI_Controller {
 		redirect('/');
 	}
 
+	public function forgot_email(){
+		$forgot_email=$this->input->post('forgot_email');
+		$datas['res'] = $this->loginmodel->forgot_email($forgot_email);
+	}
+
 
 }
