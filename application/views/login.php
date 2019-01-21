@@ -57,8 +57,18 @@
 
     <div class="login-content">
         <!-- Login -->
+
+
+
         <div class="nk-block toggled" id="l-login">
             <div class="nk-form">
+              <?php if($this->session->flashdata('msg')): ?>
+                  <div class="alert alert-success">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                          ×</button>
+                      <?php echo $this->session->flashdata('msg'); ?>
+                  </div>
+                  <?php endif; ?>
               <form action="<?php echo base_url(); ?>login/checklogin" method="post" enctype="multipart/form-data">
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
@@ -87,21 +97,24 @@
         <!-- Forgot Password -->
         <div class="nk-block" id="l-forget-password">
             <div class="nk-form">
+                <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
                 <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
 
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control" placeholder="Email Address">
+                        <input type="text" class="form-control"  name="forgot_email" placeholder="Email Address">
                     </div>
                 </div>
 
-                <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a>
+                <!-- <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a> -->
+                <button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
+              </form>
             </div>
 
             <div class="nk-navigation nk-lg-ic rg-ic-stl">
                 <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
-                <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-register"><i class="notika-icon notika-plus-symbol"></i> <span>Register</span></a>
+
             </div>
         </div>
     </div>
@@ -172,6 +185,48 @@
     <!-- main JS
 		============================================ -->
     <script src="<?php echo base_url(); ?>assets/admin/js/main.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/js/additional-methods.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+<script type="text/javascript">
+$("#myformsection").validate({
+       rules: {
+           forgot_email:{required:true }
+       },
+       messages: {
+            forgot_email:"Enter email"
+           },
+    submitHandler: function(form) {
+      $.ajax({
+                 url: "<?php echo base_url(); ?>login/forgot_email",
+                 type: 'POST',
+                 data: $('#myformsection').serialize(),
+                 success: function(response) {
+                     if (response=="success") {
+                       $.toast({
+                                 heading: 'Successfully',
+                                 text: 'Password  Reset and send to your Mail Please check it',
+                                 position: 'mid-center',
+                                 icon:'success',
+                                 stack: false
+                             })
+                             window.setTimeout(function(){location.reload()},3000);
+                     }else{
+                       $.toast({
+                                 heading: 'Error',
+                                 text: response,
+                                 position: 'mid-center',
+                                 icon:'error',
+                                 stack: false
+                             })
+                     }
+                 }
+             });
+           }
+   });
 
+
+</script>
 </body>
 </html>

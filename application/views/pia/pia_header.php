@@ -90,7 +90,7 @@
 
 
 
-                          <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-support"></i></span></a>
+                          <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a>
                               <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
 
 
