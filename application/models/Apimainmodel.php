@@ -274,9 +274,9 @@ class Apimainmodel extends CI_Model {
 				}
 				else if ($user_type==3)  {
 					
-					$pia_id = $rows->user_master_id;
+					//$pia_id = $user_id;
 
-					$pia_query = "SELECT * FROM pia_table WHERE id = '$pia_id'";
+					$pia_query = "SELECT * FROM edu_pia WHERE id = '$user_id'";
 					$pia_res = $this->db->query($pia_query);
 					$pia_profile = $pia_res->result();
 					if($pia_res->num_rows()>0)
@@ -290,21 +290,30 @@ class Apimainmodel extends CI_Model {
 							"pia_email" => $pia_profile[0]->pia_email,
 							);
 						}
-						
-
-					$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
+					$pro_period_query = "SELECT * FROM edu_year_duration WHERE pia_id = '$user_id'";
+					$pro_period_res = $this->db->query($pro_period_query);
+					$pro_period_result = $pro_period_res->result();
+					if($pro_period_res->num_rows()>0)
+						{
+							$proPeriod  = array(
+								"period_from" => $pro_period_result[0]->period_from,
+								"period_to" => $pro_period_result[0]->period_to
+							);
+						}
+					
+					$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$user_id' AND role_type = '5'";
 					$mob_count_res = $this->db->query($mob_count);
 					$mobilizer_count = $mob_count_res->num_rows();
 					
-					$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
+					$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$user_id'";
 					$cen_count_res = $this->db->query($cen_count);
 					$center_count = $cen_count_res->num_rows();
 					
-					$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
+					$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$user_id'";
 					$stu_count_res = $this->db->query($stu_count);
 					$student_count = $mob_count_res->num_rows();
 					
-					$ta_count = "SELECT * FROM edu_task WHERE pia_id = '$pia_id'";
+					$ta_count = "SELECT * FROM edu_task WHERE pia_id = '$user_id'";
 					$ta_count_res = $this->db->query($ta_count);
 					$task_count = $mob_count_res->num_rows();
 					
@@ -312,7 +321,8 @@ class Apimainmodel extends CI_Model {
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
 							"student_count" => $student_count,
-							"task_count" => $task_count
+							"task_count" => $task_count,
+							"project_period" => $proPeriod
 						);
 					
 					$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"piaProfile" =>$piaData,"dashboardData"=>$dashboardData);
@@ -384,7 +394,7 @@ class Apimainmodel extends CI_Model {
 
 				if ($user_type==3) {
 
-					$pia_query = "SELECT * FROM pia_table WHERE id  ='$user_master_id' and status='Active'";
+					$pia_query = "SELECT * FROM edu_pia WHERE id  ='$user_master_id' and status='Active'";
 					$pia_res = $this->db->query($pia_query);
 					$pia_result= $pia_res->result();
 
@@ -747,8 +757,181 @@ class Apimainmodel extends CI_Model {
 	}
 //#################### Plan List End ####################//
 
+//#################### PIA Dashboard ####################//
+	public function piaDashboard($pia_id)
+	{
+			$pro_period_query = "SELECT * FROM edu_year_duration WHERE pia_id = '$pia_id'";
+			$pro_period_res = $this->db->query($pro_period_query);
+			$pro_period_result = $pro_period_res->result();
+			if($pro_period_res->num_rows()>0)
+				{
+					$proPeriod  = array(
+						"period_from" => $pro_period_result[0]->period_from,
+						"period_to" => $pro_period_result[0]->period_to
+					);
+				} else {
+					$proPeriod  = array();
+				}
+			
+			$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
+			$mob_count_res = $this->db->query($mob_count);
+			$mobilizer_count = $mob_count_res->num_rows();
+			
+			$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
+			$cen_count_res = $this->db->query($cen_count);
+			$center_count = $cen_count_res->num_rows();
+			
+			$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
+			$stu_count_res = $this->db->query($stu_count);
+			$student_count = $mob_count_res->num_rows();
+			
+			$ta_count = "SELECT * FROM edu_task WHERE pia_id = '$pia_id'";
+			$ta_count_res = $this->db->query($ta_count);
+			$task_count = $mob_count_res->num_rows();
+			
+			$dashboardData  = array(
+					"mobilizer_count" => $mobilizer_count,
+					"center_count" => $center_count,
+					"student_count" => $student_count,
+					"task_count" => $task_count,
+					"project_period" => $proPeriod
+				);
+			$response = array("status" => "Sucess", "msg" => "Pia Dashboard","piaDashboard"=>$dashboardData);
+			return $response;
+	}
+//#################### PIA Dashboard End ####################//
+
+//#################### Center List ####################//
+	public function piaCenterlist ($pia_id)
+	{
+            $sQuery = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id' AND status = 'Active'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "Center List","centerList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Center Not Found");
+			}
+			return $response;
+	}
+//#################### Center List End ####################//
+
+//#################### User List ####################//
+	public function piaMoblist ($pia_id)
+	{
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.pia_id='$pia_id' AND A.user_type ='4'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User List End ####################//
+
+//#################### User Details ####################//
+	public function piaMobdetails ($mob_id)
+	{
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$mob_id'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "User List","userList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Users Not Found");
+			}
+			return $response;
+	}
+//#################### User Details End ####################//
+
+//#################### List Students ####################//
+	public function listStudents($mob_id)
+	{
+		 	$student_query = "SELECT name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$mob_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
+
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
+			return $response;
+	}
+//#################### List Students End ####################//
+
+//#################### User Tracking ####################//
+	public function mobilizerTracking($mob_id,$track_date)
+	{
+		 $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
+			$track_res = $this->db->query($track_query);
+			$track_result= $track_res->result();
+			
+			 if($track_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Track Not Found");
+			}else{
+				
+			foreach($track_result as $rows){
+				$lat=$rows->lat;
+				$lng=$rows->lng;
+				$loca=$rows->address;
+				$address[] = array ("Latitude" => $lat, "Longitude" => $lng);
+             }
+			 
+			 $km_query="SELECT (6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) ) AS distance,SUM((6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) )) AS km FROM edu_tracking_details WHERE user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date'";
+				$km_result=$this->db->query($km_query);
+				$km_distance_calc= $km_result->result(); 
+				
+				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
+			}
+			return $response;			
+				
+	}
+//#################### User Tracking End ####################//
 
 
+//#################### List Centers ####################//
+	public function piaCenterlist($mob_id)
+	{
+		 $center_query = "SELECT * FROM edu_center_master WHERE status = 'Active'";
+		$center_res = $this->db->query($center_query);
+		 if($center_res->num_rows()>0){
+			 foreach ($center_res->result() as $rows)
+				{
+				 $centerDetails[]  = array(
+						"center_id" => $rows->id,
+						"center_name" => $rows->center_name,
+						"center_info " => $rows->center_info,
+						"center_address " => $rows->center_address,
+						"center_logo" => base_url().'assets/center/logo/'.$rows->center_banner
+				);
+			}
 
+				$response = array("status" => "success", "msg" => "Center Details","cenerDetails"=>$centerDetails);
+		}else{
+				$response = array("status" => "error", "msg" => "Centers Not Found");
+		}
+		
+		return $response;
+	}
+//#################### List Centers End ####################//
 }
 ?>
