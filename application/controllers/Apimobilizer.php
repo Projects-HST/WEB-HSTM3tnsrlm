@@ -48,7 +48,7 @@ class Apimobilizer extends CI_Controller {
 
 //-----------------------------------------------//
 
-	public function login()
+	/* public function login()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
@@ -78,7 +78,7 @@ class Apimobilizer extends CI_Controller {
 		$gcmkey = $this->input->post("gcm_key");
 		$mobiletype = $this->input->post("mobile_type");
 		
-		$data['result']=$this->apimainmodel->Login($username,$password,$gcmkey,$mobiletype);
+		$data['result']=$this->apimobilizermodel->Login($username,$password,$gcmkey,$mobiletype);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -99,7 +99,7 @@ class Apimobilizer extends CI_Controller {
 		$profilepic = $uploadPicdir.$userFileName;
 		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
-		$data['result']=$this->apimainmodel->updateProfilepic($user_id,$userFileName);
+		$data['result']=$this->apimobilizermodel->updateProfilepic($user_id,$userFileName);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -134,10 +134,10 @@ class Apimobilizer extends CI_Controller {
 		$old_password = $this->input->post("old_password");
 	 	$password = $this->input->post("new_password");
 
-		$data['result']=$this->apimainmodel->changePassword($user_id,$old_password,$password);
+		$data['result']=$this->apimobilizermodel->changePassword($user_id,$old_password,$password);
 		$response = $data['result'];
 		echo json_encode($response);
-	}
+	} */
 	
 //-----------------------------------------------//
 
@@ -162,9 +162,11 @@ class Apimobilizer extends CI_Controller {
 		}
 
 		$user_id = '';
+		$pia_id = '';
 		$user_id = $this->input->post("user_id");
+		$pia_id = $this->input->post("pia_id");
 
-		$data['result']=$this->apimainmodel->Selecttrade($user_id);
+		$data['result']=$this->apimobilizermodel->Selecttrade($user_id,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -196,7 +198,7 @@ class Apimobilizer extends CI_Controller {
 		$trade_id = '';
 		$trade_id = $this->input->post("trade_id");
 
-		$data['result']=$this->apimainmodel->Selectbatch($trade_id);
+		$data['result']=$this->apimobilizermodel->Selectbatch($trade_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -226,7 +228,7 @@ class Apimobilizer extends CI_Controller {
 		$user_id = '';
 		$user_id = $this->input->post("user_id");
 
-		$data['result']=$this->apimainmodel->Selecttimings($user_id);
+		$data['result']=$this->apimobilizermodel->Selecttimings($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -256,7 +258,7 @@ class Apimobilizer extends CI_Controller {
 		$user_id = '';
 		$user_id = $this->input->post("user_id");
 
-		$data['result']=$this->apimainmodel->Selectbloodgroup($user_id);
+		$data['result']=$this->apimobilizermodel->Selectbloodgroup($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -282,7 +284,7 @@ class Apimobilizer extends CI_Controller {
 			echo json_encode($res);
 			return;
 		}
-		
+		$pia_id = '';
 		$have_aadhaar_card = '';
 		$aadhaar_card_number = '';
 		$name = '';
@@ -318,6 +320,7 @@ class Apimobilizer extends CI_Controller {
 		$created_by = '';
 		$created_at = '';
 
+		$pia_id = $this->input->post("pia_id");
         $have_aadhaar_card = $this->input->post("have_aadhaar_card");
 		$aadhaar_card_number = $this->input->post("aadhaar_card_number");
 		$name = $this->input->post("name");
@@ -353,7 +356,7 @@ class Apimobilizer extends CI_Controller {
 		$created_by = $this->input->post("created_by");
 		$created_at = $this->input->post("created_at");
 
-		$data['result']=$this->apimainmodel->addStudent($have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at);
+		$data['result']=$this->apimobilizermodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -373,7 +376,7 @@ class Apimobilizer extends CI_Controller {
 		$profilepic = $uploadPicdir.$userFileName;
 		move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
 
-		$data['result']=$this->apimainmodel->studentPic($admission_id,$userFileName);
+		$data['result']=$this->apimobilizermodel->studentPic($admission_id,$userFileName);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -407,7 +410,7 @@ class Apimobilizer extends CI_Controller {
 	 	$user_id = $this->input->post("user_id");
 
 
-		$data['result']=$this->apimainmodel->listStudents($user_id);
+		$data['result']=$this->apimobilizermodel->listStudents($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -440,7 +443,7 @@ class Apimobilizer extends CI_Controller {
 	 	$admission_id = $this->input->post("admission_id");
 
 
-		$data['result']=$this->apimainmodel->viewStudent($admission_id);
+		$data['result']=$this->apimobilizermodel->viewStudent($admission_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -543,7 +546,7 @@ class Apimobilizer extends CI_Controller {
 		$updated_at = $this->input->post("updated_at");
 
 
-		$data['result']=$this->apimainmodel->updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at);
+		$data['result']=$this->apimobilizermodel->updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -572,9 +575,11 @@ class Apimobilizer extends CI_Controller {
 		}
 
 		$user_id = '';
+		$pia_id = '';
 		$user_id = $this->input->post("user_id");
+		$pia_id = $this->input->post("pia_id");
 
-		$data['result']=$this->apimainmodel->centerDetails($user_id);
+		$data['result']=$this->apimobilizermodel->centerDetails($user_id,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -605,7 +610,7 @@ class Apimobilizer extends CI_Controller {
 		$center_id = '';
 		$center_id = $this->input->post("center_id");
 
-		$data['result']=$this->apimainmodel->centerImages($center_id);
+		$data['result']=$this->apimobilizermodel->centerImages($center_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -637,7 +642,7 @@ class Apimobilizer extends CI_Controller {
 		$center_id = '';
 		$center_id = $this->input->post("center_id");
 
-		$data['result']=$this->apimainmodel->centerVideos($center_id);
+		$data['result']=$this->apimobilizermodel->centerVideos($center_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -670,7 +675,7 @@ class Apimobilizer extends CI_Controller {
 		$center_id = '';
 		$center_id = $this->input->post("center_id");
 
-		$data['result']=$this->apimainmodel->viewTrainers($center_id);
+		$data['result']=$this->apimobilizermodel->viewTrainers($center_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -702,7 +707,7 @@ class Apimobilizer extends CI_Controller {
 		$center_id = '';
 		$center_id = $this->input->post("center_id");
 
-		$data['result']=$this->apimainmodel->viewSucessstory($center_id);
+		$data['result']=$this->apimobilizermodel->viewSucessstory($center_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -736,7 +741,7 @@ class Apimobilizer extends CI_Controller {
 	    $user_id = $this->input->post("user_id");
 
 
-		$data['result']=$this->apimainmodel->dispCircular($user_id);
+		$data['result']=$this->apimobilizermodel->dispCircular($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -783,7 +788,7 @@ class Apimobilizer extends CI_Controller {
 		$created_at  = date("Y-m-d H:i:s");
 
 
-		$data['result']=$this->apimainmodel->addTask($user_id,$task_title,$task_description,$task_date,$status,$created_by,$created_at);
+		$data['result']=$this->apimobilizermodel->addTask($user_id,$task_title,$task_description,$task_date,$status,$created_by,$created_at);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -817,7 +822,7 @@ class Apimobilizer extends CI_Controller {
 	    $user_id = $this->input->post("user_id");
 
 
-		$data['result']=$this->apimainmodel->listTask($user_id);
+		$data['result']=$this->apimobilizermodel->listTask($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -850,7 +855,7 @@ class Apimobilizer extends CI_Controller {
 	    $task_id = $this->input->post("task_id");
 
 
-		$data['result']=$this->apimainmodel->viewTask($task_id);
+		$data['result']=$this->apimobilizermodel->viewTask($task_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -899,7 +904,7 @@ class Apimobilizer extends CI_Controller {
 		$updated_at  = date("Y-m-d H:i:s");
 
 
-		$data['result']=$this->apimainmodel->updateTask($task_id,$user_id,$task_title,$task_description,$task_date,$status,$updated_by,$updated_at);
+		$data['result']=$this->apimobilizermodel->updateTask($task_id,$user_id,$task_title,$task_description,$task_date,$status,$updated_by,$updated_at);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -920,7 +925,7 @@ class Apimobilizer extends CI_Controller {
 		$taskpic = $uploadPicdir.$taskFileName;
 		move_uploaded_file($_FILES['task_pic']['tmp_name'], $taskpic);
 
-		$data['result']=$this->apimainmodel->taskPic($task_id,$taskFileName);
+		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -953,7 +958,7 @@ class Apimobilizer extends CI_Controller {
         $task_id = '';
 		$task_id = $this->input->post("task_id");
 
-		$data['result']=$this->apimainmodel->listTaskpic($task_id);
+		$data['result']=$this->apimobilizermodel->listTaskpic($task_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -964,7 +969,7 @@ class Apimobilizer extends CI_Controller {
 
 	public function delete_taskpic()
 	{
-		//$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
 		{
@@ -986,7 +991,7 @@ class Apimobilizer extends CI_Controller {
         $pic_id = '';
 		$pic_id = $this->input->post("pic_id");
 
-		$data['result']=$this->apimainmodel->deleteTaskpic($pic_id);
+		$data['result']=$this->apimobilizermodel->deleteTaskpic($pic_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -1021,15 +1026,18 @@ class Apimobilizer extends CI_Controller {
 		$latitude  = '';
 		$longitude = '';
 		$location = '';
+		$miles = '';
 		$location_datetime  = '';
 
 		$user_id = $this->input->post("user_id");
 		$latitude = $this->input->post("latitude");
 		$longitude  = $this->input->post("longitude");
-		$location_datetime = $this->input->post("location_datetime");
 		$location = $this->input->post("location");
+		$miles = $this->input->post("miles");
+		$location_datetime = $this->input->post("location_datetime");
+		
 
-		$data['result']=$this->apimainmodel->addMobilocation($user_id,$latitude,$longitude,$location,$location_datetime);
+		$data['result']=$this->apimainmodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

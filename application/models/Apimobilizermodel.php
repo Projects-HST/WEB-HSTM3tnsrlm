@@ -10,7 +10,7 @@ class Apimobilizermodel extends CI_Model {
 
 //#################### Email ####################//
 
-	public function sendMail($to,$subject,$htmlContent)
+	/* public function sendMail($to,$subject,$htmlContent)
 	{
 		// Set content-type header for sending HTML email
 		$headers = "MIME-Version: 1.0" . "\r\n";
@@ -18,14 +18,14 @@ class Apimobilizermodel extends CI_Model {
 		// Additional headers
 		$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
 		mail($to,$subject,$htmlContent,$headers);
-	}
+	} */
 
 //#################### Email End ####################//
 
 
 //#################### Email ####################//
 
-	public function sendNotification($gcm_key,$Title,$Message)
+	/* public function sendNotification($gcm_key,$Title,$Message)
 	{
 
 			require_once 'assets/notification/Firebase.php';
@@ -59,7 +59,7 @@ class Apimobilizermodel extends CI_Model {
     	}
 
 
-/*
+
 	        $gcm_key = array($gcm_key);
 			$data = array
 			(
@@ -108,17 +108,17 @@ class Apimobilizermodel extends CI_Model {
 
 			// Debug GCM response
 			//echo $result;
-*/
 
 
-	}
+
+	} */
 
 //#################### Notification End ####################//
 
 
 //#################### SMS ####################//
 
-	public function sendSMS($Phoneno,$Message)
+	/* public function sendSMS($Phoneno,$Message)
 	{
 		$textmsg = urlencode($Message);
 		$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
@@ -133,14 +133,14 @@ class Apimobilizermodel extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$output = curl_exec($ch);
 		curl_close($ch);
-	}
+	} */
 
 //#################### SMS End ####################//
 
 
 //#################### Current Year ####################//
 
-	public function getYear()
+	/* public function getYear()
 	{
 		$sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
 		$year_result = $this->db->query($sqlYear);
@@ -154,14 +154,14 @@ class Apimobilizermodel extends CI_Model {
 			}
 			return $year_id;
 		}
-	}
+	} */
 //#################### Current Year End ####################//
 
 
 
 //#################### Login ####################//
 
-	public function Login($username,$password,$gcmkey,$mobiletype)
+	/* public function Login($username,$password,$gcmkey,$mobiletype)
 	{
 
  		$sql = "SELECT * FROM edu_users A, edu_role B  WHERE A.user_type = B.id AND A.user_name ='".$username."' and A.user_password = md5('".$password."') and A.status='Active'";
@@ -244,24 +244,24 @@ class Apimobilizermodel extends CI_Model {
 			 			$response = array("status" => "error", "msg" => "Invalid login");
 						return $response;
 			 }
-	}
+	} */
 
 //#################### Main Login End ####################//
 
 //#################### Profile Pic Update ####################//
-	public function updateProfilepic($user_id,$userFileName)
+	/* public function updateProfilepic($user_id,$userFileName)
 	{
             $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
 			$update_result = $this->db->query($update_sql);
 
 			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
 			return $response;
-	}
+	} */
 //#################### Profile Pic Update End ####################//
 
 
 //#################### Change Password ####################//
-	public function changePassword($user_id,$old_password,$password)
+	/* public function changePassword($user_id,$old_password,$password)
 	{
 			$user_query = "SELECT * FROM edu_users WHERE user_id ='$user_id' and user_password= md5('$old_password') and status='Active'";
 			$user_res = $this->db->query($user_query);
@@ -278,13 +278,13 @@ class Apimobilizermodel extends CI_Model {
 			}
 
 			return $response;
-	}
+	} */
 //#################### Change Password End ####################//
 
 //#################### Select Trade ####################//
-	public function Selecttrade($user_id)
+	public function Selecttrade($user_id,$pia_id)
 	{
-	        $trade_query = "SELECT id,trade_name from edu_trade WHERE status = 'Active'";
+	        $trade_query = "SELECT id,trade_name from edu_trade WHERE pia_id='$pia_id' AND status = 'Active'";
 			$trade_res = $this->db->query($trade_query);
 
 			 if($trade_res->num_rows()>0){
@@ -300,9 +300,9 @@ class Apimobilizermodel extends CI_Model {
 //#################### Select Trade End ####################//
 
 //#################### Select Batch ####################//
-	public function Selectbatch($trade_id)
+	public function Selectbatch($trade_id,$pia_id)
 	{
-	        $batch_query = "SELECT A.id,B.batch_name from edu_trade_batch A, edu_batch B WHERE A.trade_id = '$trade_id' AND A.batch_id = B.id AND A.status = 'Active'";
+	        $batch_query = "SELECT A.id,B.batch_name from edu_trade_batch A, edu_batch B WHERE A.trade_id = '$trade_id' AND A.batch_id = B.id AND A.pia_id = '$pia_id' AND A.status = 'Active'";
 			$batch_res = $this->db->query($batch_query);
 
 			 if($batch_res->num_rows()>0){
@@ -355,9 +355,8 @@ class Apimobilizermodel extends CI_Model {
 
 
 //#################### Add Student ####################//
-	public function addStudent ($have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at)
+	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at)
 	{
-	    
 	        $chk_query = "SELECT * from edu_admission WHERE aadhaar_card_number = '$aadhaar_card_number'";
 			$chk_res = $this->db->query($chk_query);
 
@@ -365,7 +364,7 @@ class Apimobilizermodel extends CI_Model {
 			     	$response = array("status" => "error", "msg" => "Already Exist");
 				 
 			}else{
-			        $student_query = "INSERT INTO `edu_admission` (`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
+			        $student_query = "INSERT INTO `edu_admission` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
 	                $student_res = $this->db->query($student_query);
                     $admission_id = $this->db->insert_id();
                     
@@ -444,9 +443,9 @@ class Apimobilizermodel extends CI_Model {
 
 
 //#################### View Center ####################//
-	public function centerDetails($user_id)
+	public function centerDetails($user_id,$pia_id)
 	{
-		 	$center_query = "SELECT * FROM `edu_center_details`";
+		 	$center_query = "SELECT * FROM `edu_center_master` WHERE pia_id = '$pia_id'";
 			$center_res = $this->db->query($center_query);
 			$center_result= $center_res->result();
 
@@ -492,7 +491,7 @@ class Apimobilizermodel extends CI_Model {
         				    $video_result = array();
         				}
         			
-        			$staff_query = "SELECT name,profile_pic FROM edu_staff_details WHERE role_type ='3'  AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$staff_query = "SELECT name,profile_pic FROM edu_staff_details WHERE role_type ='4' AND pia_id='$pia_id'  AND status ='Active' ORDER BY id DESC LIMIT 4 ";
         			$staff_res = $this->db->query($staff_query);
         				if($staff_res->num_rows()>0){
             			    foreach ($staff_res->result() as $rows)
@@ -506,7 +505,7 @@ class Apimobilizermodel extends CI_Model {
         				    $staff_result = array();
         				}
         			
-        			$trade_query = "SELECT trade_name FROM edu_trade WHERE status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$trade_query = "SELECT trade_name FROM edu_trade WHERE pia_id='$pia_id' AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
         			$trade_res = $this->db->query($trade_query);
         			    if($trade_res->num_rows()>0){
             			    foreach ($trade_res->result() as $rows)
@@ -693,8 +692,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### List Task ####################//
 	public function listTask ($user_id)
 	{
-
-            $task_query = "SELECT * FROM `edu_task` WHERE created_by  ='$user_id'";
+            $task_query = "SELECT * FROM `edu_task` WHERE user_id  ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 			
@@ -746,7 +744,6 @@ class Apimobilizermodel extends CI_Model {
 //#################### Task Pic Add ####################//
 	public function taskPic($task_id,$task_pic)
 	{
-	    
            $task_query = "INSERT INTO `edu_task_photos` (`task_id`, `task_image`) VALUES ('$task_id','$task_pic')";
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
@@ -805,7 +802,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### Task Pic Delete End ####################//
 
 //#################### Add Mobilizer Location ####################//
-	public function addMobilocation($user_id,$latitude,$longitude,$location,$location_datetime)
+	/* public function addMobilocation($user_id,$latitude,$longitude,$location,$location_datetime)
 	{
             $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`created_at`) VALUES ('$user_id','$latitude','$longitude','$location','$location_datetime')";
 	        $location_res = $this->db->query($location_query);
@@ -817,8 +814,38 @@ class Apimobilizermodel extends CI_Model {
 			    $response = array("status" => "error");
 			}
 			return $response;
+	} */
+//#################### Mobilizer Location End ####################//
+
+//#################### Add Mobilizer Location ####################//
+	public function addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime)
+	{
+            $dt = strtotime($location_datetime); //make timestamp with datetime string
+            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created  
+
+	       $user_query = "SELECT * FROM edu_tracking_details WHERE user_id = '$user_id' AND date(created_at) = '$chk_date' ORDER BY id DESC LIMIT 1";
+           $user_result = $this->db->query($user_query);
+           $user_res = $user_result->result();
+           
+        	    if($user_result->num_rows()>0){
+        		   foreach($user_res as $rows){
+						$to_latitude = $rows->to_lat;
+						$to_longitude = $rows->to_long;
+					}
+        	        
+        	        $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`) VALUES ('$user_id','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime')";
+	                $location_res = $this->db->query($location_query);
+        	        $response = array("status" => "Sucess", "msg" => "Location Added");
+        		} else {
+        		    
+        		    $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime')";
+	                $location_res = $this->db->query($location_query);
+        		    $response = array("status" => "Sucess", "msg" => "Location Added");
+        		}
+        	
+			return $response;
 	}
-//#################### Student Pic Update End ####################//
+//#################### Mobilizer Location End ####################//
 
 
 }

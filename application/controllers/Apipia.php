@@ -1496,7 +1496,6 @@ public function user_profilepic()
 
 		if($_POST == FALSE)
 		{
-		    
 			$res = array();
 			$res["opn"] = "User Tracking";
 			$res["scode"] = 204;

@@ -324,7 +324,6 @@ class Apimainmodel extends CI_Model {
 							"task_count" => $task_count,
 							"project_period" => $proPeriod
 						);
-					
 					$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"piaProfile" =>$piaData,"dashboardData"=>$dashboardData);
 					return $response;
 				}
@@ -332,13 +331,15 @@ class Apimainmodel extends CI_Model {
 
 						$mobilizer_id = $rows->user_master_id;
 
-                        $staff_query = "SELECT t.id, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
+                        $staff_query = "SELECT t.id, t.pia_id, t.role_type, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
 						$staff_res = $this->db->query($staff_query);
 						$staff_profile = $staff_res->result();
 						if($staff_res->num_rows()>0)
                         	{
                         	    $staffData  = array(
     							"staff_id" => $staff_profile[0]->id,
+								"pia_id" => $staff_profile[0]->pia_id,
+								"role_type" => $staff_profile[0]->role_type,
     							"name" => $staff_profile[0]->name,
     							"sex" => $staff_profile[0]->sex,
     							"age" => $staff_profile[0]->age,
@@ -483,7 +484,6 @@ class Apimainmodel extends CI_Model {
             $digits = 6;
 			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 			$md5pwd = md5($OTP);
-
 			
             $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,status) VALUES('$name','$phone','$md5pwd','2','$insert_id',NOW(),'Active')";
 			$result_user=$this->db->query($user_table);
@@ -693,11 +693,11 @@ class Apimainmodel extends CI_Model {
 					$result_user=$this->db->query($update_user);
 					
 
-						$mobile_message = 'Username :'. $phone;
+						$mobile_message = 'Username :'. $unique_number;
 						$this->sendSMS($phone,$mobile_message);
 
 						$subject = "M3 - User Name Update";
-						$email_message = 'Username:'.$phone.'<br><br>';
+						$email_message = 'Username:'.$unique_number.'<br><br>';
 						$this->sendMail($email,$subject,$email_message);
 
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
@@ -909,7 +909,7 @@ class Apimainmodel extends CI_Model {
 
 
 //#################### List Centers ####################//
-	public function piaCenterlist($mob_id)
+	public function Centerlist($user_id)
 	{
 		 $center_query = "SELECT * FROM edu_center_master WHERE status = 'Active'";
 		$center_res = $this->db->query($center_query);

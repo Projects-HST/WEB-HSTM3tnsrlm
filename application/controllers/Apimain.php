@@ -750,7 +750,7 @@ class Apimain extends CI_Controller {
 
 //-----------------------------------------------//
 
-	public function pia_center_list()
+	public function center_list()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
@@ -773,7 +773,7 @@ class Apimain extends CI_Controller {
 		$user_id  ='';
 		$user_id = $this->input->post("user_id");
 		
-		$data['result']=$this->apimainmodel->piaCenterlist($user_id);
+		$data['result']=$this->apimainmodel->Centerlist($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

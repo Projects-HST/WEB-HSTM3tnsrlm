@@ -734,7 +734,7 @@ class Apipiamodel extends CI_Model {
 				$km_result=$this->db->query($km_query);
 				$km_distance_calc= $km_result->result(); 
 				
-				$response = array("status" => "success", "msg" => "View Task", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
+				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
 			}
 			return $response;			
 				
