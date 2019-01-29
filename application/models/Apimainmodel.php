@@ -680,11 +680,7 @@ class Apimainmodel extends CI_Model {
 				if($user_result->num_rows()>0)
 				{
 					$response = array("status" => "error", "msg" => "Unique number already exist.");
-				} else {
-					
-					
-					 $insert = "INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,status,created_by,created_at) VALUES('$unique_number','$name','$address','$phone','$email','Active','$user_id',NOW())";
-					 
+				} else {			 
 					
 					$update="UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_address='$address',pia_phone='$phone',pia_email='$email',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 					$result=$this->db->query($update);

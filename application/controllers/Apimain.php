@@ -68,14 +68,14 @@ class Apimain extends CI_Controller {
 			return;
 		}
 
-		$username = '';
+		$user_name = '';
 		$password = '';
 		$gcmkey ='';
 		$mobiletype ='';
 
-		$username = $this->input->post("username");
+		$username = $this->input->post("user_name");
 		$password = $this->input->post("password");
-		$gcmkey = $this->input->post("gcm_key");
+		$gcmkey = $this->input->post("device_id");
 		$mobiletype = $this->input->post("mobile_type");
 		
 		$data['result']=$this->apimainmodel->Login($username,$password,$gcmkey,$mobiletype);

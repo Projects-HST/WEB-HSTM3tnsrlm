@@ -28,10 +28,9 @@ Class Loginmodel extends CI_Model
                       $data = array("user_name"  => $rows->user_name,"msg"  =>"success","name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"status"=>$rows->status,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
                       return $data;
                       //break;
-                     print_r($data);exit;
+                     //print_r($data);exit;
                       // break;
                     case "Inactive":
-
                             $data= array("status" => "Deactive","msg" => "Your Account Is De-Activated");
                             return $data;
                       break;
@@ -63,12 +62,19 @@ Class Loginmodel extends CI_Model
             }
 
        }
+	   
        function getuser($user_id){
-         $query="SELECT ep.*,eu.* From edu_users as eu left join edu_pia as ep on eu.user_id=ep.id AND eu.user_type='3' WHERE eu.user_id='$user_id'";
+         $query="SELECT ep.*,eu.* From edu_users as eu left join edu_pia as ep on eu.user_master_id=ep.id AND eu.user_type='3' WHERE eu.user_id='$user_id'";
          $resultset=$this->db->query($query);
          return $resultset->result();
        }
 
+	   function getadminuser($user_id){
+         $query="SELECT ep.*,eu.* From edu_users as eu left join edu_staff_details as ep on eu.user_master_id=ep.id AND eu.user_type='1' OR eu.user_type='2' WHERE eu.user_id='$user_id'";
+         $resultset=$this->db->query($query);
+         return $resultset->result();
+       }
+	   
        function password_update($new_password,$user_id){
             $pwd=md5($new_password);
             $query="UPDATE edu_users SET user_password='$pwd',	updated_date=NOW() WHERE user_id='$user_id'";
@@ -111,9 +117,9 @@ Class Loginmodel extends CI_Model
          }
        }
 
-       function check_password_match($old_password,$staff_id){
+       function check_password_match($old_password,$user_id){
          $pwd=md5($old_password);
-         $select="SELECT * FROM edu_users Where user_password='$pwd' AND user_id='$staff_id'";
+         $select="SELECT * FROM edu_users Where user_password='$pwd' AND user_id='$user_id'";
            $result=$this->db->query($select);
            if($result->num_rows()==0){
              echo "false";
