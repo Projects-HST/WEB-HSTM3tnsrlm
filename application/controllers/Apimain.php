@@ -68,7 +68,7 @@ class Apimain extends CI_Controller {
 			return;
 		}
 
-		$user_name = ''; 
+		$user_name = '';
 		$password = '';
 		$gcmkey ='';
 		$mobiletype ='';
