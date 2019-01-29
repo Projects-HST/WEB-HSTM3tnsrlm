@@ -156,11 +156,32 @@ public function __construct()
 
    function update_staff_details_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id){
 
+   
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
+			$user_result = $this->db->query($sQuery);
+			$ress = $user_result->result();
+			if($user_result->num_rows()>0)
+			{
+				foreach ($user_result->result() as $rows)
+				{
+					$old_phone_number = $rows->phone;
+				}
+			}
+			
 		$update = "UPDATE edu_staff_details SET role_type='$select_role',name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community',community='$community',qualification='$qualification',status='$status',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
 		$result=$this->db->query($update);
 	  
-		$update_user="UPDATE edu_users SET name='$name' WHERE user_master_id='$staff_id'";
-		$result_user=$this->db->query($update_user);
+		/* $update_user="UPDATE edu_users SET name='$name' WHERE user_master_id='$staff_id' AND user_type = '2'";
+		$result_user=$this->db->query($update_user); */
+		
+		if ($old_phone_number != $mobile){
+			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			$result_user=$this->db->query($update_user);
+		}else {
+			$update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			$result_user=$this->db->query($update_user);
+		}
+		
 		if ($result_user) {
 		  $data = array(
 			  "status" => "success"
@@ -288,10 +309,10 @@ public function __construct()
 	$result=$this->db->query($update);
 		
 	if ($old_unique_number != $unique_number){
-		$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',status='$status', WHERE user_master_id='$pia_id'";
+		$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
 		$result_user=$this->db->query($update_user);
 	}else {
-		$update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_master_id='$pia_id'";
+		$update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
 		$result_user=$this->db->query($update_user);
 	}
 		if ($result_user) {

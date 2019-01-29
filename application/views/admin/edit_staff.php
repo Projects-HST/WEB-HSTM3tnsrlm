@@ -261,7 +261,7 @@
 													<?php if($rows->profile_pic==''){
 
 													}else{ ?>
-															<img src="<?php echo base_url(); ?>assets/profile/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+															<img src="<?php echo base_url(); ?>assets/staff/<?php echo $rows->profile_pic; ?>" style="width:100px;">
 												<?php	} ?>
 
 
