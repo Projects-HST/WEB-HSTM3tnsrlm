@@ -441,18 +441,20 @@ class Admin extends CI_Controller {
 					$community_class=$this->input->post('community_class');
 					$address= $this->db->escape_str($this->input->post('address'));
 					$status=$this->input->post('status');
-					$profilepic = $_FILES['staff_pic']['name'];
-					if(empty($profilepic)){
-						$staff_prof_pic='';
-					}else{
-						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
-						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-						$uploaddir = 'assets/profile/';
-						$profilepic = $uploaddir.$staff_prof_pic;
-						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
-					}
+					$staff_old_pic=$this->input->post('staff_old_pic');
+					$profilepic = $_FILES['staff_new_pic']['name'];
+						if(empty($profilepic)){
+							$staff_prof_pic=$staff_old_pic;
+						}else{
+							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+							$uploaddir = 'assets/profile/';
+							$profilepic = $uploaddir.$staff_prof_pic;
+							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
+						}
 					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id,$pia_id);
-					
+					echo $staff_prof_pic;
+					exit;
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
 						redirect('admin/view_pia');

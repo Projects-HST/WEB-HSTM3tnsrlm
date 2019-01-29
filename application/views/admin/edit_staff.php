@@ -183,8 +183,6 @@
 										</div>
 										<div class="nk-int-st">
 										    <input type="text" placeholder="Community" name="community" class="form-control"  value="<?php echo $rows->community; ?>">
-												<input type="hidden" name="staff_id" value="<?php  echo base64_encode($rows->id); ?>">
-													<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
 										</div>
 									</div>
 								</div>
@@ -274,6 +272,8 @@
 								<div class="row">
 									<div class="col-lg-12 " style="margin-top:10px;">
 										<div class="form-group  form-elet-mg text-center">
+											<input type="hidden" name="staff_id" value="<?php  echo base64_encode($rows->id); ?>">
+											<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
 											<button  type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
 										</div>
 									</div>
