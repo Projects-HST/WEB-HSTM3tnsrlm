@@ -130,7 +130,7 @@ $("#myformsection").validate({
                                  icon:'success',
                                  stack: false
                              })
-                             window.setTimeout(function(){location.reload()},3000);
+                              window.location = "<?php echo base_url(); ?>trade/home";
                      }else{
                        $.toast({
                                  heading: 'Error',
