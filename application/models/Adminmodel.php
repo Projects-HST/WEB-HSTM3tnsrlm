@@ -106,7 +106,7 @@ public function __construct()
               $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
               // Additional headers
               $headers .= 'From: info<info@tnsrlm.com>' . "\r\n";
-             // mail($to,$subject,$htmlContent,$headers);
+              mail($to,$subject,$htmlContent,$headers);
             if ($result_user) {
                 $data = array(
                     "status" => "success"
@@ -254,7 +254,7 @@ public function __construct()
               $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
               // Additional headers
               $headers .= 'From: info<info@tnsrlm.com>' . "\r\n";
-             //mail($to,$subject,$htmlContent,$headers);
+             mail($to,$subject,$htmlContent,$headers);
             if ($result_user) {
                 $data = array(
                     "status" => "success"
