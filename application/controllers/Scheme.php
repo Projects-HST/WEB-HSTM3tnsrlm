@@ -38,22 +38,23 @@ class Scheme extends CI_Controller {
 
 
 	 	public function view(){
-	 		 	$datas=$this->session->userdata();
+	 		$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
   			$user_type=$this->session->userdata('user_type');
-				if($user_type==3){
-			 $datas['res_img']=$this->schememodel->get_scheme_gallery_img();
-			 $datas['res_scheme']=$this->schememodel->get_scheme_details();
-			 // print_r($datas['res_scheme']);exit;
-			 $this->load->view('pia/pia_header');
-			 $this->load->view('pia/scheme/view_scheme',$datas);
-			 $this->load->view('pia/pia_footer');
+			if($user_type==3){
+				 $datas['res_img']=$this->schememodel->get_scheme_gallery_img();
+				 $datas['res_scheme']=$this->schememodel->get_scheme_details();
+				 // print_r($datas['res_scheme']);exit;
+				 $this->load->view('pia/pia_header');
+				 $this->load->view('pia/scheme/view_scheme',$datas);
+				 $this->load->view('pia/pia_footer');
 	 		 }
 	 		 else{
 	 				redirect('/');
 	 		 }
 	 	}
-		 	public function home(){
+		
+	public function home(){
 	 		 	$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
   			$user_type=$this->session->userdata('user_type');
@@ -62,7 +63,7 @@ class Scheme extends CI_Controller {
 			 $datas['res_scheme']=$this->schememodel->get_scheme_details();
 			 // print_r($datas['res_scheme']);exit;
 			 $this->load->view('admin/admin_header');
-			 $this->load->view('pia/scheme/update_scheme',$datas);
+			 $this->load->view('admin/scheme/update_scheme',$datas);
 			 $this->load->view('admin/admin_footer');
 	 		 }
 	 		 else{

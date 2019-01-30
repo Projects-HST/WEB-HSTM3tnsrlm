@@ -39,7 +39,7 @@
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
-                                                    <textarea cols="80" id="editor1" name="scheme_info" rows="10" required><?php echo $res->scheme_info;  ?></textarea>
+                                                    <textarea cols="90" id="editor1" name="scheme_info" rows="10" required><?php echo $res->scheme_info;  ?></textarea>
 
                                                 </div>
                                             </div>
@@ -50,11 +50,14 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                <label class="hrzn-fm">Scheme video link</label>
+                                                <label class="hrzn-fm">Scheme video link </label>
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
-                                                    <input type="text" name="scheme_video_link" id="scheme_video_link" class="form-control" value="<?php echo $res->scheme_video;  ?>">
+													<?php echo $res->scheme_video;  ?>
+													<br><br>
+													 <textarea cols="90" id="editor1" name="scheme_video_link" rows="2" required><?php echo $res->scheme_video;  ?></textarea>
+                                                  
 
                                                 </div>
                                             </div>
