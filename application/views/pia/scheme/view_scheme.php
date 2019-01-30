@@ -39,7 +39,7 @@
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
-                                                    <textarea cols="80" id="editor1" name="scheme_info" rows="10" required><?php echo $res->scheme_info;  ?></textarea>
+                                                    <textarea cols="100" id="editor1" name="scheme_info" rows="10" required><?php echo $res->scheme_info;  ?></textarea>
 
                                                 </div>
                                             </div>
