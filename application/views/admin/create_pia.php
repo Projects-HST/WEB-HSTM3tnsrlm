@@ -23,7 +23,7 @@
 								<i class="notika-icon notika-edit"></i>
 							</div>
 							<div class="nk-int-st">
-							  <input type="text" placeholder="Unique Number" name="unique_number" class="form-control" value="">
+							  <input type="text" placeholder="PRN Number" name="unique_number" class="form-control" value="">
 								</div>
 							</div>
 						</div>
@@ -61,76 +61,32 @@
 								</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<select name="sex" class="selectpicker ">
-										<option value="">Gender</option>
-										  <option value="Male">Male</option>
-										  <option value="Female">Female</option>
-									</select>
-									</div>
-								</div>
-							</div>
-						
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 								<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-										<select name="nationality" class="selectpicker" >
-												<option value="">Nationality</option>
-												<option value="Indian">Indian</option>
-												<option value="Others">Others</option>
-										</select>
-
-									</div>
-								</div>
-							</div>
-						
-						</div>
-
-					<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              					<div class="form-group ic-cmp-int">
 									<div class="form-ic-cmp">
 										<i class="notika-icon notika-edit"></i>
 									</div>
 									<div class="nk-int-st">
-									  <input type="text" placeholder="Religion" name="religion" class="form-control">
-										</div>
+							  		<input type="text" name="state" class="form-control" placeholder="State" />
 									</div>
 								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						</div>
+						
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
 									<div class="form-group ic-cmp-int">
 										<div class="form-ic-cmp">
 											<i class="notika-icon notika-edit"></i>
 										</div>
 										<div class="nk-int-st">
-										    <input type="text" placeholder="Community" name="community" class="form-control">
+											<textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Address"></textarea>
+
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-										  <input type="text" placeholder="Community Class" name="community_class" class="form-control">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								
-								
-								
-							</div>
+						
+						</div>
+
+
 							<div class="row">
 
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -145,18 +101,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Address"></textarea>
-
-										</div>
-									</div>
-								</div>
+									
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 										<div class="form-group ic-cmp-int form-elet-mg">
 											<div class="form-ic-cmp">
@@ -225,14 +170,11 @@
 						required: true,
 						email: true,
 				},
+				state: {
+						required: true
+				},
 				address: {
 						required: true
-				},
-				sex: {
-						required: true
-				},
-				nationality:{
-					required:true
 				},
 				status: {
 						required: true
@@ -240,13 +182,12 @@
 		},
 		messages: {
 				unique_number: {
-					required: "Enter Unique Number",
+					required: "Enter PRN Number",
 					maxlength:"Maximum 13 digits",
 					minlength:"Minimum 13 digits",
-					remote: "Unique Number",
+					remote: "PRN Number Already Exist.",
 					number:"Only Numbers"
 				 },
-				//unique_number: "Enter Unique Number",
 				name: "Enter Name",
 				mobile: {
 						required: "Enter mobile number",
@@ -258,8 +199,7 @@
 						 required: "Please enter your email address.",
 						 email: "Please enter a valid email address."
 				 },
-				sex: "Select Gender",
-				nationality: "Select Nationality",
+				state: "Enter State",
 				address: "Enter Address",
 				status: "Select Status"
 			}

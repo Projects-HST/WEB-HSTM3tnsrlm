@@ -206,7 +206,7 @@ public function __construct()
 		  }
     }  
 
-	function create_pia_details($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id){
+	function create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id){
 
       $select="SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
        $result=$this->db->query($select);
@@ -216,7 +216,7 @@ public function __construct()
          );
          return $data;
          }else{
-           $insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,profile_pic,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$staff_prof_pic','$status','$user_id',NOW())";
+           $insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,pia_state,profile_pic,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$state','$staff_prof_pic','$status','$user_id',NOW())";
             $result=$this->db->query($insert);
             $insert_id = $this->db->insert_id();
             $digits = 6;
@@ -292,7 +292,7 @@ public function __construct()
       }
     }  
 	
-	function update_pia_details_id($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id,$pia_id){
+	function update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id){
 
 			$sQuery = "SELECT * FROM edu_pia WHERE id = '$pia_id'";
 			$user_result = $this->db->query($sQuery);
@@ -305,7 +305,7 @@ public function __construct()
 				}
 			}
 	
-	$update = "UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_email ='$email',pia_phone ='$mobile',pia_address ='$address',status='$status',profile_pic = '$staff_prof_pic', updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
+	$update = "UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_email ='$email',pia_phone ='$mobile',pia_state='$state',pia_address ='$address',status='$status',profile_pic = '$staff_prof_pic', updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 	$result=$this->db->query($update);
 		
 	if ($old_unique_number != $unique_number){
@@ -330,23 +330,25 @@ public function __construct()
     }
 
 	function piaDashboard($pia_id){
-			 $mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
+			
+			$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
 			$mob_count_res = $this->db->query($mob_count);
 			$mobilizer_count = $mob_count_res->num_rows();
 									
-				$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
-				$cen_count_res = $this->db->query($cen_count);
-				$center_count = $cen_count_res->num_rows();
-				
-				$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
-				$stu_count_res = $this->db->query($stu_count);
-				$student_count = $mob_count_res->num_rows();
-				
-				$result_count  = array(
-						"mobilizer_count" => $mobilizer_count,
-						"center_count" => $center_count,
-						"student_count" => $student_count
-					);
+			$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
+			$cen_count_res = $this->db->query($cen_count);
+			$center_count = $cen_count_res->num_rows();
+			
+			$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
+			$stu_count_res = $this->db->query($stu_count);
+			$student_count = $mob_count_res->num_rows();
+			
+			$result_count  = array(
+					"mobilizer_count" => $mobilizer_count,
+					"center_count" => $center_count,
+					"student_count" => $student_count
+				);
+					
 			return $result_count;
 	}
 }

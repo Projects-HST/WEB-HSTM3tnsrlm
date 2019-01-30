@@ -342,11 +342,7 @@ class Admin extends CI_Controller {
 					$name=$this->input->post('name');
 					$mobile=$this->input->post('mobile');
 					$email=$this->input->post('email');
-					$sex=$this->input->post('sex');
-					$nationality=$this->input->post('nationality');
-					$religion=$this->input->post('religion');
-					$community=$this->input->post('community');
-					$community_class=$this->input->post('community_class');
+					$state=$this->input->post('state');
 					$address= $this->db->escape_str($this->input->post('address'));
 					$status=$this->input->post('status');
 					$profilepic = $_FILES['staff_pic']['name'];
@@ -359,7 +355,7 @@ class Admin extends CI_Controller {
 						$profilepic = $uploaddir.$staff_prof_pic;
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
 					}
-					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id);
+					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', 'PIA Created Successfully');
 						redirect('admin/view_pia');
@@ -434,11 +430,7 @@ class Admin extends CI_Controller {
 					$name=$this->input->post('name');
 					$mobile=$this->input->post('mobile');
 					$email=$this->input->post('email');
-					$sex=$this->input->post('sex');
-					$nationality=$this->input->post('nationality');
-					$religion=$this->input->post('religion');
-					$community=$this->input->post('community');
-					$community_class=$this->input->post('community_class');
+					$state=$this->input->post('state');
 					$address= $this->db->escape_str($this->input->post('address'));
 					$status=$this->input->post('status');
 					$staff_old_pic=$this->input->post('staff_old_pic');
@@ -452,7 +444,7 @@ class Admin extends CI_Controller {
 							$profilepic = $uploaddir.$staff_prof_pic;
 							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 						}
-					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id,$pia_id);
+					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id);
 
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
