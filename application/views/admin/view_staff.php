@@ -38,10 +38,9 @@
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
                               <td>	<?php if($rows->profile_pic==''){
-
-      													}else{ ?>
-      															<img src="<?php echo base_url(); ?>assets/profile/<?php echo $rows->profile_pic; ?>" style="width:100px;">
-      												<?php	} ?></td>
+								}else{ ?>
+									<img src="<?php echo base_url(); ?>assets/staff/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+						<?php	} ?></td>
                              <td><?php if($rows->status=='Active'){ ?>
                               <button class="btn btn-success notika-btn-success waves-effect">Active</button>
                           <?php }else{ ?>
@@ -50,7 +49,6 @@
                             </td>
                              <td>
                                <a href="<?php echo base_url(); ?>admin/edit_staff/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
-
 
                          </tr>
 <?php  $i++; } ?>

@@ -175,7 +175,7 @@ class Admin extends CI_Controller {
 					}else{
 						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-						$uploaddir = 'assets/profile/';
+						$uploaddir = 'assets/staff/';
 						$profilepic = $uploaddir.$staff_prof_pic;
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
 					}
@@ -217,12 +217,12 @@ class Admin extends CI_Controller {
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-				if($user_type==1 || $user_type==2){
-			 $datas['result']=$this->adminmodel->get_staff_details_by_id($staff_id);
+			if($user_type==1 || $user_type==2){
+				$datas['result']=$this->adminmodel->get_staff_details_by_id($staff_id);
 			  //echo "<pre>"; print_r($datas['result']);exit;
-			 $this->load->view('admin/admin_header');
-			 $this->load->view('admin/edit_staff',$datas);
-			 $this->load->view('admin/admin_footer');
+				 $this->load->view('admin/admin_header');
+				 $this->load->view('admin/edit_staff',$datas);
+				 $this->load->view('admin/admin_footer');
 			 }
 			 else{
 					redirect('/');
@@ -286,7 +286,7 @@ class Admin extends CI_Controller {
 						}else{
 							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-							$uploaddir = 'assets/profile/';
+							$uploaddir = 'assets/staff/';
 							$profilepic = $uploaddir.$staff_prof_pic;
 							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 						}
@@ -355,7 +355,7 @@ class Admin extends CI_Controller {
 					}else{
 						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-						$uploaddir = 'assets/profile/';
+						$uploaddir = 'assets/pia/';
 						$profilepic = $uploaddir.$staff_prof_pic;
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
 					}
@@ -428,7 +428,7 @@ class Admin extends CI_Controller {
 					$user_id=$this->session->userdata('user_id');
 					$user_type=$this->session->userdata('user_type');
 
-					if($user_type==1 || $user_type==2){
+			if($user_type==1 || $user_type==2){
 					$pia_id=base64_decode($this->input->post('pia_id'));	
 					$unique_number=$this->input->post('unique_number');
 					$name=$this->input->post('name');
@@ -441,18 +441,19 @@ class Admin extends CI_Controller {
 					$community_class=$this->input->post('community_class');
 					$address= $this->db->escape_str($this->input->post('address'));
 					$status=$this->input->post('status');
-					$profilepic = $_FILES['staff_pic']['name'];
-					if(empty($profilepic)){
-						$staff_prof_pic='';
-					}else{
-						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
-						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-						$uploaddir = 'assets/profile/';
-						$profilepic = $uploaddir.$staff_prof_pic;
-						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
-					}
+					$staff_old_pic=$this->input->post('staff_old_pic');
+					$profilepic = $_FILES['staff_new_pic']['name'];
+						if(empty($profilepic)){
+							$staff_prof_pic=$staff_old_pic;
+						}else{
+							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+							$uploaddir = 'assets/pia/';
+							$profilepic = $uploaddir.$staff_prof_pic;
+							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
+						}
 					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$address,$status,$staff_prof_pic,$user_id,$pia_id);
-					
+
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
 						redirect('admin/view_pia');

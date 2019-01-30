@@ -23,6 +23,7 @@
                              <th>PIA Number</th>
                              <th>Name</th>
                              <th>Mobile</th>
+							 <th>Profile</th>
                              <th>status</th>
                               <th>Action</th>
                          </tr>
@@ -34,7 +35,10 @@
                              <td><?php echo $rows->pia_unique_number; ?></td>
                              <td><?php echo $rows->pia_name ; ?></td>
                              <td><?php echo $rows->pia_phone ; ?></td>
-                              
+                              <td>	<?php if($rows->profile_pic==''){
+								}else{ ?>
+									<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+						<?php	} ?></td>
                              <td><?php if($rows->status=='Active'){ ?>
                               <button class="btn btn-success notika-btn-success waves-effect">Active</button>
                           <?php }else{ ?>

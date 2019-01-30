@@ -167,7 +167,7 @@
 											<i class="notika-icon notika-edit"></i>
 										</div>
 										<div class="nk-int-st">
-											<input type="file" name="staff_pic" placeholder="" class="form-control" >
+											<input type="file" name="staff_new_pic" placeholder="" class="form-control" >
 											 <small>Profile Picture</small>
 											</div>
 										</div>
@@ -205,11 +205,29 @@
 										</div>
 
 								</div>
+							<div class="row">
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
+										<div class="form-group ic-cmp-int form-elet-mg">
+											<div class="form-ic-cmp">
+												</div>
+												<div class="nk-int-st">
+													<?php if($rows->profile_pic==''){
+
+													}else{ ?>
+															<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+												<?php	} ?>
+
+
+												</div>
+											</div>
+										</div>
+								</div>
 								<div class="row">
 									<div class="col-lg-12 " style="margin-top:10px;">
 										<div class="form-group  form-elet-mg text-center">
-										<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
+											<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
+											<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
 											<button  type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
 										</div>
 									</div>
