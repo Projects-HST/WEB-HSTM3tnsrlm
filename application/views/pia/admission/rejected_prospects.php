@@ -16,7 +16,8 @@
                              <th>Name</th>
                              <th>Aadhar Card Number</th>
                               <th>Mobile</th>
-                             <th>status</th>
+                             <th>Status</th>
+                              <th>Added by</th>
                               <th>Action</th>
 
 
@@ -39,6 +40,7 @@
                               <button class="btn btn-danger notika-btn-danger waves-effect">Rejected</button>
                               <?php   } ?>
                             </td>
+                              <td><?php echo $rows->added_by; ?></td>
                              <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
 
 

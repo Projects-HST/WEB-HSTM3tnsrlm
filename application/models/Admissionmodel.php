@@ -51,26 +51,26 @@ Class Admissionmodel extends CI_Model
        //GET ALL Admission Form
        function get_all_admission($user_id)
   	   {
-          $query="SELECT a.* FROM edu_student_prospects AS a  WHERE pia_id='$user_id' ORDER BY id desc";
+          $query="SELECT esp.*,eu.name as added_by FROM edu_student_prospects as esp left join edu_users as eu on eu.user_id=esp.created_by where esp.pia_id='$user_id' ORDER BY esp.id desc";
            $res=$this->db->query($query);
            return $res->result();
          }
 
         function get_all_pending_prospects($user_id)
         {
-         $query="SELECT a.* FROM edu_student_prospects AS a WHERE pia_id='$user_id' and status='Pending' ORDER BY id desc";
+         $query="SELECT esp.*,eu.name as added_by FROM edu_student_prospects as esp left join edu_users as eu on eu.user_id=esp.created_by where esp.pia_id='$user_id'  and esp.status='Pending' ORDER BY esp.id desc";
           $res=$this->db->query($query);
           return $res->result();
         }
         function get_all_rejected_prospects($user_id)
         {
-         $query="SELECT a.* FROM edu_student_prospects AS a WHERE pia_id='$user_id' and status='Rejected' ORDER BY id desc";
+           $query="SELECT esp.*,eu.name as added_by FROM edu_student_prospects as esp left join edu_users as eu on eu.user_id=esp.created_by where esp.pia_id='$user_id'  and esp.status='Rejected' ORDER BY esp.id desc";
           $res=$this->db->query($query);
           return $res->result();
         }
         function get_all_confirmed_prospects($user_id)
         {
-         $query="SELECT a.* FROM edu_student_prospects AS a WHERE pia_id='$user_id' and status='Confirmed' ORDER BY id desc";
+         $query="SELECT esp.*,eu.name as added_by FROM edu_student_prospects as esp left join edu_users as eu on eu.user_id=esp.created_by where esp.pia_id='$user_id'  and esp.status='Confirmed' ORDER BY esp.id desc";      
           $res=$this->db->query($query);
           return $res->result();
         }

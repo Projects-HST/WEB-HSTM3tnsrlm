@@ -6,7 +6,7 @@
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>List Prospects</h2>
+                 <h2>List of Prospects</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
@@ -16,7 +16,8 @@
                              <th>Name</th>
                              <th>Aadhar Card Number</th>
                               <th>Mobile</th>
-                             <th>status</th>
+                             <th>Status</th>
+                             <th>Added by</th>
                               <th>Action</th>
 
 
@@ -31,6 +32,7 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->aadhaar_card_number; ?></td>
                              <td><?php echo $rows->mobile; ?></td>
+
                              <td><?php if($rows->status=='Pending'){ ?>
                                 <button class="btn btn-warning notika-btn-warning waves-effect">Pending</button>
                           <?php   }else if($rows->status=='Confirmed'){ ?>
@@ -39,6 +41,7 @@
                               <button class="btn btn-danger notika-btn-danger waves-effect">Rejected</button>
                               <?php   } ?>
                             </td>
+                                <td><?php echo $rows->added_by; ?></td>
                              <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
 
 
