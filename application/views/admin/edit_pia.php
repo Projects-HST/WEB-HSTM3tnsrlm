@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="nk-int-mk">
-							  <h2>PIA Unique Number</h2>
+							  <h2>PRN Number</h2>
 						</div>
 						<div class="form-group ic-cmp-int">
 							<div class="form-ic-cmp">
@@ -74,90 +74,37 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="nk-int-mk">
-							  <h2>Gender</h2>
+							  <h2>State</h2>
 						</div>
 							<div class="form-group ic-cmp-int">
 								<div class="form-ic-cmp">
 									<i class="notika-icon notika-edit"></i>
 								</div>
 								<div class="nk-int-st">
-									<select name="sex" class="selectpicker ">
-										<option value="">Gender</option>
-										  <option value="Male">Male</option>
-										  <option value="Female">Female</option>
-									</select>
+									<input type="text" name="state" class="form-control" placeholder="Enter State" value="<?php echo $rows->pia_state; ?>" />
 									</div>
 								</div>
 							</div>
 						
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="nk-int-mk">
-							  <h2>Nationality</h2>
+							  <h2>Address</h2>
 						</div>
-								<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
+									<div class="form-group ic-cmp-int">
+										<div class="form-ic-cmp">
 											<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-										<select name="nationality" class="selectpicker" >
-												<option value="">Nationality</option>
-												<option value="Indian">Indian</option>
-												<option value="Others">Others</option>
-										</select>
+										</div>
+										<div class="nk-int-st">
+											<textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Address"><?php echo $rows->pia_address; ?></textarea>
 
+										</div>
 									</div>
 								</div>
-							</div>
 						
 						</div>
 
-					<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-							<div class="nk-int-mk">
-							  <h2>Religion</h2>
-							</div>
-              					<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
-										<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-									  <input type="text" placeholder="Religion" name="religion" class="form-control">
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Community</h2>
-						</div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-										    <input type="text" placeholder="Community" name="community" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Community Class</h2>
-						</div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-										  <input type="text" placeholder="Community Class" name="community_class" class="form-control">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								
-								
-								
-							</div>
+					
+							
 							<div class="row">
 
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -172,20 +119,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Address</h2>
-						</div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Address"><?php echo $rows->pia_address; ?></textarea>
-
-										</div>
-									</div>
-								</div>
+									
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="nk-int-mk">
 							  <h2>Status</h2>
@@ -279,11 +213,8 @@
 				address: {
 						required: true
 				},
-				sex: {
+				state: {
 						required: true
-				},
-				nationality:{
-					required:true
 				},
 				status: {
 						required: true
@@ -291,10 +222,10 @@
 		},
 		messages: {
 				unique_number: {
-					required: "Enter Unique Number",
+					required: "Enter PRN Number",
 					maxlength:"Maximum 13 digits",
 					minlength:"Minimum 13 digits",
-					remote: "Unique Number Already Exist",
+					remote: "PRN Number Already Exist",
 					number:"Only Numbers"
 				 },
 				//unique_number: "Enter Unique Number",
@@ -309,8 +240,7 @@
 						 required: "Please enter your email address.",
 						 email: "Please enter a valid email address."
 				 },
-				sex: "Select Gender",
-				nationality: "Select Nationality",
+				state: "Enter State",
 				address: "Enter Address",
 				status: "Select Status"
 			}

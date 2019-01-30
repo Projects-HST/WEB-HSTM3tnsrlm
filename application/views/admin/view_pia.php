@@ -20,7 +20,7 @@
                      <thead>
                          <tr>
                              <th>S.no</th>
-                             <th>PIA Number</th>
+                             <th>PRN Number</th>
                              <th>Name</th>
                              <th>Mobile</th>
 							 <th>Profile</th>
