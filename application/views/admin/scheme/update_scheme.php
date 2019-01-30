@@ -54,9 +54,8 @@
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
-                                                    <iframe width="700" height="400" src="https://www.youtube.com/embed/<?php echo $res->scheme_video;  ?>">
-													
-													<br><br>
+                                                    <iframe width="700" height="400" src="https://www.youtube.com/embed/<?php echo $res->scheme_video;  ?>"></iframe>
+
 													 <!-- <textarea cols="90" id="editor1" name="scheme_video_link" rows="2" required><?php echo $res->scheme_video;  ?></textarea> -->
                            <input type="text" name="scheme_video_link" id="scheme_video_link" class="form-control" value="<?php echo $res->scheme_video; ?>">
 
