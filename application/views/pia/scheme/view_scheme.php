@@ -54,8 +54,9 @@
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
-
-                                                    <?php echo $res->scheme_video;  ?>
+                                                  <iframe width="700" height="400" src="https://www.youtube.com/embed/<?php echo $res->scheme_video;  ?>">
+</iframe>
+                                                    <!-- <?php echo $res->scheme_video;  ?> -->
 
                                                 </div>
                                             </div>
