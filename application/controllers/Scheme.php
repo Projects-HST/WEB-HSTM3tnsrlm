@@ -46,7 +46,7 @@ class Scheme extends CI_Controller {
 			 $datas['res_scheme']=$this->schememodel->get_scheme_details();
 			 // print_r($datas['res_scheme']);exit;
 			 $this->load->view('pia/pia_header');
-			 $this->load->view('pia/scheme/update_scheme',$datas);
+			 $this->load->view('pia/scheme/view_scheme',$datas);
 			 $this->load->view('pia/pia_footer');
 	 		 }
 	 		 else{
