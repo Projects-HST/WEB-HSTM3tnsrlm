@@ -247,9 +247,9 @@
                               </li>
                               <li><a href="<?php echo base_url(); ?>scheme">Schemes</a>
                               </li>
-                              <li><a href="">Sessions</a>
-                              </li>
-                              <li><a href="">Trade and Batch</a>
+                              <!-- <li><a href="">Sessions</a>
+                              </li> -->
+                              <li><a href="<?php echo base_url(); ?>trade/home">Trade </a>
                               </li>
                           </ul>
                       </div>
