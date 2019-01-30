@@ -69,7 +69,7 @@ class Mobilization extends CI_Controller
         move_uploaded_file($_FILES['doc_file']['tmp_name'], $profilepic);
       }
      $doc_month_year=$this->input->post('doc_month_year');
-     $dateTime = new DateTime($dob_date);
+     $dateTime = new DateTime($doc_month_year);
      $doc_month_year=date_format($dateTime,'Y-m-d');
      $datas=$this->mobilizationmodel->upload_data($doc_name,$doc_month_year,$doc_file,$user_id);
      if($datas['status']=="success")
