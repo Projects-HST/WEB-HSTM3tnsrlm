@@ -59,7 +59,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['years/config'] = 'years/home';
 $route['centers'] = 'center/home';
-$route['scheme'] = 'scheme/home';
+$route['scheme'] = 'scheme/view';
 
 
 $route['logout'] = 'login/logout';

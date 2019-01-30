@@ -37,7 +37,7 @@ class Scheme extends CI_Controller {
 
 
 
-	 	public function home(){
+	 	public function view(){
 	 		 	$datas=$this->session->userdata();
   	 		$user_id=$this->session->userdata('user_id');
   			$user_type=$this->session->userdata('user_type');
@@ -53,16 +53,33 @@ class Scheme extends CI_Controller {
 	 				redirect('/');
 	 		 }
 	 	}
+		 	public function home(){
+	 		 	$datas=$this->session->userdata();
+  	 		$user_id=$this->session->userdata('user_id');
+  			$user_type=$this->session->userdata('user_type');
+				if($user_type==1 || $user_type==2){
+			 $datas['res_img']=$this->schememodel->get_scheme_gallery_img();
+			 $datas['res_scheme']=$this->schememodel->get_scheme_details();
+			 // print_r($datas['res_scheme']);exit;
+			 $this->load->view('admin/admin_header');
+			 $this->load->view('pia/scheme/update_scheme',$datas);
+			 $this->load->view('admin/admin_footer');
+	 		 }
+	 		 else{
+	 				redirect('/');
+	 		 }
+	 	}
 
 
     public function create(){
         $datas=$this->session->userdata();
         $user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-				if($user_type==3){
+				if($user_type==1 || $user_type==2){
 			 	$scheme_name=$this->input->post('scheme_name');
 				$scheme_info= $this->db->escape_str($this->input->post('scheme_info'));
-				$scheme_video_link=$this->db->escape_str($this->input->post('scheme_video_link'));
+			    $scheme_video_link=$this->db->escape_str($this->input->post('scheme_video_link'));
+			
 				$scheme_photos=$this->input->post('scheme_photos');
 				$datas=$this->schememodel->update_scheme($scheme_name,$scheme_info,$scheme_video_link,$scheme_photos,$user_id);
 				if($datas['status']=="success"){
@@ -83,7 +100,7 @@ class Scheme extends CI_Controller {
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
-				if($user_type==3){
+				if($user_type==1 || $user_type==2){
 					$name_array = $_FILES['scheme_photos']['name'];
 					$tmp_name_array = $_FILES['scheme_photos']['tmp_name'];
 					$count_tmp_name_array = count($tmp_name_array);
@@ -96,13 +113,13 @@ class Scheme extends CI_Controller {
 				$datas=$this->schememodel->create_gallery($file_name,$user_id);
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('gallery', 'Gallery Updated Successfully');
-					redirect('scheme');
+					redirect('scheme/home');
 				}else if($datas['status']=="limit"){
 					$this->session->set_flashdata('gallery', 'Gallery Maximum images Exceeds');
-					redirect('scheme');
+					redirect('scheme/home');
 				}else{
 					$this->session->set_flashdata('gallery', 'Failed to Add');
-					redirect('scheme');
+					redirect('scheme/home');
 				}
 			 }
 			 else{
@@ -115,7 +132,7 @@ class Scheme extends CI_Controller {
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
-			if($user_type==3){
+			if($user_type==1 || $user_type==2){
 				 	$scheme_photo_id=$this->input->post('gal_id');
 					$datas['res']=$this->schememodel->delete_gal($scheme_photo_id);
 			}else{
