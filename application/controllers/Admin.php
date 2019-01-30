@@ -467,9 +467,65 @@ class Admin extends CI_Controller {
 				 $pia_id = base64_decode($this->uri->segment(3))/98765;
 				 $datas['result']=$this->adminmodel->piaDashboard($pia_id);
 				 //echo "<pre>"; print_r($datas['result']); exit;
-				
 				 $this->load->view('admin/admin_header');
 				 $this->load->view('admin/pia_dashboard',$datas);
+				 $this->load->view('admin/admin_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+			}
+			
+			public function pia_center_list(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			
+			if($user_type==1 || $user_type==2){
+				 $pia_id = base64_decode($this->uri->segment(3))/98765;
+				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['result']=$this->adminmodel->piaCenterlist($pia_id);
+				 //echo "<pre>"; print_r($datas['result']); exit;
+				 $this->load->view('admin/admin_pia_header',$datas);
+				 $this->load->view('admin/pia_center_list',$datas);
+				 $this->load->view('admin/admin_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+		
+		public function pia_mobilizer_list(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			
+			if($user_type==1 || $user_type==2){
+				 $pia_id = base64_decode($this->uri->segment(3))/98765;
+				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['result']=$this->adminmodel->piaMobilizerlist($pia_id);
+				 //echo "<pre>"; print_r($datas['result']); exit;
+				 $this->load->view('admin/admin_pia_header',$datas);
+				 $this->load->view('admin/pia_mob_list',$datas);
+				 $this->load->view('admin/admin_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+		
+		public function pia_student_list(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+			
+			if($user_type==1 || $user_type==2){
+				 $pia_id = base64_decode($this->uri->segment(3))/98765;
+				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['result']=$this->adminmodel->piaStudentlist($pia_id);
+				 //echo "<pre>"; print_r($datas['result']); exit;
+				 $this->load->view('admin/admin_pia_header',$datas);
+				 $this->load->view('admin/pia_stud_list',$datas);
 				 $this->load->view('admin/admin_footer');
 			 }
 			 else{

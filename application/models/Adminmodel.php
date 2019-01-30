@@ -170,9 +170,6 @@ public function __construct()
 			
 		$update = "UPDATE edu_staff_details SET role_type='$select_role',name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community',community='$community',qualification='$qualification',status='$status',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
 		$result=$this->db->query($update);
-	  
-		/* $update_user="UPDATE edu_users SET name='$name' WHERE user_master_id='$staff_id' AND user_type = '2'";
-		$result_user=$this->db->query($update_user); */
 		
 		if ($old_phone_number != $mobile){
 			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
@@ -341,15 +338,34 @@ public function __construct()
 			
 			$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
 			$stu_count_res = $this->db->query($stu_count);
-			$student_count = $mob_count_res->num_rows();
+			$student_count = $stu_count_res->num_rows();
 			
-			$result_count  = array(
+			$result  = array(
+					"pia_id" => $pia_id,
 					"mobilizer_count" => $mobilizer_count,
 					"center_count" => $center_count,
 					"student_count" => $student_count
 				);
 					
-			return $result_count;
+			return $result;
+	}
+	
+	function piaCenterlist($pia_id){
+		$select="SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
+		$result=$this->db->query($select);
+		return $result->result();
+	}
+	
+	function piaMobilizerlist($pia_id){
+		$select="SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
+		$result=$this->db->query($select);
+		return $result->result();
+	}
+	
+	function piaStudentlist($pia_id){
+		$select="SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
+		$result=$this->db->query($select);
+		return $result->result();
 	}
 }
 ?>
