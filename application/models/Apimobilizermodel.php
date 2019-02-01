@@ -818,7 +818,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### Mobilizer Location End ####################//
 
 //#################### Add Mobilizer Location ####################//
-	public function addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime)
+	public function addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id)
 	{
             $dt = strtotime($location_datetime); //make timestamp with datetime string
             $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created  
@@ -833,12 +833,12 @@ class Apimobilizermodel extends CI_Model {
 						$to_longitude = $rows->to_long;
 					}
         	        
-        	        $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`) VALUES ('$user_id','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime')";
+        	        $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
 	                $location_res = $this->db->query($location_query);
         	        $response = array("status" => "Sucess", "msg" => "Location Added");
         		} else {
         		    
-        		    $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime')";
+        		    $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
 	                $location_res = $this->db->query($location_query);
         		    $response = array("status" => "Sucess", "msg" => "Location Added");
         		}

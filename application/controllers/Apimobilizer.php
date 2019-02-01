@@ -1023,6 +1023,7 @@ class Apimobilizer extends CI_Controller {
 		}
 
 		$user_id = '';
+		$pia_id = '';
 		$latitude  = '';
 		$longitude = '';
 		$location = '';
@@ -1030,6 +1031,7 @@ class Apimobilizer extends CI_Controller {
 		$location_datetime  = '';
 
 		$user_id = $this->input->post("user_id");
+		$pia_id = $this->input->post("$pia_id");
 		$latitude = $this->input->post("latitude");
 		$longitude  = $this->input->post("longitude");
 		$location = $this->input->post("location");
@@ -1037,7 +1039,7 @@ class Apimobilizer extends CI_Controller {
 		$location_datetime = $this->input->post("location_datetime");
 		
 
-		$data['result']=$this->apimainmodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime);
+		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
