@@ -274,9 +274,9 @@ class Apimainmodel extends CI_Model {
 				}
 				else if ($user_type==3)  {
 					
-					//$pia_id = $user_id;
+					$pia_id = $rows->user_master_id;
 
-					$pia_query = "SELECT * FROM edu_pia WHERE id = '$user_id'";
+					$pia_query = "SELECT * FROM edu_pia WHERE id = '$pia_id'";
 					$pia_res = $this->db->query($pia_query);
 					$pia_profile = $pia_res->result();
 					if($pia_res->num_rows()>0)
