@@ -290,7 +290,7 @@
                       </div>
                       <div id="trackingmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="">Track Mobilizer</a>
+                              <li><a href="<?php echo base_url();  ?>tracking/home">Track Mobilizer</a>
                               </li>
 
                           </ul>
@@ -306,7 +306,7 @@
                       </div>
                       <div id="graphmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                            <li><a href="">Track Mobilizer</a>
+                            <li><a href="#">Graph</a>
                             </li>
                           </ul>
                       </div>
