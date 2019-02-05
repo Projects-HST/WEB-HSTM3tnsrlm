@@ -523,9 +523,54 @@ class Admin extends CI_Controller {
 				 $pia_id = base64_decode($this->uri->segment(3))/98765;
 				 $datas['piaid'] = $this->uri->segment(3);
 				 $datas['result']=$this->adminmodel->piaStudentlist($pia_id);
-				 //echo "<pre>"; print_r($datas['result']); exit;
+				 
 				 $this->load->view('admin/admin_pia_header',$datas);
 				 $this->load->view('admin/pia_stud_list',$datas);
+				 $this->load->view('admin/admin_footer');
+			 }
+			 else{
+					redirect('/');
+			 }
+		}
+		
+			
+		public function pia_mobilizer_track(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				
+				if($user_type==1 || $user_type==2){
+					$pia_id = base64_decode($this->uri->segment(3))/98765;
+					$datas['piaid'] = $this->uri->segment(3);
+					
+					$mob_id = base64_decode($this->uri->segment(4))/98765;
+					
+					if ($mob_id == ''){
+						$mob_id = $this->input->post('mob_id');
+					}
+					$datas['mob_id'] = $mob_id;
+					
+					
+					$dob_date = $this->input->post('selected_date');
+					$dateTime = new DateTime($dob_date);
+					$selected_date = date_format($dateTime,'Y-m-d');
+					
+					if ($selected_date == ''){
+						$selected_date = date("Y-m-d");
+					}
+					
+					//echo $mob_id;
+					//echo $selected_date;
+					
+					//$mob_id = 25;
+					//$selected_date = '2018-02-12';
+					
+					$datas['kms_using_lat']=$this->adminmodel->kms_using_lat($mob_id,$selected_date);
+					$datas['res']=$this->adminmodel->testing_map($mob_id,$selected_date);
+					$datas['lat_long']=$this->adminmodel->only_lat_long($mob_id,$selected_date);
+					
+				 $this->load->view('admin/admin_pia_header',$datas);
+				 $this->load->view('admin/mobilizer_tracking',$datas);
 				 $this->load->view('admin/admin_footer');
 			 }
 			 else{

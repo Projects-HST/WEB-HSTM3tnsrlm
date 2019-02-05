@@ -24,6 +24,7 @@
                              <th>Mobile</th>
 							 <th>Profile Pic</th>
                               <th>Status</th>
+							  <th>Tracking </th>
                          </tr>
                      </thead>
                      <tbody>
@@ -35,13 +36,15 @@
                               <td>	<?php if($rows->profile_pic==''){
 								}else{ ?>
 									<img src="<?php echo base_url(); ?>assets/staff/<?php echo $rows->profile_pic; ?>" style="width:100px;">
-						<?php	} ?></td>
+							<?php	} ?></td>
                              <td><?php if($rows->status=='Active'){ ?>
                               <button class="btn btn-success notika-btn-success waves-effect">Active</button>
                           <?php }else{ ?>
                                   <button class="btn btn-danger notika-btn-danger waves-effect">Inactive</button>
                               <?php   } ?>
                             </td>
+							<td>
+							<a href="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="35" width="35"></a> </td>
                             
 <?php  $i++; } ?>
 

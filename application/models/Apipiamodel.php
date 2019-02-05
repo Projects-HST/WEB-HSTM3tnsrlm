@@ -227,8 +227,8 @@ class Apipiamodel extends CI_Model {
 				 $centerDetails[]  = array(
 						"center_id" => $rows->id,
 						"center_name" => $rows->center_name,
-						"center_info " => $rows->center_info,
-						"center_address " => $rows->center_address,
+						"center_info" => $rows->center_info,
+						"center_address" => $rows->center_address,
 						"center_logo" => base_url().'assets/center/logo/'.$rows->center_banner,
 				);
 			}

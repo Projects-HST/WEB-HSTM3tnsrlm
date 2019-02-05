@@ -113,10 +113,6 @@
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   <div id="map" style="border: 2px solid #3872ac;height:500px;"></div>
-
-
-
-
   </div>
   <div class="col-md-4">
     <div class="kms-btn">
@@ -152,10 +148,7 @@
       $("input[name=kms]").each (function() {
         tot=tot + parseInt($(this).val())/1000;
       })
-
-
        swal('Total '+ tot + ' in kms ');
-
 
 });
     </script>

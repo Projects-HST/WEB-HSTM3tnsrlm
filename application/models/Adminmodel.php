@@ -357,7 +357,8 @@ public function __construct()
 	}
 	
 	function piaMobilizerlist($pia_id){
-		$select="SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
+		$select="SELECT * FROM edu_users A, edu_staff_details B WHERE A.user_type = '5' AND A.user_master_id = B.id AND B.pia_id = '$pia_id' ";
+		//exit;
 		$result=$this->db->query($select);
 		return $result->result();
 	}
@@ -367,5 +368,51 @@ public function __construct()
 		$result=$this->db->query($select);
 		return $result->result();
 	}
+	
+	function kms_using_lat($mob_id,$selected_date){
+          $select="SELECT (6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) ) AS distance,SUM((6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) )) AS km FROM edu_tracking_details WHERE user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date'";
+          $get_result=$this->db->query($select);
+          return $get_result->result();
+
+        }
+		
+	function testing_map($mob_id,$selected_date){
+            $select="SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' group by minute(created_at) ORDER BY created_at ASC ";
+
+          // $select="SELECT etd.user_location AS address, LEFT(etd.user_lat , 6) AS lat ,LEFT(etd.user_long , 6) AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' ORDER BY created_at ASC";
+       $get_result=$this->db->query($select);
+          $get_res=$get_result->result();
+          // $data= array("address" =>$get_res);
+        if($get_result->num_rows()==0){
+        $address[] = array ("Geometry"  => array("Latitude" => "no records", "Longitude" => "no records"));
+        }else{
+          foreach($get_res as $rows){
+          $lat=$rows->lat;
+          $lng=$rows->lng;
+          $loca=$rows->address;
+            $address[] = array ("Geometry"  => array("Latitude" => $lat, "Longitude" => $lng));
+             }
+        }
+          return $address;
+        }
+		
+	function only_lat_long($mob_id,$selected_date){
+           $select="SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date'  ORDER BY created_at ASC ";
+         $get_result=$this->db->query($select);
+         return $get_result->result();
+
+        }
 }
 ?>
