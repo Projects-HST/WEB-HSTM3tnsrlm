@@ -2,7 +2,7 @@
 
 class Apimain extends CI_Controller {
 
-	
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,7 +18,7 @@ class Apimain extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	 
+
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -50,7 +50,7 @@ class Apimain extends CI_Controller {
 
 	public function login()
 	{
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+	  // $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
 		{
@@ -77,7 +77,7 @@ class Apimain extends CI_Controller {
 		$password = $this->input->post("password");
 		$gcmkey = $this->input->post("device_id");
 		$mobiletype = $this->input->post("mobile_type");
-		
+
 		$data['result']=$this->apimainmodel->Login($username,$password,$gcmkey,$mobiletype);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -90,12 +90,12 @@ class Apimain extends CI_Controller {
 	{
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		$user_id = $this->uri->segment(3);		
+		$user_id = $this->uri->segment(3);
 		$profile = $_FILES["user_pic"]["name"];
 		$userFileName = time().'-'.$profile;
 
 		$uploadPicdir = 'assets/profile/';
-		
+
 		$profilepic = $uploadPicdir.$userFileName;
 		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
@@ -129,7 +129,7 @@ class Apimain extends CI_Controller {
 		$user_name = '';
 		$old_password = '';
 		$password = '';
-		
+
 		$user_name = $this->input->post("user_name");
 
 		$data['result']=$this->apimainmodel->forgotPassword($user_name);
@@ -161,7 +161,7 @@ class Apimain extends CI_Controller {
 		$user_id = '';
 		$old_password = '';
 		$password = '';
-		
+
 		$user_id = $this->input->post("user_id");
 		$old_password = $this->input->post("old_password");
 	 	$password = $this->input->post("new_password");
@@ -170,8 +170,8 @@ class Apimain extends CI_Controller {
 		$response = $data['result'];
 		echo json_encode($response);
 	}
-	
-	
+
+
 //-----------------------------------------------//
 
 	public function create_user()
@@ -208,7 +208,7 @@ class Apimain extends CI_Controller {
 		$phone = '';
 		$sec_phone = '';
 		$qualification = '';
-		
+
 		$user_id = $this->input->post("user_id");
 		$name = $this->input->post('name');
 		$sex = $this->input->post('sex');
@@ -221,9 +221,9 @@ class Apimain extends CI_Controller {
 		$email = $this->input->post('email');
 		$sec_email = $this->input->post('sec_email');
 		$phone = $this->input->post('phone');
-		$sec_phone = $this->input->post('sec_phone'); 
+		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
-		
+
 		$data['result']=$this->apimainmodel->createUser($user_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -333,7 +333,7 @@ class Apimain extends CI_Controller {
 		$sec_phone = '';
 		$qualification = '';
 		$status ='';
-		
+
 		$user_id = $this->input->post("user_id");
 		$user_master_id = $this->input->post("user_master_id");
 		$name = $this->input->post('name');
@@ -347,10 +347,10 @@ class Apimain extends CI_Controller {
 		$email = $this->input->post('email');
 		$sec_email = $this->input->post('sec_email');
 		$phone = $this->input->post('phone');
-		$sec_phone = $this->input->post('sec_phone'); 
+		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
 		$status =$this->input->post('status');
-		
+
 		$data['result']=$this->apimainmodel->updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -381,22 +381,22 @@ class Apimain extends CI_Controller {
 			echo json_encode($res);
 			return;
 		}
-		
+
 		$user_id  ='';
 		$unique_number  ='';
 		$name = '';
 		$address = '';
 		$phone = '';
 		$email = '';
-		
-		
+
+
 		$user_id = $this->input->post("user_id");
 		$unique_number = $this->input->post("unique_number");
 		$name = $this->input->post('name');
 		$address = $this->db->escape_str($this->input->post('address'));
 		$phone = $this->input->post('phone');
 		$email = $this->input->post('email');
-		
+
 		$data['result']=$this->apimainmodel->createPia($user_id,$unique_number,$name,$address,$phone,$email);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -498,7 +498,7 @@ class Apimain extends CI_Controller {
 		$phone = '';
 		$email = '';
 		$status ='';
-		
+
 		$user_id = $this->input->post("user_id");
 		$pia_id = $this->input->post("pia_id");
 		$unique_number = $this->input->post("unique_number");
@@ -507,14 +507,14 @@ class Apimain extends CI_Controller {
 		$phone = $this->input->post('phone');
 		$email = $this->input->post('email');
 		$status =$this->input->post('status');
-		
+
 		$data['result']=$this->apimainmodel->updatePia($user_id,$pia_id,$unique_number,$name,$address,$phone,$email,$status);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
 
 //-----------------------------------------------//
-	
+
 //-----------------------------------------------//
 
 	public function pia_plan_list()
@@ -539,7 +539,7 @@ class Apimain extends CI_Controller {
 
 		$user_id  ='';
 		$user_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apimainmodel->piaPlanlist($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -571,7 +571,7 @@ class Apimain extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("pia_id");
-		
+
 		$data['result']=$this->apimainmodel->piaDashboard($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -603,7 +603,7 @@ class Apimain extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("pia_id");
-		
+
 		$data['result']=$this->apimainmodel->piaCenterlist($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -635,7 +635,7 @@ class Apimain extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("pia_id");
-		
+
 		$data['result']=$this->apimainmodel->piaMoblist($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -669,7 +669,7 @@ class Apimain extends CI_Controller {
 		$mob_id  ='';
 		//$pia_id = $this->input->post("pia_id");
 		$mob_id = $this->input->post("mob_id");
-		
+
 		$data['result']=$this->apimainmodel->piaMobdetails($mob_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -681,7 +681,7 @@ class Apimain extends CI_Controller {
 
 	public function pia_list_students()
 	{
-	   
+
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
@@ -709,7 +709,7 @@ class Apimain extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -724,7 +724,7 @@ class Apimain extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "User Tracking";
 			$res["scode"] = 204;
@@ -739,7 +739,7 @@ class Apimain extends CI_Controller {
 		$track_date = '';
 		$mob_id = $this->input->post("mob_id");
 		$track_date = $this->input->post("track_date");
-		
+
 
 		$data['result']=$this->apimainmodel->mobilizerTracking($mob_id,$track_date);
 		$response = $data['result'];
@@ -772,7 +772,7 @@ class Apimain extends CI_Controller {
 
 		$user_id  ='';
 		$user_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apimainmodel->Centerlist($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
