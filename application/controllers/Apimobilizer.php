@@ -1,1051 +1,870 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Apimobilizer extends CI_Controller {
+class Apimobilizermodel extends CI_Model {
 
-	
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	 
-	public function index()
-	{
-		$this->load->view('welcome_message');
-	}
-
-
-	function __construct()
+    function __construct()
     {
         parent::__construct();
-		$this->load->model("apimobilizermodel");
-        $this->load->helper("url");
     }
 
-	public function checkMethod()
+
+//#################### Email ####################//
+
+	/* public function sendMail($to,$subject,$htmlContent)
 	{
-		if($_SERVER['REQUEST_METHOD'] != 'POST')
-		{
-			$res = array();
-			$res["scode"] = 203;
-			$res["message"] = "Request Method not supported";
-
-			echo json_encode($res);
-			return FALSE;
-		}
-		return TRUE;
-	}
-
-//-----------------------------------------------//
-
-	/* public function login()
-	{
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Login";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$username = '';
-		$password = '';
-		$gcmkey ='';
-		$mobiletype ='';
-
-		$username = $this->input->post("username");
-		$password = $this->input->post("password");
-		$gcmkey = $this->input->post("gcm_key");
-		$mobiletype = $this->input->post("mobile_type");
-		
-		$data['result']=$this->apimobilizermodel->Login($username,$password,$gcmkey,$mobiletype);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-
-//-----------------------------------------------//
-
-	public function user_profilepic()
-	{
-        $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		$user_id = $this->uri->segment(3);		
-		$profile = $_FILES["user_pic"]["name"];
-		$userFileName = time().'-'.$profile;
-
-		$uploadPicdir = 'assets/staff/profile/';
-		
-		$profilepic = $uploadPicdir.$userFileName;
-		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
-
-		$data['result']=$this->apimobilizermodel->updateProfilepic($user_id,$userFileName);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-//-----------------------------------------------//
-
-	public function change_password()
-	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Reset Password";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$user_id = '';
-		$old_password = '';
-		$password = '';
-		
-		$user_id = $this->input->post("user_id");
-		$old_password = $this->input->post("old_password");
-	 	$password = $this->input->post("new_password");
-
-		$data['result']=$this->apimobilizermodel->changePassword($user_id,$old_password,$password);
-		$response = $data['result'];
-		echo json_encode($response);
+		// Set content-type header for sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		// Additional headers
+		$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+		mail($to,$subject,$htmlContent,$headers);
 	} */
-	
-//-----------------------------------------------//
 
-	public function select_trade()
+//#################### Email End ####################//
+
+
+//#################### Email ####################//
+
+	/* public function sendNotification($gcm_key,$Title,$Message)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			require_once 'assets/notification/Firebase.php';
+            require_once 'assets/notification/Push.php'; 
+            
+            $device_token = explode(",", $gcm_key);
+            $push = null; 
+        
+//        //first check if the push has an image with it
+		    $push = new Push(
+					$Title,
+					$Message,
+					'http://heylaapp.com/notification/images/events.jpg'
+				);
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Select Trade";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
+// 			//if the push don't have an image give null in place of image
+ 			// $push = new Push(
+ 			// 		'HEYLA',
+ 			// 		'Hi Testing from maran',
+ 			// 		null
+ 			// 	);
 
-			echo json_encode($res);
-			return;
-		}
+    		//getting the push from push object
+    		$mPushNotification = $push->getPush(); 
+    
+    		//creating firebase class object 
+    		$firebase = new Firebase(); 
 
-		$user_id = '';
-		$pia_id = '';
-		$user_id = $this->input->post("user_id");
-		$pia_id = $this->input->post("pia_id");
+    	foreach($device_token as $token) {
+    		 $firebase->send(array($token),$mPushNotification);
+    	}
 
-		$data['result']=$this->apimobilizermodel->Selecttrade($user_id,$pia_id);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
 
-//-----------------------------------------------//
 
-//-----------------------------------------------//
+	        $gcm_key = array($gcm_key);
+			$data = array
+			(
+				'message' 	=> $Message,
+				'title'		=> $Title,
+				'vibrate'	=> 1,
+				'sound'		=> 1
+		//		'largeIcon'	=> 'http://happysanz.net/testing/assets/students/profile/236832.png'
+		//		'smallIcon'	=> 'small_icon'
+			);
 
-	public function select_batch()
+			// Insert real GCM API key from the Google APIs Console
+			$apiKey = 'AAAA6yBHF1A:APA91bFXzcbF706WANlD0KCfodQc03NOqtia90irkEZTuE8_xrC6mYQVI-yyuW-oSbg_GnpR2w5NlcPDlWy7i0TkhYuvBQgx3j3TGyVCR8n9TUvECxZ7WGizzBQ9q5iLBC2r_ay-oYHo';
+			// Set POST request body
+			$post = array(
+						'registration_ids'  => $gcm_key,
+						'data'              => $data,
+						 );
+			// Set CURL request headers
+			$headers = array(
+						'Authorization: key=' . $apiKey,
+						'Content-Type: application/json'
+							);
+			// Initialize curl handle
+			$ch = curl_init();
+			// Set URL to GCM push endpoint
+			curl_setopt($ch, CURLOPT_URL, 'https://gcm-http.googleapis.com/gcm/send');
+			// Set request method to POST
+			curl_setopt($ch, CURLOPT_POST, true);
+			// Set custom request headers
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			// Get the response back as string instead of printing it
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			// Set JSON post data
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
+			// Actually send the request
+			$result = curl_exec($ch);
+
+
+			// Handle errors
+			if (curl_errno($ch)) {
+				//echo 'GCM error: ' . curl_error($ch);
+			}
+			// Close curl handle
+			curl_close($ch);
+
+			// Debug GCM response
+			//echo $result;
+
+
+
+	} */
+
+//#################### Notification End ####################//
+
+
+//#################### SMS ####################//
+
+	/* public function sendSMS($Phoneno,$Message)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		$textmsg = urlencode($Message);
+		$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
+		$api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
+		$api_params = $api_element.'&numbers='.$Phoneno.'&message='.$textmsg;
+		$smsgatewaydata = $smsGatewayUrl.$api_params;
+		$url = $smsgatewaydata;
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_POST, false);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$output = curl_exec($ch);
+		curl_close($ch);
+	} */
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Select Trade";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
+//#################### SMS End ####################//
 
-			echo json_encode($res);
-			return;
-		}
 
-		$trade_id = '';
-		$trade_id = $this->input->post("trade_id");
+//#################### Current Year ####################//
 
-		$data['result']=$this->apimobilizermodel->Selectbatch($trade_id);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-//-----------------------------------------------//
-
-	public function select_timings()
+	/* public function getYear()
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		$sqlYear = "SELECT * FROM edu_academic_year WHERE NOW() >= from_month AND NOW() <= to_month AND status = 'Active'";
+		$year_result = $this->db->query($sqlYear);
+		$ress_year = $year_result->result();
 
-		if(!$this->checkMethod())
+		if($year_result->num_rows()==1)
 		{
-			return FALSE;
+			foreach ($year_result->result() as $rows)
+			{
+			    $year_id = $rows->year_id;
+			}
+			return $year_id;
 		}
+	} */
+//#################### Current Year End ####################//
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Select Trade";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
 
-			echo json_encode($res);
-			return;
-		}
 
-		$user_id = '';
-		$user_id = $this->input->post("user_id");
+//#################### Login ####################//
 
-		$data['result']=$this->apimobilizermodel->Selecttimings($user_id);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-//-----------------------------------------------//
-
-	public function select_bloodgroup()
+	/* public function Login($username,$password,$gcmkey,$mobiletype)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		if(!$this->checkMethod())
+ 		$sql = "SELECT * FROM edu_users A, edu_role B  WHERE A.user_type = B.id AND A.user_name ='".$username."' and A.user_password = md5('".$password."') and A.status='Active'";
+		$user_result = $this->db->query($sql);
+		$ress = $user_result->result();
+
+		if($user_result->num_rows()>0)
 		{
-			return FALSE;
-		}
+			foreach ($user_result->result() as $rows)
+			{
+				  $user_id = $rows->user_id;
+				  $login_count = $rows->login_count+1;
+				  $user_type = $rows->user_type;
+				  $user_pic = $rows->user_pic;
+				  if ($user_pic!="") {
+				      $user_picurl = base_url().'assets/staff/profile/'.$user_pic;
+				  } else {
+				      $user_picurl = "";
+				  }
+				  $update_sql = "UPDATE edu_users SET last_login_date=NOW(),login_count='$login_count' WHERE user_id='$user_id'";
+				  $update_result = $this->db->query($update_sql);
+			}
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Select Blood Group";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
+				$userData  = array(
+							"user_id" => $ress[0]->user_id,
+							"name" => $ress[0]->name,
+							"user_name" => $ress[0]->user_name,
+							"user_pic" => $user_picurl,
+							"user_type_name" => $ress[0]->user_type_name,							
+							"user_type" => $ress[0]->user_type,
+							"password_status" => $ress[0]->password_status
+						);
 
-			echo json_encode($res);
-			return;
-		}
+				$gcmQuery = "SELECT * FROM edu_notification WHERE gcm_key like '%" .$gcmkey. "%' LIMIT 1";
+				$gcm_result = $this->db->query($gcmQuery);
+				$gcm_ress = $gcm_result->result();
 
-		$user_id = '';
-		$user_id = $this->input->post("user_id");
+				if($gcm_result->num_rows()==0)
+				{
+					$sQuery = "INSERT INTO edu_notification (user_id,gcm_key,mobile_type) VALUES ('". $user_id . "','". $gcmkey . "','". $mobiletype . "')";
+					$update_gcm = $this->db->query($sQuery);
+				}
 
-		$data['result']=$this->apimobilizermodel->Selectbloodgroup($user_id);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
+				  if ($user_type==1)  {
+
+				 	 	$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData);
+						return $response;
+				  }
+				  else if ($user_type==4) {
+
+						$mobilizer_id = $rows->user_master_id;
+
+                        $staff_query = "SELECT t.id, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
+						$staff_res = $this->db->query($staff_query);
+						$staff_profile = $staff_res->result();
+						if($staff_res->num_rows()>0)
+                        	{
+                        	    $staffData  = array(
+    							"staff_id" => $staff_profile[0]->id,
+    							"name" => $staff_profile[0]->name,
+    							"sex" => $staff_profile[0]->sex,
+    							"age" => $staff_profile[0]->age,
+    							"nationality" => $staff_profile[0]->nationality,
+    							"religion" => $staff_profile[0]->religion,
+    							"community_class" => $staff_profile[0]->community_class,
+    							"community" => $staff_profile[0]->community,
+    							"address" => $staff_profile[0]->address,
+    							"email" => $staff_profile[0]->email,
+    							"phone" => $staff_profile[0]->phone,
+    							"qualification" => $staff_profile[0]->qualification
+						        );
+                        	}
+
+						$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"staffProfile" =>$staffData);
+						return $response;
+				  }
 
 
-//-----------------------------------------------//
-	public function add_student()
+		} else {
+			 			$response = array("status" => "error", "msg" => "Invalid login");
+						return $response;
+			 }
+	} */
+
+//#################### Main Login End ####################//
+
+//#################### Profile Pic Update ####################//
+	/* public function updateProfilepic($user_id,$userFileName)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+            $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
+			$update_result = $this->db->query($update_sql);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
+			return $response;
+	} */
+//#################### Profile Pic Update End ####################//
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Student Add";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
 
-			echo json_encode($res);
-			return;
-		}
-		$pia_id = '';
-		$have_aadhaar_card = '';
-		$aadhaar_card_number = '';
-		$name = '';
-		$sex = '';
-		$dob = '';
-		$age = '';
-		$nationality = '';
-		$religion = '';
-		$community_class = '';
-		$community = '';
-		$father_name = '';
-		$mother_name = '';
-		$mobile = '';
-		$sec_mobile = '';
-		$email = '';
-		$state = '';
-		$city = '';
-		$address = '';
-		$mother_tongue = '';
-		$disability = '';
-		$blood_group = '';
-		$admission_date = '';
-		$admission_location = '';
-		$admission_latitude = '';
-		$admission_longitude = '';
-		$preferred_trade = '';
-		$preferred_timing = '';
-		$last_institute = '';
-		$last_studied = '';
-		$qualified_promotion = '';
-		$transfer_certificate = '';
-		$status = '';
-		$created_by = '';
-		$created_at = '';
-
-		$pia_id = $this->input->post("pia_id");
-        $have_aadhaar_card = $this->input->post("have_aadhaar_card");
-		$aadhaar_card_number = $this->input->post("aadhaar_card_number");
-		$name = $this->input->post("name");
-		$sex = $this->input->post("sex");
-		$dob = $this->input->post("dob");
-		$age = $this->input->post("age");
-		$nationality = $this->input->post("nationality");
-		$religion = $this->input->post("religion");
-		$community_class = $this->input->post("community_class");
-		$community = $this->input->post("community");
-		$father_name = $this->input->post("father_name");
-		$mother_name = $this->input->post("mother_name");
-		$mobile = $this->input->post("mobile");
-		$sec_mobile = $this->input->post("sec_mobile");
-		$email = $this->input->post("email");
-		$state = $this->input->post("state");
-		$city = $this->input->post("city");
-		$address = $this->input->post("address");
-		$mother_tongue = $this->input->post("mother_tongue");
-		$disability = $this->input->post("disability");
-		$blood_group = $this->input->post("blood_group");
-		$admission_date = $this->input->post("admission_date");
-		$admission_location = $this->input->post("admission_location");
-		$admission_latitude = $this->input->post("admission_latitude");
-		$admission_longitude = $this->input->post("admission_longitude");
-		$preferred_trade = $this->input->post("preferred_trade");
-		$preferred_timing = $this->input->post("preferred_timing");
-		$last_institute = $this->input->post("last_institute");
-		$last_studied = $this->input->post("last_studied");
-		$qualified_promotion = $this->input->post("qualified_promotion");
-		$transfer_certificate = $this->input->post("transfer_certificate");
-		$status = $this->input->post("status");
-		$created_by = $this->input->post("created_by");
-		$created_at = $this->input->post("created_at");
-
-		$data['result']=$this->apimobilizermodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-//-----------------------------------------------//	
-	
-//-----------------------------------------------//
-
-	public function student_picupload()
+//#################### Change Password ####################//
+	/* public function changePassword($user_id,$old_password,$password)
 	{
-	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
+			$user_query = "SELECT * FROM edu_users WHERE user_id ='$user_id' and user_password= md5('$old_password') and status='Active'";
+			$user_res = $this->db->query($user_query);
+			$user_result= $user_res->result();
 
-		$admission_id = $this->uri->segment(3);		
-		$profile = $_FILES["student_pic"]["name"];
-		$userFileName = time().'-'.$profile;
+			if($user_res->num_rows()==1)
+			{
+				$update_sql = "UPDATE edu_users SET user_password = md5('$password'),updated_date=NOW() WHERE user_id='$user_id'";
+				$update_result = $this->db->query($update_sql);
 
-		$uploadPicdir = './assets/students/';
-		$profilepic = $uploadPicdir.$userFileName;
-		move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
+                $response = array("status" => "sucess", "msg" => "Password Updated");
+			} else {
+				$response = array("status" => "error", "msg" => "Entered Current Password is wrong.");
+			}
 
-		$data['result']=$this->apimobilizermodel->studentPic($admission_id,$userFileName);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
+			return $response;
+	} */
+//#################### Change Password End ####################//
 
-//-----------------------------------------------//	
-	
-//-----------------------------------------------//
-
-	public function list_students()
+//#################### Select Trade ####################//
+	public function Selecttrade($user_id,$pia_id)
 	{
-	   
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+	        $trade_query = "SELECT id,trade_name from edu_trade WHERE pia_id='$pia_id' AND status = 'Active'";
+			$trade_res = $this->db->query($trade_query);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($trade_res->num_rows()>0){
+			     	$trade_result= $trade_res->result();
+			     	$response = array("status" => "success", "msg" => "View Trades","Trades"=>$trade_result);
+				 
+			}else{
+			        $response = array("status" => "error", "msg" => "Trade not found");
+			}  
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "List of Students";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$user_id= '';
-	 	$user_id = $this->input->post("user_id");
-
-
-		$data['result']=$this->apimobilizermodel->listStudents($user_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### Select Trade End ####################//
 
-//-----------------------------------------------//	
-
-//-----------------------------------------------//
-
-	public function view_student()
+//#################### Select Batch ####################//
+	public function Selectbatch($trade_id,$pia_id)
 	{
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+	        $batch_query = "SELECT A.id,B.batch_name from edu_trade_batch A, edu_batch B WHERE A.trade_id = '$trade_id' AND A.batch_id = B.id AND A.pia_id = '$pia_id' AND A.status = 'Active'";
+			$batch_res = $this->db->query($batch_query);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($batch_res->num_rows()>0){
+			     	$batch_result= $batch_res->result();
+			     	$response = array("status" => "success", "msg" => "View Batches","Batches"=>$batch_result);
+				 
+			}else{
+			        $response = array("status" => "error", "msg" => "Batches not found");
+			}  
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "View Student";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$admission_id = '';
-	 	$admission_id = $this->input->post("admission_id");
-
-
-		$data['result']=$this->apimobilizermodel->viewStudent($admission_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### Select Trade End ####################//
 
-//-----------------------------------------------//	
-
-//-----------------------------------------------//
-
-	public function update_student()
+//#################### Select Timing ####################//
+	public function Selecttimings($user_id)
 	{
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+	        $time_query = "SELECT id,session_name,from_time,to_time from edu_timing WHERE status = 'Active'";
+			$time_res = $this->db->query($time_query);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($time_res->num_rows()>0){
+			     	$time_result= $time_res->result();
+			     	$response = array("status" => "success", "msg" => "View Timings","Timings"=>$time_result);
+				 
+			}else{
+			        $response = array("status" => "error", "msg" => "Timings not found");
+			}  
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "View Student";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-        $admission_id = '';
-        $have_aadhaar_card = '';
-		$aadhaar_card_number = '';
-		$name = '';
-		$sex = '';
-		$dob = '';
-		$age = '';
-		$nationality = '';
-		$religion = '';
-		$community_class = '';
-		$community = '';
-		$father_name = '';
-		$mother_name = '';
-		$mobile = '';
-		$sec_mobile = '';
-		$email = '';
-		$state = '';
-		$city = '';
-		$address = '';
-		$mother_tongue = '';
-		$disability = '';
-		$blood_group = '';
-		$admission_date = '';
-		$admission_location = '';
-		$admission_latitude = '';
-		$admission_longitude = '';
-		$preferred_trade = '';
-		$preferred_timing = '';
-		$last_institute = '';
-		$last_studied = '';
-		$qualified_promotion = '';
-		$transfer_certificate = '';
-		$status = '';
-		$updated_by = '';
-		$updated_at = '';
-
-
-        $admission_id = $this->input->post("admission_id");
-        $have_aadhaar_card = $this->input->post("have_aadhaar_card");
-		$aadhaar_card_number = $this->input->post("aadhaar_card_number");
-		$name = $this->input->post("name");
-		$sex = $this->input->post("sex");
-		$dob = $this->input->post("dob");
-		$age = $this->input->post("age");
-		$nationality = $this->input->post("nationality");
-		$religion = $this->input->post("religion");
-		$community_class = $this->input->post("community_class");
-		$community = $this->input->post("community");
-		$father_name = $this->input->post("father_name");
-		$mother_name = $this->input->post("mother_name");
-		$mobile = $this->input->post("mobile");
-		$sec_mobile = $this->input->post("sec_mobile");
-		$email = $this->input->post("email");
-		$state = $this->input->post("state");
-		$city = $this->input->post("city");
-		$address = $this->input->post("address");
-		$mother_tongue = $this->input->post("mother_tongue");
-		$disability = $this->input->post("disability");
-		$blood_group = $this->input->post("blood_group");
-		$admission_date = $this->input->post("admission_date");
-		$admission_location = $this->input->post("admission_location");
-		$admission_latitude = $this->input->post("admission_latitude");
-		$admission_longitude = $this->input->post("admission_longitude");
-		$preferred_trade = $this->input->post("preferred_trade");
-		$preferred_timing = $this->input->post("preferred_timing");
-		$last_institute = $this->input->post("last_institute");
-		$last_studied = $this->input->post("last_studied");
-		$qualified_promotion = $this->input->post("qualified_promotion");
-		$transfer_certificate = $this->input->post("transfer_certificate");
-		$status = $this->input->post("status");
-		$updated_by = $this->input->post("updated_by");
-		$updated_at = $this->input->post("updated_at");
-
-
-		$data['result']=$this->apimobilizermodel->updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### Select Timing End ####################//
 
-
-//-----------------------------------------------//
-
-	public function view_centerdetails()
+//#################### Select Blood group ####################//
+	public function Selectbloodgroup($user_id)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+	        $bgroup_query = "SELECT id,blood_group_name from edu_blood_group WHERE status = 'Active'";
+			$bgroup_res = $this->db->query($bgroup_query);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($bgroup_res->num_rows()>0){
+			     	$bgroup_result= $bgroup_res->result();
+			     	$response = array("status" => "success", "msg" => "View Trades","Bloodgroup"=>$bgroup_result);
+				 
+			}else{
+			        $response = array("status" => "error", "msg" => "Blood group not found");
+			}  
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Select Center";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$user_id = '';
-		$pia_id = '';
-		$user_id = $this->input->post("user_id");
-		$pia_id = $this->input->post("pia_id");
-
-		$data['result']=$this->apimobilizermodel->centerDetails($user_id,$pia_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### Select Blood group End ####################//
 
-//-----------------------------------------------//
-//-----------------------------------------------//
 
-	public function view_centerimages()
+//#################### Add Student ####################//
+	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+	        $chk_query = "SELECT * from edu_student_prospects WHERE aadhaar_card_number = '$aadhaar_card_number'";
+			$chk_res = $this->db->query($chk_query);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Center Images";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$center_id = '';
-		$center_id = $this->input->post("center_id");
-
-		$data['result']=$this->apimobilizermodel->centerImages($center_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			 if($chk_res->num_rows()>0){
+			     	$response = array("status" => "error", "msg" => "Already Exist");
+				 
+			}else{
+			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
+	                $student_res = $this->db->query($student_query);
+                    $admission_id = $this->db->insert_id();
+                    
+                	if($student_res) {
+        			    $response = array("status" => "success", "msg" => "Student Added", "admission_id"=>$admission_id);
+        			} else {
+        			    $response = array("status" => "error");
+        			}
+			}  
+			return $response;
 	}
+//#################### Add Student End ####################//
 
-//-----------------------------------------------//
 
-//-----------------------------------------------//
-
-	public function view_centervideos()
+//#################### Student Pic Update ####################//
+	public function studentPic($admission_id,$userFileName)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+            $update_sql= "UPDATE edu_student_prospects SET student_pic ='$userFileName', updated_at =NOW() WHERE id='$admission_id'";
+			$update_result = $this->db->query($update_sql);
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Center Images";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$center_id = '';
-		$center_id = $this->input->post("center_id");
-
-		$data['result']=$this->apimobilizermodel->centerVideos($center_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			$response = array("status" => "success", "msg" => "Student Picture Updated","student_picture"=>$userFileName);
+			return $response;
 	}
+//#################### Student Pic Update End ####################//
 
-//-----------------------------------------------//
-
-
-//-----------------------------------------------//
-
-	public function view_trainers()
+//#################### List Students ####################//
+	public function listStudents($user_id)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Trainner Details";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$center_id = '';
-		$center_id = $this->input->post("center_id");
-
-		$data['result']=$this->apimobilizermodel->viewTrainers($center_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### List Students End ####################//
 
-//-----------------------------------------------//
-
-//-----------------------------------------------//
-
-	public function view_sucess_story()
+//#################### List Students ####################//
+	public function listStudentsStatus($user_id,$status)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id' AND status = '$status' ";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Sucess Story Details";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$center_id = '';
-		$center_id = $this->input->post("center_id");
-
-		$data['result']=$this->apimobilizermodel->viewSucessstory($center_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### List Students End ####################//
 
-//-----------------------------------------------//
-
-
-//-----------------------------------------------//
-
-	public function disp_circular()
+//#################### View Student ####################//
+	public function viewStudent($admission_id)
 	{
-	   	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		 	$student_query = "SELECT * FROM `edu_student_prospects` WHERE id ='$admission_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$student_result);
+			}
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "View Circular";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-	    $user_id = '';
-	    $user_id = $this->input->post("user_id");
-
-
-		$data['result']=$this->apimobilizermodel->dispCircular($user_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### View Student End ####################//
 
-//-----------------------------------------------//
-
-//-----------------------------------------------//
-
-	public function add_task()
+//#################### Update Student ####################//
+	public function updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		 	$student_query = "UPDATE `edu_student_prospects` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$admission_id'";
+			$student_res = $this->db->query($student_query);
+			
+			if($student_res) {
+			    $response = array("status" => "success", "msg" => "Student Details Updated");
+			}else{
+				$response = array("status" => "error");
+			}
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-		    
-			$res = array();
-			$res["opn"] = "Add Task";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$user_id = '';
-		$pia_id = '';
-		$task_title  = '';
-		$task_description = '';
-		$task_date  = '';
-		$status  = '';
-		//$created_by = '';
-		//$created_at  = '';
-		
-		$user_id = $this->input->post("user_id");
-		$pia_id = $this->input->post("pia_id");
-		$task_title  = $this->input->post("task_title");
-		$task_description = $this->input->post("task_description");
-		$task_date  = $this->input->post("task_date");
-		$status  = $this->input->post("status");
-		//$created_by = $this->input->post("user_id");
-		//$created_at  = date("Y-m-d H:i:s");
-
-
-		$data['result']=$this->apimobilizermodel->addTask($user_id,$pia_id,$task_title,$task_description,$task_date,$status);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### Update Student End ####################//
 
-//-----------------------------------------------//
 
-
-//-----------------------------------------------//
-
-	public function list_task()
+//#################### View Center ####################//
+	public function centerDetails($user_id,$pia_id)
 	{
-	   	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+		 	$center_query = "SELECT * FROM `edu_center_master` WHERE pia_id = '$pia_id'";
+			$center_res = $this->db->query($center_query);
+			$center_result= $center_res->result();
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			if($center_res->num_rows()>0)
+			    {
+			        foreach($center_result as $rows){
+						$center_id = $rows->id;
+					}
 
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "View Task";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
+    				$centerData  = array(
+    					"center_id" => $center_result[0]->id,
+    					"center_name" => $center_result[0]->center_name,
+    					"center_banner" => base_url().'assets/center/logo/'.$center_result[0]->center_banner,
+    					"center_info" => $center_result[0]->center_info,
+    					//"center_info" => strip_tags($center_result[0]->center_info,"<b><strong><em>"),
+    					"center_address" => $center_result[0]->center_address
+    				);
 
-			echo json_encode($res);
-			return;
-		}
+            		$photo_query = "SELECT center_photos FROM edu_center_photos WHERE center_id = '$center_id'  AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$photo_res = $this->db->query($photo_query);
+        				if($photo_res->num_rows()>0){
+            			    foreach ($photo_res->result() as $rows)
+        			        {
+        				        $photo_result[]  = array(
+        						   "center_photos" => base_url().'assets/center/gallery/'.$rows->center_photos
+        				        );
+        			         }
+        				} else {
+        				    $photo_result = array();
+        				}
+        				
+        			$video_query = "SELECT video_title,center_videos FROM edu_center_videos WHERE center_id = '$center_id'  AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$video_res = $this->db->query($video_query);
+        				if($video_res->num_rows()>0){
+            			    foreach ($video_res->result() as $rows)
+        			        {
+        				        $video_result[]  = array(
+        						   "video_title" => $rows->video_title,
+        						   "video_url" => $rows->center_videos
+        				        );
+        			         }
+        				} else {
+        				    $video_result = array();
+        				}
+        			
+        			$staff_query = "SELECT name,profile_pic FROM edu_staff_details WHERE role_type ='4' AND pia_id='$pia_id'  AND status ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$staff_res = $this->db->query($staff_query);
+        				if($staff_res->num_rows()>0){
+            			    foreach ($staff_res->result() as $rows)
+        			        {
+        				        $staff_result[]  = array(
+        						   "name" => $rows->name,
+        						   "profile_pic" => base_url().'assets/staff/'.$rows->profile_pic
+        				        );
+        			         }
+        				} else {
+        				    $staff_result = array();
+        				}
+        			
+        			$trade_query = "SELECT trade_name FROM edu_trade WHERE pia_id='$pia_id' AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$trade_res = $this->db->query($trade_query);
+        			    if($trade_res->num_rows()>0){
+            			    foreach ($trade_res->result() as $rows)
+        			        {
+        				        $trade_result[]  = array(
+        						   "trade_name" => $rows->trade_name
+        				        );
+        			         }
+        				} else {
+        				    $trade_result = array();
+        				}
+        			
+        			$sstory_query = "SELECT details,story_video FROM edu_success_stories WHERE center_id = '$center_id' AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
+        			$sstory_res = $this->db->query($sstory_query);
+        			    if($sstory_res->num_rows()>0){
+            			    foreach ($sstory_res->result() as $rows)
+        			        {
+        				        $sstory_result[]  = array(
+        						   "storydetails" => $rows->details,
+        						    "storyvideo" => $rows->story_video
+        				        );
+        			         }
+        				} else {
+        				    $sstory_result = array();
+        				}
+        			
+    		        $response = array("status" => "Sucess", "msg" => "Center Details", "centerData" => $centerData,"Photo" => $photo_result,"video" => $video_result,"trainer" => $staff_result,"trade" => $trade_result,"stories" => $sstory_result);
 
-	    $user_id = '';
-	    $user_id = $this->input->post("user_id");
+			    } else {
+			        $response = array("status" => "error", "msg" => "Center not found.");
+			    }
 
-
-		$data['result']=$this->apimobilizermodel->listTask($user_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### View Center Details End ####################//
 
-//-----------------------------------------------//
 
-//-----------------------------------------------//
-
-	public function view_task()
+//#################### View Center Images ####################//
+	public function centerImages($center_id)
 	{
-	   	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+            $photo_query = "SELECT center_photos FROM edu_center_photos WHERE center_id = '$center_id'  AND status  ='Active' ORDER BY id DESC";
+            $photo_res = $this->db->query($photo_query);
+            	if($photo_res->num_rows()>0){
+            	    foreach ($photo_res->result() as $rows)
+                    {
+            	        $photo_result[]  = array(
+            			   "center_photos" => base_url().'assets/center/gallery/'.$rows->center_photos
+            	        );
+                     }
+                     $response = array("status" => "Sucess", "msg" => "Center Details", "Photo" => $photo_result);
+            	} else {
+            	   $response = array("status" => "error", "msg" => "Center not found.");
+            	}
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "View Task";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-	    $task = '';
-	    $task_id = $this->input->post("task_id");
-
-
-		$data['result']=$this->apimobilizermodel->viewTask($task_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### View Center Images End ####################//
 
-//-----------------------------------------------//
 
-//-----------------------------------------------//
-
-	public function update_task()
+//#################### View Center Videos ####################//
+	public function centerVideos($center_id)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+			$video_query = "SELECT video_title,center_videos FROM edu_center_videos WHERE center_id = '$center_id'  AND status  ='Active' ORDER BY id DESC";
+			$video_res = $this->db->query($video_query);
+				if($video_res->num_rows()>0){
+    			    foreach ($video_res->result() as $rows)
+			        {
+				        $video_result[]  = array(
+						   "video_title" => $rows->video_title,
+						   "video_url" => $rows->center_videos
+				        );
+			         }
+			         $response = array("status" => "Sucess", "msg" => "Center Videos", "Videos" => $video_result);
+				} else {
+				    $response = array("status" => "error", "msg" => "Videos not found.");
+				}
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-		    
-			$res = array();
-			$res["opn"] = "Update Task";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-        $task_id = '';
-		$user_id = '';
-		$task_title  = '';
-		$task_description = '';
-		$task_date  = '';
-		$status  = '';
-		$updated_by = '';
-		$updated_at  = '';
-		
-		$task_id = $this->input->post("task_id");
-		$user_id = $this->input->post("user_id");
-		$task_title  = $this->input->post("task_title");
-		$task_description = $this->input->post("task_description");
-		$task_date  = $this->input->post("task_date");
-		$status  = $this->input->post("status");
-		$updated_by = $this->input->post("user_id");
-		$updated_at  = date("Y-m-d H:i:s");
-
-
-		$data['result']=$this->apimobilizermodel->updateTask($task_id,$user_id,$task_title,$task_description,$task_date,$status,$updated_by,$updated_at);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
+//#################### View Center Videos End ####################//
 
-//-----------------------------------------------//
-
-//-----------------------------------------------//
-
-	public function task_picupload()
+//#################### View Trainers ####################//
+	public function viewTrainers($center_id)
 	{
-	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
+            $staff_query = "SELECT name,sex,dob,nationality,religion,community_class,address,email,sec_email,phone,profile_pic,trade_batch_id,qualification FROM edu_staff_details WHERE role_type ='3'  AND status  ='Active' ORDER BY id";
+    		$staff_res = $this->db->query($staff_query);
+    			if($staff_res->num_rows()>0){
+    			    foreach ($staff_res->result() as $rows)
+    		        {
+    			        $staff_result[]  = array(
+    					   "name" => $rows->name,
+    					   "sex" => $rows->sex,
+    					   "dob" => $rows->dob,
+    					   "nationality" => $rows->nationality,
+    					   "religion" => $rows->religion,
+    					   "community_class" => $rows->community_class,
+    					   "address" => $rows->address,
+    					   "email" => $rows->email,
+    					   "sec_email" => $rows->sec_email,
+    					   "phone" => $rows->phone,
+    					   "trade_batch_id" => $rows->trade_batch_id,
+    					   "qualification" => $rows->qualification,
+    					   "profile_pic" => base_url().'assets/staff/'.$rows->profile_pic
+    			        );
+    		         }
+    		          $response = array("status" => "Sucess", "msg" => "Trainer Details", "Trainerdetails" => $staff_result);
+    			} else {
+    			    $response = array("status" => "error", "msg" => "Trainers not found.");
+    			}
 
-		$task_id = $this->uri->segment(3);		
-		$profile = $_FILES["task_pic"]["name"];
-		$taskFileName = time().'-'.$task_id.'-'.$profile;
-
-		$uploadPicdir = './assets/task/';
-		$taskpic = $uploadPicdir.$taskFileName;
-		move_uploaded_file($_FILES['task_pic']['tmp_name'], $taskpic);
-
-		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName);
-		$response = $data['result'];
-		echo json_encode($response);
+			return $response;
 	}
-
-//-----------------------------------------------//	
-
-//-----------------------------------------------//
-
-	public function list_taskpic()
+//#################### View Trainers End ####################//
+                    
+//#################### View Sucess Strories ####################//
+	public function viewSucessstory($center_id)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-		    
-			$res = array();
-			$res["opn"] = "List Task Picture";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-        $task_id = '';
-		$task_id = $this->input->post("task_id");
-
-		$data['result']=$this->apimobilizermodel->listTaskpic($task_id);
-		$response = $data['result'];
-		echo json_encode($response);
+            $sstory_query = "SELECT details,story_video FROM edu_success_stories WHERE center_id = '$center_id' AND status  ='Active' ORDER BY id DESC";
+            $sstory_res = $this->db->query($sstory_query);
+            	    if($sstory_res->num_rows()>0){
+            		    foreach ($sstory_res->result() as $rows)
+            	        {
+            		        $sstory_result[]  = array(
+            				   "storydetails" => $rows->details,
+            				    "storyvideo" => $rows->story_video
+            		        );
+            	         }
+            	        $response = array("status" => "Sucess", "msg" => "Sucess Story Details", "Storydetails" => $sstory_result);
+            		} else {
+            		     $response = array("status" => "error", "msg" => "Sucess Story not found.");
+            		}
+            return $response;
 	}
+//#################### View Sucess Strories End ####################//
 
-//-----------------------------------------------//
 
-//-----------------------------------------------//
 
-	public function delete_taskpic()
+//#################### Circular for All ####################//
+	public function dispCircular($user_id)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+			$year_id = $this->getYear();
+			
+			 $circular_query = "SELECT
+                                A.circular_type,
+                                B.circular_title,
+                                B.circular_description,
+                                A.circular_date
+                            FROM
+                                edu_circular A,
+                                edu_circular_master B
+                            WHERE
+                                A.user_id = '$user_id' AND B.academic_year_id = '$year_id' AND A.circular_master_id = B.id AND A.status = 'Active'";
 
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
+			$circular_res = $this->db->query($circular_query);
+			$circular_result= $circular_res->result();
 
-		if($_POST == FALSE)
-		{
-		    
-			$res = array();
-			$res["opn"] = "Delete Task Picture";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-        $pic_id = '';
-		$pic_id = $this->input->post("pic_id");
-
-		$data['result']=$this->apimobilizermodel->deleteTaskpic($pic_id);
-		$response = $data['result'];
-		echo json_encode($response);
+			 if($circular_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Circular Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Circular", "circularDetails"=>$circular_result);
+			}
+			return $response;
 	}
+//#################### Circular End ####################//
 
-//-----------------------------------------------//
 
-
-//-----------------------------------------------//
-
-	public function add_mobilocation()
+//#################### Add Task ####################//
+	public function addTask ($user_id,$pia_id,$task_title,$task_description,$task_date,$status)
 	{
-		$_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-		    
-			$res = array();
-			$res["opn"] = "Add Mobilizer Location";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$user_id = '';
-		$pia_id = '';
-		$latitude  = '';
-		$longitude = '';
-		$location = '';
-		$miles = '';
-		$location_datetime  = '';
-
-		$user_id = $this->input->post("user_id");
-		$pia_id = $this->input->post("$pia_id");
-		$latitude = $this->input->post("latitude");
-		$longitude  = $this->input->post("longitude");
-		$location = $this->input->post("location");
-		$miles = $this->input->post("miles");
-		$location_datetime = $this->input->post("location_datetime");
-		
-
-		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
-		$response = $data['result'];
-		echo json_encode($response);
+            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`, `status`, `created_by`, `created_at`) VALUES ('$user_id', '$task_title', '$task_description', '$task_date', '$pia_id', '$status', '$user_id', now())";
+	        $task_res = $this->db->query($task_query);
+            $task_id = $this->db->insert_id();
+            
+			if($task_res) {
+			    $response = array("status" => "success", "msg" => "Task Added", "task_id"=>$task_id);
+			} else {
+			    $response = array("status" => "error");
+			}
+			return $response;
 	}
+//#################### Add Task End ####################//
 
-//-----------------------------------------------//
+//#################### List Task ####################//
+	public function listTask ($user_id)
+	{
+            $task_query = "SELECT * FROM `edu_task` WHERE user_id  ='$user_id'";
+			$task_res = $this->db->query($task_query);
+			$task_result= $task_res->result();
+			
+			 if($task_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Task Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "List Task", "taskDetails"=>$task_result);
+			}
+
+			return $response;
+	}
+//#################### Add List End ####################//
+
+//#################### List Task ####################//
+	public function viewTask ($task_id)
+	{
+
+            $task_query = "SELECT * FROM `edu_task` WHERE id  ='$task_id'";
+			$task_res = $this->db->query($task_query);
+			$task_result= $task_res->result();
+			
+			 if($task_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Task Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Task", "taskDetails"=>$task_result);
+			}
+
+			return $response;
+	}
+//#################### Add List End ####################//
+
+//#################### Update Task ####################//
+	public function updateTask($task_id,$user_id,$task_title,$task_description,$task_date,$status,$updated_by,$updated_at)
+	{
+		 	$task_query = "UPDATE `edu_task` SET `task_title`='$task_description',`task_description`='$task_description',`task_date`='$task_date',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$task_id'";
+			$task_res = $this->db->query($task_query);
+			
+			if($task_res) {
+			    $response = array("status" => "success", "msg" => "Task Details Updated");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+	}
+//#################### Update Task End ####################//
+
+
+//#################### Task Pic Add ####################//
+	public function taskPic($task_id,$task_pic)
+	{
+           $task_query = "INSERT INTO `edu_task_photos` (`task_id`, `task_image`) VALUES ('$task_id','$task_pic')";
+	        $task_res = $this->db->query($task_query);
+            $task_id = $this->db->insert_id();
+
+			$response = array("status" => "success", "msg" => "Task Picture Added","task_picture"=>$task_pic);
+			return $response;
+	}
+//#################### Task Pic Add End ####################//
+
+
+//#################### Task Pic List  ####################//
+	public function listTaskpic($task_id)
+	{
+           $pic_query = "SELECT * FROM edu_task_photos WHERE task_id = '$task_id' ORDER BY id DESC";
+           $pic_res = $this->db->query($pic_query);
+        	    if($pic_res->num_rows()>0){
+        		    foreach ($pic_res->result() as $rows)
+        	        {
+        		        $pic_result[]  = array(
+        				    "id" => $rows->id,
+        				    "task_id" => $rows->task_id,
+        				    "task_image" => base_url().'assets/task/'.$rows->task_image,
+        		        );
+        	         }
+        	        $response = array("status" => "Sucess", "msg" => "Task Pictures", "Taskpictures" => $pic_result);
+        		} else {
+        		     $response = array("status" => "error", "msg" => "Task Pictures not found.");
+        		}
+            return $response;
+	}
+//#################### Task Pic List End ####################//
+
+//#################### Task Pic Delete ####################//
+	public function deleteTaskpic($pic_id)
+	{
+           $pic_query = "SELECT * FROM edu_task_photos WHERE id = '$pic_id' LIMIT 1";
+           $pic_res = $this->db->query($pic_query);
+        	    if($pic_res->num_rows()>0){
+    	            foreach ($pic_res->result() as $rows)
+		            {
+			            $task_image = $rows->task_image;
+	        	    }
+	        	    
+        	        if (file_exists('./assets/task/'.$task_image)) {
+                        unlink('./assets/task/'.$task_image);
+                    }
+
+                	$sQuery = "DELETE FROM edu_task_photos WHERE id  = '" .$pic_id. "'";
+			        $delete_pic = $this->db->query($sQuery);
+			        
+        	        $response = array("status" => "Sucess", "msg" => "Task Picture Deleted");
+        		} else {
+        		     $response = array("status" => "error", "msg" => "Task Pictures not found.");
+        		}
+            return $response;
+	}
+//#################### Task Pic Delete End ####################//
+
+//#################### Add Mobilizer Location ####################//
+	/* public function addMobilocation($user_id,$latitude,$longitude,$location,$location_datetime)
+	{
+            $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`created_at`) VALUES ('$user_id','$latitude','$longitude','$location','$location_datetime')";
+	        $location_res = $this->db->query($location_query);
+            $location_id = $this->db->insert_id();
+
+			if($location_res) {
+			    $response = array("status" => "success", "msg" => "Location Added", "location_id"=>$location_id);
+			} else {
+			    $response = array("status" => "error");
+			}
+			return $response;
+	} */
+//#################### Mobilizer Location End ####################//
+
+//#################### Add Mobilizer Location ####################//
+	public function addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id)
+	{
+            $dt = strtotime($location_datetime); //make timestamp with datetime string
+            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created  
+
+	       $user_query = "SELECT * FROM edu_tracking_details WHERE user_id = '$user_id' AND date(created_at) = '$chk_date' ORDER BY id DESC LIMIT 1";
+           $user_result = $this->db->query($user_query);
+           $user_res = $user_result->result();
+           
+        	    if($user_result->num_rows()>0){
+        		   foreach($user_res as $rows){
+						$to_latitude = $rows->to_lat;
+						$to_longitude = $rows->to_long;
+					}
+        	        
+        	        $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        	        $response = array("status" => "Sucess", "msg" => "Location Added");
+        		} else {
+        		    
+        		    $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        		    $response = array("status" => "Sucess", "msg" => "Location Added");
+        		}
+        	
+			return $response;
+	}
+//#################### Mobilizer Location End ####################//
+
 
 }
+?>

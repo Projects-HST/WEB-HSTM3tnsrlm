@@ -408,6 +408,24 @@ class Apimobilizermodel extends CI_Model {
 	}
 //#################### List Students End ####################//
 
+//#################### List Students ####################//
+	public function listStudentsStatus($user_id,$status)
+	{
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id' AND status = '$status' ";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
+
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
+
+			return $response;
+	}
+//#################### List Students End ####################//
+
 //#################### View Student ####################//
 	public function viewStudent($admission_id)
 	{
@@ -470,7 +488,7 @@ class Apimobilizermodel extends CI_Model {
             			    foreach ($photo_res->result() as $rows)
         			        {
         				        $photo_result[]  = array(
-        						   "center_photos" => base_url().'assets/center/'.$rows->center_photos
+        						   "center_photos" => base_url().'assets/center/gallery/'.$rows->center_photos
         				        );
         			         }
         				} else {
@@ -552,7 +570,7 @@ class Apimobilizermodel extends CI_Model {
             	    foreach ($photo_res->result() as $rows)
                     {
             	        $photo_result[]  = array(
-            			   "center_photos" => base_url().'assets/center/'.$rows->center_photos
+            			   "center_photos" => base_url().'assets/center/gallery/'.$rows->center_photos
             	        );
                      }
                      $response = array("status" => "Sucess", "msg" => "Center Details", "Photo" => $photo_result);

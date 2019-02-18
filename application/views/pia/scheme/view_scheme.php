@@ -130,6 +130,4 @@
 <script type="text/javascript">
     $('#masters').addClass('active');
     $('#mastersmenu').addClass('active');
-
-
 </script>

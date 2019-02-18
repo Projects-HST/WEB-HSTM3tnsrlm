@@ -220,7 +220,7 @@
                       <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="notika-icon notika-house"></i> Dashboard</a></li>
                       <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="notika-icon notika-mail"></i> PIA</a></li>
                       <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="notika-icon notika-bar-chart"></i> Staff</a></li>
-					  <li id="staff"><a  href="<?php echo base_url(); ?>scheme/home"><i class="notika-icon notika-bar-chart"></i> Scheme</a></li>
+					  <li id="masters"><a  href="<?php echo base_url(); ?>scheme/home"><i class="notika-icon notika-bar-chart"></i> Scheme</a></li>
                       <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="notika-icon notika-app"></i> Mobilization Plan</a></li>
 					   <li id="profile"><a  href="<?php echo base_url(); ?>admin/password_change"><i class="notika-icon notika-app"></i> Change Password</a></li>
 					   

@@ -1184,6 +1184,42 @@ public function user_profilepic()
 
 //-----------------------------------------------//
 
+	public function list_students_status()
+	{
+	   
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "List of Students";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$pia_id= '';
+		$status= '';
+	 	$pia_id = $this->input->post("user_id");
+		$status = $this->input->post("status");
+
+
+		$data['result']=$this->apipiamodel->listStudentsStatus($pia_id,$status);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//	
+
+//-----------------------------------------------//
+
 	public function view_student()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
