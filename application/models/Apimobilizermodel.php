@@ -357,14 +357,14 @@ class Apimobilizermodel extends CI_Model {
 //#################### Add Student ####################//
 	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at)
 	{
-	        $chk_query = "SELECT * from edu_admission WHERE aadhaar_card_number = '$aadhaar_card_number'";
+	        $chk_query = "SELECT * from edu_student_prospects WHERE aadhaar_card_number = '$aadhaar_card_number'";
 			$chk_res = $this->db->query($chk_query);
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
 				 
 			}else{
-			        $student_query = "INSERT INTO `edu_admission` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
+			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
 	                $student_res = $this->db->query($student_query);
                     $admission_id = $this->db->insert_id();
                     
@@ -382,7 +382,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### Student Pic Update ####################//
 	public function studentPic($admission_id,$userFileName)
 	{
-            $update_sql= "UPDATE edu_admission SET student_pic ='$userFileName', updated_at =NOW() WHERE id='$admission_id'";
+            $update_sql= "UPDATE edu_student_prospects SET student_pic ='$userFileName', updated_at =NOW() WHERE id='$admission_id'";
 			$update_result = $this->db->query($update_sql);
 
 			$response = array("status" => "success", "msg" => "Student Picture Updated","student_picture"=>$userFileName);
@@ -393,7 +393,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### List Students ####################//
 	public function listStudents($user_id)
 	{
-		 	$student_query = "SELECT name,sex,mobile,email,enrollment,status FROM `edu_admission` WHERE created_by ='$user_id'";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
 			$student_count = $student_res->num_rows();
@@ -411,7 +411,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### View Student ####################//
 	public function viewStudent($admission_id)
 	{
-		 	$student_query = "SELECT * FROM `edu_admission` WHERE id ='$admission_id'";
+		 	$student_query = "SELECT * FROM `edu_student_prospects` WHERE id ='$admission_id'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
 			
@@ -428,7 +428,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### Update Student ####################//
 	public function updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at)
 	{
-		 	$student_query = "UPDATE `edu_admission` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$admission_id'";
+		 	$student_query = "UPDATE `edu_student_prospects` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$admission_id'";
 			$student_res = $this->db->query($student_query);
 			
 			if($student_res) {
@@ -673,10 +673,9 @@ class Apimobilizermodel extends CI_Model {
 
 
 //#################### Add Task ####################//
-	public function addTask ($user_id,$task_title,$task_description,$task_date,$status,$created_by,$created_at)
+	public function addTask ($user_id,$pia_id,$task_title,$task_description,$task_date,$status)
 	{
-
-            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `status`, `created_by`, `created_at`) VALUES ('$user_id', '$task_title', '$task_description', '$task_date', '$status', '$created_by', '$created_at')";
+            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`, `status`, `created_by`, `created_at`) VALUES ('$user_id', '$task_title', '$task_description', '$task_date', '$pia_id', '$status', '$user_id', now())";
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
             
@@ -752,6 +751,7 @@ class Apimobilizermodel extends CI_Model {
 			return $response;
 	}
 //#################### Task Pic Add End ####################//
+
 
 //#################### Task Pic List  ####################//
 	public function listTaskpic($task_id)

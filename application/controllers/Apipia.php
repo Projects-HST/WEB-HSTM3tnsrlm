@@ -1081,7 +1081,7 @@ public function user_profilepic()
 		$last_studied = '';
 		$qualified_promotion = '';
 		$transfer_certificate = '';
-		//$status = '';
+		$status = '';
 		//$created_by = '';
 		//$created_at = '';
 
@@ -1117,11 +1117,11 @@ public function user_profilepic()
 		$last_studied = $this->input->post("last_studied");
 		$qualified_promotion = $this->input->post("qualified_promotion");
 		$transfer_certificate = $this->input->post("transfer_certificate");
-		//$status = $this->input->post("status");
+		$status = $this->input->post("status");
 		//$created_by = $this->input->post("created_by");
 		//$created_at = $this->input->post("created_at");
 
-		$data['result']=$this->apipiamodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate);
+		$data['result']=$this->apipiamodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -1391,11 +1391,11 @@ public function user_profilepic()
 			return;
 		}
 
-	    $mob_id = '';
-	    $mob_id = $this->input->post("mob_id");
+	    $user_id = '';
+	    $user_id = $this->input->post("user_id");
 
 
-		$data['result']=$this->apipiamodel->listTask($mob_id);
+		$data['result']=$this->apipiamodel->listTask($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

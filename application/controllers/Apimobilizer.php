@@ -772,23 +772,25 @@ class Apimobilizer extends CI_Controller {
 		}
 
 		$user_id = '';
+		$pia_id = '';
 		$task_title  = '';
 		$task_description = '';
 		$task_date  = '';
 		$status  = '';
-		$created_by = '';
-		$created_at  = '';
+		//$created_by = '';
+		//$created_at  = '';
 		
 		$user_id = $this->input->post("user_id");
+		$pia_id = $this->input->post("pia_id");
 		$task_title  = $this->input->post("task_title");
 		$task_description = $this->input->post("task_description");
 		$task_date  = $this->input->post("task_date");
 		$status  = $this->input->post("status");
-		$created_by = $this->input->post("user_id");
-		$created_at  = date("Y-m-d H:i:s");
+		//$created_by = $this->input->post("user_id");
+		//$created_at  = date("Y-m-d H:i:s");
 
 
-		$data['result']=$this->apimobilizermodel->addTask($user_id,$task_title,$task_description,$task_date,$status,$created_by,$created_at);
+		$data['result']=$this->apimobilizermodel->addTask($user_id,$pia_id,$task_title,$task_description,$task_date,$status);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

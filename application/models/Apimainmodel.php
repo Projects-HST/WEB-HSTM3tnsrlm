@@ -230,7 +230,7 @@ class Apimainmodel extends CI_Model {
 					
 					$staff_id = $rows->user_master_id;
 
-					$staff_query = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
+				    $staff_query = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
 					$staff_res = $this->db->query($staff_query);
 					$staff_profile = $staff_res->result();
 					if($staff_res->num_rows()>0)
@@ -816,7 +816,7 @@ class Apimainmodel extends CI_Model {
 //#################### User List ####################//
 	public function piaMoblist ($pia_id)
 	{
-			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.pia_id='$pia_id' AND A.user_type ='4'";
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name, A.user_name, B.user_type_name, A.status FROM edu_users A, edu_role B WHERE A.user_type = B.id AND A.pia_id='$pia_id' AND A.user_type ='5'";
 			$s_res = $this->db->query($sQuery);
 			$s_result= $s_res->result();
 

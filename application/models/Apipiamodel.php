@@ -171,7 +171,13 @@ class Apipiamodel extends CI_Model {
             $update_sql= "UPDATE edu_center_master SET center_banner='$bannerName' WHERE id='$center_id'";
 			$update_result = $this->db->query($update_sql);
 			
-			$response = array("status" => "success", "msg" => "Center Logo Updated","center_logo"=>$bannerName);
+			if ($this->db->affected_rows() > 0)
+            {
+                $response = array("status" => "success", "msg" => "Center Logo Updated","center_logo"=>$bannerName);
+            } else {
+                $response = array("status" => "error", "msg" => "Center Logo Not Updated");
+            }
+
 			return $response;
 	}
 //#################### Center banner Update End ####################//
@@ -549,16 +555,15 @@ class Apipiamodel extends CI_Model {
 //#################### User Update End ####################//
 
 //#################### Add Student ####################//
-	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate)
+	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status)
 	{
         $chk_query = "SELECT * from edu_student_prospects WHERE aadhaar_card_number = '$aadhaar_card_number'";
 		$chk_res = $this->db->query($chk_query);
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
-				 
 			}else{
-			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id `,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', 'Active', '$pia_id', now())";
+			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id `,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$pia_id', now())";
 	                $student_res = $this->db->query($student_query);
                     $student_id = $this->db->insert_id();
                     
@@ -587,7 +592,7 @@ class Apipiamodel extends CI_Model {
 //#################### List Students ####################//
 	public function listStudents($pia_id)
 	{
-		 	$student_query = "SELECT name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id  ='$pia_id'";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id  ='$pia_id'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
 			$student_count = $student_res->num_rows();
@@ -637,23 +642,39 @@ class Apipiamodel extends CI_Model {
 //#################### Add Task ####################//
 	public function addTask ($user_master_id,$task_title,$task_description,$task_date,$pia_id)
 	{
-            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`) VALUES ('$user_master_id', '$task_title', '$task_description', '$task_date', '$pia_id', 'Active', '$pia_id', now())";
+            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`, `status`, `created_by`, `created_at`) VALUES ('$user_master_id', '$task_title', '$task_description', '$task_date', '$pia_id', 'Assigned', '$pia_id', now())";
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
             
+			$sQuery = "SELECT A.user_id, A.user_master_id,A.name,B.email FROM edu_users A, edu_staff_details B WHERE A.user_id = B.id AND A.user_id ='$user_master_id' AND A.user_type ='5'";
+			$user_result = $this->db->query($sQuery);
+			$ress = $user_result->result();
+			if($user_result->num_rows()>0)
+			{
+				foreach ($user_result->result() as $rows)
+				{
+					$email = $rows->email;
+				}
+			}
+			
 			if($task_res) {
 			    $response = array("status" => "success", "msg" => "Task Added", "task_id"=>$task_id);
 			} else {
 			    $response = array("status" => "error");
-			}
+			}		
+
+			$subject = "M3 - New Task Added";
+			$email_message = 'Task Title:'.$task_title.'<br> Task Details:'.$task_description.'<br>';
+			$this->sendMail($email,$subject,$email_message);
+
 			return $response;
 	}
 //#################### Add Task End ####################//
 
 //#################### List Task ####################//
-	public function listTask ($mob_id)
+	public function listTask ($user_id)
 	{
-            $task_query = "SELECT * FROM `edu_task` WHERE user_id  ='$mob_id'";
+            $task_query = "SELECT * FROM `edu_task` WHERE pia_id  ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 			
