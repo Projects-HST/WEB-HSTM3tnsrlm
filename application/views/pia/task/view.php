@@ -23,7 +23,7 @@
                              <th>Name</th>
                              <th>Role</th>
                              <th>Task title</th>
-                             <th style="width:200px;">Description</th>
+                             <th style="width:500px;">Description</th>
                              <th>Task Date</th>
                              <th>status</th>
                              <!-- <th>Action</th> -->
