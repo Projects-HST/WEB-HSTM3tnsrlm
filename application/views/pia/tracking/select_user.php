@@ -2,14 +2,14 @@
 <div class="row">
 <div class="data-table-area">
 <div class="container">
- <div class="row">
+ <div class="row" style="height:500px;">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
                  <h2>Track Mobilizer</h2>
              </div>
            <form action="<?php echo base_url(); ?>tracking/usertrack" method="post" class="form-horizontal" id="tracking_form" name="edit_trade_handling_form">
-               <div class="row">
+               <div class="row" >
                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
                      <div class="" id="">
                         <label>Select date</label>
@@ -24,7 +24,7 @@
                  <div class="" id="">
                     <label>Select Mobilizer</label>
                     <div class="input-group  nk-int-st">
-                      <select name="user_id" id="user_id" class="selectpicker ">
+                      <select name="user_id" id="user_id" class=" ">
                         <?php  foreach ($res as $rows) {  ?>
                      <option value="<?php echo $rows->user_id; ?>">
                          <?php echo $rows->name; ?>
