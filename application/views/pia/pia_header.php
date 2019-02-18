@@ -284,7 +284,9 @@
                           <ul class="notika-main-menu-dropdown">
                             <li><a href="<?php echo base_url(); ?>task/home">Create Task</a>
                             </li>
-                            <li><a href="<?php echo base_url(); ?>task/view">View Task</a>
+                            <li><a href="<?php echo base_url(); ?>task/view">View PIA Task</a>
+                            </li>
+                            <li><a href="<?php echo base_url(); ?>task/view_mobilizer">View Mobilizer Task</a>
                             </li>
                           </ul>
                       </div>

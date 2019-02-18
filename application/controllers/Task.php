@@ -49,6 +49,22 @@ class Task extends CI_Controller
 
     }
   }
+  public function view_mobilizer()
+    {
+    $datas=$this->session->userdata();
+    $user_id=$this->session->userdata('user_id');
+    $user_type=$this->session->userdata('user_type');
+    if($user_type==3)
+    {
+    $datas['result']=$this->taskmodel->view_task_mobilizer($user_id);
+    $this->load->view('pia/pia_header');
+    $this->load->view('pia/task/view',$datas);
+    $this->load->view('pia/pia_footer');
+    }
+    else{
+
+    }
+  }
 
 	public function create()
 	{
