@@ -562,6 +562,7 @@ class Apipiamodel extends CI_Model {
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
+				 
 			}else{
 			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id `,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$pia_id', now())";
 	                $student_res = $this->db->query($student_query);
@@ -593,6 +594,24 @@ class Apipiamodel extends CI_Model {
 	public function listStudents($pia_id)
 	{
 		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id  ='$pia_id'";
+			$student_res = $this->db->query($student_query);
+			$student_result= $student_res->result();
+			$student_count = $student_res->num_rows();
+
+			 if($student_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Students Not Found");
+			}else{
+				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+			}
+			return $response;
+	}
+//#################### List Students End ####################//
+
+
+//#################### List Students ####################//
+	public function listStudentsStatus($pia_id,$status)
+	{
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id = '$pia_id' AND status = '$status'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
 			$student_count = $student_res->num_rows();
