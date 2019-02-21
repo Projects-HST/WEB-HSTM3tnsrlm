@@ -32,7 +32,21 @@ margin: 0;
 padding: 0
 }
 .clear{clear:both}
-body {}
+body {
+    margin-bottom: 60px;
+}
+.footer-copyright-area{
+    position: fixed;
+     margin: auto;
+     height: auto;
+     width: 100%;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     z-index: 1030;
+}
+
+
 .mg-tb-40{
 	margin:40px 0px;
 }
