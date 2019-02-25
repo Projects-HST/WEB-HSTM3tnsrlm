@@ -157,7 +157,7 @@ Class Staffmodel extends CI_Model
 
       $result=$this->db->query($update);
 
-      $update_user="UPDATE edu_users SET name='$name',user_type='$select_role' WHERE  user_master_id='$staff_id'";
+      $update_user="UPDATE edu_users SET name='$name',user_type='$select_role',status='$status' WHERE  user_master_id='$staff_id'";
       $result_user=$this->db->query($update_user);
       if ($result_user) {
           $data = array(
