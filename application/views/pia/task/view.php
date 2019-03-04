@@ -21,7 +21,7 @@
                          <tr>
                              <th>S.no</th>
                              <th>Name</th>
-                             <th>Role</th>
+                             <!-- <th>Role</th> -->
                              <th>Task title</th>
                              <th style="width:500px;">Description</th>
                              <th>Task Date</th>
@@ -36,11 +36,11 @@
                          <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->name; ?></td>
-                             <td><?php if($rows->user_type=='3'){
+                             <!-- <td><?php if($rows->user_type=='3'){
                                echo "PIA";
                              }else{
                                echo "Mobilizer";
-                             } ?></td>
+                             } ?></td> -->
                              <td><?php echo $rows->task_title; ?></td>
                              <td><?php echo $rows->task_description; ?></td>
                               <td><?php echo $rows->task_date; ?></td>

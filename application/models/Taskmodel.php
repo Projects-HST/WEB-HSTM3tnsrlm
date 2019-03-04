@@ -35,7 +35,7 @@ Class Taskmodel extends CI_Model
 
   function view_task($user_id)
   {
-     $query123="SELECT et.*,eu.name,eu.user_type from edu_task as et LEFT join edu_users as eu on  et.created_by=eu.user_id where et.created_by='$user_id' AND eu.user_type='3' ORDER by et.id desc";
+     $query123="SELECT et.*,eu.name,eu.user_type from edu_task as et LEFT join edu_users as eu on  et.user_id=eu.user_id where et.created_by='$user_id'  ORDER by et.id desc";
     $res112=$this->db->query($query123);
     $result123=$res112->result();
     return $result123;
