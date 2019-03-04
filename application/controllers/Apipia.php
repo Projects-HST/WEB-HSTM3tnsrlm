@@ -1554,4 +1554,40 @@ public function user_profilepic()
 	}
 
 //-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function user_tracking_current()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User Tracking";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$mob_id = '';
+		$track_date = '';
+		$mob_id = $this->input->post("mob_id");
+		$track_date = $this->input->post("track_date");
+		
+
+		$data['result']=$this->apipiamodel->userTrackingCurrent($mob_id,$track_date);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
 }

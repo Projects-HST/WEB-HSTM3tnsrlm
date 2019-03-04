@@ -484,7 +484,7 @@ class Apipiamodel extends CI_Model {
 //#################### User Details ####################//
 	public function userDetails ($pia_id,$user_master_id)
 	{
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND A.pia_id='$pia_id'";
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND pia_id='$pia_id'";
 			$s_res = $this->db->query($sQuery);
 			$s_result= $s_res->result();
 
@@ -693,7 +693,7 @@ class Apipiamodel extends CI_Model {
 //#################### List Task ####################//
 	public function listTask ($user_id)
 	{
-            $task_query = "SELECT * FROM `edu_task` WHERE pia_id  ='$user_id'";
+            $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 			
@@ -782,6 +782,29 @@ class Apipiamodel extends CI_Model {
 //#################### User Tracking End ####################//
 
 
+//#################### Current User Tracking ####################//
+	public function userTrackingCurrent($mob_id,$track_date)
+	{
+			$track_query = "SELECT id,etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at DESC LIMIT 1";
+			$track_res = $this->db->query($track_query);
+			$track_result= $track_res->result();
+			
+			 if($track_res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Track Not Found");
+			}else{
+				
+			foreach($track_result as $rows){
+				$lat=$rows->lat;
+				$lng=$rows->lng;
+				$loca=$rows->address;
+				$address[] = array ("Latitude" => $lat, "Longitude" => $lng);
+             }
+				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address);
+			}
+			return $response;			
+				
+	}
+//#################### Current User Tracking End ####################//
 
 }
 ?>
