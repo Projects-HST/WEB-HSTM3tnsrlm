@@ -285,6 +285,7 @@ class Apipia extends CI_Controller {
 	public function add_center_photos()
 	{
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
+		
 		$center_id = $this->uri->segment(3);
 		$pia_id = $this->uri->segment(4);
 		//$center_id = 1;

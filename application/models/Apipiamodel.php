@@ -137,7 +137,8 @@ class Apipiamodel extends CI_Model {
 //#################### Trade List ####################//
 	public function listTrade ($pia_id)
 	{
-            $sQuery = "SELECT * FROM edu_trade WHERE pia_id = '$pia_id' AND status = 'Active'";
+            //$sQuery = "SELECT * FROM edu_trade WHERE pia_id = '$pia_id' AND status = 'Active'";
+			$sQuery = "SELECT * FROM edu_trade WHERE pia_id = '$pia_id'";
 			$s_res = $this->db->query($sQuery);
 			$s_result= $s_res->result();
 
