@@ -190,11 +190,12 @@
 															<i class="notika-icon notika-edit"></i>
 														</div>
 														<div class="nk-int-st">
-                              <select name="nationality" class="selectpicker" >
+                              <!-- <select name="nationality" class="selectpicker" >
                                 <option value="">-Select Nationality-</option>
                                <option value="Indian">Indian</option>
                                <option value="Others">Others</option>
-                           </select>
+                           </select> -->
+													  <input type="text" placeholder="Nationality" name="nationality" class="form-control">
                          </div>
 													</div>
 												</div>
@@ -226,7 +227,7 @@
 															<i class="notika-icon notika-edit"></i>
 														</div>
 														<div class="nk-int-st">
-															<select name="community_class" class="selectpicker">
+															<!-- <select name="community_class" class="selectpicker">
 																<option value="">Select Caste</option>
 																<option value="SC">Scheduled Castes-SC</option>
 																<option value="ST">Scheduled Tribes-ST</option>
@@ -235,7 +236,8 @@
 																<option value="BCM">Backward Classes Muslims-BCM</option>
 																<option value="DC">Denotified Communities-DC</option>
 																<option value="FC">Forward Class-FC</option>
-															</select>
+															</select> -->
+															<input type="text" placeholder="Community" name="community_class" class="form-control">
 														</div>
 													</div>
 												</div>

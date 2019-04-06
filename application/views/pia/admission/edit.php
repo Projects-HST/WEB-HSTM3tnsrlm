@@ -243,12 +243,13 @@
 															<i class="notika-icon notika-edit"></i>
 														</div>
 														<div class="nk-int-st">
-                              <select name="nationality" class="selectpicker" id="nationality">
+                              <!-- <select name="nationality" class="selectpicker" id="nationality">
                                 <option value="">-Select Nationality-</option>
                                <option value="Indian">Indian</option>
                                <option value="Others">Others</option>
                            </select>
-                             <script> $('#nationality').val('<?php echo $rows->nationality; ?>');</script>
+                             <script> $('#nationality').val('<?php echo $rows->nationality; ?>');</script> -->
+														 <input type="text" placeholder="Nationality" name="nationality" class="form-control" value="<?php echo $rows->nationality; ?>">
                          </div>
 													</div>
 												</div>
@@ -283,7 +284,7 @@
 															<i class="notika-icon notika-edit"></i>
 														</div>
 														<div class="nk-int-st">
-															<select name="community_class" class="selectpicker" id="community_class">
+															<!-- <select name="community_class" class="selectpicker" id="community_class">
 																<option value="">Select Caste</option>
 																<option value="SC">Scheduled Castes-SC</option>
 																<option value="ST">Scheduled Tribes-ST</option>
@@ -293,7 +294,8 @@
 																<option value="DC">Denotified Communities-DC</option>
 																<option value="FC">Forward Class-FC</option>
 															</select>
-                              <script> $('#community_class').val('<?php echo $rows->community_class; ?>');</script>
+                              <script> $('#community_class').val('<?php echo $rows->community_class; ?>');</script> -->
+															 <input type="text" placeholder="Community" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>">
 														</div>
 													</div>
 												</div>
