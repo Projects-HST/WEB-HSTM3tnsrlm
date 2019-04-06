@@ -269,14 +269,15 @@
 																	<i class="notika-icon notika-edit"></i>
 																</div>
 																<div class="nk-int-st">
-																	<select name="mother_tongue" class="selectpicker">
+																	<!-- <select name="mother_tongue" class="selectpicker">
                                     <option value="">Select Mother Tongue</option>
 																		<option value="Tamil">Tamil</option>
 																		<option value="English">Telegu</option>
 																		<option value="Hindi">Hindi</option>
 																		<option value="Kannada">Kannada</option>
 																		<option value="English">English</option>
-																	</select>
+																	</select> -->
+																		<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control">
 																</div>
 															</div>
 														</div>

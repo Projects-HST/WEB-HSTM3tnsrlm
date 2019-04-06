@@ -336,15 +336,16 @@
 																	<i class="notika-icon notika-edit"></i>
 																</div>
 																<div class="nk-int-st">
-																	<select name="mother_tongue" class="selectpicker" id="mother_tongue">
+																	<!-- <select name="mother_tongue" class="selectpicker" id="mother_tongue">
                                     <option value="">Select Mother Tongue</option>
 																		<option value="Tamil">Tamil</option>
 																		<option value="English">Telegu</option>
 																		<option value="Hindi">Hindi</option>
 																		<option value="Kannada">Kannada</option>
 																		<option value="English">English</option>
-																	</select>
-                                    <script> $('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script>
+																	</select> -->
+                                    <!-- <script> $('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script> -->
+																			<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control" value="<?php echo $rows->mother_tongue ; ?>">
 																</div>
 															</div>
 														</div>
