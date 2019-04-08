@@ -119,6 +119,39 @@ class Apipia extends CI_Controller {
 
 //-----------------------------------------------//
 
+	public function project_period_list()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Project Period List";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$pia_id  ='';
+		$pia_id = $this->input->post("user_id");
+		 	
+				
+		$data['result']=$this->apipiamodel->projectPeriodlist($pia_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
 	public function create_trade()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);

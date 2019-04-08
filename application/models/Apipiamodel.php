@@ -122,6 +122,22 @@ class Apipiamodel extends CI_Model {
 //#################### Project Period End ####################//
 
 
+//#################### Project Period List ####################//
+	public function projectPeriodlist($pia_id)
+	{
+			$sQuery = "SELECT * FROM edu_year_duration WHERE pia_id = '$pia_id'";
+			$s_res = $this->db->query($sQuery);
+			$s_result= $s_res->result();
+
+			if($s_res->num_rows()>0){
+			     	$response = array("status" => "success", "msg" => "Project Period List","PeriodList"=>$s_result);
+			}else{
+			        $response = array("status" => "error", "msg" => "Project Period Not Found");
+			}
+			return $response;
+	}
+//#################### Project Period List End ####################//
+
 //#################### Trade Creation ####################//
 	public function createTrade($pia_id,$trade_name)
 	{
