@@ -5,7 +5,7 @@
     </div>
      <div class="container">
        <div class="basic-tb-hd">
-           <h2>Tracking view </h2>
+           <h2>Tracking view </h2><span><button class="btn btn-primary" onclick="reload()">Refresh</button></span>
        </div>
        <div class="col-md-10">
          <div id="map" style="width:800px; height:400px;"></div>
@@ -39,6 +39,10 @@ if(empty($kms_using_lat)){
 $('#tracking').addClass('active');
 $('#trackingmenu').addClass('active');
 
+
+function reload(){
+   history.go(0);
+}
 function initialize() {
 		var homeLatlng = new google.maps.LatLng(11.004556,76.961632);
 
@@ -58,6 +62,8 @@ function initialize() {
         <?php    }} ?>
 			map: map,
 			icon: 'http://maps.google.co.uk/intl/en_ALL/mapfiles/ms/micons/green-dot.png'
+	     //icon: 'https://cdn01.vulcanpost.com/wp-uploads/2015/08/Street_View_logo.png'
+
 		});
 
 		// add end marker
@@ -83,9 +89,6 @@ function initialize() {
 
 
 
-  			// new google.maps.LatLng(11.09699699,77.01954478),
-  			// new google.maps.LatLng(11.04807485,77.01371733),
-  			//new google.maps.LatLng(11.36773795,77.07507485)
 
 
 		];
