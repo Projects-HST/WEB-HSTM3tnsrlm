@@ -735,16 +735,24 @@ class Apipia extends CI_Controller {
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$plan_id = $this->uri->segment(3);
-		//$plan_id = 2;
+		$plan_id = 1;
 		$doc = $_FILES["doc_file"]["name"];
 		$docName = time().'-'.$doc;
 
 		$uploadPicdir = 'assets/mobilization_plan/';
 		$docfile = $uploadPicdir.$docName;
-		move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile);
+	
+		//move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile);
+		//$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
+		//$response = $data['result'];
+		
+		if(move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile)) {
+			$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
+			$response = $data['result'];
+		} else{
+			$response = array("status" => "error", "msg" => "Error in Upload");
+		}
 
-		$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
-		$response = $data['result'];
 		echo json_encode($response);
 	}
 

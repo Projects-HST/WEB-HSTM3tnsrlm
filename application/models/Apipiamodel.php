@@ -383,13 +383,23 @@ class Apipiamodel extends CI_Model {
 		$plan_res = $this->db->query($plan_query);
 		 if($plan_res->num_rows()>0){
 			 foreach ($plan_res->result() as $rows)
-				{
-				 $planList[]  = array(
-						"plan_id" => $rows->id,
-						"doc_name" => $rows->doc_name,
-						"doc_month_year" => $rows->doc_month_year,
-						"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
-				);
+			{
+			    $doc_file = $rows->doc_file;
+					if ($doc_file!=''){
+						//$disp_path = base_url().'assets/mobilization_plan/'.$doc_file;
+						$planList[]  = array(
+							"plan_id" => $rows->id,
+							"doc_name" => $rows->doc_name,
+							"doc_month_year" => $rows->doc_month_year,
+							"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
+					    );
+					}
+				//  $planList[]  = array(
+				// 		"plan_id" => $rows->id,
+				// 		"doc_name" => $rows->doc_name,
+				// 		"doc_month_year" => $rows->doc_month_year,
+				// 		"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
+				// );
 			}
 				$response = array("status" => "success", "msg" => "Mobilization Plan","planDetails"=>$planList);
 		}else{
