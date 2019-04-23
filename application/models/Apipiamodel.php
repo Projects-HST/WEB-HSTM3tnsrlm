@@ -121,7 +121,6 @@ class Apipiamodel extends CI_Model {
 	}
 //#################### Project Period End ####################//
 
-
 //#################### Project Period List ####################//
 	public function projectPeriodlist($pia_id)
 	{
@@ -352,9 +351,11 @@ class Apipiamodel extends CI_Model {
 //#################### Trade Batch Management End ####################//
 
 //#################### Mobilization Plan ####################//
-	public function mobilizationPlan($pia_id,$doc_name,$doc_month_year)
+
+	public function mobilizationPlan($pia_id,$doc_name,$doc_month_year,$doc_filename)
 	{
-            $sQuery = "INSERT INTO edu_mobilization_plan (doc_name,doc_month_year,pia_id,created_by,created_at,status) VALUES ('". $doc_name . "','". $doc_month_year . "','". $pia_id . "','". $pia_id . "',now(),'Active')";
+   
+            $sQuery = "INSERT INTO edu_mobilization_plan (doc_name,doc_file,doc_month_year,pia_id,created_by,created_at,status) VALUES ('". $doc_name . "','". $doc_filename . "','". $doc_month_year . "','". $pia_id . "','". $pia_id . "',now(),'Active')";
 			$plan_create = $this->db->query($sQuery);
 			$plan_id = $this->db->insert_id();
 			
@@ -382,24 +383,14 @@ class Apipiamodel extends CI_Model {
 		$plan_query = "SELECT * FROM edu_mobilization_plan WHERE pia_id = '$pia_id'";
 		$plan_res = $this->db->query($plan_query);
 		 if($plan_res->num_rows()>0){
-			 foreach ($plan_res->result() as $rows)
+			foreach ($plan_res->result() as $rows)
 			{
-			    $doc_file = $rows->doc_file;
-					if ($doc_file!=''){
-						//$disp_path = base_url().'assets/mobilization_plan/'.$doc_file;
-						$planList[]  = array(
-							"plan_id" => $rows->id,
-							"doc_name" => $rows->doc_name,
-							"doc_month_year" => $rows->doc_month_year,
-							"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
-					    );
-					}
-				//  $planList[]  = array(
-				// 		"plan_id" => $rows->id,
-				// 		"doc_name" => $rows->doc_name,
-				// 		"doc_month_year" => $rows->doc_month_year,
-				// 		"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
-				// );
+				$planList[]  = array(
+						"plan_id" => $rows->id,
+						"doc_name" => $rows->doc_name,
+						"doc_month_year" => $rows->doc_month_year,
+						"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
+					);
 			}
 				$response = array("status" => "success", "msg" => "Mobilization Plan","planDetails"=>$planList);
 		}else{
@@ -409,6 +400,7 @@ class Apipiamodel extends CI_Model {
 		return $response;
 	}
 //#################### Plan List End ####################//
+
 
 //#################### User Creation ####################//
 	public function createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification)
@@ -550,7 +542,7 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 					
-					$update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+					 $update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 					
 					if ($select_role == '5'){
@@ -570,7 +562,7 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 			
-					$update_user="UPDATE edu_users SET name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+					 $update_user="UPDATE edu_users SET name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 					
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
@@ -720,7 +712,7 @@ class Apipiamodel extends CI_Model {
 //#################### List Task ####################//
 	public function listTask ($user_id)
 	{
-            $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
+	        $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 			
@@ -770,7 +762,7 @@ class Apipiamodel extends CI_Model {
 //#################### User Tracking ####################//
 	public function userTracking($mob_id,$track_date)
 	{
-			//$track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
+		 //$track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
 		    $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' ORDER BY created_at ASC";
 			$track_res = $this->db->query($track_query);
 			$track_result= $track_res->result();
@@ -808,7 +800,6 @@ class Apipiamodel extends CI_Model {
 				
 	}
 //#################### User Tracking End ####################//
-
 
 //#################### Current User Tracking ####################//
 	public function userTrackingCurrent($mob_id,$track_date)

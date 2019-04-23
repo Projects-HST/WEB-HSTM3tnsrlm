@@ -298,7 +298,7 @@ class Apipia extends CI_Controller {
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$center_id = $this->uri->segment(3);
-		//$center_id = 1;
+		//$center_id = 34;
 		$banner = $_FILES["center_banner"]["name"];
 		$bannerName = time().'-'.$banner;
 
@@ -318,7 +318,6 @@ class Apipia extends CI_Controller {
 	public function add_center_photos()
 	{
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
-		
 		$center_id = $this->uri->segment(3);
 		$pia_id = $this->uri->segment(4);
 		//$center_id = 1;
@@ -693,38 +692,66 @@ class Apipia extends CI_Controller {
 
 //-----------------------------------------------//
 
-	public function mobilization_plan()
+    public function mobilization_plan()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Mobilization Plan";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
 
 		$pia_id  ='';
 		$trade_id = '';
 		$doc_month_year = '';
-		
-		$pia_id = $this->input->post("user_id");
-		$doc_name = $this->input->post("doc_name");
-		$doc_month_year = $this->input->post("doc_month_year");
-		 	
-		$data['result']=$this->apipiamodel->mobilizationPlan($pia_id,$doc_name,$doc_month_year);
-		$response = $data['result'];
+
+		$pia_id = $this->uri->segment(3);
+		$doc_name = $this->uri->segment(4);
+		$doc_month_year = $this->uri->segment(5);
+
+		$doc_file = $_FILES["doc_file"]["name"];
+		$doc_filename = time().'-'.$doc_file;
+
+		$uploadPicdir = 'assets/mobilization_plan/';
+		$docfile = $uploadPicdir.$doc_filename;
+
+		if(move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile)) {
+			$data['result']=$this->apipiamodel->mobilizationPlan($pia_id,$doc_name,$doc_month_year,$doc_filename);
+			$response = $data['result'];
+		} else{
+			$response = array("status" => "error", "msg" => "Error in Upload");
+		}
 		echo json_encode($response);
 	}
+
+
+// 	public function mobilization_plan()
+// 	{
+// 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+// 		if(!$this->checkMethod())
+// 		{
+// 			return FALSE;
+// 		}
+
+// 		if($_POST == FALSE)
+// 		{
+// 			$res = array();
+// 			$res["opn"] = "Mobilization Plan";
+// 			$res["scode"] = 204;
+// 			$res["message"] = "Input error";
+
+// 			echo json_encode($res);
+// 			return;
+// 		}
+
+// 		$pia_id  ='';
+// 		$trade_id = '';
+// 		$doc_month_year = '';
+		
+// 		$pia_id = $this->input->post("user_id");
+// 		$doc_name = $this->input->post("doc_name");
+// 		$doc_month_year = $this->input->post("doc_month_year");
+		 	
+// 		$data['result']=$this->apipiamodel->mobilizationPlan($pia_id,$doc_name,$doc_month_year);
+// 		$response = $data['result'];
+// 		echo json_encode($response);
+// 	}
 
 //-----------------------------------------------//
 
@@ -735,17 +762,13 @@ class Apipia extends CI_Controller {
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$plan_id = $this->uri->segment(3);
-		$plan_id = 1;
+		//$plan_id = 2;
 		$doc = $_FILES["doc_file"]["name"];
 		$docName = time().'-'.$doc;
 
 		$uploadPicdir = 'assets/mobilization_plan/';
 		$docfile = $uploadPicdir.$docName;
 	
-		//move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile);
-		//$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
-		//$response = $data['result'];
-		
 		if(move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile)) {
 			$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
 			$response = $data['result'];
