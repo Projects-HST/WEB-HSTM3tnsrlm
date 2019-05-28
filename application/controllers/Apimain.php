@@ -780,10 +780,12 @@ class Apimain extends CI_Controller {
 	}
 
 
+//-----------------------------------------------//
+
 	public function user_activity()
 	{
 
-		// $_POST = json_decode(file_get_contents("php://input"), TRUE);
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
 		{
@@ -804,7 +806,7 @@ class Apimain extends CI_Controller {
 		$user_id  ='';
 		$user_id = $this->input->post("user_id");
 		$activity_detail= $this->input->post("activity_detail");
-	
+
 
 		$data['result']=$this->apimainmodel->user_activity($user_id,$activity_detail);
 		$response = $data['result'];

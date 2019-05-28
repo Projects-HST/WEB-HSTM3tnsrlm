@@ -930,7 +930,7 @@ class Apimainmodel extends CI_Model {
 		return $response;
 	}
 //#################### List Centers End ####################//
-
+//#################### user_activity  starts ####################//
 
 
   function user_activity($user_id,$activity_detail){
@@ -945,5 +945,9 @@ class Apimainmodel extends CI_Model {
     	return $response;
 
   }
+
+//#################### user_activity End ####################//
+
+
 }
 ?>
