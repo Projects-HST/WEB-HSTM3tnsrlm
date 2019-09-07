@@ -28,7 +28,7 @@ Class Loginmodel extends CI_Model
                       $data = array("user_name"  => $rows->user_name,"msg"  =>"success","name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"status"=>$rows->status,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
                       return $data;
                       //break;
-                     print_r($data);exit;
+                     //print_r($data);exit;
                       // break;
                     case "Inactive":
                             $data= array("status" => "Deactive","msg" => "Your Account Is De-Activated");
