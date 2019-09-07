@@ -35,11 +35,11 @@ class Login extends CI_Controller {
 			redirect('/');
 		}
 		$user_type=$this->session->userdata('user_type');
-		$user_type1=$result['user_type'];
+		$user_type=$result['user_type'];
 
 		if($result['status']=='Active')
 			{
-				switch($user_type1)
+				switch($user_type)
 				{
 				case '1':
 				
@@ -66,6 +66,14 @@ class Login extends CI_Controller {
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id,"msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 					$session_data=$this->session->set_userdata($datas);
 					redirect('dashboard/home');
+				break;
+				
+				case '4':
+					redirect('/');
+				break;
+				
+				case '5':
+					redirect('/');
 				break;
 				}
 		}
