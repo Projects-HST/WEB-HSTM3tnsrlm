@@ -336,7 +336,6 @@
 																				</div>
 																				<div class="nk-int-st">
 																					<select name="status" class="selectpicker">
-                                            <option value="">--Select status--</option>
 																						<option value="Pending">Pending</option>
 																						<option value="Confirmed">Confirmed</option>
 																						<option value="Rejected">Rejected</option>
