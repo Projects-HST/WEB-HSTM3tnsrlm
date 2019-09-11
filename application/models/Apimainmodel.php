@@ -29,11 +29,11 @@ class Apimainmodel extends CI_Model {
 	{
 
 			require_once 'assets/notification/Firebase.php';
-            require_once 'assets/notification/Push.php';
-
+            require_once 'assets/notification/Push.php'; 
+            
             $device_token = explode(",", $gcm_key);
-            $push = null;
-
+            $push = null; 
+        
 //        //first check if the push has an image with it
 		    $push = new Push(
 					$Title,
@@ -49,10 +49,10 @@ class Apimainmodel extends CI_Model {
  			// 	);
 
     		//getting the push from push object
-    		$mPushNotification = $push->getPush();
-
-    		//creating firebase class object
-    		$firebase = new Firebase();
+    		$mPushNotification = $push->getPush(); 
+    
+    		//creating firebase class object 
+    		$firebase = new Firebase(); 
 
     	foreach($device_token as $token) {
     		 $firebase->send(array($token),$mPushNotification);
@@ -189,7 +189,7 @@ class Apimainmodel extends CI_Model {
 							"name" => $ress[0]->name,
 							"user_name" => $ress[0]->user_name,
 							"user_pic" => $user_picurl,
-							"user_type_name" => $ress[0]->user_type_name,
+							"user_type_name" => $ress[0]->user_type_name,							
 							"user_type" => $ress[0]->user_type,
 							"password_status" => $ress[0]->password_status
 						);
@@ -205,19 +205,19 @@ class Apimainmodel extends CI_Model {
 				}
 
 				if ($user_type==1)  {
-
+					
 					$mob_count = "SELECT * FROM edu_staff_details WHERE role_type = '5'";
 					$mob_count_res = $this->db->query($mob_count);
 					$mobilizer_count = $mob_count_res->num_rows();
-
+										
 					$cen_count = "SELECT * FROM edu_center_master";
 					$cen_count_res = $this->db->query($cen_count);
 					$center_count = $cen_count_res->num_rows();
-
+					
 					$stu_count = "SELECT * FROM edu_student_prospects";
 					$stu_count_res = $this->db->query($stu_count);
 					$student_count = $mob_count_res->num_rows();
-
+					
 					$dashboardData  = array(
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
@@ -227,7 +227,7 @@ class Apimainmodel extends CI_Model {
 					return $response;
 				}
 				else if ($user_type==2)  {
-
+					
 					$staff_id = $rows->user_master_id;
 
 				    $staff_query = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
@@ -250,30 +250,30 @@ class Apimainmodel extends CI_Model {
 							"qualification" => $staff_profile[0]->qualification
 							);
 						}
-
+						
 					$mob_count = "SELECT * FROM edu_staff_details WHERE role_type = '5'";
 					$mob_count_res = $this->db->query($mob_count);
 					$mobilizer_count = $mob_count_res->num_rows();
-
+										
 					$cen_count = "SELECT * FROM edu_center_master";
 					$cen_count_res = $this->db->query($cen_count);
 					$center_count = $cen_count_res->num_rows();
-
+					
 					$stu_count = "SELECT * FROM edu_student_prospects";
 					$stu_count_res = $this->db->query($stu_count);
 					$student_count = $mob_count_res->num_rows();
-
+					
 					$dashboardData  = array(
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
 							"student_count" => $student_count
 						);
-
+						
 					$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"staffProfile" =>$staffData,"dashboardData"=>$dashboardData);
 					return $response;
 				}
 				else if ($user_type==3)  {
-
+					
 					$pia_id = $rows->user_master_id;
 
 					$pia_query = "SELECT * FROM edu_pia WHERE id = '$pia_id'";
@@ -300,23 +300,23 @@ class Apimainmodel extends CI_Model {
 								"period_to" => $pro_period_result[0]->period_to
 							);
 						}
-
+					
 					$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$user_id' AND role_type = '5'";
 					$mob_count_res = $this->db->query($mob_count);
 					$mobilizer_count = $mob_count_res->num_rows();
-
+					
 					$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$user_id'";
 					$cen_count_res = $this->db->query($cen_count);
 					$center_count = $cen_count_res->num_rows();
-
+					
 					$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$user_id'";
 					$stu_count_res = $this->db->query($stu_count);
 					$student_count = $mob_count_res->num_rows();
-
+					
 					$ta_count = "SELECT * FROM edu_task WHERE pia_id = '$user_id'";
 					$ta_count_res = $this->db->query($ta_count);
 					$task_count = $mob_count_res->num_rows();
-
+					
 					$dashboardData  = array(
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
@@ -330,8 +330,10 @@ class Apimainmodel extends CI_Model {
 				else if ($user_type==5) {
 
 						$mobilizer_id = $rows->user_master_id;
+						
+						
 
-                                  $staff_query = "SELECT t.id, t.pia_id, t.role_type, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
+                        $staff_query = "SELECT t.id, t.pia_id, t.role_type, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
 						$staff_res = $this->db->query($staff_query);
 						$staff_profile = $staff_res->result();
 						if($staff_res->num_rows()>0)
@@ -408,7 +410,7 @@ class Apimainmodel extends CI_Model {
 						}
 					}
 				} else {
-
+					
 					$staff_query = "SELECT * FROM edu_staff_details WHERE id  ='$user_master_id' and status='Active'";
 					$staff_res = $this->db->query($staff_query);
 					$staff_result= $staff_res->result();
@@ -425,18 +427,18 @@ class Apimainmodel extends CI_Model {
 
 				$digits = 4;
     			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-
+				
 				$mobile_message = 'Verify OTP :'. $OTP;
                 $this->sendSMS($phone,$mobile_message);
-
-
+				
+				
 				$subject = "M3 - Forgot Password";
             	$email_message = 'Username:'.$user_name.'<br>Password:'.$OTP.'<br><br>';
 	            $this->sendMail($email,$subject,$email_message);
-
+				
 				$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW() WHERE user_id='$user_id'";
 				$update_result = $this->db->query($update_sql);
-
+				
                 $response = array("status" => "sucess", "msg" => "Password Updated");
 			} else {
 				$response = array("status" => "error", "msg" => "User-name is wrong.");
@@ -473,32 +475,32 @@ class Apimainmodel extends CI_Model {
 	{
 		$select = "SELECT * FROM edu_staff_details Where email='$email' OR phone='$phone'";
 		$result=$this->db->query($select);
-
+	   
 		if($result->num_rows()>0){
 			$response = array("status" => "error", "msg" => "User Already Exist");
          }else{
            $insert = "INSERT INTO edu_staff_details (role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('2','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$user_id',NOW())";
            $result=$this->db->query($insert);
            $insert_id = $this->db->insert_id();
-
+			
             $digits = 6;
 			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 			$md5pwd = md5($OTP);
-
+			
             $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,status) VALUES('$name','$phone','$md5pwd','2','$insert_id',NOW(),'Active')";
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
-
+			
 			$mobile_message = 'Username :'. $phone .'Password:'.$OTP;
 			$this->sendSMS($phone,$mobile_message);
 
 			$subject = "M3 - User Details";
 			$email_message = 'Username:'.$phone.'<br>Password:'.$OTP.'<br><br>';
 			$this->sendMail($email,$subject,$email_message);
-
+			
 			$response = array("status" => "success", "msg" => "User Created","profile_id"=>$profile_id);
 		  }
-
+			
 			return $response;
 	}
 //#################### User Creation End ####################//
@@ -551,7 +553,7 @@ class Apimainmodel extends CI_Model {
 			}
 
 			if ($old_phone != $phone){
-
+				
 				$sQuery = "SELECT * FROM edu_staff_details WHERE id != '$user_master_id' AND phone='$phone'";
 				$user_result = $this->db->query($sQuery);
 				if($user_result->num_rows()>0)
@@ -560,10 +562,10 @@ class Apimainmodel extends CI_Model {
 				} else {
 					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
-
+					
 					$update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='2' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
-
+					
 						$mobile_message = 'Username :'. $phone;
 						$this->sendSMS($phone,$mobile_message);
 
@@ -572,20 +574,20 @@ class Apimainmodel extends CI_Model {
 						$this->sendMail($email,$subject,$email_message);
 
 						$response = array("status" => "success", "msg" => "User Updated Successfully");
-				}
-
+				}	
+			
 			} else {
-
+				
 					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
-
+			
 					$update_user="UPDATE edu_users SET name='$name', status='$status' WHERE user_type='2' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
-
+					
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
-
+			
 			}
-
+					
 			return $response;
 	}
 //#################### User Update End ####################//
@@ -596,32 +598,32 @@ class Apimainmodel extends CI_Model {
 	{
 		$select = "SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
 		$result=$this->db->query($select);
-
+	   
 		if($result->num_rows()>0){
 			$response = array("status" => "error", "msg" => "PIA Already Exist");
          }else{
            $insert = "INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,status,created_by,created_at) VALUES('$unique_number','$name','$address','$phone','$email','Active','$user_id',NOW())";
            $result=$this->db->query($insert);
            $insert_id = $this->db->insert_id();
-
+			
             $digits = 6;
 			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 			$md5pwd = md5($OTP);
-
+			
             $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,status) VALUES('$name','$unique_number','$md5pwd','3','$insert_id',NOW(),'Active')";
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
-
+			
 			$mobile_message = 'Username :'. $unique_number .'Password:'.$OTP;
 			$this->sendSMS($phone,$mobile_message);
 
 			$subject = "M3 - User Details";
 			$email_message = 'Username:'.$unique_number.'<br>Password:'.$OTP.'<br><br>';
 			$this->sendMail($email,$subject,$email_message);
-
+			
 			$response = array("status" => "success", "msg" => "User Created","profile_id"=>$profile_id);
 		  }
-
+			
 			return $response;
 	}
 //#################### PIA Creation End ####################//
@@ -674,20 +676,20 @@ class Apimainmodel extends CI_Model {
 			}
 
 			if ($old_unique_number != $unique_number){
-
+				
 				$sQuery = "SELECT * FROM edu_pia WHERE id != '$pia_id' AND pia_unique_number='$unique_number'";
 				$user_result = $this->db->query($sQuery);
 				if($user_result->num_rows()>0)
 				{
 					$response = array("status" => "error", "msg" => "Unique number already exist.");
-				} else {
-
+				} else {			 
+					
 					$update="UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_address='$address',pia_phone='$phone',pia_email='$email',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 					$result=$this->db->query($update);
-
+					
 					$update_user="UPDATE edu_users SET user_name = '$unique_number', name='$name', status='$status' WHERE user_type='3' AND user_master_id='$pia_id'";
 					$result_user=$this->db->query($update_user);
-
+					
 
 						$mobile_message = 'Username :'. $unique_number;
 						$this->sendSMS($phone,$mobile_message);
@@ -697,20 +699,20 @@ class Apimainmodel extends CI_Model {
 						$this->sendMail($email,$subject,$email_message);
 
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
-				}
-
+				}	
+			
 			} else {
-
+				
 					$update="UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_address='$address',pia_phone='$phone',pia_email='$email',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 					$result=$this->db->query($update);
-
+			
 					$update_user="UPDATE edu_users SET name='$name', status='$status' WHERE user_type='3' AND user_master_id='$pia_id'";
 					$result_user=$this->db->query($update_user);
-
+					
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
-
+			
 			}
-
+					
 			return $response;
 	}
 //#################### PIA Update End ####################//
@@ -768,23 +770,23 @@ class Apimainmodel extends CI_Model {
 				} else {
 					$proPeriod  = array();
 				}
-
+			
 			$mob_count = "SELECT * FROM edu_staff_details WHERE pia_id = '$pia_id' AND role_type = '5'";
 			$mob_count_res = $this->db->query($mob_count);
 			$mobilizer_count = $mob_count_res->num_rows();
-
+			
 			$cen_count = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id'";
 			$cen_count_res = $this->db->query($cen_count);
 			$center_count = $cen_count_res->num_rows();
-
+			
 			$stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id = '$pia_id'";
 			$stu_count_res = $this->db->query($stu_count);
 			$student_count = $mob_count_res->num_rows();
-
+			
 			$ta_count = "SELECT * FROM edu_task WHERE pia_id = '$pia_id'";
 			$ta_count_res = $this->db->query($ta_count);
 			$task_count = $mob_count_res->num_rows();
-
+			
 			$dashboardData  = array(
 					"mobilizer_count" => $mobilizer_count,
 					"center_count" => $center_count,
@@ -865,22 +867,22 @@ class Apimainmodel extends CI_Model {
 //#################### User Tracking ####################//
 	public function mobilizerTracking($mob_id,$track_date)
 	{
-			//$track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
+		    //$track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
 		    $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' ORDER BY created_at ASC";
 			$track_res = $this->db->query($track_query);
 			$track_result= $track_res->result();
-
+			
 			 if($track_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Track Not Found");
 			}else{
-
+				
 			foreach($track_result as $rows){
 				$lat=$rows->lat;
 				$lng=$rows->lng;
 				$loca=$rows->address;
 				$address[] = array ("Latitude" => $lat, "Longitude" => $lng);
              }
-
+			 
 			 $km_query="SELECT (6371 * ACOS(
                 COS( RADIANS(to_lat) )
               * COS( RADIANS( user_lat ) )
@@ -895,12 +897,12 @@ class Apimainmodel extends CI_Model {
               * SIN( RADIANS( user_lat ) )
                 ) )) AS km FROM edu_tracking_details WHERE user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date'";
 				$km_result=$this->db->query($km_query);
-				$km_distance_calc= $km_result->result();
-
+				$km_distance_calc= $km_result->result(); 
+				
 				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
 			}
-			return $response;
-
+			return $response;			
+				
 	}
 //#################### User Tracking End ####################//
 
@@ -926,10 +928,11 @@ class Apimainmodel extends CI_Model {
 		}else{
 				$response = array("status" => "error", "msg" => "Centers Not Found");
 		}
-
+		
 		return $response;
 	}
 //#################### List Centers End ####################//
+
 //#################### user_activity  starts ####################//
 
 

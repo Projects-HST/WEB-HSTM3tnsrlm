@@ -354,7 +354,6 @@ class Apipiamodel extends CI_Model {
 
 	public function mobilizationPlan($pia_id,$doc_name,$doc_month_year,$doc_filename)
 	{
-   
             $sQuery = "INSERT INTO edu_mobilization_plan (doc_name,doc_file,doc_month_year,pia_id,created_by,created_at,status) VALUES ('". $doc_name . "','". $doc_filename . "','". $doc_month_year . "','". $pia_id . "','". $pia_id . "',now(),'Active')";
 			$plan_create = $this->db->query($sQuery);
 			$plan_id = $this->db->insert_id();
@@ -684,7 +683,18 @@ class Apipiamodel extends CI_Model {
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
             
-			$sQuery = "SELECT A.user_id, A.user_master_id,A.name,B.email FROM edu_users A, edu_staff_details B WHERE A.user_id = B.id AND A.user_id ='$user_master_id' AND A.user_type ='5'";
+			//$sQuery = "SELECT A.user_id, A.user_master_id,A.name,B.email FROM edu_users A, edu_staff_details B WHERE A.user_id = B.id AND A.user_id ='$user_master_id' AND A.user_type ='5'";
+			
+				$sQuery = "SELECT
+					A.user_id,
+					A.user_master_id,
+					A.name,
+					B.email
+				FROM
+					edu_users A,
+					edu_staff_details B
+				WHERE
+					A.user_id = '$user_master_id' AND A.user_type = '5' AND A.user_master_id = B.id";
 			$user_result = $this->db->query($sQuery);
 			$ress = $user_result->result();
 			if($user_result->num_rows()>0)

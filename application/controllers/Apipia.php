@@ -701,7 +701,7 @@ class Apipia extends CI_Controller {
 		$doc_month_year = '';
 
 		$pia_id = $this->uri->segment(3);
-		$doc_name = $this->uri->segment(4);
+		$doc_name = urldecode($this->uri->segment(4));
 		$doc_month_year = $this->uri->segment(5);
 
 		$doc_file = $_FILES["doc_file"]["name"];

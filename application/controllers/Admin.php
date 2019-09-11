@@ -333,46 +333,19 @@ class Admin extends CI_Controller {
 			}
 		}
 		
-		
-		
-
-
-
-
 	public function createpia(){
-		//redirect('admin/view_pia');
         $datas=$this->session->userdata();
         $user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
-
-	 if($user_type==1 || $user_type==2)
-	 {
-	 
-		$unique_number=$this->input->post('unique_number');
-		$image = $this->input->post('image');
-		//$image = $_POST['image'];
-/* 		$name="";
-		$mobile="";
-		$email="";
-		$state="";
-		$address= "";
-		$status=""; */
-
-		$name=$this->input->post('name');
-		$mobile=$this->input->post('mobile');
-		$email=$this->input->post('email');
-		$state=$this->input->post('state');
-		$address= $this->db->escape_str($this->input->post('address'));
-		$status=$this->input->post('status');
-		
-		list($type, $image) = explode(';',$image);
-		list(, $image) = explode(',',$image);
-
-		$image = base64_decode($image);
-		$image_name = time().'.png';
-		file_put_contents('assets/pia/'.$image_name, $image);
-
-					/* $profilepic = $_FILES['staff_pic']['name'];
+				if($user_type==1 || $user_type==2){
+					$unique_number=$this->input->post('unique_number');
+					$name=$this->input->post('name');
+					$mobile=$this->input->post('mobile');
+					$email=$this->input->post('email');
+					$state=$this->input->post('state');
+					$address= $this->db->escape_str($this->input->post('address'));
+					$status=$this->input->post('status');
+					$profilepic = $_FILES['staff_pic']['name'];
 					if(empty($profilepic)){
 						$staff_prof_pic='';
 					}else{
@@ -381,23 +354,18 @@ class Admin extends CI_Controller {
 						$uploaddir = 'assets/pia/';
 						$profilepic = $uploaddir.$staff_prof_pic;
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
-					} */
-					
-					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$image_name,$user_id);
-					
+					}
+					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', 'PIA Created Successfully');
-						echo "success";
-						//redirect('admin/view_pia');
+						redirect('admin/view_pia');
 					}else if($datas['status']=="already"){
 						$this->session->set_flashdata('msg', 'PIA Already Exists');
-						echo "already";
-						//redirect('admin/view_pia');
+						redirect('admin/view_pia');
 					}
 					else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
-						echo "failed";
-						//redirect('admin/view_pia');
+						redirect('admin/view_pia');
 					}
        }
        else{
