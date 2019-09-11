@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <link rel="icon" href="<?php echo base_url(); ?>/assets/fav_icon.png" type="image/gif" sizes="32x32">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -222,7 +222,7 @@
                       <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="notika-icon notika-bar-chart"></i> Staff</a></li>
                       <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="notika-icon notika-app"></i> Mobilization Plan</a></li>
 					   <li id="profile"><a  href="<?php echo base_url(); ?>admin/password_change"><i class="notika-icon notika-app"></i> Change Password</a></li>
-					   
+
                       <!--<li id="profile"><a  data-toggle="tab" href="#profilemenu"><i class="notika-icon notika-support"></i> Profile</a></li>-->
                   </ul>
                   <div class="tab-content custom-menu-content">

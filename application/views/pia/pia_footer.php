@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="footer-copy-right">
-                    <p>Copyright © 2019
-<a href="#" >Happy Sanz Tech</a>. All rights reserved. Template by <a href="http://happysanztech.com/" target="_blank">Happy Sanz Tech</a>.</p>
+                    <p>  Developed by  <span><a href="http://happysanztech.com/" target="_blank"><img src="<?php echo base_url(); ?>assets/happy_logo_blue.png" style="width:100px;"></a></span></p>
                 </div>
             </div>
         </div>
