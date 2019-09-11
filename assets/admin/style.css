@@ -146,7 +146,7 @@ body {
 /*  2.  Header Top CSS
 /*----------------------------------------*/
 .header-top-area, .footer-copyright-area{
-	background:#3b3471;
+	background:#e02329;
 }
 
 .logo-area{
@@ -156,17 +156,17 @@ body {
 	float: right;
 }
 .nav.notika-top-nav .open>a, .nav.notika-top-nav .open>a:focus, .nav.notika-top-nav .open>a:hover {
-    background:#3b3471;
+    background:#e02329;
     border-color: 0px solid #00c292;
 
 }
 .nav.notika-top-nav>li>a:focus, .nav.notika-top-nav>li>a:hover {
     text-decoration: none;
-    background-color: #3b3471;
+    background-color: #e02329;
 }
 .navbar-nav>li>a{
 	color:#fff;
-	padding: 20px 0px 20px 30px;
+	padding: 30px 0px 20px 30px;
 }
 .rtl-layout .navbar-nav>li>a{
 	padding: 20px 30px 20px 0px;
@@ -3535,7 +3535,7 @@ textarea.auto-size {
 .login-content, .error-page-area{
     min-height:100vh;
     text-align:center;
-    background-color: #3b3471;
+    background-color: #e02329;
 }
 .login-content:before, .error-page-area:before{
     content:'';
@@ -3671,15 +3671,15 @@ textarea.auto-size {
     color:#fff;
 }
 .btn-login.btn-success, .images-cropper-pro .btn, .images-action-pro .btn, .notika-todo-btn .btn, .btn.notika-add-todo, .btn.notika-chat-btn{
-  background-color: #3b3471;
-      border-color: #3b3471;
+  background-color: #e02329;
+      border-color: #e02329;
 	border:0px solid #ccc;
 	outline:none;
 	box-shadow:none;
 }
 .btn-login.btn-success:hover, .btn-login.btn-success:focus, .btn-login.btn-success:active, .images-cropper-pro .btn:hover, .images-cropper-pro .btn:focus, .images-cropper-pro .btn:active, .images-action-pro .btn:hover, .images-action-pro .btn:focus, .images-action-pro .btn:active, .notika-todo-btn .btn:hover, .notika-todo-btn .btn:focus, .notika-todo-btn .btn:active, .btn.notika-add-todo:hover, .btn.notika-add-todo:focus, .btn.notika-add-todo:active, .btn.notika-chat-btn:hover, .btn.notika-chat-btn:focus, .btn.notika-chat-btn:active{
-  background-color: #3b3471;
-  border-color: #3b3471;
+  background-color: #e02329;
+      border-color: #e02329;
 	border:0px solid #ccc;
 	outline:none;
 	box-shadow:none;
@@ -4608,4 +4608,7 @@ body.box-layout {
   color: red !important;
   font-weight: 500;
   font-size: 13px !important;
+}
+.logo_admin{
+  width: 165px;
 }

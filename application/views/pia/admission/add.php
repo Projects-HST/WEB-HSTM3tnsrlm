@@ -237,7 +237,7 @@
 																<option value="DC">Denotified Communities-DC</option>
 																<option value="FC">Forward Class-FC</option>
 															</select> -->
-															<input type="text" placeholder="Community" name="community_class" class="form-control">
+															<input type="text" placeholder="Community Class" name="community_class" class="form-control">
 														</div>
 													</div>
 												</div>

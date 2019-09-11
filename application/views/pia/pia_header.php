@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="icon" href="./assets/fav_icon.png" type="image/gif" sizes="32x32">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -81,7 +81,7 @@
           <div class="row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="logo-area">
-                      <a href="#"><img src="<?php echo base_url(); ?>assets/admin/img/logo/logo.png" alt="" /></a>
+                      <a href="#"><img src="<?php echo base_url(); ?>assets/admin/img/logo/logo.png" alt="" class="logo_admin"/></a>
                   </div>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -105,137 +105,28 @@
           </div>
       </div>
   </div>
-  <!-- End Header Top Area -->
-  <!-- Mobile Menu start -->
-  <!-- <div class="mobile-menu-area">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="mobile-menu">
-                      <nav id="dropdown">
-                          <ul class="mobile-menu-nav">
-                              <li><a data-toggle="collapse" data-target="#Charts" href="#">Home</a>
-                                  <ul class="collapse dropdown-header-top">
-                                      <li><a href="index.html">Dashboard One</a></li>
-                                      <li><a href="index-2.html">Dashboard Two</a></li>
-                                      <li><a href="index-3.html">Dashboard Three</a></li>
-                                      <li><a href="index-4.html">Dashboard Four</a></li>
-                                      <li><a href="analytics.html">Analytics</a></li>
-                                      <li><a href="widgets.html">Widgets</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#demoevent" href="#">Email</a>
-                                  <ul id="demoevent" class="collapse dropdown-header-top">
-                                      <li><a href="inbox.html">Inbox</a></li>
-                                      <li><a href="view-email.html">View Email</a></li>
-                                      <li><a href="compose-email.html">Compose Email</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#democrou" href="#">Interface</a>
-                                  <ul id="democrou" class="collapse dropdown-header-top">
-                                      <li><a href="animations.html">Animations</a></li>
-                                      <li><a href="google-map.html">Google Map</a></li>
-                                      <li><a href="data-map.html">Data Maps</a></li>
-                                      <li><a href="code-editor.html">Code Editor</a></li>
-                                      <li><a href="image-cropper.html">Images Cropper</a></li>
-                                      <li><a href="wizard.html">Wizard</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
-                                  <ul id="demolibra" class="collapse dropdown-header-top">
-                                      <li><a href="flot-charts.html">Flot Charts</a></li>
-                                      <li><a href="bar-charts.html">Bar Charts</a></li>
-                                      <li><a href="line-charts.html">Line Charts</a></li>
-                                      <li><a href="area-charts.html">Area Charts</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
-                                  <ul id="demodepart" class="collapse dropdown-header-top">
-                                      <li><a href="normal-table.html">Normal Table</a></li>
-                                      <li><a href="data-table.html">Data Table</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#demo" href="#">Forms</a>
-                                  <ul id="demo" class="collapse dropdown-header-top">
-                                      <li><a href="form-elements.html">Form Elements</a></li>
-                                      <li><a href="form-components.html">Form Components</a></li>
-                                      <li><a href="form-examples.html">Form Examples</a></li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">App views</a>
-                                  <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                      <li><a href="notification.html">Notifications</a>
-                                      </li>
-                                      <li><a href="alert.html">Alerts</a>
-                                      </li>
-                                      <li><a href="modals.html">Modals</a>
-                                      </li>
-                                      <li><a href="buttons.html">Buttons</a>
-                                      </li>
-                                      <li><a href="tabs.html">Tabs</a>
-                                      </li>
-                                      <li><a href="accordion.html">Accordion</a>
-                                      </li>
-                                      <li><a href="dialog.html">Dialogs</a>
-                                      </li>
-                                      <li><a href="popovers.html">Popovers</a>
-                                      </li>
-                                      <li><a href="tooltips.html">Tooltips</a>
-                                      </li>
-                                      <li><a href="dropdown.html">Dropdowns</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages</a>
-                                  <ul id="Pagemob" class="collapse dropdown-header-top">
-                                      <li><a href="contact.html">Contact</a>
-                                      </li>
-                                      <li><a href="invoice.html">Invoice</a>
-                                      </li>
-                                      <li><a href="typography.html">Typography</a>
-                                      </li>
-                                      <li><a href="color.html">Color</a>
-                                      </li>
-                                      <li><a href="login-register.html">Login Register</a>
-                                      </li>
-                                      <li><a href="404.html">404 Page</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> -->
 
-
-
-  <!-- Mobile Menu end -->
-  <!-- Main Menu area start-->
-  <!-- <div class="main-menu-area mg-tb-40"> -->
       <div class="container">
           <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                      <li id="dashboard" ><a  href="<?php echo base_url(); ?>dashboard/home"><i class="notika-icon notika-house"></i> Dashboard</a>
+                      <li id="dashboard" ><a  href="<?php echo base_url(); ?>dashboard/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
+                      <li id="masters"><a data-toggle="tab" href="#mastersmenu"><i class="fa fa-sitemap" aria-hidden="true"></i> Masters</a>
                       </li>
-                      <li id="masters"><a data-toggle="tab" href="#mastersmenu"><i class="notika-icon notika-mail"></i> Masters</a>
+                      <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+Prospects</a>
                       </li>
-                      <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="notika-icon notika-edit"></i>Prospects</a>
+                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a>
                       </li>
-                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="notika-icon notika-bar-chart"></i> Staff</a>
+                      <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a>
                       </li>
-                      <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="notika-icon notika-windows"></i> Task</a>
+                      <li id="tracking"><a data-toggle="tab" href="#trackingmenu"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a>
                       </li>
-                      <li id="tracking"><a data-toggle="tab" href="#trackingmenu"><i class="notika-icon notika-form"></i> Tracking</a>
+                      <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a>
                       </li>
-                      <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="notika-icon notika-app"></i> Mobilization Plan</a>
+                      <li  id="graph"><a data-toggle="tab" href="#graphmenu"><i class="fa fa-bar-chart" aria-hidden="true"></i> Graph</a>
                       </li>
-                      <li  id="graph"><a data-toggle="tab" href="#graphmenu"><i class="notika-icon notika-support"></i> Graph</a>
-                      </li>
-                      <li id="profile"><a  data-toggle="tab" href="#profilemenu"><i class="notika-icon notika-support"></i> Profile</a>
+                      <li id="profile"><a  data-toggle="tab" href="#profilemenu"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
                       </li>
                   </ul>
                   <div class="tab-content custom-menu-content">

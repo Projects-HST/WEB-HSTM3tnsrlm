@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <link rel="icon" href="./assets/fav_icon.png" type="image/gif" sizes="32x32">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -63,6 +63,9 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/bootstrap-select/bootstrap-select.css">
     <!-- modernizr JS
 		============================================ -->
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
+
     <script src="<?php echo base_url(); ?>assets/admin/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -73,6 +76,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 </head>
 
 <body>
@@ -81,19 +85,14 @@
           <div class="row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="logo-area">
-                      <a href="#"><img src="<?php echo base_url(); ?>assets/admin/img/logo/logo.png" alt="" /></a>
+                      <a href="#"><img src="<?php echo base_url(); ?>assets/admin/img/logo/logo.png" alt="" class="logo_admin" /></a>
                   </div>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="header-top-menu">
                       <ul class="nav navbar-nav notika-top-nav">
-
-
-
                           <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span></a>
                               <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
-
-
                                   <div class="hd-mg-va">
                                       <a href="<?php echo base_url(); ?>logout">Logout</a>
                                   </div>
@@ -217,13 +216,13 @@
           <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                      <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="notika-icon notika-house"></i> Dashboard</a></li>
-                      <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="notika-icon notika-mail"></i> PIA</a></li>
-                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="notika-icon notika-bar-chart"></i> Staff</a></li>
-					  <li id="masters"><a  href="<?php echo base_url(); ?>scheme/home"><i class="notika-icon notika-bar-chart"></i> Scheme</a></li>
-                      <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="notika-icon notika-app"></i> Mobilization Plan</a></li>
-					   <li id="profile"><a  href="<?php echo base_url(); ?>admin/password_change"><i class="notika-icon notika-app"></i> Change Password</a></li>
-					   
+                      <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
+                      <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-users" aria-hidden="true"></i> PIA</a></li>
+                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
+					            <li id="masters"><a  href="<?php echo base_url(); ?>scheme/home"><i class="fa fa-file" aria-hidden="true"></i> Scheme</a></li>
+                      <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
+					   <li id="profile"><a  href="<?php echo base_url(); ?>admin/password_change"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Change Password</a></li>
+
                       <!--<li id="profile"><a  data-toggle="tab" href="#profilemenu"><i class="notika-icon notika-support"></i> Profile</a></li>-->
                   </ul>
                   <div class="tab-content custom-menu-content">

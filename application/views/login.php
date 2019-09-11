@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" href="./assets/fav_icon.png" type="image/gif" sizes="32x32">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -55,13 +55,16 @@
 
 <body>
 
+
     <div class="login-content">
         <!-- Login -->
 
 
 
         <div class="nk-block toggled" id="l-login">
+
             <div class="nk-form">
+              <img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class="" style="margin-bottom:20px;"/>
               <?php if($this->session->flashdata('msg')): ?>
                   <div class="alert alert-success">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -69,15 +72,16 @@
                       <?php echo $this->session->flashdata('msg'); ?>
                   </div>
                   <?php endif; ?>
+
               <form action="<?php echo base_url(); ?>login/checklogin" method="post" enctype="multipart/form-data">
                 <div class="input-group">
-                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-support"></i></span>
+                    <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-user" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
                         <input type="text" name="username" class="form-control" placeholder="Username">
                     </div>
                 </div>
                 <div class="input-group mg-t-15">
-                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-edit"></i></span>
+                    <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
                         <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
@@ -101,7 +105,7 @@
                 <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
 
                 <div class="input-group">
-                    <span class="input-group-addon nk-ic-st-pro"><i class="notika-icon notika-mail"></i></span>
+                    <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
                         <input type="text" class="form-control"  name="forgot_email" placeholder="Email Address">
                     </div>

@@ -151,9 +151,9 @@
                                          <?php   } ?>
                                        </td>
                                         <td>
-                                          <a href="<?php echo base_url(); ?>center/get_center_id_details/<?php echo base64_encode($rows->id*98765); ?>" title="Add Photos"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                          <a href="<?php echo base_url(); ?>center/create_gallery/<?php echo base64_encode($rows->id*98765); ?>" title="Add Photos"><i class="fa fa-picture-o" aria-hidden="true"></i></a>
-                                          <a href="<?php echo base_url(); ?>center/create_videos/<?php echo base64_encode($rows->id*98765); ?>" title="Add videos"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                                          <a href="<?php echo base_url(); ?>center/get_center_id_details/<?php echo base64_encode($rows->id*98765); ?>" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                          <a href="<?php echo base_url(); ?>center/create_gallery/<?php echo base64_encode($rows->id*98765); ?>" title="Add Photos"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
+                                          <a href="<?php echo base_url(); ?>center/create_videos/<?php echo base64_encode($rows->id*98765); ?>" title="Add videos"><i class="fa fa-file-video-o" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                   <?php  $i++; } ?>

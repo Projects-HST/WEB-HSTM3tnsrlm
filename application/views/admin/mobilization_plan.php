@@ -27,7 +27,7 @@
                          </tr>
                      </thead>
                      <tbody>
-                       <?php $i=1; foreach($result as $rows){ 
+                       <?php $i=1; foreach($result as $rows){
 						$originalDate = $rows->doc_month_year;
 						$dispDate = date("d-m-Y", strtotime($originalDate));
 					   ?>
@@ -36,7 +36,7 @@
 							  <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->doc_name; ?></td>
                              <td><?php echo $dispDate;?></td>
-							 <td><a href="<?php echo base_url(); ?>assets/mobilization_plan/<?php echo $rows->doc_file; ?>"><img src="<?php echo base_url(); ?>assets/images/download-icon.png" alt="Download" height="35" width="35"></a></td>
+							 <td><a href="<?php echo base_url(); ?>assets/mobilization_plan/<?php echo $rows->doc_file; ?>"><i class="fa fa-download" aria-hidden="true"></i></a></td>
 
                          </tr>
 <?php  $i++; } ?>

@@ -62,7 +62,7 @@ Class Loginmodel extends CI_Model
             }
 
        }
-	   
+
        function getuser($user_id){
          $query="SELECT ep.*,eu.* From edu_users as eu left join edu_pia as ep on eu.user_master_id=ep.id AND eu.user_type='3' WHERE eu.user_id='$user_id'";
          $resultset=$this->db->query($query);
@@ -74,7 +74,7 @@ Class Loginmodel extends CI_Model
          $resultset=$this->db->query($query);
          return $resultset->result();
        }
-	   
+
        function password_update($new_password,$user_id){
             $pwd=md5($new_password);
             $query="UPDATE edu_users SET user_password='$pwd',	updated_date=NOW() WHERE user_id='$user_id'";
@@ -108,7 +108,8 @@ Class Loginmodel extends CI_Model
          }
        }
        function checkmobile_edit($mobile,$staff_id){
-       $select="SELECT * FROM edu_pia Where pia_phone='$mobile' AND id!='$staff_id'";
+       echo $select="SELECT * FROM edu_pia Where pia_phone='$mobile' AND id!='$staff_id'";
+       exit;
          $result=$this->db->query($select);
          if($result->num_rows()>0){
            echo "false";

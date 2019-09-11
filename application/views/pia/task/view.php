@@ -25,7 +25,7 @@
                              <th>Task title</th>
                              <th style="width:500px;">Description</th>
                              <th>Task Date</th>
-                             <th>status</th>
+                             <!-- <th>status</th> -->
                              <!-- <th>Action</th> -->
 
 
@@ -44,8 +44,8 @@
                              <td><?php echo $rows->task_title; ?></td>
                              <td><?php echo $rows->task_description; ?></td>
                               <td><?php echo $rows->task_date; ?></td>
-                             <td>  <button class="btn btn-success notika-btn-success waves-effect"><?php echo $rows->status; ?></button>
-                              </td>
+                             <!-- <td>  <button class="btn btn-success notika-btn-success waves-effect"><?php echo $rows->status; ?></button>
+                              </td> -->
                              <!-- <td>
                                <a href="<?php echo base_url(); ?>task/edit/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td> -->
 
