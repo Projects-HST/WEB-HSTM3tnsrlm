@@ -53,7 +53,7 @@
     <script src="<?php echo base_url(); ?>assets/admin/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body>
+<body style="    margin-bottom: 0px;">
 
 
     <div class="login-content">
