@@ -102,7 +102,7 @@
         <div class="nk-block" id="l-forget-password">
             <div class="nk-form">
                 <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
-                <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
+                <p class="text-left">Enter the registered Email ID to reset your password.</p>
 
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-envelope" aria-hidden="true"></i></span>
