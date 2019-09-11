@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="myformsection" >
+                    <form method="post" action="#" class="form-horizontal" enctype="multipart/form-data" id="myformsection" >
                   <div class="form-example-wrap">
                         <div class="cmp-tb-hd">
                             <h2>Update Profile</h2>
@@ -60,6 +60,7 @@
 <script type="text/javascript">
   $('#profile').addClass('active');
   $('#profilemenu').addClass('active');
+  
   $("#myformsection").validate({
          rules: {
              pia_name:{required:true },
