@@ -108,8 +108,7 @@ Class Loginmodel extends CI_Model
          }
        }
        function checkmobile_edit($mobile,$staff_id){
-       echo $select="SELECT * FROM edu_pia Where pia_phone='$mobile' AND id!='$staff_id'";
-       exit;
+        $select="SELECT * FROM edu_pia Where pia_phone='$mobile' AND id!='$staff_id'";
          $result=$this->db->query($select);
          if($result->num_rows()>0){
            echo "false";
