@@ -118,7 +118,7 @@ Class Centermodel extends CI_Model
             $id=base64_decode($center_id)/98765;
             $count_picture=count($file_name);
           for($i=0;$i<$count_picture;$i++){
-             $check_batch="SELECT * FROM edu_center_photos WHERE center_id='1'";
+            $check_batch="SELECT * FROM edu_center_photos WHERE center_id='$center_id'";
             $res=$this->db->query($check_batch);
              $res->num_rows();
               if($res->num_rows()>10){

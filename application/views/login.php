@@ -73,7 +73,7 @@
                   </div>
                   <?php endif; ?>
 
-              <form action="<?php echo base_url(); ?>login/checklogin" method="post" enctype="multipart/form-data">
+              <form action="<?php echo base_url(); ?>login/checklogin" method="post" enctype="multipart/form-data" id="loginform" name="loginform">
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-user" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
@@ -92,7 +92,6 @@
             </div>
 
             <div class="nk-navigation nk-lg-ic">
-
                 <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
             </div>
         </div>
@@ -194,12 +193,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 <script type="text/javascript">
+
+ $('#loginform').validate({ // initialize the plugin
+     rules: {
+         username:{required:true },
+         password:{required:true }
+     },
+     messages: {
+           username: "This field cannot be empty!",
+           password: "This field cannot be empty!"
+         }
+ });
+
+   
 $("#myformsection").validate({
        rules: {
            forgot_email:{required:true }
        },
        messages: {
-            forgot_email:"Enter email"
+            forgot_email:"This field cannot be empty!"
            },
     submitHandler: function(form) {
       $.ajax({

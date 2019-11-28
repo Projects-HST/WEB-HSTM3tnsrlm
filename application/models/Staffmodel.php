@@ -63,8 +63,9 @@ Class Staffmodel extends CI_Model
             $result=$this->db->query($insert);
             $insert_id = $this->db->insert_id();
             $digits = 6;
-        		$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-        		$md5pwd=md5($OTP);
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+			$md5pwd=md5($OTP);
+			
             if($select_role=='4'){
                 $user_name=$mobile;
             }else if($select_role=='5'){
@@ -106,6 +107,7 @@ Class Staffmodel extends CI_Model
               // Additional headers
               $headers .= 'From: info<info@tnsrlm.com>' . "\r\n";
               mail($to,$subject,$htmlContent,$headers);
+			  
             if ($result_user) {
                 $data = array(
                     "status" => "success"

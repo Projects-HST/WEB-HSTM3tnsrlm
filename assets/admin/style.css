@@ -2718,11 +2718,11 @@ hr {
 /*----------------------------------------*/
 .nk-int-st input[type="text"], .nk-int-st textarea, .nk-int-st [type="number"], .nk-int-st [type="password"]{
 	box-shadow: none;
-    border-top: 0px solid #ccc;
-    border-left: 0px solid #ccc;
-    border-right: 0px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    padding: 0px;
+    padding: 10px;
 	resize: none;
 	border-radius:0px;
 }
@@ -2734,7 +2734,7 @@ hr {
     vertical-align: top;
 }
 .nk-int-st:not([class*=has-]):after {
-    background: #00c292;
+    background: #918f8f;
 }
 .nk-int-st:not(.disabled):after, .nk-int-st:not(.readonly):after {
     position: absolute;
@@ -2938,9 +2938,9 @@ textarea.auto-size {
     z-index: 5;
 }
 .bootstrap-select>.btn-default {
-    border-top: 0px solid #ccc;
-    border-left: 0px solid #ccc;
-    border-right: 0px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     border-radius: 0px;
 	background:none !important;
@@ -3001,9 +3001,9 @@ textarea.auto-size {
     padding: 6px 2px;
 }
 .chosen-select-act .chosen-single {
-    border-top: 0px solid #ccc;
-    border-left: 0px solid #ccc;
-    border-right: 0px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-left: 1x solid #ccc;
+    border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     box-shadow: none;
     background: #fff;
@@ -3082,14 +3082,14 @@ textarea.auto-size {
 	background: #fff;
 }
 .bootstrap-select .dropdown-menu>li>a:focus, .bootstrap-select .dropdown-menu>li>a:hover, .bootstrap-select .dropdown-menu>li>a:active {
-    background-color: #00c292 !important;
+    background-color: #918f8f !important;
 	color:#fff !important;
 }
 .chosen-select-act .chosen-container-multi .chosen-choices{
 	background-image:none;
-	border-top: 0px solid #ccc;
-    border-left: 0px solid #ccc;
-    border-right: 0px solid #ccc;
+	border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
 .chosen-select-act .chosen-container-multi .chosen-choices li.search-choice{

@@ -1,11 +1,16 @@
 <div class="container">
-<div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="row" style="margin-bottom:100px;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-element-list">
+				<div class="cmp-tb-hd bcs-hd">
+					<h2>Change Password</h2>
+				</div>
+				
+			<div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="myformsection" >
                   <div class="form-example-wrap">
-                        <div class="cmp-tb-hd">
-                            <h2>Update Password</h2>
-                        </div>
+                     
                         <?php  foreach ($result as $row) { }  ?>
                         <div class="form-example-int">
                             <div class="form-group">
@@ -40,6 +45,7 @@
                   </form>
                 </div>
             </div>
+	</div>
 </div>
 <script type="text/javascript">
   $('#profile').addClass('active');
@@ -111,7 +117,5 @@
                });
              }
      });
-
-
 
 </script>
