@@ -137,10 +137,10 @@ class Apimainmodel extends CI_Model {
 
 
          public function sendSMS($Phoneno,$Message){
-         $msg=urlencode($notes);
+         $msg=urlencode($Message);
          $curl = curl_init();
              curl_setopt_array($curl, array(
-             CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?mobiles=$Phoneno&authkey=301243AX0Pp4EOQCn5db82c4f&route=4&sender=M3SRLM&message=$Message&country=91",
+             CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?mobiles=$Phoneno&authkey=301243AX0Pp4EOQCn5db82c4f&route=4&sender=M3SRLM&message=$msg&country=91",
              // CURLOPT_URL => $url,
              CURLOPT_RETURNTRANSFER => true,
              CURLOPT_ENCODING => "",
