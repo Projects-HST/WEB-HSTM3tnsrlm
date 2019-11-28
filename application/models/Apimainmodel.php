@@ -10,15 +10,29 @@ class Apimainmodel extends CI_Model {
 
 //#################### Email ####################//
 
-	public function sendMail($to,$subject,$htmlContent)
-	{
-		// Set content-type header for sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-		// Additional headers
-		$headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-		mail($to,$subject,$htmlContent,$headers);
-	}
+
+
+
+    function sendMail($to,$subject,$htmlContent)
+    {
+
+      $sendto = $to;
+      $subject=$subject;
+      $htmlContent = '
+      <html>
+      <head>  <title></title>
+      </head>
+      <body>
+      <p style="margin-left:30px;">'.$htmlContent.'</p>
+        </body>
+      </html>';
+
+      $headers = "MIME-Version: 1.0" . "\r\n";
+      $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+      // Additional headers
+      $headers .= 'From: skilex<info@skilex.com>' . "\r\n";
+      mail($sendto,$subject,$htmlContent,$headers);
+    }
 
 //#################### Email End ####################//
 
@@ -118,29 +132,11 @@ class Apimainmodel extends CI_Model {
 
 //#################### SMS ####################//
 
-	// public function sendSMS($Phoneno,$Message)
-	// {
-	// 	$textmsg = urlencode($Message);
-	// 	$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
-	// 	$api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
-	// 	$api_params = $api_element.'&numbers='.$Phoneno.'&message='.$textmsg;
-	// 	$smsgatewaydata = $smsGatewayUrl.$api_params;
-	// 	$url = $smsgatewaydata;
-  //
-	// 	$ch = curl_init();
-	// 	curl_setopt($ch, CURLOPT_POST, false);
-	// 	curl_setopt($ch, CURLOPT_URL, $url);
-	// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// 	$output = curl_exec($ch);
-	// 	curl_close($ch);
-	// }
-
-
          public function sendSMS($Phoneno,$Message){
          $msg=urlencode($Message);
          $curl = curl_init();
              curl_setopt_array($curl, array(
-             CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?mobiles=$Phoneno&authkey=301243AX0Pp4EOQCn5db82c4f&route=4&sender=M3SRLM&message=$msg&country=91",
+             CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?mobiles=$Phoneno&authkey=242202ALE69fBMks5bbee06b&route=4&sender=TNSRLM&message=$msg&country=91",
              // CURLOPT_URL => $url,
              CURLOPT_RETURNTRANSFER => true,
              CURLOPT_ENCODING => "",
@@ -473,7 +469,7 @@ class Apimainmodel extends CI_Model {
 
 
 				$subject = "M3 - Forgot Password";
-            	$email_message = 'Username:'.$user_name.'<br>Password:'.$OTP.'<br><br>';
+            	$email_message = 'App login Username:'.$user_name.'Password:'.$OTP.'<br><br>';
 	            $this->sendMail($email,$subject,$email_message);
 
 				$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW() WHERE user_id='$user_id'";
@@ -531,7 +527,7 @@ class Apimainmodel extends CI_Model {
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
 
-			$mobile_message = 'Username :'. $phone .'Password:'.$OTP;
+			$mobile_message = 'Username :'.PHP_EOL. $phone .'Password:'.$OTP;
 			$this->sendSMS($phone,$mobile_message);
 
 			$subject = "M3 - User Details";
@@ -654,7 +650,8 @@ class Apimainmodel extends CI_Model {
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
 
-			$mobile_message = 'Username :'. $unique_number .'Password:'.$OTP;
+			// $mobile_message = 'Username :'. $unique_number .'Password:'.$OTP;
+      $mobile_message = 'M3 APP login'.PHP_EOL.'Username:'.$unique_number.PHP_EOL.'Password:'.$OTP.'';
 			$this->sendSMS($phone,$mobile_message);
 
 			$subject = "M3 - User Details";
