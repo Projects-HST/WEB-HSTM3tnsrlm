@@ -93,17 +93,38 @@ class Apipiamodel extends CI_Model {
 		 if($scheme_res->num_rows()>0){
 			 foreach ($scheme_res->result() as $rows)
 				{
-				 $schemeDetails[]  = array(
+				 $schemeDetails = array(
 						"scheme_id" => $rows->id,
 						"scheme_name" => $rows->scheme_name,
 						"scheme_info" => $rows->scheme_info,
 						"scheme_video" => $rows->scheme_video,
 				);
 			}
-				$response = array("status" => "success", "msg" => "Scheme Details","schemeDetails"=>$schemeDetails);
+				$response_details = array("status" => "success", "msg" => "Scheme Details","schemeDetails"=>$schemeDetails);
 		}else{
-				$response = array("status" => "error", "msg" => "Schemes Not Found");
+				$response_details = array("status" => "error", "msg" => "Schemes Not Found");
 		}
+
+
+    $scheme_query_gallery = "SELECT * FROM edu_scheme_photos WHERE scheme_id='1' and status = 'Active'";
+		$scheme_res_gallery = $this->db->query($scheme_query_gallery);
+		 if($scheme_res_gallery->num_rows()>0){
+			 foreach ($scheme_res_gallery->result() as $rows_gallery)
+				{
+				 $sch_photo[]  = array(
+						"scheme_id" => $rows_gallery->id,
+						"scheme_photo" => $rows_gallery->scheme_photo,
+
+				);
+			}
+				$response_photos = array("status" => "success", "msg" => "Scheme photos","scheme_gallery"=>$sch_photo);
+		}else{
+				$response_photos = array("status" => "error", "msg" => "Schemes Not Found");
+		}
+
+    $response=array("status"=>"success","scheme_details"=>$response_details,"scheme_photo"=>$response_photos);
+
+
 
 		return $response;
 	}
