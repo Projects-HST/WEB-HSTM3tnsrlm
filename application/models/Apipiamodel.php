@@ -29,11 +29,11 @@ class Apipiamodel extends CI_Model {
 	{
 
 			require_once 'assets/notification/Firebase.php';
-            require_once 'assets/notification/Push.php'; 
-            
+            require_once 'assets/notification/Push.php';
+
             $device_token = explode(",", $gcm_key);
-            $push = null; 
-        
+            $push = null;
+
 //        //first check if the push has an image with it
 		    $push = new Push(
 					$Title,
@@ -49,10 +49,10 @@ class Apipiamodel extends CI_Model {
  			// 	);
 
     		//getting the push from push object
-    		$mPushNotification = $push->getPush(); 
-    
-    		//creating firebase class object 
-    		$firebase = new Firebase(); 
+    		$mPushNotification = $push->getPush();
+
+    		//creating firebase class object
+    		$firebase = new Firebase();
 
     	foreach($device_token as $token) {
     		 $firebase->send(array($token),$mPushNotification);
@@ -104,7 +104,7 @@ class Apipiamodel extends CI_Model {
 		}else{
 				$response = array("status" => "error", "msg" => "Schemes Not Found");
 		}
-		
+
 		return $response;
 	}
 //#################### Scheme End ####################//
@@ -173,7 +173,7 @@ class Apipiamodel extends CI_Model {
             $sQuery = "INSERT INTO edu_center_master (center_name,center_info,center_address,pia_id,status,created_by,created_at ) VALUES ('". $center_name . "','". $center_info . "','". $center_address . "','". $pia_id . "','Active','". $pia_id . "',now())";
 			$center_create = $this->db->query($sQuery);
 			$center_id = $this->db->insert_id();
-			
+
 			$response = array("status" => "success", "msg" => "Center Created","center_id"=>$center_id);
 			return $response;
 	}
@@ -186,7 +186,7 @@ class Apipiamodel extends CI_Model {
 	{
             $update_sql= "UPDATE edu_center_master SET center_banner='$bannerName' WHERE id='$center_id'";
 			$update_result = $this->db->query($update_sql);
-			
+
 			if ($this->db->affected_rows() > 0)
             {
                 $response = array("status" => "success", "msg" => "Center Logo Updated","center_logo"=>$bannerName);
@@ -204,7 +204,7 @@ class Apipiamodel extends CI_Model {
 	{
             $sQuery = "INSERT INTO edu_center_photos (center_id,pia_id,center_photos,status,created_by,created_at) VALUES ('". $center_id . "','". $pia_id . "','". $photoName . "','Active','". $pia_id . "',NOW())";
 			$update_gcm = $this->db->query($sQuery);
-			
+
 			$response = array("status" => "success", "msg" => "Center Picture Added");
 			return $response;
 	}
@@ -216,7 +216,7 @@ class Apipiamodel extends CI_Model {
 	{
             $sQuery = "INSERT INTO edu_center_videos (center_id,pia_id,video_title,center_videos,status,created_by,created_at) VALUES ('". $center_id . "','". $pia_id . "','". $video_title . "','". $video_link . "','Active','". $pia_id . "',NOW())";
 			$update_gcm = $this->db->query($sQuery);
-			
+
 			$response = array("status" => "success", "msg" => "Center Video Added");
 			return $response;
 	}
@@ -259,7 +259,7 @@ class Apipiamodel extends CI_Model {
 		}else{
 				$response = array("status" => "error", "msg" => "Centers Not Found");
 		}
-		
+
 		return $response;
 	}
 //#################### Center Details End ####################//
@@ -281,7 +281,7 @@ class Apipiamodel extends CI_Model {
 		}else{
 				$response = array("status" => "error", "msg" => "Centers Not Found");
 		}
-		
+
 		return $response;
 	}
 //#################### Center Gallery End ####################//
@@ -304,10 +304,10 @@ class Apipiamodel extends CI_Model {
 		}else{
 				$response = array("status" => "error", "msg" => "Videos Not Found");
 		}
-		
+
 		return $response;
 	}
-	
+
 //#################### Center Gallery End ####################//
 
 
@@ -357,7 +357,7 @@ class Apipiamodel extends CI_Model {
             $sQuery = "INSERT INTO edu_mobilization_plan (doc_name,doc_file,doc_month_year,pia_id,created_by,created_at,status) VALUES ('". $doc_name . "','". $doc_filename . "','". $doc_month_year . "','". $pia_id . "','". $pia_id . "',now(),'Active')";
 			$plan_create = $this->db->query($sQuery);
 			$plan_id = $this->db->insert_id();
-			
+
 			$response = array("status" => "success", "msg" => "Plan Added","plan_id"=>$plan_id);
 			return $response;
 	}
@@ -369,7 +369,7 @@ class Apipiamodel extends CI_Model {
 	{
             $update_sql= "UPDATE edu_mobilization_plan SET doc_file ='$docName' WHERE id='$plan_id'";
 			$update_result = $this->db->query($update_sql);
-			
+
 			$response = array("status" => "success", "msg" => "Document Upload","plan_doc"=>$docName);
 			return $response;
 	}
@@ -388,14 +388,14 @@ class Apipiamodel extends CI_Model {
 						"plan_id" => $rows->id,
 						"doc_name" => $rows->doc_name,
 						"doc_month_year" => $rows->doc_month_year,
-						"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file 
+						"doc_url" => base_url().'assets/mobilization_plan/'.$rows->doc_file
 					);
 			}
 				$response = array("status" => "success", "msg" => "Mobilization Plan","planDetails"=>$planList);
 		}else{
 				$response = array("status" => "error", "msg" => "Plans Not Found");
 		}
-		
+
 		return $response;
 	}
 //#################### Plan List End ####################//
@@ -406,19 +406,19 @@ class Apipiamodel extends CI_Model {
 	{
 		$select = "SELECT * FROM edu_staff_details Where email='$email' OR phone='$phone'";
 		$result=$this->db->query($select);
-	   
+
 		if($result->num_rows()>0){
 			$response = array("status" => "error", "msg" => "User Already Exist");
          }else{
            $insert = "INSERT INTO edu_staff_details (pia_id,role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('$pia_id','$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$pia_id',NOW())";
            $result=$this->db->query($insert);
            $insert_id = $this->db->insert_id();
-			
+
             $digits = 6;
 			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 			$md5pwd = md5($OTP);
 
-			
+
             $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,pia_id,status) VALUES('$name','$phone','$md5pwd','$select_role','$insert_id',NOW(),'$pia_id','Active')";
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
@@ -431,10 +431,10 @@ class Apipiamodel extends CI_Model {
 				$email_message = 'Username:'.$phone.'<br>Password:'.$OTP.'<br><br>';
 				$this->sendMail($email,$subject,$email_message);
 			}
-			
+
 			$response = array("status" => "success", "msg" => "User Created","profile_id"=>$profile_id);
 		  }
-			
+
 			return $response;
 	}
 //#################### User Creation End ####################//
@@ -530,7 +530,7 @@ class Apipiamodel extends CI_Model {
 			}
 
 			if ($old_phone != $phone){
-				
+
 				$sQuery = "SELECT * FROM edu_staff_details WHERE id != '$user_master_id' AND phone='$phone'";
 				$user_result = $this->db->query($sQuery);
 				if($user_result->num_rows()>0)
@@ -540,10 +540,10 @@ class Apipiamodel extends CI_Model {
 					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
-					
+
 					 $update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
-					
+
 					if ($select_role == '5'){
 						$mobile_message = 'Username :'. $phone;
 						$this->sendSMS($phone,$mobile_message);
@@ -553,21 +553,21 @@ class Apipiamodel extends CI_Model {
 						$this->sendMail($email,$subject,$email_message);
 					}
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
-				}	
-			
+				}
+
 			} else {
-				
+
 					$update="UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',sec_email='$sec_email',phone='$phone',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
-			
+
 					 $update_user="UPDATE edu_users SET name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
-					
+
 					$response = array("status" => "success", "msg" => "User Updated Successfully");
-			
+
 			}
-					
+
 			return $response;
 	}
 //#################### User Update End ####################//
@@ -580,18 +580,18 @@ class Apipiamodel extends CI_Model {
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
-				 
+
 			}else{
-			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$pia_id', now())";
+			        $student_query = "INSERT INTO edu_student_prospects (pia_id,have_aadhaar_card, aadhaar_card_number, name, sex, dob, age, nationality, religion, community_class, community, father_name, mother_name, mobile, sec_mobile, email, state, city, address, mother_tongue, disability, blood_group, admission_date, admission_location, admission_latitude, admission_longitude, preferred_trade, preferred_timing, last_institute, last_studied, qualified_promotion, transfer_certificate, status, created_by, created_at) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$pia_id', now())";
 	                $student_res = $this->db->query($student_query);
                     $student_id = $this->db->insert_id();
-                    
+
                 	if($student_res) {
         			    $response = array("status" => "success", "msg" => "Student Added", "admission_id"=>$student_id);
         			} else {
         			    $response = array("status" => "error");
         			}
-			}  
+			}
 			return $response;
 	}
 //#################### Add Student End ####################//
@@ -611,15 +611,35 @@ class Apipiamodel extends CI_Model {
 //#################### List Students ####################//
 	public function listStudents($pia_id)
 	{
-		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id  ='$pia_id'";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status,student_pic FROM edu_student_prospects WHERE pia_id  ='$pia_id'";
 			$student_res = $this->db->query($student_query);
-			$student_result= $student_res->result();
+			$query_result= $student_res->result();
 			$student_count = $student_res->num_rows();
 
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+        foreach($query_result as $rows_list){
+          if(empty($rows_list->student_pic)){
+            $student_pic='';
+          }else{
+            $student_pic=base_url().'assets/students/'.$rows_list->student_pic;
+          }
+
+          $student_result[]=array(
+            "id"=>$rows_list->id,
+            "name"=>$rows_list->name,
+            "sex"=>$rows_list->sex,
+            "mobile"=>$rows_list->mobile,
+            "email"=>$rows_list->email,
+            "enrollment"=>$rows_list->enrollment,
+            "status"=>$rows_list->status,
+            "student_pic"=>$student_pic,
+
+
+          );
+        }
+				$response = array("status" => "success", "msg" => "View student list", "count" => $student_count, "studentList"=>$student_result);
 			}
 			return $response;
 	}
@@ -629,15 +649,36 @@ class Apipiamodel extends CI_Model {
 //#################### List Students ####################//
 	public function listStudentsStatus($pia_id,$status)
 	{
-		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE pia_id = '$pia_id' AND status = '$status'";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status,student_pic FROM edu_student_prospects WHERE pia_id = '$pia_id' AND status = '$status'";
 			$student_res = $this->db->query($student_query);
-			$student_result= $student_res->result();
+			$query_result= $student_res->result();
 			$student_count = $student_res->num_rows();
 
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
+
+        foreach($query_result as $rows_list){
+          if(empty($rows_list->student_pic)){
+            $student_pic='';
+          }else{
+            $student_pic=base_url().'assets/students/'.$rows_list->student_pic;
+          }
+
+          $student_result[]=array(
+            "id"=>$rows_list->id,
+            "name"=>$rows_list->name,
+            "sex"=>$rows_list->sex,
+            "mobile"=>$rows_list->mobile,
+            "email"=>$rows_list->email,
+            "enrollment"=>$rows_list->enrollment,
+            "status"=>$rows_list->status,
+            "student_pic"=>$student_pic,
+
+
+          );
+        }
+				$response = array("status" => "success", "msg" => "View student list", "count" => $student_count, "studentList"=>$student_result);
 			}
 			return $response;
 	}
@@ -646,10 +687,10 @@ class Apipiamodel extends CI_Model {
 //#################### View Student ####################//
 	public function viewStudent($student_id)
 	{
-		 	$student_query = "SELECT * FROM `edu_student_prospects` WHERE id ='$student_id'";
+		 	$student_query = "SELECT * FROM edu_student_prospects WHERE id ='$student_id'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
-			
+
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
@@ -663,9 +704,9 @@ class Apipiamodel extends CI_Model {
 //#################### Update Student ####################//
 	public function updateStudent($student_id,$pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status)
 	{
-		 	$student_query = "UPDATE `edu_student_prospects` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$pia_id',`updated_at`=now() WHERE id ='$student_id'";
+		 	$student_query = "UPDATE edu_student_prospects SET have_aadhaar_card='$have_aadhaar_card',aadhaar_card_number='$aadhaar_card_number',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',father_name='$father_name',mother_name='$mother_name',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',state='$state',city='$city',address='$address',mother_tongue='$mother_tongue',disability='$disability',blood_group='$blood_group',admission_date='$admission_date',admission_location='$admission_location',admission_latitude='$admission_latitude',admission_longitude='$admission_longitude',preferred_trade='$preferred_trade',preferred_timing='$preferred_timing',last_institute='$last_institute',last_studied='$last_studied',qualified_promotion='$qualified_promotion',transfer_certificate='$transfer_certificate',status='$status',updated_by='$pia_id',updated_at=now() WHERE id ='$student_id'";
 			$student_res = $this->db->query($student_query);
-			
+
 			if($student_res) {
 			    $response = array("status" => "success", "msg" => "Student Details Updated");
 			}else{
@@ -679,12 +720,12 @@ class Apipiamodel extends CI_Model {
 //#################### Add Task ####################//
 	public function addTask ($user_master_id,$task_title,$task_description,$task_date,$pia_id)
 	{
-            $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`, `status`, `created_by`, `created_at`) VALUES ('$user_master_id', '$task_title', '$task_description', '$task_date', '$pia_id', 'Assigned', '$pia_id', now())";
+            $task_query = "INSERT INTO edu_task (user_id, task_title, task_description, task_date, pia_id, status, created_by, created_at) VALUES ('$user_master_id', '$task_title', '$task_description', '$task_date', '$pia_id', 'Assigned', '$pia_id', now())";
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
-            
+
 			//$sQuery = "SELECT A.user_id, A.user_master_id,A.name,B.email FROM edu_users A, edu_staff_details B WHERE A.user_id = B.id AND A.user_id ='$user_master_id' AND A.user_type ='5'";
-			
+
 				$sQuery = "SELECT
 					A.user_id,
 					A.user_master_id,
@@ -704,12 +745,12 @@ class Apipiamodel extends CI_Model {
 					$email = $rows->email;
 				}
 			}
-			
+
 			if($task_res) {
 			    $response = array("status" => "success", "msg" => "Task Added", "task_id"=>$task_id);
 			} else {
 			    $response = array("status" => "error");
-			}		
+			}
 
 			$subject = "M3 - New Task Added";
 			$email_message = 'Task Title:'.$task_title.'<br> Task Details:'.$task_description.'<br>';
@@ -725,7 +766,7 @@ class Apipiamodel extends CI_Model {
 	        $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
-			
+
 			 if($task_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Task Not Found");
 			}else{
@@ -739,10 +780,10 @@ class Apipiamodel extends CI_Model {
 //#################### List Task ####################//
 	public function viewTask ($task_id)
 	{
-            $task_query = "SELECT * FROM `edu_task` WHERE id  ='$task_id'";
+            $task_query = "SELECT * FROM edu_task WHERE id  ='$task_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
-			
+
 			 if($task_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Task Not Found");
 			}else{
@@ -756,9 +797,9 @@ class Apipiamodel extends CI_Model {
 //#################### Update Task ####################//
 	public function updateTask($task_id,$pia_id,$task_title,$task_description,$task_date,$status)
 	{
-		 	$task_query = "UPDATE `edu_task` SET `task_title`='$task_description',`task_description`='$task_description',`task_date`='$task_date',`status`='$status',`updated_by`='$pia_id',`updated_at`=now() WHERE id ='$task_id'";
+		 	$task_query = "UPDATE edu_task SET task_title='$task_description',task_description='$task_description',task_date='$task_date',status='$status',updated_by='$pia_id',updated_at=now() WHERE id ='$task_id'";
 			$task_res = $this->db->query($task_query);
-			
+
 			if($task_res) {
 			    $response = array("status" => "success", "msg" => "Task Details Updated");
 			}else{
@@ -776,18 +817,18 @@ class Apipiamodel extends CI_Model {
 		    $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' ORDER BY created_at ASC";
 			$track_res = $this->db->query($track_query);
 			$track_result= $track_res->result();
-			
+
 			 if($track_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Track Not Found");
 			}else{
-				
+
 			foreach($track_result as $rows){
 				$lat=$rows->lat;
 				$lng=$rows->lng;
 				$loca=$rows->address;
 				$address[] = array ("Latitude" => $lat, "Longitude" => $lng);
              }
-			 
+
 			 $km_query="SELECT (6371 * ACOS(
                 COS( RADIANS(to_lat) )
               * COS( RADIANS( user_lat ) )
@@ -802,12 +843,12 @@ class Apipiamodel extends CI_Model {
               * SIN( RADIANS( user_lat ) )
                 ) )) AS km FROM edu_tracking_details WHERE user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date'";
 				$km_result=$this->db->query($km_query);
-				$km_distance_calc= $km_result->result(); 
-				
+				$km_distance_calc= $km_result->result();
+
 				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
 			}
-			return $response;			
-				
+			return $response;
+
 	}
 //#################### User Tracking End ####################//
 
@@ -818,11 +859,11 @@ class Apipiamodel extends CI_Model {
 			$track_query = "SELECT id,etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' ORDER BY created_at DESC LIMIT 1";
 			$track_res = $this->db->query($track_query);
 			$track_result= $track_res->result();
-			
+
 			 if($track_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Track Not Found");
 			}else{
-				
+
 			foreach($track_result as $rows){
 				$lat=$rows->lat;
 				$lng=$rows->lng;
@@ -831,8 +872,8 @@ class Apipiamodel extends CI_Model {
              }
 				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address);
 			}
-			return $response;			
-				
+			return $response;
+
 	}
 //#################### Current User Tracking End ####################//
 

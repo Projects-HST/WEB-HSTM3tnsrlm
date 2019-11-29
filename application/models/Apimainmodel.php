@@ -468,7 +468,7 @@ class Apimainmodel extends CI_Model {
                 $this->sendSMS($phone,$mobile_message);
 
 
-				$subject = "M3 - Forgot Password";
+				      $subject = "M3 - Forgot Password";
             	$email_message = 'App login Username:'.$user_name.'Password:'.$OTP.'<br><br>';
 	            $this->sendMail($email,$subject,$email_message);
 

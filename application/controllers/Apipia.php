@@ -2,7 +2,7 @@
 
 class Apipia extends CI_Controller {
 
-	
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,7 +18,7 @@ class Apipia extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	 
+
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -70,7 +70,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->listScheme($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -104,12 +104,12 @@ class Apipia extends CI_Controller {
 		$pia_id  ='';
 		$period_from = '';
 		$period_to = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$period_from = $this->input->post("start_date");
 		$period_to = $this->input->post("end_date");
-		 	
-				
+
+
 		$data['result']=$this->apipiamodel->projectPeriod($pia_id,$period_from,$period_to);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -141,8 +141,8 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		 	
-				
+
+
 		$data['result']=$this->apipiamodel->projectPeriodlist($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -174,11 +174,11 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$trade_name = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$trade_name = $this->input->post("trade_name");
-		 	
-				
+
+
 		$data['result']=$this->apipiamodel->createTrade($pia_id,$trade_name);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -211,7 +211,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->listTrade($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -251,7 +251,7 @@ class Apipia extends CI_Controller {
 		$center_info = $this->input->post("center_info");
 		$center_address = $this->input->post("center_address");
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->createCenter($center_name,$center_info,$center_address,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -284,7 +284,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->listCenter($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -367,7 +367,7 @@ class Apipia extends CI_Controller {
 		$pia_id = $this->input->post("user_id");
 		$video_title = $this->input->post("video_title");
 		$video_link = $this->input->post("video_link");
-		
+
 		$data['result']=$this->apipiamodel->addCenterVideos($center_id,$pia_id,$video_title,$video_link);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -400,7 +400,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->centerList($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -434,7 +434,7 @@ class Apipia extends CI_Controller {
 		$center_id = '';
 		$pia_id = $this->input->post("user_id");
 		$center_id = $this->input->post("center_id");
-		
+
 		$data['result']=$this->apipiamodel->centerDetails($pia_id,$center_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -468,7 +468,7 @@ class Apipia extends CI_Controller {
 		$center_id = '';
 		$pia_id = $this->input->post("user_id");
 		$center_id = $this->input->post("center_id");
-		
+
 		$data['result']=$this->apipiamodel->centerGallery($pia_id,$center_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -502,7 +502,7 @@ class Apipia extends CI_Controller {
 		$center_id = '';
 		$pia_id = $this->input->post("user_id");
 		$center_id = $this->input->post("center_id");
-		
+
 		$data['result']=$this->apipiamodel->centerVideos($pia_id,$center_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -534,11 +534,11 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$batch_name = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$batch_name = $this->input->post("batch_name");
-		 	
-				
+
+
 		$data['result']=$this->apipiamodel->createBatch($pia_id,$batch_name);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -571,7 +571,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->listBatch($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -607,12 +607,12 @@ class Apipia extends CI_Controller {
 		$session_name = '';
 		$from_time = '';
 		$to_time = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$session_name = $this->input->post("session_name");
 		$from_time = $this->input->post("from_time");
 		$to_time = $this->input->post("to_time");
-		 	
+
 		$data['result']=$this->apipiamodel->createSession($pia_id,$session_name,$from_time,$to_time);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -645,7 +645,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->listSession($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -678,11 +678,11 @@ class Apipia extends CI_Controller {
 		$pia_id  ='';
 		$trade_id = '';
 		$batch_id = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$trade_id = $this->input->post("trade_id");
 		$batch_id = $this->input->post("batch_id");
-		 	
+
 		$data['result']=$this->apipiamodel->tradeBatch($pia_id,$trade_id,$batch_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -743,11 +743,11 @@ class Apipia extends CI_Controller {
 // 		$pia_id  ='';
 // 		$trade_id = '';
 // 		$doc_month_year = '';
-		
+
 // 		$pia_id = $this->input->post("user_id");
 // 		$doc_name = $this->input->post("doc_name");
 // 		$doc_month_year = $this->input->post("doc_month_year");
-		 	
+
 // 		$data['result']=$this->apipiamodel->mobilizationPlan($pia_id,$doc_name,$doc_month_year);
 // 		$response = $data['result'];
 // 		echo json_encode($response);
@@ -768,7 +768,7 @@ class Apipia extends CI_Controller {
 
 		$uploadPicdir = 'assets/mobilization_plan/';
 		$docfile = $uploadPicdir.$docName;
-	
+
 		if(move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile)) {
 			$data['result']=$this->apipiamodel->updatePlanDoc($plan_id,$docName);
 			$response = $data['result'];
@@ -805,7 +805,7 @@ class Apipia extends CI_Controller {
 
 		$pia_id  ='';
 		$pia_id = $this->input->post("user_id");
-		
+
 		$data['result']=$this->apipiamodel->mobilizationPlanlist($pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -850,7 +850,7 @@ class Apipia extends CI_Controller {
 		$phone = '';
 		$sec_phone = '';
 		$qualification = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$select_role = $this->input->post('select_role');
 		$name = $this->input->post('name');
@@ -864,9 +864,9 @@ class Apipia extends CI_Controller {
 		$email = $this->input->post('email');
 		$sec_email = $this->input->post('sec_email');
 		$phone = $this->input->post('phone');
-		$sec_phone = $this->input->post('sec_phone'); 
+		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
-		
+
 		$data['result']=$this->apipiamodel->createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -881,12 +881,12 @@ public function user_profilepic()
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$profile_id = $this->uri->segment(3);
-		//$profile_id = 4;	
+		//$profile_id = 4;
 		$profile = $_FILES["user_pic"]["name"];
 		$userFileName = time().'-'.$profile;
 
 		$uploadPicdir = 'assets/profile/';
-		
+
 		$profilepic = $uploadPicdir.$userFileName;
 		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
@@ -1067,7 +1067,7 @@ public function user_profilepic()
 		$sec_phone = '';
 		$qualification = '';
 		$status ='';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$user_master_id = $this->input->post("user_master_id");
 		$select_role = $this->input->post('select_role');
@@ -1082,10 +1082,10 @@ public function user_profilepic()
 		$email = $this->input->post('email');
 		$sec_email = $this->input->post('sec_email');
 		$phone = $this->input->post('phone');
-		$sec_phone = $this->input->post('sec_phone'); 
+		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
 		$status =$this->input->post('status');
-		
+
 		$data['result']=$this->apipiamodel->updateUser($pia_id,$user_master_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status);
 		$response = $data['result'];
 		echo json_encode($response);
@@ -1113,7 +1113,7 @@ public function user_profilepic()
 			echo json_encode($res);
 			return;
 		}
-		
+
 		$pia_id = '';
 		$have_aadhaar_card = '';
 		$aadhaar_card_number = '';
@@ -1190,7 +1190,7 @@ public function user_profilepic()
 		$response = $data['result'];
 		echo json_encode($response);
 	}
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -1198,7 +1198,7 @@ public function user_profilepic()
 	{
 	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		$student_id = $this->uri->segment(3);		
+		$student_id = $this->uri->segment(3);
 		$profile = $_FILES["student_pic"]["name"];
 		$userFileName = time().'-'.$profile;
 
@@ -1211,13 +1211,13 @@ public function user_profilepic()
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
-	
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function list_students()
 	{
-	   
+
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
@@ -1245,13 +1245,13 @@ public function user_profilepic()
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
 	public function list_students_status()
 	{
-	   
+
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
@@ -1281,7 +1281,7 @@ public function user_profilepic()
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -1314,7 +1314,7 @@ public function user_profilepic()
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -1434,7 +1434,7 @@ public function user_profilepic()
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Add Task";
 			$res["scode"] = 204;
@@ -1452,7 +1452,7 @@ public function user_profilepic()
 		//$status  = '';
 		//$created_by = '';
 		//$created_at  = '';
-		
+
 		$pia_id = $this->input->post("user_id");
 		$user_master_id = $this->input->post("mob_id");
 		$task_title  = $this->input->post("task_title");
@@ -1549,7 +1549,7 @@ public function user_profilepic()
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Update Task";
 			$res["scode"] = 204;
@@ -1567,7 +1567,7 @@ public function user_profilepic()
 		$status  = '';
 		//$updated_by = '';
 		//$updated_at  = '';
-		
+
 		$task_id = $this->input->post("task_id");
 		$pia_id = $this->input->post("user_id");
 		$task_title  = $this->input->post("task_title");
@@ -1611,7 +1611,7 @@ public function user_profilepic()
 		$track_date = '';
 		$mob_id = $this->input->post("mob_id");
 		$track_date = $this->input->post("track_date");
-		
+
 
 		$data['result']=$this->apipiamodel->userTracking($mob_id,$track_date);
 		$response = $data['result'];
@@ -1647,7 +1647,7 @@ public function user_profilepic()
 		$track_date = '';
 		$mob_id = $this->input->post("mob_id");
 		$track_date = $this->input->post("track_date");
-		
+
 
 		$data['result']=$this->apipiamodel->userTrackingCurrent($mob_id,$track_date);
 		$response = $data['result'];
