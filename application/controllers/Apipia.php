@@ -993,6 +993,76 @@ public function user_profilepic()
 
 //-----------------------------------------------//
 
+
+//-----------------------------------------------//
+
+	public function user_profile()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User List";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$user_id = $this->input->post("user_id");
+
+		$data['result']=$this->apipiamodel->user_profile($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function user_profile_update()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User List";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$user_id = $this->input->post("user_id");
+		$pia_phone = $this->input->post("pia_phone");
+		$pia_name = $this->input->post("pia_name");
+		$pia_address = $this->input->post("pia_address");
+		$pia_email = $this->input->post("pia_email");
+		$pia_id = $this->input->post("pia_id");
+
+		$data['result']=$this->apipiamodel->user_profile_update($user_id,$pia_phone,$pia_name,$pia_address,$pia_email,$pia_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function user_details()

@@ -534,7 +534,35 @@ class Apipiamodel extends CI_Model {
 			}
 			return $response;
 	}
+
+
+  function user_profile($user_id){
+    $sQuery = "SELECT ep.* FROM edu_users as eu
+    left join edu_pia  as ep on ep.id=eu.user_master_id where eu.user_type=3 and eu.user_id='$user_id'";
+    $s_res = $this->db->query($sQuery);
+    $s_result= $s_res->result();
+
+    if($s_res->num_rows()>0){
+          $response = array("status" => "success", "msg" => "User profile","userprofile"=>$s_result);
+    }else{
+            $response = array("status" => "error", "msg" => "Users Not Found");
+    }
+    return $response;
+  }
 //#################### User Details End ####################//
+
+
+
+    function user_profile_update($user_id,$pia_phone,$pia_name,$pia_address,$pia_email,$pia_id){
+      $update="UPDATE edu_pia SET pia_name='$pia_name',pia_phone='$pia_phone',pia_address='$pia_address',pia_email='$pia_email',updated_by='$user_id',updated_at=NOW() WHERE id='$pia_id'";
+      $s_res = $this->db->query($update);
+      if($s_res){
+            $response = array("status" => "success", "msg" => "User profile updated successfully");
+      }else{
+              $response = array("status" => "error", "msg" => "Something Went wrong");
+      }
+      return $response;
+    }
 
 //#################### User Update ####################//
 	public function updateUser($pia_id,$user_master_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status)
