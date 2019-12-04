@@ -463,7 +463,7 @@ class Apipiamodel extends CI_Model {
 //#################### Profile Pic Update ####################//
 	public function updateProfilepic($profile_id,$userFileName)
 	{
-            $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$profile_id'";
+      $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$profile_id'";
 			$update_result = $this->db->query($update_sql);
 
 			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
@@ -543,7 +543,22 @@ class Apipiamodel extends CI_Model {
     $s_result= $s_res->result();
 
     if($s_res->num_rows()>0){
-          $response = array("status" => "success", "msg" => "User profile","userprofile"=>$s_result);
+            foreach($s_result as $rows){}
+              if(empty($rows->profile_pic)){
+                $url='';
+
+              }else{
+                $url=base_url().'assets/staff/profile/'.$rows->profile_pic;
+              }
+              $user_profile=array(
+                "pia_id"=>$rows->id,
+                "pia_name"=>$rows->pia_name,
+                "pia_address"=>$rows->pia_address,
+                "pia_phone"=>$rows->pia_phone,
+                "pia_email"=>$rows->pia_email,
+                "pia_profil_pic"=>$url,
+              );
+          $response = array("status" => "success", "msg" => "User profile","userprofile"=>$user_profile);
     }else{
             $response = array("status" => "error", "msg" => "Users Not Found");
     }
