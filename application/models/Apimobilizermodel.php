@@ -29,11 +29,11 @@ class Apimobilizermodel extends CI_Model {
 	{
 
 			require_once 'assets/notification/Firebase.php';
-            require_once 'assets/notification/Push.php'; 
-            
+            require_once 'assets/notification/Push.php';
+
             $device_token = explode(",", $gcm_key);
-            $push = null; 
-        
+            $push = null;
+
 //        //first check if the push has an image with it
 		    $push = new Push(
 					$Title,
@@ -49,10 +49,10 @@ class Apimobilizermodel extends CI_Model {
  			// 	);
 
     		//getting the push from push object
-    		$mPushNotification = $push->getPush(); 
-    
-    		//creating firebase class object 
-    		$firebase = new Firebase(); 
+    		$mPushNotification = $push->getPush();
+
+    		//creating firebase class object
+    		$firebase = new Firebase();
 
     	foreach($device_token as $token) {
     		 $firebase->send(array($token),$mPushNotification);
@@ -190,7 +190,7 @@ class Apimobilizermodel extends CI_Model {
 							"name" => $ress[0]->name,
 							"user_name" => $ress[0]->user_name,
 							"user_pic" => $user_picurl,
-							"user_type_name" => $ress[0]->user_type_name,							
+							"user_type_name" => $ress[0]->user_type_name,
 							"user_type" => $ress[0]->user_type,
 							"password_status" => $ress[0]->password_status
 						);
@@ -249,14 +249,14 @@ class Apimobilizermodel extends CI_Model {
 //#################### Main Login End ####################//
 
 //#################### Profile Pic Update ####################//
-	/* public function updateProfilepic($user_id,$userFileName)
+	 public function updateProfilepic($user_id,$userFileName)
 	{
-            $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
+      $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
 			$update_result = $this->db->query($update_sql);
 
 			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
 			return $response;
-	} */
+	}
 //#################### Profile Pic Update End ####################//
 
 
@@ -290,10 +290,10 @@ class Apimobilizermodel extends CI_Model {
 			 if($trade_res->num_rows()>0){
 			     	$trade_result= $trade_res->result();
 			     	$response = array("status" => "success", "msg" => "View Trades","Trades"=>$trade_result);
-				 
+
 			}else{
 			        $response = array("status" => "error", "msg" => "Trade not found");
-			}  
+			}
 
 			return $response;
 	}
@@ -308,10 +308,10 @@ class Apimobilizermodel extends CI_Model {
 			 if($batch_res->num_rows()>0){
 			     	$batch_result= $batch_res->result();
 			     	$response = array("status" => "success", "msg" => "View Batches","Batches"=>$batch_result);
-				 
+
 			}else{
 			        $response = array("status" => "error", "msg" => "Batches not found");
-			}  
+			}
 
 			return $response;
 	}
@@ -326,10 +326,10 @@ class Apimobilizermodel extends CI_Model {
 			 if($time_res->num_rows()>0){
 			     	$time_result= $time_res->result();
 			     	$response = array("status" => "success", "msg" => "View Timings","Timings"=>$time_result);
-				 
+
 			}else{
 			        $response = array("status" => "error", "msg" => "Timings not found");
-			}  
+			}
 
 			return $response;
 	}
@@ -344,10 +344,10 @@ class Apimobilizermodel extends CI_Model {
 			 if($bgroup_res->num_rows()>0){
 			     	$bgroup_result= $bgroup_res->result();
 			     	$response = array("status" => "success", "msg" => "View Trades","Bloodgroup"=>$bgroup_result);
-				 
+
 			}else{
 			        $response = array("status" => "error", "msg" => "Blood group not found");
-			}  
+			}
 
 			return $response;
 	}
@@ -362,18 +362,18 @@ class Apimobilizermodel extends CI_Model {
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
-				 
+
 			}else{
 			        $student_query = "INSERT INTO `edu_student_prospects` (`pia_id`,`have_aadhaar_card`, `aadhaar_card_number`, `name`, `sex`, `dob`, `age`, `nationality`, `religion`, `community_class`, `community`, `father_name`, `mother_name`, `mobile`, `sec_mobile`, `email`, `state`, `city`, `address`, `mother_tongue`, `disability`, `blood_group`, `admission_date`, `admission_location`, `admission_latitude`, `admission_longitude`, `preferred_trade`, `preferred_timing`, `last_institute`, `last_studied`, `qualified_promotion`, `transfer_certificate`, `status`, `created_by`, `created_at`) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
 	                $student_res = $this->db->query($student_query);
                     $admission_id = $this->db->insert_id();
-                    
+
                 	if($student_res) {
         			    $response = array("status" => "success", "msg" => "Student Added", "admission_id"=>$admission_id);
         			} else {
         			    $response = array("status" => "error");
         			}
-			}  
+			}
 			return $response;
 	}
 //#################### Add Student End ####################//
@@ -432,7 +432,7 @@ class Apimobilizermodel extends CI_Model {
 		 	$student_query = "SELECT * FROM `edu_student_prospects` WHERE id ='$admission_id'";
 			$student_res = $this->db->query($student_query);
 			$student_result= $student_res->result();
-			
+
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
@@ -448,7 +448,7 @@ class Apimobilizermodel extends CI_Model {
 	{
 		 	$student_query = "UPDATE `edu_student_prospects` SET `have_aadhaar_card`='$have_aadhaar_card',`aadhaar_card_number`='$aadhaar_card_number',`name`='$name',`sex`='$sex',`dob`='$dob',`age`='$age',`nationality`='$nationality',`religion`='$religion',`community_class`='$community_class',`community`='$community',`father_name`='$father_name',`mother_name`='$mother_name',`mobile`='$mobile',`sec_mobile`='$sec_mobile',`email`='$email',`state`='$state',`city`='$city',`address`='$address',`mother_tongue`='$mother_tongue',`disability`='$disability',`blood_group`='$blood_group',`admission_date`='$admission_date',`admission_location`='$admission_location',`admission_latitude`='$admission_latitude',`admission_longitude`='$admission_longitude',`preferred_trade`='$preferred_trade',`preferred_timing`='$preferred_timing',`last_institute`='$last_institute',`last_studied`='$last_studied',`qualified_promotion`='$qualified_promotion',`transfer_certificate`='$transfer_certificate',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$admission_id'";
 			$student_res = $this->db->query($student_query);
-			
+
 			if($student_res) {
 			    $response = array("status" => "success", "msg" => "Student Details Updated");
 			}else{
@@ -494,7 +494,7 @@ class Apimobilizermodel extends CI_Model {
         				} else {
         				    $photo_result = array();
         				}
-        				
+
         			$video_query = "SELECT video_title,center_videos FROM edu_center_videos WHERE center_id = '$center_id'  AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
         			$video_res = $this->db->query($video_query);
         				if($video_res->num_rows()>0){
@@ -508,7 +508,7 @@ class Apimobilizermodel extends CI_Model {
         				} else {
         				    $video_result = array();
         				}
-        			
+
         			$staff_query = "SELECT name,profile_pic FROM edu_staff_details WHERE role_type ='4' AND pia_id='$pia_id'  AND status ='Active' ORDER BY id DESC LIMIT 4 ";
         			$staff_res = $this->db->query($staff_query);
         				if($staff_res->num_rows()>0){
@@ -522,7 +522,7 @@ class Apimobilizermodel extends CI_Model {
         				} else {
         				    $staff_result = array();
         				}
-        			
+
         			$trade_query = "SELECT trade_name FROM edu_trade WHERE pia_id='$pia_id' AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
         			$trade_res = $this->db->query($trade_query);
         			    if($trade_res->num_rows()>0){
@@ -535,7 +535,7 @@ class Apimobilizermodel extends CI_Model {
         				} else {
         				    $trade_result = array();
         				}
-        			
+
         			$sstory_query = "SELECT details,story_video FROM edu_success_stories WHERE center_id = '$center_id' AND status  ='Active' ORDER BY id DESC LIMIT 4 ";
         			$sstory_res = $this->db->query($sstory_query);
         			    if($sstory_res->num_rows()>0){
@@ -549,7 +549,7 @@ class Apimobilizermodel extends CI_Model {
         				} else {
         				    $sstory_result = array();
         				}
-        			
+
     		        $response = array("status" => "Sucess", "msg" => "Center Details", "centerData" => $centerData,"Photo" => $photo_result,"video" => $video_result,"trainer" => $staff_result,"trade" => $trade_result,"stories" => $sstory_result);
 
 			    } else {
@@ -637,7 +637,7 @@ class Apimobilizermodel extends CI_Model {
 			return $response;
 	}
 //#################### View Trainers End ####################//
-                    
+
 //#################### View Sucess Strories ####################//
 	public function viewSucessstory($center_id)
 	{
@@ -665,7 +665,7 @@ class Apimobilizermodel extends CI_Model {
 	public function dispCircular($user_id)
 	{
 			$year_id = $this->getYear();
-			
+
 			 $circular_query = "SELECT
                                 A.circular_type,
                                 B.circular_title,
@@ -696,7 +696,7 @@ class Apimobilizermodel extends CI_Model {
             $task_query = "INSERT INTO `edu_task` (`user_id`, `task_title`, `task_description`, `task_date`, `pia_id`, `status`, `created_by`, `created_at`) VALUES ('$user_id', '$task_title', '$task_description', '$task_date', '$pia_id', '$status', '$user_id', now())";
 	        $task_res = $this->db->query($task_query);
             $task_id = $this->db->insert_id();
-            
+
 			if($task_res) {
 			    $response = array("status" => "success", "msg" => "Task Added", "task_id"=>$task_id);
 			} else {
@@ -712,7 +712,7 @@ class Apimobilizermodel extends CI_Model {
             $task_query = "SELECT * FROM `edu_task` WHERE user_id  ='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
-			
+
 			 if($task_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Task Not Found");
 			}else{
@@ -730,7 +730,7 @@ class Apimobilizermodel extends CI_Model {
             $task_query = "SELECT * FROM `edu_task` WHERE id  ='$task_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
-			
+
 			 if($task_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Task Not Found");
 			}else{
@@ -746,7 +746,7 @@ class Apimobilizermodel extends CI_Model {
 	{
 		 	$task_query = "UPDATE `edu_task` SET `task_title`='$task_description',`task_description`='$task_description',`task_date`='$task_date',`status`='$status',`updated_by`='$updated_by',`updated_at`='$updated_at' WHERE id ='$task_id'";
 			$task_res = $this->db->query($task_query);
-			
+
 			if($task_res) {
 			    $response = array("status" => "success", "msg" => "Task Details Updated");
 			}else{
@@ -803,14 +803,14 @@ class Apimobilizermodel extends CI_Model {
 		            {
 			            $task_image = $rows->task_image;
 	        	    }
-	        	    
+
         	        if (file_exists('./assets/task/'.$task_image)) {
                         unlink('./assets/task/'.$task_image);
                     }
 
                 	$sQuery = "DELETE FROM edu_task_photos WHERE id  = '" .$pic_id. "'";
 			        $delete_pic = $this->db->query($sQuery);
-			        
+
         	        $response = array("status" => "Sucess", "msg" => "Task Picture Deleted");
         		} else {
         		     $response = array("status" => "error", "msg" => "Task Pictures not found.");
@@ -839,28 +839,28 @@ class Apimobilizermodel extends CI_Model {
 	public function addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id)
 	{
             $dt = strtotime($location_datetime); //make timestamp with datetime string
-            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created  
+            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created
 
 	       $user_query = "SELECT * FROM edu_tracking_details WHERE user_id = '$user_id' AND date(created_at) = '$chk_date' ORDER BY id DESC LIMIT 1";
            $user_result = $this->db->query($user_query);
            $user_res = $user_result->result();
-           
+
         	    if($user_result->num_rows()>0){
         		   foreach($user_res as $rows){
 						$to_latitude = $rows->to_lat;
 						$to_longitude = $rows->to_long;
 					}
-        	        
+
         	        $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
 	                $location_res = $this->db->query($location_query);
         	        $response = array("status" => "Sucess", "msg" => "Location Added");
         		} else {
-        		    
+
         		    $location_query = "INSERT INTO `edu_tracking_details` (`user_id`,`user_lat`,`user_long`,`user_location`,`to_lat`,`to_long`,`miles`,`created_at`,`pia_id`) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
 	                $location_res = $this->db->query($location_query);
         		    $response = array("status" => "Sucess", "msg" => "Location Added");
         		}
-        	
+
 			return $response;
 	}
 //#################### Mobilizer Location End ####################//

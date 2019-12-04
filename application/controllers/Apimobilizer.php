@@ -2,7 +2,7 @@
 
 class Apimobilizer extends CI_Controller {
 
-	
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,7 +18,7 @@ class Apimobilizer extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	 
+
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -45,6 +45,28 @@ class Apimobilizer extends CI_Controller {
 		}
 		return TRUE;
 	}
+
+	//-----------------------------------------------//
+
+		public function user_profilepic()
+		{
+	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			$user_id = $this->uri->segment(3);
+			$profile = $_FILES["user_pic"]["name"];
+			$userFileName = time().'-'.$profile;
+
+			$uploadPicdir = 'assets/staff/profile/';
+
+			$profilepic = $uploadPicdir.$userFileName;
+			move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
+
+			$data['result']=$this->apimobilizermodel->updateProfilepic($user_id,$userFileName);
+			$response = $data['result'];
+			echo json_encode($response);
+		}
+
+	//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -77,34 +99,14 @@ class Apimobilizer extends CI_Controller {
 		$password = $this->input->post("password");
 		$gcmkey = $this->input->post("gcm_key");
 		$mobiletype = $this->input->post("mobile_type");
-		
+
 		$data['result']=$this->apimobilizermodel->Login($username,$password,$gcmkey,$mobiletype);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
 
 
-//-----------------------------------------------//
 
-	public function user_profilepic()
-	{
-        $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		$user_id = $this->uri->segment(3);		
-		$profile = $_FILES["user_pic"]["name"];
-		$userFileName = time().'-'.$profile;
-
-		$uploadPicdir = 'assets/staff/profile/';
-		
-		$profilepic = $uploadPicdir.$userFileName;
-		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
-
-		$data['result']=$this->apimobilizermodel->updateProfilepic($user_id,$userFileName);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
-
-//-----------------------------------------------//
 
 	public function change_password()
 	{
@@ -129,7 +131,7 @@ class Apimobilizer extends CI_Controller {
 		$user_id = '';
 		$old_password = '';
 		$password = '';
-		
+
 		$user_id = $this->input->post("user_id");
 		$old_password = $this->input->post("old_password");
 	 	$password = $this->input->post("new_password");
@@ -138,7 +140,7 @@ class Apimobilizer extends CI_Controller {
 		$response = $data['result'];
 		echo json_encode($response);
 	} */
-	
+
 //-----------------------------------------------//
 
 	public function select_trade()
@@ -360,15 +362,15 @@ class Apimobilizer extends CI_Controller {
 		$response = $data['result'];
 		echo json_encode($response);
 	}
-//-----------------------------------------------//	
-	
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function student_picupload()
 	{
 	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		$admission_id = $this->uri->segment(3);		
+		$admission_id = $this->uri->segment(3);
 		$profile = $_FILES["student_pic"]["name"];
 		$userFileName = time().'-'.$profile;
 
@@ -381,13 +383,13 @@ class Apimobilizer extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
-	
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function list_students()
 	{
-	   
+
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
@@ -415,14 +417,14 @@ class Apimobilizer extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 
 //-----------------------------------------------//
 
 	public function list_students_status()
 	{
-	   
+
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		if(!$this->checkMethod())
@@ -452,7 +454,7 @@ class Apimobilizer extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -485,7 +487,7 @@ class Apimobilizer extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -798,7 +800,7 @@ class Apimobilizer extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Add Task";
 			$res["scode"] = 204;
@@ -816,7 +818,7 @@ class Apimobilizer extends CI_Controller {
 		$status  = '';
 		//$created_by = '';
 		//$created_at  = '';
-		
+
 		$user_id = $this->input->post("user_id");
 		$pia_id = $this->input->post("pia_id");
 		$task_title  = $this->input->post("task_title");
@@ -914,7 +916,7 @@ class Apimobilizer extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Update Task";
 			$res["scode"] = 204;
@@ -932,7 +934,7 @@ class Apimobilizer extends CI_Controller {
 		$status  = '';
 		$updated_by = '';
 		$updated_at  = '';
-		
+
 		$task_id = $this->input->post("task_id");
 		$user_id = $this->input->post("user_id");
 		$task_title  = $this->input->post("task_title");
@@ -956,7 +958,7 @@ class Apimobilizer extends CI_Controller {
 	{
 	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
-		$task_id = $this->uri->segment(3);		
+		$task_id = $this->uri->segment(3);
 		$profile = $_FILES["task_pic"]["name"];
 		$taskFileName = time().'-'.$task_id.'-'.$profile;
 
@@ -969,7 +971,7 @@ class Apimobilizer extends CI_Controller {
 		echo json_encode($response);
 	}
 
-//-----------------------------------------------//	
+//-----------------------------------------------//
 
 //-----------------------------------------------//
 
@@ -984,7 +986,7 @@ class Apimobilizer extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "List Task Picture";
 			$res["scode"] = 204;
@@ -1017,7 +1019,7 @@ class Apimobilizer extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Delete Task Picture";
 			$res["scode"] = 204;
@@ -1051,7 +1053,7 @@ class Apimobilizer extends CI_Controller {
 
 		if($_POST == FALSE)
 		{
-		    
+
 			$res = array();
 			$res["opn"] = "Add Mobilizer Location";
 			$res["scode"] = 204;
@@ -1076,7 +1078,7 @@ class Apimobilizer extends CI_Controller {
 		$location = $this->input->post("location");
 		$miles = $this->input->post("miles");
 		$location_datetime = $this->input->post("location_datetime");
-		
+
 
 		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
 		$response = $data['result'];
