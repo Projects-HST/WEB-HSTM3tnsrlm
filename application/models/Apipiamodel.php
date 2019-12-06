@@ -544,7 +544,7 @@ class Apipiamodel extends CI_Model {
 
     if($s_res->num_rows()>0){
             foreach($s_result as $rows){}
-              if(empty($rows->profile_pic)){
+              if(empty($rows->user_pic)){
                 $url='';
 
               }else{
