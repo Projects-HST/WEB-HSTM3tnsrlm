@@ -68,47 +68,9 @@ class Apimobilizer extends CI_Controller {
 
 	//-----------------------------------------------//
 
-//-----------------------------------------------//
-
-	/* public function login()
-	{
-	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
-
-		if(!$this->checkMethod())
-		{
-			return FALSE;
-		}
-
-		if($_POST == FALSE)
-		{
-			$res = array();
-			$res["opn"] = "Login";
-			$res["scode"] = 204;
-			$res["message"] = "Input error";
-
-			echo json_encode($res);
-			return;
-		}
-
-		$username = '';
-		$password = '';
-		$gcmkey ='';
-		$mobiletype ='';
-
-		$username = $this->input->post("username");
-		$password = $this->input->post("password");
-		$gcmkey = $this->input->post("gcm_key");
-		$mobiletype = $this->input->post("mobile_type");
-
-		$data['result']=$this->apimobilizermodel->Login($username,$password,$gcmkey,$mobiletype);
-		$response = $data['result'];
-		echo json_encode($response);
-	}
 
 
-
-
-	public function change_password()
+	public function user_profile()
 	{
 		$_POST = json_decode(file_get_contents("php://input"), TRUE);
 
@@ -128,20 +90,53 @@ class Apimobilizer extends CI_Controller {
 			return;
 		}
 
-		$user_id = '';
-		$old_password = '';
-		$password = '';
+
 
 		$user_id = $this->input->post("user_id");
-		$old_password = $this->input->post("old_password");
-	 	$password = $this->input->post("new_password");
 
-		$data['result']=$this->apimobilizermodel->changePassword($user_id,$old_password,$password);
+		$data['result']=$this->apimobilizermodel->user_profile($user_id);
 		$response = $data['result'];
 		echo json_encode($response);
-	} */
+	}
 
 //-----------------------------------------------//
+//-----------------------------------------------//
+
+
+
+			public function user_profile_update()
+			{
+				$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+				if(!$this->checkMethod())
+				{
+					return FALSE;
+				}
+
+				if($_POST == FALSE)
+				{
+					$res = array();
+					$res["opn"] = "Reset Password";
+					$res["scode"] = 204;
+					$res["message"] = "Input error";
+
+					echo json_encode($res);
+					return;
+				}
+
+
+
+				$id = $this->input->post("id");
+				$address = $this->input->post("address");
+				$email = $this->input->post("email");
+
+				$data['result']=$this->apimobilizermodel->user_profile_update($id,$address,$email);
+				$response = $data['result'];
+				echo json_encode($response);
+			}
+
+			//-----------------------------------------------//
+
 
 	public function select_trade()
 	{

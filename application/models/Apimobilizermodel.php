@@ -281,6 +281,51 @@ class Apimobilizermodel extends CI_Model {
 	} */
 //#################### Change Password End ####################//
 
+
+
+    function user_profile($user_id){
+      $sQuery = "SELECT es.*,eu.user_pic FROM edu_users as eu
+      left join edu_staff_details  as es on es.id=eu.user_master_id where eu.user_type=5 and eu.user_id='$user_id'";
+      $s_res = $this->db->query($sQuery);
+      $s_result= $s_res->result();
+
+      if($s_res->num_rows()>0){
+              foreach($s_result as $rows){}
+                if(empty($rows->user_pic)){
+                  $url='';
+
+                }else{
+                  $url=base_url().'assets/staff/profile/'.$rows->user_pic;
+                }
+                $user_profile=array(
+                  "id"=>$rows->id,
+                  "name"=>$rows->name,
+                  "address"=>$rows->address,
+                  "phone"=>$rows->phone,
+                  "email"=>$rows->email,
+                  "profile_pic"=>$url,
+                );
+            $response = array("status" => "success", "msg" => "User profile","userprofile"=>$user_profile);
+      }else{
+              $response = array("status" => "error", "msg" => "Users Not Found");
+      }
+      return $response;
+    }
+
+
+
+
+    function user_profile_update($id,$address,$email){
+      $update="UPDATE edu_staff_details SET address='$address',email='$email',updated_by='$id',updated_at=NOW() WHERE id='$id'";
+      $s_res = $this->db->query($update);
+      if($s_res){
+            $response = array("status" => "success", "msg" => "User profile updated successfully");
+      }else{
+              $response = array("status" => "error", "msg" => "Something Went wrong");
+      }
+      return $response;
+    }
+
 //#################### Select Trade ####################//
 	public function Selecttrade($user_id,$pia_id)
 	{
