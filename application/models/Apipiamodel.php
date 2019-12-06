@@ -556,7 +556,7 @@ class Apipiamodel extends CI_Model {
                 "pia_address"=>$rows->pia_address,
                 "pia_phone"=>$rows->pia_phone,
                 "pia_email"=>$rows->pia_email,
-                "pia_profil_pic"=>$url,
+                "pia_profile_pic"=>$url,
               );
           $response = array("status" => "success", "msg" => "User profile","userprofile"=>$user_profile);
     }else{
