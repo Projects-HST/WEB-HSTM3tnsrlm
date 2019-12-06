@@ -537,7 +537,7 @@ class Apipiamodel extends CI_Model {
 
 
   function user_profile($user_id){
-    $sQuery = "SELECT ep.* FROM edu_users as eu
+    $sQuery = "SELECT ep.*,eu.user_pic FROM edu_users as eu
     left join edu_pia  as ep on ep.id=eu.user_master_id where eu.user_type=3 and eu.user_id='$user_id'";
     $s_res = $this->db->query($sQuery);
     $s_result= $s_res->result();
@@ -548,7 +548,7 @@ class Apipiamodel extends CI_Model {
                 $url='';
 
               }else{
-                $url=base_url().'assets/staff/profile/'.$rows->profile_pic;
+                $url=base_url().'assets/staff/profile/'.$rows->user_pic;
               }
               $user_profile=array(
                 "pia_id"=>$rows->id,

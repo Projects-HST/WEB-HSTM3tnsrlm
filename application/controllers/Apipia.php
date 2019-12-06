@@ -878,10 +878,10 @@ class Apipia extends CI_Controller {
 
 public function user_profilepic()
 	{
-        $_POST = json_decode(file_get_contents("php://input"), TRUE);
+    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$profile_id = $this->uri->segment(3);
-		//$profile_id = 4;
+		// $profile_id = 11;
 		$profile = $_FILES["user_pic"]["name"];
 		$userFileName = time().'-'.$profile;
 
