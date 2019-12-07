@@ -400,7 +400,10 @@ class Apipiamodel extends CI_Model {
 //#################### Plan List ####################//
 	public function mobilizationPlanlist ($pia_id)
 	{
-		$plan_query = "SELECT * FROM edu_mobilization_plan WHERE pia_id = '$pia_id'";
+		// $plan_query = "SELECT * FROM edu_mobilization_plan WHERE pia_id = '$pia_id'";
+    $plan_query="SELECT mp.*,eu.name as uploaded_by FROM edu_mobilization_plan as mp
+    left join edu_users as eu on eu.user_id=mp.created_by
+    WHERE  mp.pia_id = '$pia_id'";
 		$plan_res = $this->db->query($plan_query);
 		 if($plan_res->num_rows()>0){
 			foreach ($plan_res->result() as $rows)
@@ -827,7 +830,11 @@ class Apipiamodel extends CI_Model {
 //#################### List Task ####################//
 	public function listTask ($user_id)
 	{
-	        $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
+	    // $task_query = "SELECT B.id as task_id, B.task_title, B.task_description, B.task_date, B.status, A.name as assigned_to FROM edu_users A, edu_task B WHERE A.user_id = B.user_id AND B.pia_id ='$user_id'";
+      $task_query="SELECT et.*,u.user_type,u.name as assigned_to,eu.name as assigned_from FROM edu_task as et
+      left join edu_users as u on u.user_id=et.user_id
+      left join edu_users as eu on eu.user_id=et.created_by
+      where et.pia_id='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 
