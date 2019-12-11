@@ -50,7 +50,7 @@ public function create()
 		$status=$this->input->post('status');
 
 		$datas['res']=$this->yearsmodel->add_years($formatted_date,$formatted_date1,$status,$user_id);
-    echo $datas['res'];
+		echo $datas['res'];
 		}
 		else{
 		redirect('/');
@@ -94,9 +94,10 @@ public function update_year()
 
 			$end_month=$this->input->post('end_month');
 			$dateTime = new DateTime($end_month);
-			$formatted_date1=date_format($dateTime,'Y-m-d' );
+			 $formatted_date1=date_format($dateTime,'Y-m-d' );
+
 			$datas['res']=$this->yearsmodel->update_years($year_id,$formatted_date,$formatted_date1,$status,$user_id);
-      echo 	$datas['res'];
+			echo $datas['res'];
 		}else{
        redirect('/');
 		}

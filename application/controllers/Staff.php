@@ -66,6 +66,7 @@ class Staff extends CI_Controller {
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
 					}
 					$datas=$this->staffmodel->create_staff_details($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id);
+					
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', 'Staff Created Successfully');
 						redirect('staff/view');

@@ -53,20 +53,20 @@
     <script src="<?php echo base_url(); ?>assets/admin/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body style="    margin-bottom: 0px;">
+<body>
 
 
     <div class="login-content">
         <!-- Login -->
 
-
-
         <div class="nk-block toggled" id="l-login">
-
+			<div  style="margin-bottom:30px;">
+				<img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class=""/>
+			</div>
+			
             <div class="nk-form">
-              <img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class="" style="margin-bottom:20px;"/>
               <?php if($this->session->flashdata('msg')): ?>
-                  <div class="alert alert-success">
+                  <div class="alert alert-danger">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                           ×</button>
                       <?php echo $this->session->flashdata('msg'); ?>
@@ -74,51 +74,59 @@
                   <?php endif; ?>
 
               <form action="<?php echo base_url(); ?>login/checklogin" method="post" enctype="multipart/form-data" id="loginform" name="loginform">
-                <div class="input-group">
+			  <div>
+					<p style="font-size:18px;font-weight:bold;">Sign in to M3</p>
+			 </div>
+                <div class="input-group" style="padding:5px;">
                     <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-user" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" name="username" class="form-control" placeholder="Username">
+                        <input type="text" name="username" class="form-control" placeholder="Username" maxlength="15">
                     </div>
                 </div>
-                <div class="input-group mg-t-15">
+                <div class="input-group" style="padding:5px">
                     <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" maxlength="15"><span toggle="#password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
               </form>
-            </div>
-
-            <div class="nk-navigation nk-lg-ic">
+			 <div class="nk-navigation nk-lg-ic" style="padding:10px 0px 10px 0px">
                 <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
             </div>
+            </div>
+
+           
         </div>
 
 
         <!-- Forgot Password -->
         <div class="nk-block" id="l-forget-password">
+			<div  style="margin-bottom:30px;">
+				<img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class=""/>
+			</div>
             <div class="nk-form">
                 <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
-                <p class="text-left">Enter the registered Email ID to reset your password.</p>
+				<div>
+					<p style="font-size:15px;font-weight:bold;">Enter the registered Email ID to reset your password.</p>
+			 </div>
 
                 <div class="input-group">
                     <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control"  name="forgot_email" placeholder="Email Address">
+                        <input type="text" class="form-control"  name="forgot_email" placeholder="Email Address" maxlength="30">
                     </div>
                 </div>
-
-                <!-- <a href="#l-login" data-ma-action="nk-login-switch" data-ma-block="#l-login" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow"></i></a> -->
-                <button type="submit" class="btn btn-login btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
+                <button type="submit" class="btn btn-forgot btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
               </form>
+			  
+				 <div class="nk-navigation nk-lg-ic rg-ic-stl" style="padding:10px 0px 10px 0px">
+					<a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
+				</div>
             </div>
 
-            <div class="nk-navigation nk-lg-ic rg-ic-stl">
-                <a href="#" data-ma-action="nk-login-switch" data-ma-block="#l-login"><i class="notika-icon notika-right-arrow"></i> <span>Sign in</span></a>
 
-            </div>
         </div>
     </div>
     <!-- Login Register area End-->
@@ -194,14 +202,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 <script type="text/javascript">
 
+$(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye-slash fa-eye");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+
  $('#loginform').validate({ // initialize the plugin
      rules: {
          username:{required:true },
          password:{required:true }
      },
      messages: {
-           username: "This field cannot be empty!",
-           password: "This field cannot be empty!"
+           username: "Enter your username",
+           password: "Enter your password"
          }
  });
 
@@ -211,7 +230,7 @@ $("#myformsection").validate({
            forgot_email:{required:true }
        },
        messages: {
-            forgot_email:"This field cannot be empty!"
+            forgot_email:"Enter your register email address"
            },
     submitHandler: function(form) {
       $.ajax({
@@ -221,8 +240,8 @@ $("#myformsection").validate({
                  success: function(response) {
                      if (response=="success") {
                        $.toast({
-                                 heading: 'Successfully',
-                                 text: 'Password  Reset and send to your Mail Please check it',
+                                 heading: 'Success',
+                                 text: 'Password reset and send to your mail. Please check your mail',
                                  position: 'mid-center',
                                  icon:'success',
                                  stack: false

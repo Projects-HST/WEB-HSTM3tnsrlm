@@ -1,71 +1,82 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-example-wrap mg-t-30">
-                        <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Add Video Link </h2>
-                        </div>
-                        <?php if($this->session->flashdata('msg')): ?>
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                        ×</button>
-                    <?php echo $this->session->flashdata('msg'); ?>
-                </div>
-                <?php endif; ?>
-                            <form method="post" action="<?php echo base_url(); ?>center/videos" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
-
-
-                        <div class="form-example-int form-horizental">
-                            <div class="form-group">
-                                <div class="row">
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				
+				<?php if($this->session->flashdata('msg')): ?>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×</button>
+					<?php echo $this->session->flashdata('msg'); ?>
+				</div>
+				<?php endif; ?>
+			
+			
+			<div class="row page_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-example-wrap">
+			
+					<form method="post" action="<?php echo base_url(); ?>center/videos" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
+					<div class="cmp-tb-hd cmp-int-hd">
+						<h2>Center Videos</h2>
+					</div>
+						
+					<div class="form-example-int form-horizental">
+                       <div class="form-group">
+							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Add  video Title</label>
+                                        <label class="hrzn-fm">Video Title</label>
                                     </div>
-                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                        <div class="nk-int-st">
-                                          <input type="text" name="video_title" id="video_title" class="form-control" multiple required>
-                                            <input type="hidden" class="form-control" name="center_id" value="<?php echo $this->uri->segment(3); ?>">
-                                        </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="video_title" id="video_title" class="form-control" required>
                                     </div>
-                                </div>
+									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>
-                        </div>
-                        <div class="form-example-int form-horizental">
-                            <div class="form-group">
-                                <div class="row">
+							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">video Link</label>
+                                        <label class="hrzn-fm">video URL Link</label>
                                     </div>
-                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                        <div class="nk-int-st">
-                                        <input type="text" name="video_link" id="video_link" class="form-control" multiple required placeholder="Youtube Token E.g=d3OZVsHG9TM">
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="video_link" id="video_link" class="form-control" required placeholder="Youtube Token E.g=d3OZVsHG9TM">
                                         <small>https://www.youtube.com/watch?v=</small>
-
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-example-int mg-t-15">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                </div>
-                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <button class="btn btn-success notika-btn-success waves-effect">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-example-wrap mg-t-30">
-                                    <div class="cmp-tb-hd cmp-int-hd">
-                                        <h2>View  Videos </h2>
+									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
+                            </div>									
+							<div class="row page_row">
+								 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                     </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										 <input type="hidden" class="form-control" name="center_id" value="<?php echo $this->uri->segment(3); ?>">
+										<button class="btn btn-success notika-btn-success waves-effect">Upload</button>
+                                    </div>
+								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+								</div>
+							</div>
+					</div>
+                </div>	
+              </form>
+                    
+            </div>
+		</div>
+	</div>
+	
+	</div>
+</div>
+</div>
+
+
+
+<div class="container">
+  <div class="row page_row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   
+		<div class="row page_row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<div class="form-example-wrap">
+									
+									<div class="cmp-tb-hd cmp-int-hd">
+                                        <h2>List  Videos </h2>
+                                    </div>
+									
                                     <div class="table-responsive">
                                         <table id="data-table-basic" class="table table-striped">
                                             <thead>
@@ -95,10 +106,7 @@
                                                      <button class="btn btn-warning notika-btn-warning waves-effect">Inactive</button>
                                                      <?php   } ?>
                                                    </td>
-                                                    <td>
-                                                      <a onclick="delete_videos('<?php echo $rows->id; ?>')"><i class="fa fa-times" aria-hidden="true"></i></a>
-
-                                                    </td>
+                                                    <td><a onclick="delete_videos('<?php echo $rows->id; ?>')"><i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" title="Delete" style="cursor:pointer;font-size:20px;"></i></a></td>
                                                 </tr>
                                               <?php  $i++; } ?>
                                             </tbody>
@@ -108,115 +116,61 @@
 
                                 </div>
                             </div>
+				</div>
 
-
-
-
-
-              </div>
+	</div>
   </div>
 </div>
 <style>
-.thumbnail {
-        position: relative;
-        width: 300px;
-        height: 300px;
-    }
-
-    .thumbnail img {
-        width: 100%;
-        height: 100%;
-    }
-
-    #close {
-        display: block;
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        top: 2px;
-        right: 2px;
-        background: url(http://icons.iconarchive.com/icons/kyo-tux/delikate/512/Close-icon.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
+.page_row{
+  margin-bottom: 20px;
 }
+
 </style>
 <script type="text/javascript">
-$('#masters').addClass('active');
-$('#mastersmenu').addClass('active');
+	$('#masters').addClass('active');
+	$('#mastersmenu').addClass('active');
+	$('#centers').addClass('active');
+
+	$("#myformsection").validate({
+       rules: {
+           video_title:{required:true },
+           video_link:{required:true },
+       },
+       messages: {
+            video_title:"Enter video title",
+            video_link:"Enter video URL link"
+           }
+   });
+   
 function delete_videos(id) {
+	$.ajax({
+		type: "POST",
+		url: "<?php echo base_url(); ?>center/delete_videos",
+		data: {
+			id: id
+		},
+		success: function(response) {
 
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url(); ?>center/delete_videos",
-                        data: {
-                            id: id
-                        },
-                        success: function(response) {
-
-                            if (response == 'success') {
-                              $.toast({
-                                        heading: 'Deleted successfully',
-                                        text: response,
-                                        position: 'mid-center',
-                                        icon:'success',
-                                        stack: false
-                                    })
-                                    window.setTimeout(function(){location.reload()},2000);
-                            } else {
-                              $.toast({
-                                        heading: 'Error',
-                                        text: response,
-                                        position: 'mid-center',
-                                        icon:'error',
-                                        stack: false
-                                    })
-                            }
-                        }
-                    });
-
-
-    }
-
-function delgal(gal_id) {
-
-      $.ajax({
-          type: "POST",
-          url: "<?php echo base_url(); ?>center/delete_gal",
-          data: {
-              gal_id: gal_id
-          },
-          success: function(response) {
-              if (response == 'success') {
-                $.toast({
-                          heading: 'Deleted successfully',
-                          text: response,
-                          position: 'mid-center',
-                          icon:'success',
-                          stack: false
-                      })
-                      window.setTimeout(function(){location.reload()},2000);
-              } else {
-                $.toast({
-                          heading: 'Error',
-                          text: response,
-                          position: 'mid-center',
-                          icon:'error',
-                          stack: false
-                      })
-              }
-          }
-      });
-
-
-
-
+			if (response == 'success') {
+			  $.toast({
+						heading: 'Deleted successfully',
+						text: response,
+						position: 'mid-center',
+						icon:'success',
+						stack: false
+					})
+					window.setTimeout(function(){location.reload()},2000);
+			} else {
+			  $.toast({
+						heading: 'Error',
+						text: response,
+						position: 'mid-center',
+						icon:'error',
+						stack: false
+					})
+			}
+		}
+	});
 }
-
-
-
-
-
-
-
 </script>

@@ -1,61 +1,94 @@
 <div class="container">
-  <div class="row">
-    <div class="basic-tb-hd">
-
-    </div>
-     <div class="container">
-       <div class="basic-tb-hd">
-           <h2>Tracking view </h2>
-       </div>
-	   
-	   <form action="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo $piaid; ?>" method="post" class="form-horizontal" id="tracking_form" name="edit_trade_handling_form">
-                   <div>
-                        <div class="input-group  nk-int-st">
-                            <input type="text" name="selected_date" class="form-control datepicker" placeholder="Pick Date"/>
-                        </div>
-				</div>
-				<div>
-                   <div class="form-example-int">
-                      <button type="submit" class="btn btn-info notika-btn-info waves-effect">Track</button>
-                   </div>
-				</div>
-				<input type="hidden" name="mob_id" value="<?php echo $mob_id; ?>">
-		</form>
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
-       <div class="col-md-10">
-         <div id="map" style="width:800px; height:400px;"></div>
-       </div>
-       <div class="col-md-2">
-         <p>Total KM  Travelled</p>
-		<div id="totals">
-		 <?php
+			<?php if($this->session->flashdata('msg')): ?>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×</button>
+					<?php echo $this->session->flashdata('msg'); ?>
+				</div>
+            <?php endif; ?>
 
-		$lats= json_encode( $res, JSON_NUMERIC_CHECK );
-		if(empty($kms_using_lat)){
-		 echo "no data found";
-		}else{
-		 foreach($kms_using_lat as $mile){}
-		   $kms=$mile->km;
-		   if(empty($kms)){
-			 echo "no data";
-		   }else{
-			 echo $mile->km;
-		   }
 
-		}
-		  ?>
+	
+	
+
+			
+			<div class="row page_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-example-wrap">
+					
+					<form method="post" action="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo $piaid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
+                        <div class="cmp-tb-hd cmp-int-hd">
+                            <h2>Mobilizer Tracking</h2>
+                        </div>
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Select Date</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <div class="nk-int-st">
+										<input type="text" placeholder="Select Date" name="track_date" id="track_date" class="form-control track_date input-sm" value="<?php $date=date_create($selected_date);echo date_format($date,"d-m-Y");  ?>" />
+                                        </div>
+                                    </div>						
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+										<input type="hidden" name="mob_id" value="<?php echo $mob_id; ?>">
+                                        <button class="btn btn-success notika-btn-success waves-effect">Track</button>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                    </div>
+                                </div>
+							
+							<div class="row page_row">
+                                    <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12">
+                                         <div id="map" style="width:750px; height:400px;"></div>
+                                    </div>
+				
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"> <p>Total KM  Travelled</p>
+										<?php
+												$lats= json_encode( $res, JSON_NUMERIC_CHECK );
+												if(empty($kms_using_lat)){
+														echo "no data found";
+												}else{
+												 foreach($kms_using_lat as $mile){}
+												   $kms=$mile->km;
+												   if(empty($kms)){
+													 echo "no data";
+												   }else{
+													 echo $mile->km;
+												   }
+
+												}
+										?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+						</form>
+						
+                    </div>
+                </div>
+            </div>
+								
 		</div>
-       </div>
-
-	   
-     </div>
-  </div>
+	</div>
 </div>
+<style>
+.page_row{
+  margin-bottom: 20px;
+}
+</style>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD79f4g1cuT6teKfopSTGYBs1-wMm4v4DY&libraries=geometry"></script>
 <script>
     $('#pia').addClass('active');
     $('#piamenu').addClass('active');
-
+	$('#mobilizer_list').addClass('active');
 
 function initialize() {
 		var homeLatlng = new google.maps.LatLng(11.004556,76.961632);

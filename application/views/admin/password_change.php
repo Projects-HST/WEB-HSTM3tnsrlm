@@ -1,56 +1,99 @@
-<div class="container">
-	<div class="row" style="margin-bottom:100px;">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-element-list">
-				<div class="cmp-tb-hd bcs-hd">
-					<h2>Change Password</h2>
-				</div>
-				
-			<div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <form method="post" action="" class="form-horizontal" enctype="multipart/form-data" id="myformsection" >
-                  <div class="form-example-wrap">
-                     
-                        <?php  foreach ($result as $row) { }  ?>
-                        <div class="form-example-int">
-                            <div class="form-group">
-                                <label>Current Password</label>
-                                <div class="nk-int-st">
-                                    <input type="text" class="form-control input-sm"  name="old_password" placeholder="Enter Current Password" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int">
-                            <div class="form-group">
-                                <label>New Password</label>
-                                <div class="nk-int-st">
-                                    <input type="text" class="form-control input-sm" id="new_password" name="new_password" placeholder="Enter New Password" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int">
-                            <div class="form-group">
-                                <label>Retype Password</label>
-                                <div class="nk-int-st">
-                                    <input type="text" class="form-control input-sm" id="retype_password" name="retype_password" placeholder="Enter Retype Password" value="">
-                                    <input type="hidden" class="form-control input-sm" name="user_id" value="<?php echo base64_encode($row->id*98765); ?>">
+ <?php  foreach ($result as $row) { }  ?>
+ <div class="container">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int mg-t-15">
-                            <button class="btn btn-success notika-btn-success waves-effect">Update Password</button>
-                        </div>
-                    </div>
-                  </form>
-                </div>
-            </div>
+	<?php if($this->session->flashdata('msg')): ?>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			×</button>
+		<?php echo $this->session->flashdata('msg'); ?>
 	</div>
+	<?php endif; ?>
+ 
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<div class="form-example-wrap">
+			
+			<form method="post" action="<?php echo base_url(); ?>admin/password_update" class="form-horizontal" enctype="multipart/form-data" id="frmPassword">
+			
+			<div class="cmp-tb-hd cmp-int-hd">
+				<h2>Change Password</h2>
+			</div>
+
+			<div class="form-example-int form-horizental">
+					<div class="form-group">
+   
+   
+					<div class="row page_row">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+								<label class="hrzn-fm">Current Password</label>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<input type="password" placeholder="Enter Current Password" name="old_password" id="old_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#old_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
+						</div>
+						
+						<div class="row page_row">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+								<label class="hrzn-fm">New Password</label>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<input type="password" placeholder="Enter New Password" id="new_password" name="new_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#new_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
+						</div>
+						
+						<div class="row page_row">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+								<label class="hrzn-fm">Retype Password</label>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<input type="password" placeholder="Enter Retype Password" id="retype_password" name="retype_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#retype_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
+							</div>
+							 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
+						</div>
+						
+						<div class="row page_row" style="margin-bottom:100px;">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+								<input type="hidden" class="form-control input-sm" name="user_id" value="<?php echo base64_encode($row->id*98765); ?>">
+								<button type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
+							</div>
+							 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
+						</div>
+						
+
+						
+			</div>
+		</div>
+
+			</form>
+			</div>
+		</div>
+	</div>
+
 </div>
+
+<style>
+.page_row{
+  margin-bottom: 20px;
+}
+</style>
+
 <script type="text/javascript">
-  $('#profile').addClass('active');
-  $('#profilemenu').addClass('active');
-  $("#myformsection").validate({
+ $(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye-slash fa-eye");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+ 
+  $("#frmPassword").validate({
          rules: {
              old_password:{
                required: true,
@@ -72,49 +115,22 @@
          },
          messages: {
                old_password: {
-                    required: "Please enter your old password.",
-                    remote: "Old Password Doesn't Match!"
+                    required: "Enter old password",
+                    remote: "Old password doesn't match!"
                 },
                 new_password: {
-                  required: "New  password",
+                  required: "Enter new password",
                   maxlength:"Maximum 10 digits",
                   minlength:"Minimum 6 digits"
 
                 },
                retype_password: {
-                 required: "New  password does not match",
+                 required: "New password doesn't match",
                  maxlength:"Maximum 10 digits",
                  minlength:"Minimum 6 digits",
                  equalTo:"Password Must Match"
 
                 }
-             },
-      submitHandler: function(form) {
-        $.ajax({
-                   url: "<?php echo base_url(); ?>admin/password_update",
-                   type: 'POST',
-                   data: $('#myformsection').serialize(),
-                   success: function(response) {
-                       if (response=="success") {
-                         $.toast({
-                                   heading: 'Successfully',
-                                   text: response,
-                                   position: 'mid-center',
-                                   icon:'success',
-                                   stack: false
-                               })
-                               window.setTimeout(function(){location.reload()},3000);
-                       }else{
-                         $.toast({
-                                   heading: 'Error',
-                                   text: response,
-                                   position: 'mid-center',
-                                   icon:'error',
-                                   stack: false
-                               })
-                       }
-                   }
-               });
              }
      });
 

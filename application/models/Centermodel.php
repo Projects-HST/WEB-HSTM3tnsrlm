@@ -20,7 +20,7 @@ Class Centermodel extends CI_Model
             $result = $this->db->query($check_exist);
                   if ($result->num_rows() == 0) {
                     $insert="INSERT INTO edu_center_master (center_name,center_info,center_banner,center_address,pia_id,status,created_by,created_at) VALUES ('$center_name','$center_info','$center_logo','$center_address','$user_id','$status','$user_id',NOW())";
-                      $result = $this->db->query($insert);
+                    $result = $this->db->query($insert);
                       if($result){
                         $data= array("status" => "success");
                         return $data;

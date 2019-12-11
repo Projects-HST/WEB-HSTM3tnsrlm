@@ -41,7 +41,6 @@ Class Trackingmodel extends CI_Model
         function get_lat_and_long_id_table_view($user_id,$selected_date){
            $select="SELECT etd.user_location,eu.name,etd.user_lat,etd.user_long, (@cnt := @cnt + 1) AS rowNumber,etd.created_at,
           etd.id FROM edu_users AS eu  CROSS JOIN (SELECT @cnt := 0) AS dummy LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' ORDER BY created_at ASC";
-
           $get_result=$this->db->query($select);
           return $get_result->result();
 
@@ -61,28 +60,34 @@ Class Trackingmodel extends CI_Model
          return $get_result->result();
 
         }
-        function testing_map($user_id,$selected_date){
-           $select="SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' group by minute(created_at) ORDER BY created_at ASC ";
-     //echo $select="SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' ORDER BY created_at ASC ";
-          
-          $get_result=$this->db->query($select);
-          $get_res=$get_result->result();
-          // $data= array("address" =>$get_res);
-        if($get_result->num_rows()==0){
-        $address[] = array ("Geometry"  => array("Latitude" => "no records", "Longitude" => "no records"));
-        }else{
-          foreach($get_res as $rows){
-          $lat=$rows->lat;
-          $lng=$rows->lng;
-          $loca=$rows->address;
-            $address[] = array ("Geometry"  => array("Latitude" => $lat, "Longitude" => $lng));
+		
+        function location_map($user_id,$selected_date){
+       
+			$select="SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date' group by minute(created_at) ORDER BY created_at ASC ";
+			$get_result=$this->db->query($select);
+			$get_res=$get_result->result();
+
+			if($get_result->num_rows()==0){
+				$address[] = array ("Geometry"  => array("Latitude" => "no records", "Longitude" => "no records"));
+			}else{
+				foreach($get_res as $rows){
+					$lat=$rows->lat;
+					$lng=$rows->lng;
+					$loca=$rows->address;
+					$address[] = array ("Geometry"  => array("Latitude" => $lat, "Longitude" => $lng));
              }
         }
           return $address;
         }
 
         function get_mobilizer_id($user_id){
-          $select="SELECT * FROM edu_users AS eu WHERE user_type='5' and pia_id='$user_id' and status='Active'";
+          $select="SELECT
+					*
+				FROM
+					edu_users AS eu,
+					 edu_staff_details AS es
+				WHERE
+					eu.user_type = '5' AND eu.pia_id = '$user_id' AND eu.user_master_id =es.id";
           $get_result=$this->db->query($select);
           return $get_result->result();
         }
@@ -91,7 +96,6 @@ Class Trackingmodel extends CI_Model
           $select="SELECT eu.user_id, SUM(eu.miles) AS miles FROM edu_tracking_details as eu WHERE eu.user_id='$user_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$selected_date'  GROUP BY user_id";
           $get_result=$this->db->query($select);
           return $get_result->result();
-
         }
 
 
@@ -113,21 +117,6 @@ Class Trackingmodel extends CI_Model
           return $get_result->result();
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 ?>

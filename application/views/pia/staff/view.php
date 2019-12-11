@@ -23,11 +23,9 @@
                              <th>Name</th>
                              <th>Email id</th>
                              <th>Mobile</th>
-                             <th>Profile</th>
+							 <th>Role</th>
                              <th>status</th>
                               <th>Action</th>
-
-
                          </tr>
                      </thead>
                      <tbody>
@@ -37,20 +35,9 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
-                              <td>	<?php if($rows->profile_pic==' '){
-
-      													}else{ ?>
-      															<img src="<?php echo base_url(); ?>assets/staff/<?php echo $rows->profile_pic; ?>" style="width:100px;">
-      												<?php	} ?></td>
-                             <td><?php if($rows->status=='Active'){ ?>
-                              <button class="btn btn-success notika-btn-success waves-effect">Active</button>
-                          <?php }else{ ?>
-                                  <button class="btn btn-danger notika-btn-danger waves-effect">Inactive</button>
-                              <?php   } ?>
-                            </td>
-                             <td>
-                               <a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
-
+							  <td><?php if($rows->role_type=='4'){ ?>Trainer<?php }else{ ?>Mobilizer<?php   } ?></td>
+                             <td><?php if($rows->status=='Active'){ ?>Active<?php }else{ ?>Inactive<?php   } ?></td>
+							  <td><a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Staff"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
 
                          </tr>
 <?php  $i++; } ?>
@@ -70,4 +57,5 @@
 <script type="text/javascript">
     $('#staff').addClass('active');
     $('#staffmenu').addClass('active');
+	 $('#view_staff').addClass('active');
 </script>

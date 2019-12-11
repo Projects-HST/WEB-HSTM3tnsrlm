@@ -1,190 +1,122 @@
 <div class="container">
-	<div class="row" style="margin-bottom:100px;">
+	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-element-list">
-				<div class="cmp-tb-hd bcs-hd">
-					<h2>Update PIA</h2>
+			<?php foreach($result as $rows){} ?>
+			<div class="row page_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-example-wrap">
+					<form method="post" action="<?php echo base_url(); ?>admin/update_pia_details" class="form-horizontal" enctype="multipart/form-data" id="piaform">
+                        <div class="cmp-tb-hd cmp-int-hd">
+                            <h2>Update PIA</h2>
+                        </div>
 
-				</div>
-        <?php if($this->session->flashdata('msg')): ?>
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×</button>
-                <?php echo $this->session->flashdata('msg'); ?>
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">PRN Number</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" value="<?php echo $rows->pia_unique_number; ?>" maxlength="13">
+                                    </div>
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Name</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Name" name="name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="30">
+                                    </div>
+                                </div>
+								
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Mobile</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" value="<?php echo $rows->pia_phone; ?>" maxlength="10">
+                                    </div>
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Email</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="30">
+                                    </div>
+                                </div>
+								
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">State</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" placeholder="State" name="state" class="form-control input-sm" value="<?php echo $rows->pia_state; ?>" maxlength="30">
+                                    </div>
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Address</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                           <textarea name="address" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Address"><?php echo $rows->pia_address; ?></textarea>
+                                    </div>
+                                </div>
+								
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Profile Picture</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                           <input type="file" name="staff_new_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
+                                    </div>
+									  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Status</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<select name="status" class="form-control input-sm" id="status">
+													<option value="Active">Active</option>
+													<option value="Inactive">Inactive</option>
+										</select><script> $('#status').val('<?php echo $rows->status; ?>');</script>
+                                    </div>
+                                </div>
+								
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                       <?php if($rows->profile_pic==''){
+										}else{ ?>
+											<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+									<?php	} ?>
+                                    </div>
+                                </div>
+								
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
+										<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
+										<button class="btn btn-success notika-btn-success waves-effect">Save</button>
+                                    </div>
+                                </div>
+								
+								
+                            </div>
+                        </div>
+						</form>
+                    </div>
+                </div>
             </div>
-            <?php endif; ?>
-			
-			<form method="post" action="<?php echo base_url(); ?>admin/update_pia_details" class="form-horizontal" enctype="multipart/form-data" id="piaform">
-<?php foreach($result as $rows){} ?>
-				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>PRN Number</h2>
-						</div>
-						<div class="form-group ic-cmp-int">
-							<div class="form-ic-cmp">
-								<i class="notika-icon notika-edit"></i>
-							</div>
-							<div class="nk-int-st">
-							  <input type="text" placeholder="Unique Number" name="unique_number" class="form-control" value="<?php echo $rows->pia_unique_number; ?>">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Name</h2>
-						</div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<input type="text" placeholder="Name" name="name" class="form-control" value="<?php echo $rows->pia_name; ?>">
-									</div>
-								</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Mobile Number</h2>
-						</div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-										<input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->pia_phone; ?>">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Email Address</h2>
-						</div>
-								<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
-										<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-							  		<input type="text" name="email" class="form-control" placeholder="Email Address" value="<?php echo $rows->pia_email; ?>" />
-									</div>
-								</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>State</h2>
-						</div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<input type="text" name="state" class="form-control" placeholder="Enter State" value="<?php echo $rows->pia_state; ?>" />
-									</div>
-								</div>
-							</div>
 						
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Address</h2>
-						</div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<textarea name="address" MaxLength="150" class="form-control" rows="4" cols="80" placeholder="Address"><?php echo $rows->pia_address; ?></textarea>
-
-										</div>
-									</div>
-								</div>
-						
-						</div>
-
-					
-							
-							<div class="row">
-
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-									<div class="form-group ic-cmp-int form-elet-mg">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<input type="file" name="staff_new_pic" placeholder="" class="form-control" >
-											 <small>Profile Picture</small>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="nk-int-mk">
-							  <h2>Status</h2>
-						</div>
-										<div class="form-group ic-cmp-int form-elet-mg">
-											<div class="form-ic-cmp">
-												</div>
-												<div class="nk-int-st">
-													<select name="status" class="selectpicker" id="status">
-														<option value="">Status</option>
-														<option value="Active">Active</option>
-														<option value="Inactive">Inactive</option>
-													</select>
-													<script> $('#status').val('<?php echo $rows->status; ?>');</script>
-												</div>
-											</div>
-										</div>
-
-								</div>
-							<div class="row">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-										<div class="form-group ic-cmp-int form-elet-mg">
-											<div class="form-ic-cmp">
-												</div>
-												<div class="nk-int-st">
-													<?php if($rows->profile_pic==''){
-
-													}else{ ?>
-															<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
-												<?php	} ?>
-
-
-												</div>
-											</div>
-										</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-12 " style="margin-top:10px;">
-										<div class="form-group  form-elet-mg text-center">
-											<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
-											<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
-											<button  type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
-										</div>
-									</div>
-								</div>
-              </form>
-						</div>
-					</div>
-				</div>
-			</div>
+		</div>
+	</div>
+</div>
 <style>
-.row{
-  margin-bottom: 10px;
-}
-.nk-int-mk h2 {
-    font-size: 13px;
-    color: #c13b3b;
-    margin-left: 22px;
-    font-weight: 400;
+.page_row{
+  margin-bottom: 20px;
 }
 </style>
+
 <script type="text/javascript">
+
     $('#pia').addClass('active');
     $('#piamenu').addClass('active');
+	$('#view_pia').addClass('active');
+
 		$('#piaform').validate({
 			rules: {
 				unique_number: {
@@ -216,6 +148,7 @@
 				state: {
 						required: true
 				},
+				staff_new_pic:{required:false,accept: "jpg,jpeg,png", filesize: 1048576  },
 				status: {
 						required: true
 				}
@@ -225,8 +158,8 @@
 					required: "Enter PRN Number",
 					maxlength:"Maximum 13 digits",
 					minlength:"Minimum 13 digits",
-					remote: "PRN Number Already Exist",
-					number:"Only Numbers"
+					remote: "PRN number already exist!",
+					number:"Enter only numbers"
 				 },
 				//unique_number: "Enter Unique Number",
 				name: "Enter Name",
@@ -234,15 +167,20 @@
 						required: "Enter mobile number",
 						maxlength:"Maximum 10 digits",
 						minlength:"Minimum 10 digits",
-						number:"Only Numbers"
+						number:"Enter only numbers"
 				 },
 				email: {
-						 required: "Please enter your email address.",
-						 email: "Please enter a valid email address."
+						 required: "Enter email address",
+						 email: "Enter valid email address"
 				 },
-				state: "Enter State",
-				address: "Enter Address",
-				status: "Select Status"
+				state: "Enter atate",
+				address: "Enter address",
+				 staff_new_pic:{
+								  required:"",
+								  accept:"Please upload .jpg or .png .",
+								  fileSize:"File must be JPG or PNG, less than 1MB"
+								},
+				status: "Select status"
 			}
 		});
 </script>

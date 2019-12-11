@@ -1,488 +1,274 @@
+ <?php foreach($res as $rows){} ?>
 <div class="container">
-	<div class="row" style="margin-bottom:100px;">
+	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<div class="form-element-list">
-				<div class="cmp-tb-hd bcs-hd">
-					<h2>Update Prospects</h2>
-
+				
+				<?php if($this->session->flashdata('msg')): ?>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×</button>
+					<?php echo $this->session->flashdata('msg'); ?>
 				</div>
-        <?php if($this->session->flashdata('msg')): ?>
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                    ×</button>
-                <?php echo $this->session->flashdata('msg'); ?>
-            </div>
-            <?php endif; ?>
-        <form method="post" action="<?php echo base_url(); ?>admission/save_ad" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
-          <?php foreach($res as $rows){} ?>
-				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="nk-int-mk">
-                <h2>Aadhaar Card Number</h2>
-            </div>
-						<div class="form-group ic-cmp-int">
-							<div class="form-ic-cmp">
-								<i class="notika-icon notika-edit"></i>
+				<?php endif; ?>
+			
+			
+			<div class="row page_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-example-wrap">
+			
+			<form method="post" action="<?php echo base_url(); ?>admission/save_ad" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
+				<div class="cmp-tb-hd cmp-int-hd">
+					<h2>Update Prospects</h2>
+				</div>
+						
+				 <div class="form-example-int form-horizental">
+                      <div class="form-group">
+							<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Aadhaar Card Number</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Aadhaar Card Number" name="aadhar_card_num" maxlength="12"  class="form-control input-sm" value="<?php echo $rows->aadhaar_card_number; ?>">
+                                    </div>
+									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Admission Date </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="admission_date" class="form-control track_date input-sm" placeholder="Admission Date" value="<?php $adate=date_create($rows->admission_date);echo date_format($adate,"d-m-Y");  ?>"/>
+                                    </div>
+                            </div>
+								
+							<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Admission Location</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+											<input type="text" name="admission_location" class="form-control input-sm" placeholder="Admission Location" value="<?php echo $rows->admission_location; ?>"/>
+                                    </div>
+                                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Name</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+											<input type="text" name="name" class="form-control input-sm" placeholder="Enter Name" value="<?php echo $rows->name; ?>"/>
+                                    </div>
 							</div>
-							<div class="nk-int-st">
-								<input type="text" placeholder="Enter Aadhaar Card Number" name="aadhar_card_num" maxlength="12"  class="form-control"  value="<?php echo $rows->aadhaar_card_number; ?>">
+							
+							<div class="row page_row">
+                                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Gender</label>
 								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div class="nk-int-mk">
-                  <h2>Admission Date</h2>
-              </div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<input type="text" name="admission_date" class="form-control datepicker" placeholder="Admission Date " value="<?php echo $rows->admission_date; ?>"/>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div class="nk-int-mk">
-                  <h2>Admission Location</h2>
-              </div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-										<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<input type="text" name="admission_location" class="form-control" placeholder="Enter Admission Location" value="<?php echo $rows->admission_location; ?>"/>
-                  	<input type="hidden" name="admission_id" class="form-control" placeholder="" value="<?php echo base64_encode($rows->id*98765); ?>"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div class="nk-int-mk">
-                  <h2>Name</h2>
-              </div>
-							<div class="form-group ic-cmp-int">
-								<div class="form-ic-cmp">
-									<i class="notika-icon notika-edit"></i>
-								</div>
-								<div class="nk-int-st">
-									<input type="text" name="name" class="form-control" placeholder="Enter Name" value="<?php echo $rows->name; ?>">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="nk-int-mk">
-                    <h2>Gender</h2>
-                </div>
-								<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-										<select class="selectpicker" name="sex" id="sex">
-											<option value="">--Select Gender--</option>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<select name="sex" class="form-control" id="sex">
+											<option value="">Select</option>
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
-										</select>
-                      <script> $('#sex').val('<?php echo $rows->sex; ?>');</script>
-									</div>
+									</select><script> $('#sex').val('<?php echo $rows->sex; ?>');</script>
+								</div>
+							   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Father Name</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="fname" class="form-control input-sm" placeholder="Father Name" value="<?php echo $rows->father_name; ?>"/>
 								</div>
 							</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="nk-int-mk">
-                    <h2>Father Name</h2>
-                </div>
-								<div class="form-group ic-cmp-int">
-									<div class="form-ic-cmp">
-										<i class="notika-icon notika-edit"></i>
-									</div>
-									<div class="nk-int-st">
-										<input type="text" name="fname" class="form-control" placeholder="Enter Father Name" value="<?php echo $rows->father_name; ?>">
-										</div>
-									</div>
+							
+							<div class="row page_row">
+                                   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Mother Name</label>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>Mother Name</h2>
-                  </div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<input type="text" name="mname" class="form-control "  placeholder="Enter  Mother Name" value="<?php echo $rows->mother_name; ?>" />
-										</div>
-									</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>"/>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>Disability</h2>
-                  </div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<select name="disability" class="selectpicker" id="disability">
-                        	<option value="">--Disability--</option>
-												<option value="1">Yes</option>
-												<option value="0">No</option>
-											</select>
-                         <script> $('#disability').val('<?php echo $rows->disability; ?>');</script>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>Email Address</h2>
-                  </div>
-									<div class="form-group ic-cmp-int">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<input type="text" name="email"  class="form-control"  id="email" placeholder="Email Address" value="<?php echo $rows->email; ?>" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>DOB</h2>
-                  </div>
-									<div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<input type="text" name="dob" class="form-control datepicker" placeholder="Date of Birth " value="<?php echo $rows->dob; ?>"/>
-                      	<input type="hidden" name="user_pic_old" class="form-control " placeholder=" " value="<?php echo $rows->student_pic; ?>"/>
-
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>Address</h2>
-                  </div>
-									<div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<textarea name="address" rows="3" cols="40" placeholder="Address"><?php echo $rows->address; ?></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div class="nk-int-mk">
-                      <h2>Mobile Number</h2>
-                  </div>
-									<div class="form-group ic-cmp-int form-elet-mg">
-										<div class="form-ic-cmp">
-											<i class="notika-icon notika-edit"></i>
-										</div>
-										<div class="nk-int-st">
-											<input type="text" placeholder="Mobile Number" name="mobile" class="form-control" value="<?php echo $rows->mobile; ?>" >
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="nk-int-mk">
-                        <h2>Secondary Mobile Number</h2>
-                    </div>
-										<div class="form-group ic-cmp-int form-elet-mg">
-											<div class="form-ic-cmp">
-												<i class="notika-icon notika-edit"></i>
-											</div>
-											<div class="nk-int-st">
-												<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control" value="<?php echo $rows->sec_mobile; ?>">
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                      <div class="nk-int-mk">
-                          <h2>City </h2>
-                      </div>
-											<div class="form-group ic-cmp-int form-elet-mg">
-												<div class="form-ic-cmp">
-													<i class="notika-icon notika-edit"></i>
-												</div>
-												<div class="nk-int-st">
-													<input type="text" placeholder="Enter City Name" name="city" class="form-control" value="<?php echo $rows->city; ?>">
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="nk-int-mk">
-                            <h2>State Name</h2>
-                        </div>
-												<div class="form-group ic-cmp-int form-elet-mg">
-													<div class="form-ic-cmp">
-														<i class="notika-icon notika-edit"></i>
-													</div>
-													<div class="nk-int-st">
-														<input type="text" placeholder="Enter State Name" name="state" class="form-control" value="<?php echo $rows->state; ?>">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                          <div class="nk-int-mk">
-                              <h2>Nationality</h2>
-                          </div>
-													<div class="form-group ic-cmp-int form-elet-mg">
-														<div class="form-ic-cmp">
-															<i class="notika-icon notika-edit"></i>
-														</div>
-														<div class="nk-int-st">
-                              <!-- <select name="nationality" class="selectpicker" id="nationality">
-                                <option value="">-Select Nationality-</option>
-                               <option value="Indian">Indian</option>
-                               <option value="Others">Others</option>
-                           </select>
-                             <script> $('#nationality').val('<?php echo $rows->nationality; ?>');</script> -->
-														 <input type="text" placeholder="Nationality" name="nationality" class="form-control" value="<?php echo $rows->nationality; ?>">
-                         </div>
-													</div>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-													<div class="form-group ic-cmp-int form-elet-mg">
-														<div class="form-ic-cmp">
-															<!-- <i class="notika-icon notika-edit"></i> -->
-														</div>
-														<div class="nk-int-st">
-															<!-- <input type="text" placeholder="Religion" name="religion" class="form-control"> -->
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-													<div class="form-group ic-cmp-int form-elet-mg">
-														<div class="form-ic-cmp">
-															<!-- <i class="notika-icon notika-edit"></i> -->
-														</div>
-														<div class="nk-int-st">
-
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                          <div class="nk-int-mk">
-                              <h2>Caste</h2>
-                          </div>
-													<div class="form-group ic-cmp-int form-elet-mg">
-														<div class="form-ic-cmp">
-															<i class="notika-icon notika-edit"></i>
-														</div>
-														<div class="nk-int-st">
-															<!-- <select name="community_class" class="selectpicker" id="community_class">
-																<option value="">Select Caste</option>
-																<option value="SC">Scheduled Castes-SC</option>
-																<option value="ST">Scheduled Tribes-ST</option>
-																<option value="MBC">Most Backward Classes-MBC</option>
-																<option value="BC">Backward Classes-BC</option>
-																<option value="BCM">Backward Classes Muslims-BCM</option>
-																<option value="DC">Denotified Communities-DC</option>
-																<option value="FC">Forward Class-FC</option>
-															</select>
-                              <script> $('#community_class').val('<?php echo $rows->community_class; ?>');</script> -->
-															 <input type="text" placeholder="Community" name="community_class" class="form-control" value="<?php echo $rows->community_class; ?>">
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                          <div class="nk-int-mk">
-                              <h2>Religion</h2>
-                          </div>
-													<div class="form-group ic-cmp-int form-elet-mg">
-														<div class="form-ic-cmp">
-															<i class="notika-icon notika-edit"></i>
-														</div>
-														<div class="nk-int-st">
-															<input type="text" placeholder="Religion" name="religion" class="form-control" value="<?php echo $rows->religion; ?>">
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="nk-int-mk">
-                                <h2>Community</h2>
-                            </div>
-														<div class="form-group ic-cmp-int form-elet-mg">
-															<div class="form-ic-cmp">
-																<i class="notika-icon notika-edit"></i>
-															</div>
-															<div class="nk-int-st">
-																<input type="text" placeholder="Community" name="community" class="form-control" value="<?php echo $rows->community ; ?>">
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                              <div class="nk-int-mk">
-                                  <h2>Mother Tongue</h2>
-                              </div>
-															<div class="form-group ic-cmp-int form-elet-mg">
-																<div class="form-ic-cmp">
-																	<i class="notika-icon notika-edit"></i>
-																</div>
-																<div class="nk-int-st">
-																	<!-- <select name="mother_tongue" class="selectpicker" id="mother_tongue">
-                                    <option value="">Select Mother Tongue</option>
-																		<option value="Tamil">Tamil</option>
-																		<option value="English">Telegu</option>
-																		<option value="Hindi">Hindi</option>
-																		<option value="Kannada">Kannada</option>
-																		<option value="English">English</option>
-																	</select> -->
-                                    <!-- <script> $('#mother_tongue').val('<?php echo $rows->mother_tongue; ?>');</script> -->
-																			<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control" value="<?php echo $rows->mother_tongue ; ?>">
-																</div>
-															</div>
-														</div>
-														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                              <div class="nk-int-mk">
-                                  <h2>Previous Institute Or School Name</h2>
-                              </div>
-															<div class="form-group ic-cmp-int form-elet-mg">
-																<div class="form-ic-cmp">
-																	<i class="notika-icon notika-edit"></i>
-																</div>
-																<div class="nk-int-st">
-																	<input type="text" name="institute_name" placeholder="Previous Institute Or School Name" class="form-control" value="<?php echo $rows->last_institute; ?>">
-																	</div>
-																</div>
-															</div>
-															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <div class="nk-int-mk">
-                                    <h2>Class  Or Degree</h2>
-                                </div>
-																<div class="form-group ic-cmp-int form-elet-mg">
-																	<div class="form-ic-cmp">
-																		<i class="notika-icon notika-edit"></i>
-																	</div>
-																	<div class="nk-int-st">
-																		<input type="text" name="last_studied" placeholder="Class  Or Degree" class="form-control" value="<?php echo $rows->last_studied; ?>">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                  <div class="nk-int-mk">
-                                      <h2>Qualified for promotion</h2>
-                                  </div>
-																	<div class="form-group ic-cmp-int form-elet-mg">
-																		<div class="form-ic-cmp">
-																			<i class="notika-icon notika-edit"></i>
-																		</div>
-																		<div class="nk-int-st">
-																			<select name="qual" class="selectpicker" id="qualified_promotion">
-                                        <option value="">Qualified for promotion</option>
-																				<option value="pass">Pass</option>
-																				<option value="fail">Fail</option>
-																				<option value="drop">Drop Out</option>
-																			</select>
-                                        <script> $('#qualified_promotion').val('<?php echo $rows->qualified_promotion; ?>');</script>
-																		</div>
-																	</div>
-																</div>
-																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                  <div class="nk-int-mk">
-                                      <h2>Transfer Certificate</h2>
-                                  </div>
-																	<div class="form-group ic-cmp-int form-elet-mg">
-																		<div class="form-ic-cmp">
-																			<i class="notika-icon notika-edit"></i>
-																			</div>
-																			<div class="nk-int-st">
-                                        	<input type="checkbox" data-toggle="checkbox" name="trn_cert" value="1" <?php if ($rows->transfer_certificate == '1') echo "checked='checked'"; ?>>
-                                         <small></small>
-                                      </div>
-																		</div>
-																	</div>
-																	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <div class="nk-int-mk">
-                                        <h2>Status</h2>
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Date of Birth</label>
                                     </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">									
+										<input type="text" name="dob" class="form-control dob input-sm" placeholder="Date of Birth" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>"/>
+                                    </div>
+							</div>
+							
+							<div class="row page_row">
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Disability</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<select name="disability" class="form-control" id="disability">
+											<option value="">Select</option>
+											<option value="1">Yes</option>
+											<option value="0">No</option>
+									</select><script> $('#disability').val('<?php echo $rows->disability; ?>');</script>
+								</div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Email Address</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Email Address" name="email"  class="form-control input-sm" value="<?php echo $rows->email; ?>" >
+                                    </div>
+									
+                            </div>
+							
+							<div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Mobile Number</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Mobile Number" name="mobile"  class="form-control input-sm" value="<?php echo $rows->mobile; ?>">
+								</div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Secondary Mobile</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control input-sm" value="<?php echo $rows->sec_mobile; ?>">
+                                    </div>
+                           </div>
+							
+							<div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Address</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<textarea name="address" rows="2" cols="40" placeholder="Address" class="form-control input-sm"><?php echo $rows->address; ?></textarea>
+								</div>
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">City Name</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="City Name" name="city" class="form-control input-sm" value="<?php echo $rows->city; ?>">
+								</div>
+                                    
+                           </div>
+						   
+						   <div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">State</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="State Name" name="state" class="form-control input-sm" value="<?php echo $rows->state; ?>">
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Nationality</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Nationality" name="nationality" class="form-control input-sm" value="<?php echo $rows->nationality; ?>">
+                                    </div>
+                           </div>
+						   
+						   <div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Religion</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" value="<?php echo $rows->religion; ?>">
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Community</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Community" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>">
+                                    </div>
+                           </div>
+						   
+						    <div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Community Class</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>">
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Mother Tongue</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control input-sm" value="<?php echo $rows->mother_tongue ; ?>">
+                                    </div>
+                           </div>
+						   
+						   <div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Previous Institute</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Previous Institute" name="institute_name" class="form-control input-sm" value="<?php echo $rows->last_institute; ?>">
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Class Or Degree</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Class Or Degree" name="last_studied" class="form-control input-sm" value="<?php echo $rows->last_studied; ?>">
+                                    </div>
+                           </div>
+						   
+						     <div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Qualified Promotion</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<select name="qual" class="form-control" id="qual">
+											<option value="">Select</option>
+											<option value="pass">Pass</option>
+											<option value="fail">Fail</option>
+											<option value="drop">Drop Out</option>
+									</select><script> $('#qualified_promotion').val('<?php echo $rows->qualified_promotion; ?>');</script>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Status</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<select name="status" class="form-control" id="status">
+											<option value="Pending">Pending</option>
+											<option value="Confirmed">Confirmed</option>
+											<option value="Rejected">Rejected</option>
+									</select><script> $('#status').val('<?php echo $rows->status; ?>');</script>
+								</div>
+                           </div>
+							
+							
+							<div class="row page_row">
+							
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Profile Picture</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										  <input type="file" class="form-control" name="student_pic">
+								</div>
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<input type="hidden" name="user_pic_old" class="form-control " placeholder=" " value="<?php echo $rows->student_pic; ?>"/>
+									 <input type="hidden" name="admission_id" class="form-control" placeholder="" value="<?php echo base64_encode($rows->id*98765); ?>"/>
+									 <button class="btn btn-success notika-btn-success waves-effect">Update</button>
+								</div>
+							</div>
+							
+							<div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" style="width:100px;"></div>
+								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
+							</div>
+							
+								
+					</div>
+                </div>	
+              </form>
+                    
+            </div>
+		</div>
+	</div>
+	
+</div>
+</div>
+</div>
 
-
-																		<div class="form-group ic-cmp-int form-elet-mg">
-																			<div class="form-ic-cmp">
-
-																				</div>
-																				<div class="nk-int-st">
-                                          <select name="status" class="selectpicker" id="status">
-                                            
-																						<option value="Pending">Pending</option>
-																						<option value="Confirmed">Confirmed</option>
-																						<option value="Rejected">Rejected</option>
-																					</select>
-                                            <script> $('#status').val('<?php echo $rows->status; ?>');</script>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-                                  <div class="row" style="">
-
-                                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        																<div class="form-group ic-cmp-int form-elet-mg">
-        																	<div class="form-ic-cmp">
-        																		<!-- <i class="notika-icon notika-edit"></i> -->
-        																	</div>
-        																	<div class="nk-int-st">
-        																	<img src="<?php echo base_url(); ?>assets/students/<?php echo $rows->student_pic; ?>" style="width:150px;">
-                                             <p>Old Picture</p>
-        																		</div>
-        																	</div>
-        																</div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          																<div class="form-group ic-cmp-int form-elet-mg">
-          																	<div class="form-ic-cmp">
-          																		<!-- <i class="notika-icon notika-edit"></i> -->
-          																	</div>
-          																	<div class="nk-int-st">
-          																		<input type="file" name="student_pic" placeholder="" class="form-control" >
-                                               <small>New profile Picture</small>
-          																		</div>
-          																	</div>
-          																</div>
-                                  </div>
-																	<div class="row">
-																		<div class="col-lg-12 " style="margin-top:10px;">
-																			<div class="form-group  form-elet-mg text-center">
-																				<button class="btn btn-success notika-btn-success waves-effect ">Update </button>
-																			</div>
-																		</div>
-																	</div>
-                                </form>
-																</div>
-															</div>
-														</div>
-													</div>
 <style>
-.row{
-  margin-bottom: 10px;
-}
-.nk-int-mk h2 {
-    font-size: 13px;
-    color: #c13b3b;
-    margin-left: 22px;
-    font-weight: 400;
+.page_row{
+  margin-bottom: 15px;
 }
 </style>
+
+
 <script type="text/javascript">
     $('#prospects').addClass('active');
     $('#prospectsmenu').addClass('active');
+	
     $('#admissionform').validate({ // initialize the plugin
    rules: {
      // had_aadhar_card:{required:true },

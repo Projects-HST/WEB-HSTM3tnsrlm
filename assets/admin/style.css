@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 a {transition: all 0.3s ease 0s;text-decoration:none;}
 a:hover {
-  color: #00c292;
+  color: #6d6d6d;
   text-decoration: none;
 }
 a:active, a:hover, a:focus {
@@ -32,20 +32,6 @@ margin: 0;
 padding: 0
 }
 .clear{clear:both}
-body {
-    margin-bottom: 60px;
-}
-.footer-copyright-area{
-    position: fixed;
-     margin: auto;
-     height: auto;
-     width: 100%;
-     right: 0;
-     bottom: 0;
-     left: 0;
-     z-index: 1030;
-}
-
 
 .mg-tb-40{
 	margin:40px 0px;
@@ -146,7 +132,13 @@ body {
 /*  2.  Header Top CSS
 /*----------------------------------------*/
 .header-top-area, .footer-copyright-area{
-	background:#e02329;
+	/*background:#ffffff;*/
+}
+
+.header-top-area{
+	background:#ffffff;
+	box-shadow: 0 15px 15px rgba(0,0,0,.1);
+	border-radius: 2px;
 }
 
 .logo-area{
@@ -156,23 +148,24 @@ body {
 	float: right;
 }
 .nav.notika-top-nav .open>a, .nav.notika-top-nav .open>a:focus, .nav.notika-top-nav .open>a:hover {
-    background:#e02329;
+background-color: #ffffff;
     border-color: 0px solid #00c292;
 
 }
 .nav.notika-top-nav>li>a:focus, .nav.notika-top-nav>li>a:hover {
     text-decoration: none;
-    background-color: #e02329;
+	color:#000000;
+    background-color: #ffffff;
 }
 .navbar-nav>li>a{
-	color:#fff;
+	color:#e02329;
 	padding: 30px 0px 20px 30px;
 }
 .rtl-layout .navbar-nav>li>a{
 	padding: 20px 30px 20px 0px;
 }
 .nav.navbar-nav.notika-top-nav li a{
-	font-size:20px;
+	font-size:16px;
 	position:relative;
 }
 .header-top-menu .nav.notika-top-nav li .search-dd {
@@ -193,9 +186,9 @@ body {
     position: absolute;
     top: 100%;
     left: -100px;
-    width: 300px;
+    width: 200px;
     border: none;
-    padding: 20px 0px;
+    padding: 0px;
 	z-index:9999;
 }
 .header-top-menu .nav.notika-top-nav li .message-dd .hd-mg-tt h2{
@@ -283,7 +276,7 @@ body {
 	left:-200px;
 }
 .header-top-menu .nav.notika-top-nav li .message-dd.chat-dd{
-	left:-250px;
+	/*left:-150px;*/
 }
 .hd-message-img img{
 	border-radius:50%;
@@ -428,6 +421,12 @@ ul.notika-menu-wrap li a{
 .custom-menu-content ul.notika-main-menu-dropdown li{
 	display:inline-block;
 }
+.custom-menu-content ul.notika-main-menu-dropdown li .active {
+	font-size:15px;
+	color:#e02329;
+	font-weight:bold;
+}
+
 .custom-menu-content ul.notika-main-menu-dropdown li a {
     padding: 20px 20px;
     display: block;
@@ -640,15 +639,15 @@ ul.notika-menu-wrap li a{
 .recent-post-flex.rc-ps-vw .recent-post-line p, .realtime-vst-sg p, .realtime-title p{
     margin:0;
 	font-size:14px;
-	color:#333;
+	color:#e02329;
 	transition:all .4s ease 0s;
 }
 .recent-post-flex.rc-ps-vw .recent-post-line p:hover{
-	color:#00c292;
+	color:#333;
 	transition:all .4s ease 0s;
 }
 .recent-post-items .recent-post-signle:hover .recent-post-it-ctn h2, .blog-ctn .vw-at:hover{
-	color:#00c292;
+	color:#333;
 	transition:all .4s ease 0s;
 }
 .rct-pt-mg {
@@ -766,12 +765,12 @@ ul.notika-menu-wrap li a{
 .footer-copyright-area p {
     margin: 0;
     font-size: 14px;
-    color: #fff;
+    color: #000000;
     padding: 15px 0px;
     text-align: center;
 }
 .footer-copyright-area a{
-    color:#fff;
+    color:#000000;
 	transition:all .4s ease 0s;
 }
 .footer-copyright-area a:hover{
@@ -1864,19 +1863,19 @@ ul.wizard-nav-ac li .disabled{
 }
 .tooltip-inner{
 	padding:5px 15px;
-	background:#00c292;
+	background:#6d6d6d;
 }
 .tooltip.right .tooltip-arrow{
-    border-right-color: #00c292;
+    border-right-color: #6d6d6d;
 }
 .tooltip.bottom .tooltip-arrow{
-	border-bottom-color: #00c292;
+	border-bottom-color: #6d6d6d;
 }
 .tooltip.top .tooltip-arrow{
-	border-top-color: #00c292;
+	border-top-color: #6d6d6d;
 }
 .tooltip.left .tooltip-arrow{
-	border-left-color: #00c292;
+	border-left-color: #6d6d6d;
 }
 .tooltip.in{
 	opacity:1;
@@ -3321,17 +3320,17 @@ textarea.auto-size {
     color: #333;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-	width: 300px;
+	width: 250px;
 }
 .datepicker-days  .table-condensed thead tr{
-	background:#00c292;
+	background:#afaeae;
 	color: #fff;
 }
 .datepicker-days  .table-condensed thead tr:first-child{
 	height: 70px;
 }
 .datepicker-days .table-condensed thead tr:last-child {
-    background: #11cc9d;
+    background: #cccccc;
     height: 40px;
 }
 .datepicker-days .table-condensed thead tr th:first-child {
@@ -3341,11 +3340,11 @@ textarea.auto-size {
 
 }
 .datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover{
-	background:#00c292;
+	background:#cccccc;
 	color:#fff;
 }
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:focus, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td.active, .open .dropdown-toggle.datepicker table tr td.active:hover, .open .dropdown-toggle.datepicker table tr td.active.disabled, .open .dropdown-toggle.datepicker table tr td.active.disabled:hover{
-	background:#00c292;
+	background:#cccccc;
 	color:#fff;
 }
 .datepicker-dropdown:after, .datepicker-dropdown:before{
@@ -3356,8 +3355,8 @@ textarea.auto-size {
 	border-radius:0px;
 }
 .datepicker table {
-    width: 300px;
-    height: 380px;
+    width: 250px;
+    height: 250px;
 }
 .datepicker.dropdown-menu th, .datepicker.dropdown-menu td {
     padding: 10px 5px;
@@ -3366,12 +3365,12 @@ textarea.auto-size {
     font-size: 16px;
 }
 .datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active:focus, .datepicker table tr td span.active:hover:focus, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td span.active, .open .dropdown-toggle.datepicker table tr td span.active:hover, .open .dropdown-toggle.datepicker table tr td span.active.disabled, .open .dropdown-toggle.datepicker table tr td span.active.disabled:hover{
-	background:#00c292;
+	background:#afaeae;
 	color:#fff;
 }
 .datepicker-months .table-condensed thead tr, .datepicker-years .table-condensed thead tr {
     height: 70px;
-    background: #00c292;
+    background: #afaeae;
 	color:#fff;
 }
 .datepicker.dropdown-menu .datepicker-months th, .datepicker.dropdown-menu .datepicker-months td {
@@ -3535,7 +3534,7 @@ textarea.auto-size {
 .login-content, .error-page-area{
     min-height:100vh;
     text-align:center;
-    background-color: #e02329;
+   /* background-color: #e02329;*/
 }
 .login-content:before, .error-page-area:before{
     content:'';
@@ -3569,13 +3568,18 @@ textarea.auto-size {
     padding:40px;
 }
 .nk-block:not(.lc-block-alt) .btn-login{
-    top:50%;
-    margin-top:-50px;
-    right:-25px;
+    top:88%;
+    /*margin-top:-50px;*/
+    /*right:-25px;*/
+}
+.nk-block:not(.lc-block-alt) .btn-forgot{
+    top:86%;
+    /*margin-top:-50px;*/
+    /*right:-25px;*/
 }
 .nk-form, .error-page-wrap{
     background:#fff;
-    box-shadow:0 1px 1px rgba(0,0,0,.1);
+    box-shadow:0 15px 15px rgba(0,0,0,.1);
     border-radius:2px;
 }
 .nk-navigation{
@@ -3589,7 +3593,7 @@ textarea.auto-size {
     transition-duration:.2s;
 }
 .nk-navigation a{
-    color:#fff;
+    color:#646363;
     background:rgba(255,255,255,.2);
     margin:0 1px;
     width:30px;
@@ -3597,6 +3601,7 @@ textarea.auto-size {
     border-radius:20px;
     white-space:nowrap;
     text-align:left;
+	float:right;
 }
 .nk-navigation a i{
     width:30px;
@@ -3635,6 +3640,12 @@ textarea.auto-size {
     left:50%;
     margin-left:-25px;
 }
+
+.lc-block-alt .btn-forgot{
+    bottom:0;
+    left:50%;
+    margin-left:-25px;
+}
 .lcb-user{
     width:100px;
     height:100px;
@@ -3667,6 +3678,9 @@ textarea.auto-size {
 .btn-login.btn-float i{
     font-size:20px;
 }
+.btn-forgot.btn-float i{
+    font-size:20px;
+}
 .btn-float:not(.bgm-white):not(.bgm-gray)>i{
     color:#fff;
 }
@@ -3677,7 +3691,23 @@ textarea.auto-size {
 	outline:none;
 	box-shadow:none;
 }
+
+.btn-forgot.btn-success, .images-cropper-pro .btn, .images-action-pro .btn, .notika-todo-btn .btn, .btn.notika-add-todo, .btn.notika-chat-btn{
+  background-color: #e02329;
+      border-color: #e02329;
+	border:0px solid #ccc;
+	outline:none;
+	box-shadow:none;
+}
 .btn-login.btn-success:hover, .btn-login.btn-success:focus, .btn-login.btn-success:active, .images-cropper-pro .btn:hover, .images-cropper-pro .btn:focus, .images-cropper-pro .btn:active, .images-action-pro .btn:hover, .images-action-pro .btn:focus, .images-action-pro .btn:active, .notika-todo-btn .btn:hover, .notika-todo-btn .btn:focus, .notika-todo-btn .btn:active, .btn.notika-add-todo:hover, .btn.notika-add-todo:focus, .btn.notika-add-todo:active, .btn.notika-chat-btn:hover, .btn.notika-chat-btn:focus, .btn.notika-chat-btn:active{
+  background-color: #e02329;
+      border-color: #e02329;
+	border:0px solid #ccc;
+	outline:none;
+	box-shadow:none;
+}
+
+.btn-forgot.btn-success:hover, .btn-forgot.btn-success:focus, .btn-forgot.btn-success:active, .images-cropper-pro .btn:hover, .images-cropper-pro .btn:focus, .images-cropper-pro .btn:active, .images-action-pro .btn:hover, .images-action-pro .btn:focus, .images-action-pro .btn:active, .notika-todo-btn .btn:hover, .notika-todo-btn .btn:focus, .notika-todo-btn .btn:active, .btn.notika-add-todo:hover, .btn.notika-add-todo:focus, .btn.notika-add-todo:active, .btn.notika-chat-btn:hover, .btn.notika-chat-btn:focus, .btn.notika-chat-btn:active{
   background-color: #e02329;
       border-color: #e02329;
 	border:0px solid #ccc;
@@ -4598,11 +4628,18 @@ body.box-layout {
 .notika-main-menu-dropdown{
   margin-bottom: 5px;
 }
+.notika-main-menu-dropdown .active{
+	color:#ccffff;
+	font-size:bold;
+}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
   cursor: pointer;
+  color:#e02329;
+  font-weight:bold;
+  
 }
 .datepicker thead tr:first-child th:hover, .datepicker tfoot tr th:hover{
-  background: #00c292 !important;
+  background: #9f9f9f !important;
 }
 .error{
   color: red !important;
@@ -4611,4 +4648,16 @@ body.box-layout {
 }
 .logo_admin{
   width: 165px;
+}
+
+.field-icon {
+    float: right;
+   /* margin-left: -25px;*/
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+
+}
+.counter{
+	color:#e02329;
 }

@@ -6,7 +6,7 @@
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>View all Plans</h2>
+                 <h2>View Plans</h2>
              </div>
              <?php if($this->session->flashdata('msg')): ?>
      <div class="alert alert-success">
@@ -20,9 +20,10 @@
                      <thead>
                          <tr>
                              <th>S.no</th>
-                             <th>Docment Name</th>
-                             <th>Doc file</th>
-                             <th>Date</th>
+                             <th>Document Title</th>
+							 <th>Uploaded Date</th>
+                             <th>Document file</th>
+                             
                          </tr>
                      </thead>
                      <tbody>
@@ -30,8 +31,11 @@
                          <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->doc_name; ?></td>
-                             <td><a href="<?php echo base_url(); ?>assets/mobilization_plan/<?php echo $rows->doc_file; ?>">Click  to Open</a></td>
-                             <td><?php echo $rows->doc_month_year; ?></td>
+							 <td> <?php $date=date_create($rows->doc_month_year);echo date_format($date,"d-m-Y");  ?></td>
+							 
+							  <td><a href="<?php echo base_url(); ?>assets/mobilization_plan/<?php echo $rows->doc_file; ?>" data-toggle="tooltip" title="" data-original-title="Download"><i class="fa fa-download" aria-hidden="true" style="font-size:22px;"></i></a></td>
+                             
+                            
 
                          </tr>
 <?php  $i++; } ?>
@@ -51,4 +55,5 @@
 <script type="text/javascript">
 $('#mobilization_plan').addClass('active');
 $('#mobilization_planmenu').addClass('active');
+$('#view_plan').addClass('active');
 </script>

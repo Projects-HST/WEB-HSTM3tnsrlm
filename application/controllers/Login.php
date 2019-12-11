@@ -18,42 +18,36 @@ class Login extends CI_Controller {
 
 	public function checklogin(){
 
-		$email=$this->input->post('username');
+		$username=$this->input->post('username');
 		$password=md5($this->input->post('password'));
-		$result = $this->loginmodel->login($email,$password);
-		$msg=$result['msg'];
+		$result = $this->loginmodel->login($username,$password);
+		$user_type = $result['user_type'];
 
 		if($result['status']=='Inactive'){
 			$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-			$this->session->set_flashdata('msg', ' Account Deactivated');
+			$this->session->set_flashdata('msg', 'Account inactive, please contact admin');
 			redirect('/');
 		}
 	
-		if($result['status']=='notRegistered'){
+		if($result['status']=='Error'){
 			$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
 			$this->session->set_flashdata('msg', 'Invalid Login');
 			redirect('/');
 		}
-		$user_type=$this->session->userdata('user_type');
-		$user_type1=$result['user_type'];
-
-		if($result['status']=='Active')
+		
+		if($result['status']=='Active'){
+			switch($user_type)
 			{
-				switch($user_type1)
-				{
 				case '1':
-				
 				$user_name = $result['user_name'];
 				$pia_id = $result['pia_id'];
 				$msg = $result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 				$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 						$session_data=$this->session->set_userdata($datas);
 						redirect('admin/home');
-						//print_r($datas);exit;
-
 				break;
-				case '2':
 				
+				case '2':
 				$user_name=$result['user_name'];$pia_id=$result['pia_id'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 				$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 						$session_data=$this->session->set_userdata($datas);
@@ -61,23 +55,12 @@ class Login extends CI_Controller {
 				break;
 				
 				case '3':
-				
 					$user_name=$result['user_name'];$pia_id=$result['pia_id'];$msg=$result['msg'];$name=$result['name'];$user_type=$result['user_type'];$status=$result['status'];$user_id=$result['user_id'];$user_pic=$result['user_pic'];
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id,"msg"=>$msg,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
 					$session_data=$this->session->set_userdata($datas);
 					redirect('dashboard/home');
 				break;
-				}
-		}
-		elseif($msg=="Password Wrong"){
-			$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-			$this->session->set_flashdata('msg', 'Password Wrong');
-			redirect('/');
-		}
-		else{
-			$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-			$this->session->set_flashdata('msg', ' Email invalid');
-			 redirect('/');
+			}
 		}
 	}
 
@@ -93,6 +76,4 @@ class Login extends CI_Controller {
 		$forgot_email=$this->input->post('forgot_email');
 		$datas['res'] = $this->loginmodel->forgot_email($forgot_email);
 	}
-
-
 }

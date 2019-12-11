@@ -1,61 +1,61 @@
 <div class="container">
 <div class="row">
-<div class="data-table-area">
+<?php //foreach($pia_details as $row){} ?>
 <div class="container">
- <div class="row" style="height:500px;">
-     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-         <div class="data-table-list">
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      
+		<?php if($this->session->flashdata('msg')): ?>
+			 <div class="alert alert-success">
+				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+					 ×</button>
+				 <?php echo $this->session->flashdata('msg'); ?>
+			 </div>
+		<?php endif; ?>
+
+		<div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Track Mobilizer</h2>
+                 <h2>Mobilizer List</h2>
              </div>
-           <form action="<?php echo base_url(); ?>tracking/usertrack" method="post" class="form-horizontal" id="tracking_form" name="edit_trade_handling_form">
-               <div class="row" >
-                   <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                     <div class="" id="">
-                        <label>Select date</label>
-                        <div class="input-group  nk-int-st">
-                            <input type="text" name="selected_date" class="form-control datepicker" placeholder="Pick Date"/>
-                        </div>
-                    </div>
-                   </div>
-                      </div>
-                    <div class="row">
-               <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                 <div class="" id="">
-                    <label>Select Mobilizer</label>
-                    <div class="input-group  nk-int-st">
-                      <select name="user_id" id="user_id" class=" ">
-                        <?php  foreach ($res as $rows) {  ?>
-                     <option value="<?php echo $rows->user_id; ?>">
-                         <?php echo $rows->name; ?>
-                     </option>
-                     <?php      } ?>
-                      </select>
-                    </div>
-                </div>
-               </div>
-                  </div>
-                <div class="row">
-               <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                    <label></label>
-                   <div class="form-example-int">
-                      <!-- <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save"> -->
-                      <button type="submit" class="btn btn-info notika-btn-info waves-effect">Track</button>
-                   </div>
-               </div>
-           </div>
-             </form>
+             <div class="table-responsive">
+                 <table id="data-table-basic" class="table table-striped">
+                     <thead>
+                         <tr>
+                             <th>S.no</th>
+
+                             <th>Mobilizer name</th>
+                             <th>Mobile</th>
+								<th>Email</th>
+                              <th>Status</th>
+							  <th>Tracking </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                       <?php $i=1; foreach($res as $rows){ ?>
+                         <tr>
+                             <td><?php echo $i; ?></td>
+                             
+							 <td><?php echo $rows->name; ?></td>
+                             <td><?php echo $rows->phone; ?></td>
+							 <td><?php echo $rows->email; ?></td>
+                             <td><?php if($rows->status=='Active'){ ?>Active <?php }else{ ?>Inactive<?php   } ?>
+                            </td>
+							<td>
+							<a href="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>
+                            
+<?php  $i++; } ?>
+
+                     </tbody>
+
+                 </table>
+             </div>
          </div>
-     </div>
  </div>
-</div>
-</div>
-<!-- Data Table area End-->
 </div>
 </div>
 <script type="text/javascript">
     $('#tracking').addClass('active');
-    $('#trackingmenu').addClass('active');
+
     $('#tracking_form').validate({ // initialize the plugin
    rules: {
        user_id:{required:true },

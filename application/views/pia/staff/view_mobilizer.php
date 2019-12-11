@@ -6,7 +6,7 @@
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>View All Mobilizer</h2>
+                 <h2>View Mobilizers</h2>
              </div>
              <?php if($this->session->flashdata('msg')): ?>
      <div class="alert alert-success">
@@ -23,11 +23,8 @@
                              <th>Name</th>
                              <th>Email id</th>
                              <th>Mobile</th>
-                             <th>Profile</th>
                              <th>status</th>
                               <th>Action</th>
-
-
                          </tr>
                      </thead>
                      <tbody>
@@ -37,21 +34,13 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
-                              <td>	<?php if($rows->profile_pic==' '){
-
-      													}else{ ?>
-      															<img src="<?php echo base_url(); ?>assets/staff/<?php echo $rows->profile_pic; ?>" style="width:100px;">
-      												<?php	} ?></td>
                              <td><?php if($rows->status=='Active'){ ?>
-                              <button class="btn btn-success notika-btn-success waves-effect">Active</button>
+                              Active
                           <?php }else{ ?>
-                                  <button class="btn btn-danger notika-btn-danger waves-effect">Inactive</button>
+                             Inactive
                               <?php   } ?>
                             </td>
-                             <td>
-                               <a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
-
-
+                              <td><a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Staff"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
                          </tr>
 <?php  $i++; } ?>
 
@@ -70,4 +59,6 @@
 <script type="text/javascript">
     $('#staff').addClass('active');
     $('#staffmenu').addClass('active');
+	$('#view_mobilizer').addClass('active');
+	
 </script>

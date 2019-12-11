@@ -25,27 +25,23 @@
                      </thead>
                      <tbody>
                        <?php $i=1; foreach($result as $rows){ ?>
-
-
                          <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->aadhaar_card_number; ?></td>
                              <td><?php echo $rows->mobile; ?></td>
                              <td><?php if($rows->status=='Pending'){ ?>
-                                <button class="btn btn-warning notika-btn-warning waves-effect">Pending</button>
+                                Pending
                           <?php   }else if($rows->status=='Confirmed'){ ?>
-                              <button class="btn btn-success notika-btn-success waves-effect">Confirmed</button>
+                              Confirmed
                               <?php   }else{ ?>
-                              <button class="btn btn-danger notika-btn-danger waves-effect">Rejected</button>
+                              Rejected
                               <?php   } ?>
                             </td>
                               <td><?php echo $rows->added_by; ?></td>
-                             <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
-
-
-                         </tr>
-<?php  $i++; } ?>
+							   <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Prospects"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
+						</tr>
+					<?php  $i++; } ?>
 
                      </tbody>
 
@@ -62,4 +58,5 @@
 <script type="text/javascript">
     $('#prospects').addClass('active');
     $('#prospectsmenu').addClass('active');
+	$('#pend_prospect').addClass('active');
     </script>

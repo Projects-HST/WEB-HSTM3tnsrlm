@@ -63,12 +63,14 @@ Class Yearsmodel extends CI_Model
 
     function update_years($year_id,$formatted_date,$formatted_date1,$status,$user_id)
     {
-        $id=base64_decode($year_id)/98765;
-      $date_now = new DateTime($formatted_date1);
-      $date2    = new DateTime($formatted_date);
+		$id=base64_decode($year_id)/98765;
+		$date_now = new DateTime($formatted_date1);
+		$date2    = new DateTime($formatted_date);
+
+	  
         if ($date_now > $date2) {
-             $check_exist="SELECT * FROM edu_year_duration   WHERE '$formatted_date' between period_from AND period_to AND pia_id='$user_id' AND id!='$id'";
-            $result = $this->db->query($check_exist);
+				$check_exist="SELECT * FROM edu_year_duration WHERE '$formatted_date' between period_from AND period_to AND pia_id='$user_id' AND id!='$id'";
+				$result = $this->db->query($check_exist);
                   if ($result->num_rows() == 0) {
                     $check_exist_1="SELECT * FROM edu_year_duration   WHERE '$formatted_date1' between period_from AND period_to AND pia_id='$user_id' AND id!='$id'";
                     $result_1 = $this->db->query($check_exist_1);
@@ -76,12 +78,12 @@ Class Yearsmodel extends CI_Model
                                 $query     = "UPDATE edu_year_duration SET period_from='$formatted_date',period_to='$formatted_date1',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$id'";
                                 $resultset = $this->db->query($query);
                                       if($resultset){
-                                        echo "Updated";
+											echo "Updated";
                                       }else{
-                                          echo "Something Went Wrong";
+											echo "Something Went Wrong";
                                       }
                               }else{
-                                    echo "Date  Present in Database";
+                                    echo "Date Present in Database";
                               }
                   }else{
                       echo "Date Already Present in Database";

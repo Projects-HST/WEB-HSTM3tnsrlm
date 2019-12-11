@@ -22,7 +22,12 @@ class Admin extends CI_Controller {
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
+
 		$datas['result'] = $this->loginmodel->getadminuser($user_id);
+		$datas['dashboard']=$this->adminmodel->adminDashboard();
+		$datas['pia_list']=$this->adminmodel->pia_list();
+		$datas['mobilizer_list']=$this->adminmodel->mobilizer_list();
+		$datas['students_list']=$this->adminmodel->students_list();
 			if($user_type==1 || $user_type==2){
 				$this->load->view('admin/admin_header');
 				$this->load->view('admin/admin_home',$datas);
@@ -47,12 +52,13 @@ class Admin extends CI_Controller {
 				}
 	}
 	
-	/* public function profile()
+	 public function profile()
 	{
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
 		$datas['result'] = $this->loginmodel->getadminuser($user_id);
+		//print_r($datas);
 			if($user_type==1 || $user_type==2){
 				$this->load->view('admin/admin_header');
 				$this->load->view('admin/profile',$datas);
@@ -60,7 +66,59 @@ class Admin extends CI_Controller {
 			}else{
 				redirect('/');
 			}
-	} */
+	}
+	public function profile_update(){
+					$datas=$this->session->userdata();
+					$user_id=$this->session->userdata('user_id');
+					$user_type=$this->session->userdata('user_type');
+
+					if($user_type==1 || $user_type==2){
+						$staff_id=base64_decode($this->input->post('staff_id'));
+						$name=$this->input->post('name');
+						$address= $this->db->escape_str($this->input->post('address'));
+						$email=$this->input->post('email');
+						$class_tutor=$this->input->post('class_tutor');
+						$mobile=$this->input->post('mobile');
+						$sec_phone=$this->input->post('sec_phone');
+						$sex=$this->input->post('sex');
+						$sdate          = $this->input->post('dob');
+						$dateTime       = new DateTime($sdate);
+						$dob     = date_format($dateTime, 'Y-m-d');
+						$nationality=$this->input->post('nationality');
+						$religion=$this->input->post('religion');
+						$community_class=$this->input->post('community_class');
+						$community=$this->input->post('community');
+						$qualification=$this->input->post('qualification');
+						$staff_old_pic=$this->input->post('staff_old_pic');
+						$profilepic = $_FILES['staff_new_pic']['name'];
+						
+						if(empty($profilepic)){
+							$staff_prof_pic=$staff_old_pic;
+						}else{
+							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+							$uploaddir = 'assets/staff/';
+							$profilepic = $uploaddir.$staff_prof_pic;
+							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
+						}
+													
+						$datas=$this->adminmodel->profile_update($name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$staff_prof_pic,$user_id,$staff_id);
+							
+						if($datas['status']=="success"){
+							$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
+							redirect('admin/profile');
+						}else{
+							$this->session->set_flashdata('msg', 'Failed');
+							redirect('admin/profile');
+						}
+				 }
+				 else{
+						redirect('/');
+				 }
+			}
+	
+	
+	
 	
 	public function password_change()
 	{
@@ -93,13 +151,23 @@ class Admin extends CI_Controller {
 
 	public function password_update(){
 		$datas = $this->session->userdata();
-		$user_id = $this->session->userdata('user_id');
-		$user_type=$this->session->userdata('user_type');
+		 $user_id = $this->session->userdata('user_id');
+		 $user_type=$this->session->userdata('user_type');
+		
+		
 		if($user_type==1 || $user_type==2){
 			
 				$new_password=$this->input->post('new_password');
-				$datas['res']=$this->adminmodel->password_update($new_password,$user_id);
-				echo $datas['res'];
+				$datas=$this->adminmodel->password_update($new_password,$user_id);
+
+				if($datas['status']=="success"){
+					$this->session->set_flashdata('msg', 'Updated Successfully');
+					redirect('admin/password_change');
+				}else{
+					$this->session->set_flashdata('msg', 'Failed to Update');
+					redirect('admin/password_change');
+				}
+				
 		}else{
 			redirect('/');
 		}
@@ -152,7 +220,8 @@ class Admin extends CI_Controller {
         $user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				if($user_type==1 || $user_type==2){
-					$select_role=$this->input->post('select_role');
+					//$select_role=$this->input->post('select_role');
+					$select_role=2;
 					$name=$this->input->post('name');
 					$address= $this->db->escape_str($this->input->post('address'));
 					$email=$this->input->post('email');
@@ -160,9 +229,9 @@ class Admin extends CI_Controller {
 					$mobile=$this->input->post('mobile');
 					$sec_phone=$this->input->post('sec_phone');
  					$sex=$this->input->post('sex');
-					$dob_date=$this->input->post('dob');
-					$dateTime = new DateTime($dob_date);
-					$dob=date_format($dateTime,'Y-m-d');
+					$sdate          = $this->input->post('dob');
+					$dateTime       = new DateTime($sdate);
+					$dob     = date_format($dateTime, 'Y-m-d');				
 					$nationality=$this->input->post('nationality');
 					$religion=$this->input->post('religion');
 					$community_class=$this->input->post('community_class');
@@ -261,7 +330,8 @@ class Admin extends CI_Controller {
 					$user_type=$this->session->userdata('user_type');
 
 					if($user_type==1 || $user_type==2){
-						$select_role=$this->input->post('select_role');
+						//$select_role=$this->input->post('select_role');
+						$select_role=2;
 						$staff_id=base64_decode($this->input->post('staff_id'));
 						$name=$this->input->post('name');
 						$address= $this->db->escape_str($this->input->post('address'));
@@ -270,9 +340,9 @@ class Admin extends CI_Controller {
 						$mobile=$this->input->post('mobile');
 						$sec_phone=$this->input->post('sec_phone');
 						$sex=$this->input->post('sex');
-						$dob_date=$this->input->post('dob');
-						$dateTime = new DateTime($dob_date);
-						$dob=date_format($dateTime,'Y-m-d');
+						$sdate          = $this->input->post('dob');
+						$dateTime       = new DateTime($sdate);
+						$dob     = date_format($dateTime, 'Y-m-d');
 						$nationality=$this->input->post('nationality');
 						$religion=$this->input->post('religion');
 						$community_class=$this->input->post('community_class');
@@ -281,6 +351,7 @@ class Admin extends CI_Controller {
 						$status=$this->input->post('status');
 						$staff_old_pic=$this->input->post('staff_old_pic');
 						$profilepic = $_FILES['staff_new_pic']['name'];
+						
 						if(empty($profilepic)){
 							$staff_prof_pic=$staff_old_pic;
 						}else{
@@ -292,6 +363,7 @@ class Admin extends CI_Controller {
 						}
 													
 						$datas=$this->adminmodel->update_staff_details_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id);
+							
 						if($datas['status']=="success"){
 							$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
 							redirect('admin/view_staff');
@@ -435,15 +507,16 @@ class Admin extends CI_Controller {
 					$status=$this->input->post('status');
 					$staff_old_pic=$this->input->post('staff_old_pic');
 					$profilepic = $_FILES['staff_new_pic']['name'];
-						if(empty($profilepic)){
-							$staff_prof_pic=$staff_old_pic;
-						}else{
-							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
-							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-							$uploaddir = 'assets/pia/';
-							$profilepic = $uploaddir.$staff_prof_pic;
-							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
-						}
+					
+					if(empty($profilepic)){
+						$staff_prof_pic=$staff_old_pic;
+					}else{
+						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+						$uploaddir = 'assets/pia/';
+						$profilepic = $uploaddir.$staff_prof_pic;
+						move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
+					}
 					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id);
 
 					if($datas['status']=="success"){
@@ -464,10 +537,16 @@ class Admin extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			if($user_type==1 || $user_type==2){
-				 $pia_id = base64_decode($this->uri->segment(3))/98765;
+				$pia_id = base64_decode($this->uri->segment(3))/98765;
+				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['pia_details']=$this->adminmodel->piaDetails($pia_id);
 				 $datas['result']=$this->adminmodel->piaDashboard($pia_id);
-				 //echo "<pre>"; print_r($datas['result']); exit;
-				 $this->load->view('admin/admin_header');
+				 $datas['dash_mobilizer']=$this->adminmodel->dashMobilizer($pia_id);
+				 $datas['dash_tasks']=$this->adminmodel->dashTasks($pia_id);
+				 $datas['dash_trade']=$this->adminmodel->dashTrades($pia_id);
+				 $datas['dash_students']=$this->adminmodel->dashStudents($pia_id);
+				 //echo "<pre>"; print_r($datas['pia_details']); exit;
+				 $this->load->view('admin/admin_pia_header',$datas);
 				 $this->load->view('admin/pia_dashboard',$datas);
 				 $this->load->view('admin/admin_footer');
 			 }
@@ -484,8 +563,9 @@ class Admin extends CI_Controller {
 			if($user_type==1 || $user_type==2){
 				 $pia_id = base64_decode($this->uri->segment(3))/98765;
 				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['pia_details']=$this->adminmodel->piaDetails($pia_id);
 				 $datas['result']=$this->adminmodel->piaCenterlist($pia_id);
-				 //echo "<pre>"; print_r($datas['result']); exit;
+				 
 				 $this->load->view('admin/admin_pia_header',$datas);
 				 $this->load->view('admin/pia_center_list',$datas);
 				 $this->load->view('admin/admin_footer');
@@ -503,6 +583,7 @@ class Admin extends CI_Controller {
 			if($user_type==1 || $user_type==2){
 				 $pia_id = base64_decode($this->uri->segment(3))/98765;
 				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['pia_details']=$this->adminmodel->piaDetails($pia_id);
 				 $datas['result']=$this->adminmodel->piaMobilizerlist($pia_id);
 				 //echo "<pre>"; print_r($datas['result']); exit;
 				 $this->load->view('admin/admin_pia_header',$datas);
@@ -522,6 +603,7 @@ class Admin extends CI_Controller {
 			if($user_type==1 || $user_type==2){
 				 $pia_id = base64_decode($this->uri->segment(3))/98765;
 				 $datas['piaid'] = $this->uri->segment(3);
+				 $datas['pia_details']=$this->adminmodel->piaDetails($pia_id);
 				 $datas['result']=$this->adminmodel->piaStudentlist($pia_id);
 				 
 				 $this->load->view('admin/admin_pia_header',$datas);
@@ -550,28 +632,24 @@ class Admin extends CI_Controller {
 					}
 					$datas['mob_id'] = $mob_id;
 					
-					
-					$dob_date = $this->input->post('selected_date');
-					$dateTime = new DateTime($dob_date);
+					$track_date = $this->input->post('track_date');
+					$dateTime = new DateTime($track_date);
 					$selected_date = date_format($dateTime,'Y-m-d');
 					
 					if ($selected_date == ''){
 						$selected_date = date("Y-m-d");
 					}
 					
-					//echo $mob_id;
-					//echo $selected_date;
+					$datas['selected_date'] = $selected_date;
 					
-					//$mob_id = 25;
-					//$selected_date = '2018-02-12';
 					
 					$datas['kms_using_lat']=$this->adminmodel->kms_using_lat($mob_id,$selected_date);
 					$datas['res']=$this->adminmodel->testing_map($mob_id,$selected_date);
 					$datas['lat_long']=$this->adminmodel->only_lat_long($mob_id,$selected_date);
 					
-				 $this->load->view('admin/admin_pia_header',$datas);
-				 $this->load->view('admin/mobilizer_tracking',$datas);
-				 $this->load->view('admin/admin_footer');
+					 $this->load->view('admin/admin_pia_header',$datas);
+					 $this->load->view('admin/mobilizer_tracking',$datas);
+					 $this->load->view('admin/admin_footer');
 			 }
 			 else{
 					redirect('/');

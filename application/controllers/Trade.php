@@ -37,8 +37,15 @@ class Trade extends CI_Controller
 			if($user_type==3){
 				$tradename=$this->input->post('trade_name');
 				$status=$this->input->post('status');
-				$res['res'] = $this->trademodel->add_trade($tradename,$status,$user_id);
-				echo $res['res'];
+				$datas = $this->trademodel->add_trade($tradename,$status,$user_id);
+				
+				if($datas['status']=="success"){
+					$this->session->set_flashdata('msg', 'Added Successfully');
+					redirect('trade/home');
+				}else{
+					$this->session->set_flashdata('msg', 'Failed to Add');
+					redirect('trade/home');
+				}
 
 			}else{
 					redirect('/');
@@ -73,8 +80,15 @@ class Trade extends CI_Controller
 			$trade_name=$this->input->post('trade_name');
 			$trade_id=$this->input->post('trade_id');
 			$status=$this->input->post('status');
-			$res['res'] = $this->trademodel->update_trade_details($trade_name,$trade_id,$status,$user_id);
-			echo 	$res['res'];
+			$datas = $this->trademodel->update_trade_details($trade_name,$trade_id,$status,$user_id);
+			
+				if($datas['status']=="success"){
+					$this->session->set_flashdata('msg', 'Updated Successfully');
+					redirect('trade/home');
+				}else{
+					$this->session->set_flashdata('msg', 'Failed to Update');
+					redirect('trade/home');
+				}
 		}else{
 				redirect('/');
 		}

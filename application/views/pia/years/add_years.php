@@ -1,138 +1,155 @@
 <div class="container">
-  <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="form-example-wrap mg-t-30">
-                          <div class="cmp-tb-hd cmp-int-hd">
-                              <h2>Years Configuration Form</h2>
-                          </div>
-                            <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
-                          <div class="row">
-
-                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
-                                   <label>From Date</label>
-                                   <div class="input-group date nk-int-st">
-                                       <span class="input-group-addon"></span>
-                                       <input type="text"  name="from_month" id="from_year" class="form-control datepicker" >
-                                   </div>
-                               </div>
-                              </div>
-                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
-                                   <label>To Date</label>
-                                   <div class="input-group date nk-int-st">
-                                       <span class="input-group-addon"></span>
-                                       <input type="text" name="end_month" id="to_year"  class="form-control datepicker" >
-                                   </div>
-                               </div>
-                              </div>
-                              <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-
-                                <div class="" id="">
-                                   <label>Status</label>
-                                   <div class="input-group  nk-int-st">
-                                     <select name="status">
-                                       <option value="">--Select Status--</option>
-                                       <option value="Active">Active</option>
-                                       <option value="Inactive">Inactive</option>
-                                     </select>
-                                   </div>
-                               </div>
-
-
-
-                              </div>
-                              <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                                   <label></label>
-                                  <div class="form-example-int">
-                                     <!-- <input type="submit" id="save" class="btn btn-info btn-fill center"  value="Save"> -->
-                                     <button type="submit" class="btn btn-info notika-btn-info waves-effect">Create</button>
-                                  </div>
-                              </div>
-
-                          </div>
-                            </form>
-                      </div>
-                  </div>
-              </div>
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				
+				
+				<?php if($this->session->flashdata('msg')): ?>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×</button>
+					<?php echo $this->session->flashdata('msg'); ?>
+				</div>
+				<?php endif; ?>
+			
+			
+			<div class="row page_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-example-wrap">
+			
+			<form method="post" action="<?php echo base_url(); ?>years/create" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
+				<div class="cmp-tb-hd cmp-int-hd">
+					<h2> Period Plan</h2>
+				</div>
+						
+				 <div class="form-example-int form-horizental">
+                            <div class="form-group">
+           
+		   
+							<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">From</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										 <input type="text"  name="from_month" id="from_year" class="form-control from_date input-sm" >
+                                    </div>
+									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
+                            </div>
+								
+							<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">To</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+											 <input type="text" name="end_month" id="to_year"  class="form-control from_date input-sm" >
+                                    </div>
+                                   <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
+							</div>
+							
+							<div class="row page_row">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+									<label class="hrzn-fm">Status</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<select name="status" class="form-control" id="status">
+												<option value="Active">Active</option>
+												<option value="Inactive">Inactive</option>
+									</select>
+								</div>
+                                   <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
+							</div>
+								
+							
+							<div class="row page_row">
+								 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                           <button class="btn btn-success notika-btn-success waves-effect">Create</button>
+                                    </div>
+								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+								</div>
+							</div>
+							
+								
+					</div>
+                </div>	
+              </form>
+                    
             </div>
-            <!-- Data Table area Start-->
-   <div class="data-table-area">
-       <div class="container">
-           <div class="row">
-               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                   <div class="data-table-list">
-                       <div class="basic-tb-hd">
-                           <h2>List Years</h2>
-                       </div>
-                       <div class="table-responsive">
-                           <table id="data-table-basic" class="table table-striped">
-                               <thead>
-                                   <tr>
-                                       <th>S.no</th>
-                                       <th>Period From</th>
-                                       <th>Period To</th>
-                                       <th>Status</th>
-                                        <th>Action</th>
+		</div>
+	</div>
+	
+</div>
+</div>
+</div>
 
+<div class="container">
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	  <div class="data-table-list">
+             <div class="basic-tb-hd">
+                 <h2>Period Plans</h2>
+             </div>
+             <div class="table-responsive">
+                 <table id="data-table-basic" class="table table-striped">
+                     <thead>
+                         <tr>
+							<th>S.no</th>
+							<th>Period From</th>
+							<th>Period To</th>
+							<th>Status</th>
+							<th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                       <?php $i=1; foreach($result as $rows){ 
+					   $frm_date = $rows->period_from;
+					   $to_date = $rows->period_to;
+					  
+					   ?>
+                         <tr>
+                             <td><?php echo $i; ?></td>
+                             <td> <?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?></td>
+                             <td> <?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?></td>
+                             <td><?php if($rows->status=='Active'){ ?>Active<?php }else{ ?>Inactive<?php } ?></td>
+                             <td><a href="<?php echo base_url(); ?>years/edit_years/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Period"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
+                         </tr>
+						<?php  $i++; } ?>
 
-                                   </tr>
-                               </thead>
-                               <tbody>
-                                 <?php $i=1; foreach($result as $rows){ ?>
+                     </tbody>
 
+                 </table>
+             </div>
+         </div>
 
-                                   <tr>
-                                       <td><?php echo $i; ?></td>
-                                       <td><?php echo $rows->period_from; ?></td>
-                                       <td><?php echo $rows->period_to; ?></td>
-                                       <td><?php if($rows->status=='Active'){ ?>
-                                          <button class="btn btn-success notika-btn-success waves-effect">Active</button>
-                                    <?php   }else{ ?>
-                                        <button class="btn btn-warning notika-btn-warning waves-effect">Inactive</button>
-                                        <?php   } ?>
-                                      </td>
-                                       <td><a href="<?php echo base_url(); ?>years/edit_years/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
+	</div>
+	</div>
+</div>
+<style>
+.page_row{
+  margin-bottom: 20px;
+}
+</style>
 
-
-                                   </tr>
-<?php  $i++; } ?>
-
-                               </tbody>
-                               <tfoot>
-                                   <tr>
-                                     <th>S.no</th>
-                                     <th>Period From</th>
-                                     <th>Period To</th>
-                                     <th>Status</th>
-                                       <th>Action</th>
-                                   </tr>
-                               </tfoot>
-                           </table>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
-   <!-- Data Table area End-->
 
 <script type="text/javascript">
 $('#masters').addClass('active');
 $('#mastersmenu').addClass('active');
+$('#period_plan').addClass('active');
+
 $("#myformsection").validate({
        rules: {
            from_month:{required:true },
-           status:{required:true},
-           end_month:{required:true }
+           end_month:{required:true },
+		   status:{required:true}
        },
        messages: {
-              status:"Select Status",
-             from_month:"Please Enter From Year",
-             end_month:"Please Enter To Year"
-           },
-    submitHandler: function(form) {
-      $.ajax({
+             from_month:"Select from period",
+             end_month:"Select end period",
+			  status:"Select status"
+       },
+	
+		submitHandler: function(form) {
+		$.ajax({
                  url: "<?php echo base_url(); ?>years/create",
                  type: 'POST',
                  data: $('#myformsection').serialize(),
@@ -145,7 +162,7 @@ $("#myformsection").validate({
                                  icon:'success',
                                  stack: false
                              })
-                             window.setTimeout(function(){location.reload()},3000);
+                             window.setTimeout(function(){location.reload()},2000);
                      }else{
                        $.toast({
                                  heading: 'Error',
@@ -159,7 +176,4 @@ $("#myformsection").validate({
              });
            }
    });
-
-
-
 </script>

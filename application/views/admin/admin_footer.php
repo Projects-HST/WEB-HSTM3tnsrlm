@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="footer-copy-right">
-                    <p>  Developed by  <span><a href="http://happysanztech.com/" target="_blank"><img src="<?php echo base_url(); ?>assets/happy_logo_blue.png" style="width:100px;"></a></span></p>
+                    <p>  Developed by <a href="http://happysanztech.com/" target="_blank">Happysanz Tech</a></p>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
 ============================================ -->
 <script src="<?php echo base_url(); ?>assets/admin/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- <script src="<?php echo base_url(); ?>assets/admin/js/jvectormap/jvectormap-active.js"></script> -->
+
 <!-- sparkline JS
 ============================================ -->
 <script src="<?php echo base_url(); ?>assets/admin/js/sparkline/jquery.sparkline.min.js"></script>
@@ -77,16 +77,42 @@
 ============================================ -->
 <script src="<?php echo base_url(); ?>assets/admin/js/main.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/js/bootstrap-select/bootstrap-select.js"></script>
+
 <script src="<?php echo base_url(); ?>assets/admin/js/data-table/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/admin/js/data-table/data-table-act.js"></script>
+  
   <script src="<?php echo base_url(); ?>assets/admin/js/dialog/sweetalert2.min.js"></script>
   <!-- <script src="<?php echo base_url(); ?>assets/admin/js/dialog/dialog-active.js"></script> -->
+  
+
+	
 <script type="text/javascript">
-$(function () {
-    $('.datepicker').datepicker({
-        format: 'dd-mm-yyyy',maxDate: new Date
+	$('#data-table-basic').dataTable({
+		"oLanguage": {
+			"sEmptyTable": "No data available"
+		},
+		"aLengthMenu": [[25, 50, 75, 100, -1], [25, 50, 75, 100, "All"]],
+        "iDisplayLength": 25,
+		"ordering": false,
+		"bAutoWidth": false
+	});
+	
+	
+		
+$(document).ready(function () {
+    $('.dob').datepicker({
+        format: "dd-mm-yyyy",
+        autoclose: true,
+		maxDate: new Date(),
+	    endDate: new Date()
+    });
+	
+	  $('.track_date').datepicker({
+        format: "dd-mm-yyyy",
+        autoclose: true
     });
 });
+
 </script>
 
 

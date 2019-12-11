@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row">
+	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
 			<?php if($this->session->flashdata('msg')): ?>
@@ -11,7 +11,7 @@
             <?php endif; ?>
 
 			
-			<div class="row">
+			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>admin/createpia" class="form-horizontal" enctype="multipart/form-data" id="piaform">
@@ -21,14 +21,12 @@
 						
                         <div class="form-example-int form-horizental">
                             <div class="form-group">
-                                <div class="row">
+                                <div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">PRN Number</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
-										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm">
-                                        </div>
+										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" maxlength="13">
                                     </div>
 									
 									
@@ -36,20 +34,16 @@
                                         <label class="hrzn-fm">Name</label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" placeholder="Name" name="name" class="form-control input-sm">
-                                        </div>
+                                            <input type="text" placeholder="Name" name="name" class="form-control input-sm" maxlength="30">
                                     </div>
                                 </div>
 								
-								<div class="row">
+								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Mobile</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm">
-                                        </div>
+                                            <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" maxlength="10">
                                     </div>
 									
 									
@@ -57,111 +51,77 @@
                                         <label class="hrzn-fm">Email</label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm"  />
-                                        </div>
+                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" maxlength="30">
                                     </div>
                                 </div>
 								
-								<div class="row">
+								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">State</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" placeholder="State" name="state" class="form-control input-sm"  />
-                                        </div>
+                                            <input type="text" placeholder="State" name="state" class="form-control input-sm" maxlength="30">
                                     </div>
-									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Address</label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
                                            <textarea name="address" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Address"></textarea>
-                                        </div>
                                     </div>
                                 </div>
 								
-								<div class="row">
+								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Profile Picture</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
                                            <input type="file" name="staff_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
-                                        </div>
                                     </div>
-									
-									
-									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    </div>
-                                   
+									 <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
                                 </div>
 								
-								<div class="row">
+								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Status</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <div class="nk-int-st">
 										<select name="status" class="form-control input-sm" id="status">
-													
-													<option value="Active">Active</option>
-													<option value="Inactive">Inactive</option>
+											<option value="Active">Active</option>
+											<option value="Inactive">Inactive</option>
 										</select>
-										
-                                        </div>
                                     </div>
-									
-									
-									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                      
+									 <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
+                                </div>
+								<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										 <button class="btn btn-success notika-btn-success waves-effect">Create</button>
                                     </div>
-                                   
+									 <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
                                 </div>
 								
-
-								
-                            </div>
-
-                        </div>
-
-                        <div class="form-example-int mg-t-15">
-                            <div class="row">
-                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                </div>
-                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                    <button class="btn btn-success notika-btn-success waves-effect">Submit</button>
-                                </div>
                             </div>
                         </div>
 						</form>
                     </div>
-					
                 </div>
             </div>
 			
-			
-						
-					</div>
-				</div>
-			</div>
+		
+		</div>
+	</div>
+</div>
 <style>
-.row{
-  margin-bottom: 15px;
+.page_row{
+  margin-bottom: 20px;
 }
-/* .nk-int-mk h2 {
-    font-size: 13px;
-    color: #c13b3b;
-    margin-left: 22px;
-    font-weight: 400;
-} */
 </style>
 <script type="text/javascript">
     $('#pia').addClass('active');
     $('#piamenu').addClass('active');
+	$('#create_pia').addClass('active');
+
 		$('#piaform').validate({
 			rules: {
 				unique_number: {
@@ -170,8 +130,8 @@
 						minlength:13,
 						number:true,
 						remote: {
-									 url: "<?php echo base_url(); ?>admin/check_unique_number",
-									 type: "post"
+							 url: "<?php echo base_url(); ?>admin/check_unique_number",
+							 type: "post"
 								}
 				},
 				name: {
@@ -193,33 +153,38 @@
 				address: {
 						required: true
 				},
-				
+				staff_pic:{required:true,accept: "jpg,jpeg,png", filesize: 1048576  },
 				status: {
 						required: true
 				}
 		},
 		messages: {
 				unique_number: {
-					required: "Enter PRN Number",
+					required: "Enter PRN number",
 					maxlength:"Maximum 13 digits",
 					minlength:"Minimum 13 digits",
-					remote: "PRN Number Already Exist.",
-					number:"Only Numbers"
+					remote: "PRN number already exist!",
+					number:"Enter only numbers"
 				 },
 				name: "Enter Name",
 				mobile: {
 						required: "Enter mobile number",
 						maxlength:"Maximum 10 digits",
 						minlength:"Minimum 10 digits",
-						number:"Only Numbers"
+						number:"Enter only numbers"
 				 },
 				email: {
-						 required: "Please enter your email address.",
-						 email: "Please enter a valid email address."
+						 required: "Enter email address",
+						 email: "Enter valid email address"
 				 },
-				state: "Enter State",
-				address: "Enter Address",
-				status: "Select Status"
+				state: "Enter state",
+				address: "Enter address",
+				staff_pic:{
+								  required:"Select PIA picture",
+								  accept:"Please upload .jpg or .png .",
+								  fileSize:"File must be JPG or PNG, less than 1MB"
+								},
+				status: "Select status"
 			}
 		});
 </script>

@@ -1,8 +1,8 @@
 <div class="container">
-<div class="row">
+<div class="row page_row">
 <div class="data-table-area">
 <div class="container">
- <div class="row">
+ <div class="row page_row">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
@@ -34,15 +34,17 @@
                              <td><?php echo $rows->mobile; ?></td>
 
                              <td><?php if($rows->status=='Pending'){ ?>
-                                <button class="btn btn-warning notika-btn-warning waves-effect">Pending</button>
+                                Pending
                           <?php   }else if($rows->status=='Confirmed'){ ?>
-                              <button class="btn btn-success notika-btn-success waves-effect">Confirmed</button>
+                              Confirmed
                               <?php   }else{ ?>
-                              <button class="btn btn-danger notika-btn-danger waves-effect">Rejected</button>
+                              Rejected
                               <?php   } ?>
                             </td>
                                 <td><?php echo $rows->added_by; ?></td>
-                             <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td>
+								
+								
+                             <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Prospects"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
 
 
                          </tr>
@@ -60,7 +62,15 @@
 <!-- Data Table area End-->
 </div>
 </div>
+
+<style>
+.page_row{
+  margin-bottom: 15px;
+}
+</style>
+
 <script type="text/javascript">
     $('#prospects').addClass('active');
     $('#prospectsmenu').addClass('active');
-    </script>
+	 $('#all_prospect').addClass('active');
+</script>

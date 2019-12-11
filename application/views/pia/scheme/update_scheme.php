@@ -172,7 +172,6 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
-}
 </style>
 <script type="text/javascript">
     $('#masters').addClass('active');
