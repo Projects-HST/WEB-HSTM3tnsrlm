@@ -435,41 +435,83 @@ class Apimobilizermodel extends CI_Model {
 	}
 //#################### Student Pic Update End ####################//
 
+
 //#################### List Students ####################//
 	public function listStudents($user_id)
 	{
-		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id'";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status,student_pic FROM edu_student_prospects WHERE created_by  ='$user_id'";
 			$student_res = $this->db->query($student_query);
-			$student_result= $student_res->result();
+			$query_result= $student_res->result();
 			$student_count = $student_res->num_rows();
 
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
-			}
+        foreach($query_result as $rows_list){
+          if(empty($rows_list->student_pic)){
+            $student_pic='';
+          }else{
+            $student_pic=base_url().'assets/students/'.$rows_list->student_pic;
+          }
 
+          $student_result[]=array(
+            "id"=>$rows_list->id,
+            "name"=>$rows_list->name,
+            "sex"=>$rows_list->sex,
+            "mobile"=>$rows_list->mobile,
+            "email"=>$rows_list->email,
+            "enrollment"=>$rows_list->enrollment,
+            "status"=>$rows_list->status,
+            "student_pic"=>$student_pic,
+
+
+          );
+        }
+				$response = array("status" => "success", "msg" => "View student list", "count" => $student_count, "studentList"=>$student_result);
+			}
 			return $response;
 	}
 //#################### List Students End ####################//
+
 
 //#################### List Students ####################//
 	public function listStudentsStatus($user_id,$status)
 	{
-		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status FROM `edu_student_prospects` WHERE created_by ='$user_id' AND status = '$status' ";
+		 	$student_query = "SELECT id,name,sex,mobile,email,enrollment,status,student_pic FROM edu_student_prospects WHERE created_by = '$user_id' AND status = '$status'";
 			$student_res = $this->db->query($student_query);
-			$student_result= $student_res->result();
+			$query_result= $student_res->result();
 			$student_count = $student_res->num_rows();
 
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Events", "count" => $student_count, "studentList"=>$student_result);
-			}
 
+        foreach($query_result as $rows_list){
+          if(empty($rows_list->student_pic)){
+            $student_pic='';
+          }else{
+            $student_pic=base_url().'assets/students/'.$rows_list->student_pic;
+          }
+
+          $student_result[]=array(
+            "id"=>$rows_list->id,
+            "name"=>$rows_list->name,
+            "sex"=>$rows_list->sex,
+            "mobile"=>$rows_list->mobile,
+            "email"=>$rows_list->email,
+            "enrollment"=>$rows_list->enrollment,
+            "status"=>$rows_list->status,
+            "student_pic"=>$student_pic,
+
+
+          );
+        }
+				$response = array("status" => "success", "msg" => "View student list", "count" => $student_count, "studentList"=>$student_result);
+			}
 			return $response;
 	}
 //#################### List Students End ####################//
+
 
 //#################### View Student ####################//
 	public function viewStudent($admission_id)
