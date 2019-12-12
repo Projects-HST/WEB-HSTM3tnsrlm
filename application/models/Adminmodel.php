@@ -458,7 +458,7 @@ public function __construct()
 	}
 	
 	function dashTasks($pia_id){
-		$select="SELECT A.task_title, B.name, B.user_type, C.user_type_name FROM edu_task A, edu_users B, edu_role C WHERE A.user_id = B.user_id AND B.user_type=c.id AND A.pia_id = '$pia_id' ORDER BY A.id DESC LIMIT 5 ";
+		$select="SELECT A.task_title, B.name, B.user_type, C.user_type_name FROM edu_task A, edu_users B, edu_role C WHERE A.user_id = B.user_id AND B.user_type=C.id AND A.pia_id = '$pia_id' ORDER BY A.id DESC LIMIT 5 ";
 		$result=$this->db->query($select);
 		return $result->result();
 	}
