@@ -30,7 +30,7 @@ class Apimainmodel extends CI_Model {
       $headers = "MIME-Version: 1.0" . "\r\n";
       $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
       // Additional headers
-      $headers .= 'From: skilex<info@skilex.com>' . "\r\n";
+      $headers .= 'From: m3tnsrlm<info@m3tnsrlm.com>' . "\r\n";
       mail($sendto,$subject,$htmlContent,$headers);
     }
 
@@ -461,15 +461,15 @@ class Apimainmodel extends CI_Model {
 					}
 				}
 
-				$digits = 4;
+				$digits = 6;
     			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-				$mobile_message = 'Verify OTP :'. $OTP;
+				      $mobile_message = 'App login Username:'.$user_name.'\n Password:'.$OTP.'<br><br>';
                 $this->sendSMS($phone,$mobile_message);
 
 
 				      $subject = "M3 - Forgot Password";
-            	$email_message = 'App login Username:'.$user_name.'Password:'.$OTP.'<br><br>';
+            	$email_message = 'App login Username:'.$user_name.'<br>Password:'.$OTP.'<br><br>';
 	            $this->sendMail($email,$subject,$email_message);
 
 				$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW() WHERE user_id='$user_id'";

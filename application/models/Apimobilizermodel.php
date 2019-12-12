@@ -848,9 +848,9 @@ class Apimobilizermodel extends CI_Model {
 //#################### Task Pic Add ####################//
 	public function taskPic($task_id,$task_pic)
 	{
-           $task_query = "INSERT INTO edu_task_photos (task_id, task_image) VALUES ('$task_id','$task_pic')";
-	        $task_res = $this->db->query($task_query);
-            $task_id = $this->db->insert_id();
+       $task_query = "INSERT INTO edu_task_photos (task_id, task_image) VALUES ('$task_id','$task_pic')";
+      $task_res = $this->db->query($task_query);
+        $task_id = $this->db->insert_id();
 
 			$response = array("status" => "success", "msg" => "Task Picture Added","task_picture"=>$task_pic);
 			return $response;
