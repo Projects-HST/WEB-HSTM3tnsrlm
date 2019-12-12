@@ -464,12 +464,13 @@ class Apimainmodel extends CI_Model {
 				$digits = 6;
     			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-				      $mobile_message = 'App login Username:'.$user_name.'\n Password:'.$OTP.'<br><br>';
+				     
+              	$mobile_message = 'Username :'.PHP_EOL. $user_name .'Password:'.$OTP;
                 $this->sendSMS($phone,$mobile_message);
 
 
 				      $subject = "M3 - Forgot Password";
-            	$email_message = 'App login Username:'.$user_name.'<br>Password:'.$OTP.'<br><br>';
+            	$email_message = 'App login Username:'.$user_name.'<br> Password:'.$OTP.'<br><br>';
 	            $this->sendMail($email,$subject,$email_message);
 
 				$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW() WHERE user_id='$user_id'";
