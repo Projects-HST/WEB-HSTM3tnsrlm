@@ -4649,15 +4649,27 @@ body.box-layout {
 .logo_admin{
   width: 165px;
 }
-
 .field-icon {
     float: right;
    /* margin-left: -25px;*/
     margin-top: -25px;
     position: relative;
     z-index: 2;
-
 }
 .counter{
 	color:#e02329;
+}
+
+.red{
+  color: red !important;
+  font-weight: 500;
+}
+.green{
+  color: green !important;
+  font-weight: 500;
+}
+
+.blue{
+  color: blue !important;
+  font-weight: 500;
 }

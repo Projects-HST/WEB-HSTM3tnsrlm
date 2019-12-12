@@ -123,90 +123,80 @@ public function __construct()
 
 	function create_staff_details($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id){
 
-      $select="SELECT * FROM edu_staff_details Where email='$email' AND phone='$mobile'";
-       $result=$this->db->query($select);
-       if($result->num_rows()>0){
-         $data = array(
-             "status" => "already"
-         );
-         return $data;
-         }else{
-           $insert="INSERT INTO edu_staff_details (role_type,name,sex,dob,nationality,religion,community_class,community,address,email,phone,sec_phone,profile_pic,trade_batch_id,qualification,status,created_by,created_at) VALUES('$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$mobile','$sec_phone','$staff_prof_pic','$class_tutor','$qualification','$status','$user_id',NOW())";
-            $result=$this->db->query($insert);
-            $insert_id = $this->db->insert_id();
-            $digits = 6;
-        	$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-        	$md5pwd=md5($OTP);
-            $user_name=$mobile;
-            
-            $user_table="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,user_master_id,created_date,status) VALUES('$name','$user_name','$md5pwd','$staff_prof_pic','$select_role','$insert_id',NOW(),'Active')";
-              $result_user=$this->db->query($user_table);
-              $to =$email;
-              $subject ='"Welcome Message"';
-              $htmlContent = '
-              <html>
-              <head>  <title></title>
-              </head>
-              <body style="background-color:beige;">
-              <table cellspacing="0" style=" width: 300px; height: 200px;">
-              <tr>
-              <th>Email:</th><td>'.$email.'</td>
-              </tr>
-              <tr>
-              <th>Username :</th><td>'.$user_name.'</td>
-              </tr>
-              <tr>
-              <th>Password:</th><td>'.$OTP.'</td>
-              </tr>
-              <tr>
-              <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-              </tr>
-              </table>
-              </body>
-              </html>';
-              // Set content-type header for sending HTML email
-              $headers = "MIME-Version: 1.0" . "\r\n";
-              $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-              // Additional headers
-              $headers .= 'From: info<info@tnsrlm.com>' . "\r\n";
-              mail($to,$subject,$htmlContent,$headers);
-            if ($result_user) {
-                $data = array(
-                    "status" => "success"
-                );
-                return $data;
-            } else {
-                $data = array(
-                    "status" => "failed"
-                );
-                return $data;
-            }
-       }
-    }
+		$select="SELECT * FROM edu_staff_details Where email='$email' AND phone='$mobile'";
+		$result=$this->db->query($select);
+		
+		if($result->num_rows()>0){
+			$data = array("status" => "already");
+			return $data;
+		
+		}else{
+			$insert="INSERT INTO edu_staff_details (role_type,name,sex,dob,nationality,religion,community_class,community,address,email,phone,sec_phone,profile_pic,trade_batch_id,qualification,status,created_by,created_at) VALUES('$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$mobile','$sec_phone','$staff_prof_pic','$class_tutor','$qualification','$status','$user_id',NOW())";
+			$result=$this->db->query($insert);
+			$insert_id = $this->db->insert_id();
+			
+			$digits = 6;
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+			$md5pwd=md5($OTP);
+			$user_name=$mobile;
+
+			$user_table="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,user_master_id,created_date,status) VALUES('$name','$user_name','$md5pwd','$staff_prof_pic','$select_role','$insert_id',NOW(),'Active')";
+			$result_user=$this->db->query($user_table);
+	
+			$subject ='M3 - Staff Login Details';
+			$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>Staff Login Details</p>
+							<p>Username: '.$user_name.'</p>
+							<p>Password: '.$OTP.'</p>
+							<p></p>
+							<p><a href="'.base_url() .'">Click here to Login</a></p>
+							</body>
+							</html>';
+			// Set content-type header for sending HTML email
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Additional headers
+			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
+			mail($email,$subject,$htmlContent,$headers);
+
+			if ($result_user) {
+				$data = array("status" => "success");
+			} else {
+				$data = array("status" => "failed");
+			}
+			return $data;
+		}
+	}
 
 	function get_all_staff_details($user_id){
-      $select="SELECT * FROM edu_staff_details WHERE role_type='2' ORDER BY id desc";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $select="SELECT * FROM edu_staff_details WHERE role_type='2' ORDER BY id desc";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
 	
 	function get_staff_details_by_id($staff_id){
-      $id=base64_decode($staff_id)/98765;
-      $select="SELECT * FROM edu_staff_details WHERE id='$id'";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $id=base64_decode($staff_id)/98765;
+		  $select="SELECT * FROM edu_staff_details WHERE id='$id'";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
-	
-	
+
+
     function checkemail_edit($email,$staff_id){
-      $select="SELECT * FROM edu_staff_details Where email='$email' AND id!='$staff_id'";
-      $result=$this->db->query($select);
-      if($result->num_rows()>0){
-			echo "false";
-        }else{
-			echo "true";
-      }
+		  $select="SELECT * FROM edu_staff_details Where email='$email' AND id!='$staff_id'";
+		  $result=$this->db->query($select);
+		  if($result->num_rows()>0){
+				echo "false";
+			}else{
+				echo "true";
+		  }
     }
+
+
     function checkmobile_edit($mobile,$staff_id){
 		$select="SELECT * FROM edu_staff_details Where phone='$mobile' AND id!='$staff_id'";
 		$result=$this->db->query($select);
@@ -217,46 +207,60 @@ public function __construct()
       }
     }  
 
-   function update_staff_details_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id){
 
+   function update_staff_details_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id){
    
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
-			$user_result = $this->db->query($sQuery);
-			$ress = $user_result->result();
-			if($user_result->num_rows()>0)
+		$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
+		$user_result = $this->db->query($sQuery);
+		$ress = $user_result->result();
+		if($user_result->num_rows()>0)
+		{
+			foreach ($user_result->result() as $rows)
 			{
-				foreach ($user_result->result() as $rows)
-				{
-					$old_phone_number = $rows->phone;
-				}
+				$old_phone_number = $rows->phone;
 			}
+		}
 			
 		$update = "UPDATE edu_staff_details SET role_type='$select_role',name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community',community='$community',qualification='$qualification',status='$status',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
 		$result=$this->db->query($update);
 		
 		if ($old_phone_number != $mobile){
-			echo $update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
 			$result_user=$this->db->query($update_user);
+			
+			$subject ='M3 - Staff Login - Username Updated';
+			$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>PIA Login Details</p>
+							<p>Username: '.$mobile.'</p>
+							<p></p>
+							<p><a href="'.base_url() .'">Click here to Login</a></p>
+							</body>
+							</html>';
+			// Set content-type header for sending HTML email
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Additional headers
+			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
+			mail($email,$subject,$htmlContent,$headers);
+			
 		}else {
-			echo $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
 			$result_user=$this->db->query($update_user);
 		}
 
-		if ($result_user) {
-		  $data = array(
-			  "status" => "success"
-		  );
-		  return $data;
-		} else {
-		  $data = array(
-			  "status" => "failed"
-		  );
-		  return $data;
-		}
-
+			if ($result_user) {
+			  $data = array("status" => "success");
+			} else {
+			  $data = array("status" => "failed");
+			}
+			  return $data;
     }
 
-     function checkuniquenumber($unique_number){
+    function checkuniquenumber($unique_number){
 		$select="SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
 		$result=$this->db->query($select);
 		  if($result->num_rows()>0){
@@ -268,88 +272,75 @@ public function __construct()
 
 	function create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id){
 
-      $select="SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
-       $result=$this->db->query($select);
-       if($result->num_rows()>0){
-         $data = array(
-             "status" => "already"
-         );
-         return $data;
-         }else{
-           $insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,pia_state,profile_pic,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$state','$staff_prof_pic','$status','$user_id',NOW())";
-            $result=$this->db->query($insert);
-            $insert_id = $this->db->insert_id();
-            $digits = 6;
-        	$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-        	$md5pwd=md5($OTP);
-            $user_name=$unique_number;
-            
-            $user_table="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,user_master_id,created_date,status) VALUES('$name','$user_name','$md5pwd','$staff_prof_pic','3','$insert_id',NOW(),'Active')";
-              $result_user=$this->db->query($user_table);
-              $to =$email;
-              $subject ='"Welcome Message"';
-              $htmlContent = '
-              <html>
-              <head>  <title></title>
-              </head>
-              <body style="background-color:beige;">
-              <table cellspacing="0" style=" width: 300px; height: 200px;">
-              <tr>
-              <th>Email:</th><td>'.$email.'</td>
-              </tr>
-              <tr>
-              <th>Username :</th><td>'.$user_name.'</td>
-              </tr>
-              <tr>
-              <th>Password:</th><td>'.$OTP.'</td>
-              </tr>
-              <tr>
-              <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
-              </tr>
-              </table>
-              </body>
-              </html>';
-              // Set content-type header for sending HTML email
-              $headers = "MIME-Version: 1.0" . "\r\n";
-              $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-              // Additional headers
-              $headers .= 'From: info<info@tnsrlm.com>' . "\r\n";
-             mail($to,$subject,$htmlContent,$headers);
-            if ($result_user) {
-                $data = array(
-                    "status" => "success"
-                );
-                return $data;
-            } else {
-                $data = array(
-                    "status" => "failed"
-                );
-                return $data;
-            }
+		$select = "SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
+		$result=$this->db->query($select);
+		if($result->num_rows()>0){
+			$data = array("status" => "already");
+			return $data;
+		}else{
+			$insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,pia_state,profile_pic,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$state','$staff_prof_pic','$status','$user_id',NOW())";
+			$result=$this->db->query($insert);
+			$insert_id = $this->db->insert_id();
+
+			$digits = 6;
+			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+			$md5pwd=md5($OTP);
+			$user_name=$unique_number;
+
+			$user_table = "INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,user_master_id,created_date,status) VALUES('$name','$user_name','$md5pwd','$staff_prof_pic','3','$insert_id',NOW(),'Active')";
+			$result_user=$this->db->query($user_table);
+
+
+			$subject ='M3 - PIA Login Details';
+			$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>PIA Login Details</p>
+							<p>Username: '.$user_name.'</p>
+							<p>Password: '.$OTP.'</p>
+							<p></p>
+							<p><a href="'.base_url() .'">Click here to Login</a></p>
+							</body>
+							</html>';
+			// Set content-type header for sending HTML email
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Additional headers
+			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
+			mail($email,$subject,$htmlContent,$headers);
+
+			if ($result_user) {
+			$data = array("status" => "success");
+			} else {
+			$data = array("status" => "failed");
+			}
+			return $data;
        }
     }
 
 	function get_all_pia_details($user_id){
-      $select="SELECT * FROM edu_pia A, edu_users B WHERE B.user_master_id = A.id AND B.user_type='3' ORDER BY id desc";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $select="SELECT * FROM edu_pia A, edu_users B WHERE B.user_master_id = A.id AND B.user_type='3' ORDER BY id desc";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
 	
 	function get_pia_details_by_id($pia_id){
-      $id=base64_decode($pia_id)/98765;
-      $select="SELECT * FROM edu_pia WHERE id='$id'";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $id=base64_decode($pia_id)/98765;
+		  $select="SELECT * FROM edu_pia WHERE id='$id'";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
 	
 	 function check_uniquenumber_edit($unique_number,$pia_id){
-		$select="SELECT * FROM edu_pia Where pia_unique_number='$unique_number' AND id!='$pia_id'";
-		$result=$this->db->query($select);
-		if($result->num_rows()>0){
+			$select="SELECT * FROM edu_pia Where pia_unique_number='$unique_number' AND id!='$pia_id'";
+			$result=$this->db->query($select);
+			if($result->num_rows()>0){
 			echo "false";
-        }else{
+			}else{
 			echo "true";
-      }
+			}
     }  
 	
 	function update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id){
@@ -368,24 +359,41 @@ public function __construct()
 		 $update = "UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_email ='$email',pia_phone ='$mobile',pia_state='$state',pia_address ='$address',status='$status',profile_pic = '$staff_prof_pic', updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 		$result=$this->db->query($update);
 		
-	if ($old_unique_number != $unique_number){
-		$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
-		$result_user=$this->db->query($update_user);
-	}else {
-		$update_user="UPDATE edu_users SET name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
-		$result_user=$this->db->query($update_user);
-	}
-		if ($result_user) {
-		  $data = array(
-			  "status" => "success"
-		  );
-		  return $data;
-		} else {
-		  $data = array(
-			  "status" => "failed"
-		  );
-		  return $data;
+		if ($old_unique_number != $unique_number){
+			$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
+			$result_user=$this->db->query($update_user);
+			
+			$subject ='M3 - PIA Username Updated';
+			$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>PIA Username Updated</p>
+							<p>Username: '.$unique_number.'</p>
+							<p></p>
+							<p></p>
+							<p><a href="'.base_url() .'">Click here to Login</a></p>
+							</body>
+							</html>';
+			// Set content-type header for sending HTML email
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Additional headers
+			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
+			mail($email,$subject,$htmlContent,$headers);
+			
+		}else {
+			$update_user="UPDATE edu_users SET name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
+			$result_user=$this->db->query($update_user);
 		}
+		
+		if ($result_user) {
+			$data = array( "status" => "success");
+		} else {
+			$data = array("status" => "failed");
+		}
+			return $data;
 
     }
 

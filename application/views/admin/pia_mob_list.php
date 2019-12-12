@@ -13,7 +13,7 @@
 
 		<div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Mobilizer List ( <?php echo $row->pia_name; ?> - <?php echo $row->pia_unique_number; ?> )</h2>
+                 <h2>Mobilizer List ( <?php echo $row->pia_name; ?> )</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
@@ -23,7 +23,7 @@
 
                              <th>Mobilizer name</th>
                              <th>Mobile</th>
-								<th>Email</th>
+							  <th>Email</th>
                               <th>Status</th>
 							  <th>Tracking </th>
                          </tr>
@@ -36,7 +36,7 @@
 							 <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->phone; ?></td>
 							 <td><?php echo $rows->email; ?></td>
-                             <td><?php if($rows->status=='Active'){ ?>Active <?php }else{ ?>Inactive<?php   } ?>
+                             <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                             </td>
 							<td>
 							<a href="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>

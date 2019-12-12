@@ -14,7 +14,7 @@
 			
 			 <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Center List ( <?php echo $row->pia_name; ?> - <?php echo $row->pia_unique_number; ?> )</h2>
+                 <h2>Center List ( <?php echo $row->pia_name; ?>)</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
@@ -32,7 +32,7 @@
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->center_name; ?></td>
                              <td><?php echo $rows->center_address ; ?></td>
-                             <td><?php if($rows->status=='Active'){ ?>Active<?php }else{ ?>Inactive<?php   } ?>
+                             <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                             </td>
                             
 <?php  $i++; } ?>

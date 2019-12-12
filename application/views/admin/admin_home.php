@@ -75,6 +75,7 @@
                                     <h2>Recent PIAs</h2>
                                 </div>
                             </div>
+							
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <tbody>
@@ -87,6 +88,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($pia_list) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -96,6 +98,7 @@
                                     </div>
                                 </a>
                             </div>
+							<?php }?>
 							
                         </div>
                     </div>
@@ -109,12 +112,12 @@
                                     <h2>Recent Mobilizers</h2>
                                 </div>
                             </div>
+							
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <tbody>
 									 <?php  
-									 $i=1; 
-									 foreach($mobilizer_list as $rows){ ?>
+									 $i=1; foreach($mobilizer_list as $rows){ ?>
                                         <tr>
 											<td style="width:15px;"><?php echo $i; ?></h2></td>
 											<td><b><?php echo $rows->mob_name; ?></b><br><?php echo $rows->pia_name; ?></td>
@@ -123,6 +126,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($mobilizer_list) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -132,7 +136,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php }?>
                         </div>
                     </div>
                 </div>
@@ -145,6 +149,7 @@
                                     <h2>Recent Students</h2>
                                 </div>
                             </div>
+							
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <tbody>
@@ -157,6 +162,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($students_list) >4){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -166,7 +172,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php }?>
                         </div>
                     </div>
                 </div>

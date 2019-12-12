@@ -626,6 +626,7 @@ class Admin extends CI_Controller {
 					$datas['piaid'] = $this->uri->segment(3);
 					
 					$mob_id = base64_decode($this->uri->segment(4))/98765;
+					$datas['mobid'] = $this->uri->segment(4);
 					
 					if ($mob_id == ''){
 						$mob_id = $this->input->post('mob_id');

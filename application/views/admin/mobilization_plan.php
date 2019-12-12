@@ -21,7 +21,7 @@
                              <th>S.no</th>
 							 <th>PIA Name</th>
                              <th>Docment Name</th>
-                             <th>Upload Date</th>
+                             <th>Uploaded Date</th>
 							 <th>Document</th>
                          </tr>
                      </thead>
@@ -35,7 +35,6 @@
 							  <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->doc_name; ?></td>
                              <td><?php echo $dispDate;?></td>
-							 <td>
 							  <td><a href="<?php echo base_url(); ?>assets/mobilization_plan/<?php echo $rows->doc_file; ?>" data-toggle="tooltip" title="Download"><i class="fa fa-download" aria-hidden="true" style="font-size:22px;"></i></a></td>
 							  
 

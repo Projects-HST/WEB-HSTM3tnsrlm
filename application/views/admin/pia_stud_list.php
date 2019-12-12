@@ -13,7 +13,7 @@
 
 		<div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Students List ( <?php echo $row->pia_name; ?> - <?php echo $row->pia_unique_number; ?> )</h2>
+                 <h2>Students List ( <?php echo $row->pia_name; ?> )</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
@@ -33,7 +33,13 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->sex ; ?></td>
 							 <td><?php echo $rows->mobile ; ?></td>
-                             <td><?php echo $rows->status; ?></td>
+							 <td>
+								<?php if($rows->status=='Confirmed'){ ?> <span class="green">Confirmed</span><?php } ?>
+								<?php if($rows->status=='Rejected'){ ?><span class="red">Rejected</span><?php } ?>
+								<?php if($rows->status=='Pending'){ ?><span class="blue">Pending</span><?php } ?>
+								
+							</td>
+                            
 					<?php  $i++; } ?>
                      </tbody>
 

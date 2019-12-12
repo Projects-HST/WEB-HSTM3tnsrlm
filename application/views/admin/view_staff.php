@@ -22,7 +22,7 @@
                              <th>Name</th>
                              <th>Email id</th>
                              <th>Mobile</th>
-                             <th>status</th>
+                             <th>Status</th>
                               <th>Action</th>
 
 
@@ -35,7 +35,7 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
-                             <td><?php if($rows->status=='Active'){ ?>Active<?php }else{ ?>Inactive<?php } ?></td>
+                             <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                              <td><a href="<?php echo base_url(); ?>admin/edit_staff/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Staff"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>

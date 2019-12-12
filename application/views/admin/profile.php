@@ -39,7 +39,7 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Name</label>
+                                        <label class="hrzn-fm">Name  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -49,7 +49,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Date of Birth</label>
+                                        <label class="hrzn-fm">Date of Birth  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -60,7 +60,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile Number</label>
+                                        <label class="hrzn-fm">Mobile Number  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -81,7 +81,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address</label>
+                                        <label class="hrzn-fm">Email Address  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -91,7 +91,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Gender</label>
+                                        <label class="hrzn-fm">Gender  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -137,7 +137,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Nationality</label>
+                                        <label class="hrzn-fm">Nationality  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -152,19 +152,15 @@
 								
 								<div class="row page_row">
                                 					<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Qualification</label>
+									<label class="hrzn-fm">Qualification  <span class="error">*</span></label>
 								</div>
 								 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
 										<input type="text" placeholder="Qualification" name="qualification" class="form-control input-sm" value="<?php echo $rows->qualification; ?>" maxlength="30">
                                         </div>
                                     </div>
-										
-									
-									
-									
 									     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Address</label>
+                                        <label class="hrzn-fm">Address  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">

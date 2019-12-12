@@ -25,7 +25,7 @@
    
 					<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Current Password</label>
+								<label class="hrzn-fm">Current Password <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="password" placeholder="Enter Current Password" name="old_password" id="old_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#old_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
@@ -35,7 +35,7 @@
 						
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">New Password</label>
+								<label class="hrzn-fm">New Password <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<input type="password" placeholder="Enter New Password" id="new_password" name="new_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#new_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
@@ -45,7 +45,7 @@
 						
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Retype Password</label>
+								<label class="hrzn-fm">Retype Password <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<input type="password" placeholder="Enter Retype Password" id="retype_password" name="retype_password" class="form-control input-sm" value="" maxlength="10"><span toggle="#retype_password" class="fa fa-fw  fa-eye-slash field-icon toggle-password"></span>
@@ -62,9 +62,7 @@
 							</div>
 							 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
 						</div>
-						
 
-						
 			</div>
 		</div>
 

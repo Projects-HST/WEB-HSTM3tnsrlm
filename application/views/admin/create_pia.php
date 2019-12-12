@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">PRN Number</label>
+                                        <label class="hrzn-fm">PRN Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" maxlength="13">
@@ -31,7 +31,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Name</label>
+                                        <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Name" name="name" class="form-control input-sm" maxlength="30">
@@ -40,7 +40,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile</label>
+                                        <label class="hrzn-fm">Mobile <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" maxlength="10">
@@ -48,7 +48,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email</label>
+                                        <label class="hrzn-fm">Email <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" maxlength="30">
@@ -57,14 +57,14 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">State</label>
+                                        <label class="hrzn-fm">State <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="State" name="state" class="form-control input-sm" maxlength="30">
                                     </div>
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Address</label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                            <textarea name="address" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Address"></textarea>
@@ -73,7 +73,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Profile Picture</label>
+                                        <label class="hrzn-fm">Profile Picture <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                            <input type="file" name="staff_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
@@ -83,7 +83,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Status</label>
+                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="status" class="form-control input-sm" id="status">

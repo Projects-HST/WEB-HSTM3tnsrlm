@@ -63,6 +63,7 @@
                                     <h2>Recent Mobilizers</h2>
                                 </div>
                             </div>
+							
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <tbody>
@@ -77,6 +78,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_mobilizer) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -86,7 +88,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                 </div>
             </div>
@@ -109,6 +111,7 @@
                                     <h2>Recent Task</h2>
                                 </div>
                             </div>
+							
                             <div class="recent-items-inn">
                                 <table class="table table-inner table-vmiddle">
                                     <tbody>
@@ -121,6 +124,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_tasks) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -130,7 +134,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -157,6 +161,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_trade) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -166,7 +171,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -191,6 +196,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_students) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -200,7 +206,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>

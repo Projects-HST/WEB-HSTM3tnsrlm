@@ -14,13 +14,13 @@
                             <div class="form-group">
                                 <div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">PRN Number</label>
+                                        <label class="hrzn-fm">PRN Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" value="<?php echo $rows->pia_unique_number; ?>" maxlength="13">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Name</label>
+                                        <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Name" name="name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="30">
@@ -29,13 +29,13 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile</label>
+                                        <label class="hrzn-fm">Mobile <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" value="<?php echo $rows->pia_phone; ?>" maxlength="10">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email</label>
+                                        <label class="hrzn-fm">Email <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="30">
@@ -44,13 +44,13 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">State</label>
+                                        <label class="hrzn-fm">State <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="State" name="state" class="form-control input-sm" value="<?php echo $rows->pia_state; ?>" maxlength="30">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Address</label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                            <textarea name="address" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Address"><?php echo $rows->pia_address; ?></textarea>
@@ -65,7 +65,7 @@
                                            <input type="file" name="staff_new_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
                                     </div>
 									  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Status</label>
+                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="status" class="form-control input-sm" id="status">
@@ -90,7 +90,7 @@
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
 										<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
-										<button class="btn btn-success notika-btn-success waves-effect">Save</button>
+										<button class="btn btn-success notika-btn-success waves-effect">Update</button>
                                     </div>
                                 </div>
 								
@@ -148,7 +148,7 @@
 				state: {
 						required: true
 				},
-				staff_new_pic:{required:false,accept: "jpg,jpeg,png", filesize: 1048576  },
+				staff_new_pic:{required:false,accept: "jpg,jpeg,png"},
 				status: {
 						required: true
 				}
@@ -173,7 +173,7 @@
 						 required: "Enter email address",
 						 email: "Enter valid email address"
 				 },
-				state: "Enter atate",
+				state: "Enter state",
 				address: "Enter address",
 				 staff_new_pic:{
 								  required:"",

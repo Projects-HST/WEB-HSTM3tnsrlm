@@ -48,6 +48,8 @@
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+	
     <!-- modernizr JS
 		============================================ -->
     <script src="<?php echo base_url(); ?>assets/admin/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -109,13 +111,13 @@
             <div class="nk-form">
                 <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div>
-					<p style="font-size:15px;font-weight:bold;">Enter the registered Email ID to reset your password.</p>
+					<p style="font-size:15px;font-weight:bold;">Enter your Username to reset your password.</p>
 			 </div>
 
                 <div class="input-group">
-                    <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <span class="input-group-addon nk-ic-st-pro"><i class="fa fa-user" aria-hidden="true"></i></span>
                     <div class="nk-int-st">
-                        <input type="text" class="form-control"  name="forgot_email" placeholder="Email Address" maxlength="30">
+                        <input type="text" class="form-control"  name="user_name" placeholder="Username" maxlength="30">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-forgot btn-success btn-float"><i class="notika-icon notika-right-arrow right-arrow-ant"></i></button>
@@ -198,7 +200,7 @@
     <script src="<?php echo base_url(); ?>assets/admin/js/main.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/additional-methods.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 <script type="text/javascript">
 
@@ -227,10 +229,10 @@ $(".toggle-password").click(function() {
    
 $("#myformsection").validate({
        rules: {
-           forgot_email:{required:true }
+           user_name:{required:true }
        },
        messages: {
-            forgot_email:"Enter your register email address"
+            user_name:"Enter your username"
            },
     submitHandler: function(form) {
       $.ajax({
