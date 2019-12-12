@@ -426,7 +426,7 @@ class Apipiamodel extends CI_Model {
 
 
 //#################### User Creation ####################//
-	public function createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification)
+	public function createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status)
 	{
 		$select = "SELECT * FROM edu_staff_details Where email='$email' OR phone='$phone'";
 		$result=$this->db->query($select);
@@ -434,7 +434,7 @@ class Apipiamodel extends CI_Model {
 		if($result->num_rows()>0){
 			$response = array("status" => "error", "msg" => "User Already Exist");
          }else{
-           $insert = "INSERT INTO edu_staff_details (pia_id,role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('$pia_id','$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','Active','$pia_id',NOW())";
+           $insert = "INSERT INTO edu_staff_details (pia_id,role_type,name,sex,dob,nationality,religion,community_class,community,address,email,sec_email ,phone,sec_phone,qualification,status,created_by,created_at) VALUES('$pia_id','$select_role','$name','$sex','$dob','$nationality','$religion','$community_class','$community','$address','$email','$sec_email','$phone','$sec_phone','$qualification','$status','$pia_id',NOW())";
            $result=$this->db->query($insert);
            $insert_id = $this->db->insert_id();
 
