@@ -851,8 +851,9 @@ class Apipia extends CI_Controller {
 		$phone = $this->input->post('phone');
 		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
+		$status = $this->input->post('status');
 
-		$data['result']=$this->apipiamodel->createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification);
+		$data['result']=$this->apipiamodel->createUser($pia_id,$select_role,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
