@@ -113,28 +113,23 @@ Class Loginmodel extends CI_Model
        }
 
        function forgot_email($forgot_email){
-         $query="SELECT pia_email,id,pia_name FROM edu_pia WHERE pia_email='$forgot_email'";
+		   
+         $query="SELECT * FROM edu_pia WHERE pia_email='$forgot_email'";
          $result=$this->db->query($query);
-         if($result->num_rows()==0){
-				echo "Email Not found";
-         }else{
-			foreach($result->result() as $row){}
-			
-             $name= $row->pia_name;
-             $user_master_id= $row->id;
-             $digits = 6;
-             $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
-             $reset_pwd=md5($OTP);
+         if($result->num_rows()>0){
 			 
-             $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE user_type='3' AND user_master_id='$user_master_id'";
-             $result_pwd=$this->db->query($reset);
-             
-			 $query="SELECT * FROM edu_pia WHERE id='$user_master_id'";
-             $resultset=$this->db->query($query);
-             foreach($resultset->result() as $rows){}
-             $email=$rows->pia_email;
-             $to=$email;
-             $subject = '"Password Reset"';
+			 foreach($result->result() as $row){
+				 $name = $row->pia_name;
+				 $user_master_id = $row->id;
+				}
+				 $digits = 6;
+				 $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+				 $reset_pwd = md5($OTP);
+				 
+				 $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE user_type='3' AND user_master_id='$user_master_id'";
+				 $result_pwd=$this->db->query($reset);
+				 
+			 $subject = '"Password Reset"';
              $htmlContent = '
                <html>
                <head>  <title></title>
@@ -148,7 +143,7 @@ Class Loginmodel extends CI_Model
                            <th>Password:</th><td>'.$OTP.'</td>
                        </tr>
                        <tr>
-                           <th></th><td><a href="'.base_url() .'">Click here  to Login</a></td>
+                           <th></th><td><a href="'.base_url() .'">Click here to Login</a></td>
                        </tr>
                    </table>
                </body>
@@ -159,14 +154,73 @@ Class Loginmodel extends CI_Model
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            // Additional headers
            $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-           //$sent= mail($to,$subject,$htmlContent,$headers);
-		   $sent = "OK";
+           $sent = mail($forgot_email,$subject,$htmlContent,$headers);
+            echo "success";
+			exit;
+         }else{
+			
+		 
+			$squery = "SELECT * FROM edu_staff_details WHERE email ='$forgot_email'";
+			$results = $this->db->query($squery);
+			if($results->num_rows()>0){
+				foreach($results->result() as $rows){
+					 $name = $rows->name;
+					 $user_master_id = $rows->id;
+				}
+				 $digits = 6;
+				 $OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+				 $reset_pwd = md5($OTP);
+				 
+				 $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE user_type!='3' AND user_master_id='$user_master_id'";
+				 $result_pwd=$this->db->query($reset);
+				 
+				 $subject = 'Password Reset';				 
+				 $htmlContent = '<html>
+				   <head>  <title></title>
+				   </head>
+				   <body>
+				   <p>Hi  '.$name.'</p>
+				   <center><p>Hi Your Account Password is Reset.Please Use Below Password to login</p></center>
+					 <table cellspacing="0">
+
+						   <tr>
+							   <th>Password:</th><td>'.$OTP.'</td>
+						   </tr>
+						   <tr>
+							   <th></th><td><a href="'.base_url() .'">Click here to Login</a></td>
+						   </tr>
+					   </table>
+				   </body>
+				   </html>';
+
+			   // Set content-type header for sending HTML email
+			   $headers = "MIME-Version: 1.0" . "\r\n";
+			   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			   // Additional headers
+			   $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
+			   $sent = mail($forgot_email,$subject,$htmlContent,$headers);
+				echo "success";
+				exit;
+			}else{
+				echo "error";
+			}
+		 }
+			 
+			 
+			/*  $query="SELECT * FROM edu_pia WHERE id='$user_master_id'";
+             $resultset=$this->db->query($query);
+             foreach($resultset->result() as $rows){}
+             $email=$rows->pia_email;
+             $to=$email; */
+			 
+             
+		   /* $sent = "OK";
            if($sent){
                echo "success";
            }else{
 				echo "Somthing Went Wrong";
-           }
-		}
+           } 
+		}*/
 
      }
 

@@ -33,12 +33,13 @@ class Tracking extends CI_Controller {
 		
 		if($user_type==3){
 			$pia_id = base64_decode($this->uri->segment(3))/98765;
-			$datas['piaid'] = $this->uri->segment(3);
 			$mob_id = base64_decode($this->uri->segment(4))/98765;
 			
 			if ($mob_id == ''){
 				 $mob_id = $this->input->post('mob_id');
 			}
+			
+			$datas['piaid'] = $this->uri->segment(3);
 			$datas['mob_id'] = $mob_id;
 			
 			$track_date = $this->input->post('track_date');
