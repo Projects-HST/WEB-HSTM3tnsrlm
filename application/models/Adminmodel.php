@@ -168,7 +168,7 @@ public function __construct()
 			} else {
 				$data = array("status" => "failed");
 			}
-			return $data;
+				return $data;
 		}
 	}
 

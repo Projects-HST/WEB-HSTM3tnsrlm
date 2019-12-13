@@ -27,10 +27,10 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Name</label>
+                                        <label class="hrzn-fm">Center Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" class="form-control input-sm" name="center_name">
+										<input type="text" class="form-control input-sm" name="center_name" maxlength="30">
 										 
                                     </div>
 									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
@@ -38,27 +38,27 @@
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Address</label>
+                                        <label class="hrzn-fm">Center Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											 <input type="text" class="form-control  input-sm" name="center_address">
+											 <input type="text" class="form-control  input-sm" name="center_address" maxlength="50">
                                     </div>
                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>
 							
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Info</label>
+                                        <label class="hrzn-fm">Center Info <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											 <input type="text" class="form-control  input-sm" name="center_info">
+											 <input type="text" class="form-control  input-sm" name="center_info" maxlength="50">
                                     </div>
                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>
 							
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Logo</label>
+                                        <label class="hrzn-fm">Center Logo <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											  <input type="file" class="form-control" name="center_banner">
@@ -68,7 +68,7 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Status</label>
+									<label class="hrzn-fm">Status <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control" id="status">
@@ -125,7 +125,7 @@
                          <tr>
                             <td><?php echo $i; ?></td>
 							<td><?php echo $rows->center_name; ?></td>
-                            <td><?php if($rows->status=='Active'){ ?>Active<?php }else{ ?>Inactive<?php } ?></td>
+                            <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                              <td>
 								<a href="<?php echo base_url(); ?>center/get_center_id_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a>&nbsp;
 								<a href="<?php echo base_url(); ?>center/create_gallery/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Add Photos"><i class="fa fa-file-image-o" aria-hidden="true" style="font-size:22px;"></i></a>&nbsp;
@@ -173,7 +173,7 @@ $("#myformsection").validate({
             center_name: { required:"Enter center name",remote:"Center name already exist" },
 			center_banner:{
 				  required:"Select logo or banner",
-				  accept:"Please upload .jpg or .png .",
+				  accept:"Please upload .jpg or .png",
 				  fileSize:"File must be JPG or PNG, less than 1MB"
 			},
             center_info:"Enter center info",

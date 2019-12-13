@@ -31,12 +31,9 @@ class Tracking extends CI_Controller {
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
 		
-		if($user_type==3){
-					$pia_id = base64_decode($this->uri->segment(3))/98765;
-					$datas['piaid'] = $this->uri->segment(3);
-					
-					$mob_id = base64_decode($this->uri->segment(4))/98765;
-					$datas['mobid'] = $this->uri->segment(4);
+		if($user_type==3){			
+					$mob_id = base64_decode($this->uri->segment(3))/98765;
+					$datas['mobid'] = $this->uri->segment(3);
 					
 					if ($mob_id == ''){
 						$mob_id = $this->input->post('mob_id');
@@ -51,7 +48,7 @@ class Tracking extends CI_Controller {
 						$selected_date = date("Y-m-d");
 					}
 					
-					$datas['selected_date'] = $selected_date;
+			$datas['selected_date'] = $selected_date;
 		
 			$datas['kms_using_lat']=$this->trackingmodel->kms_using_lat($mob_id,$selected_date);
 			$datas['res']=$this->trackingmodel->location_map($mob_id,$selected_date);

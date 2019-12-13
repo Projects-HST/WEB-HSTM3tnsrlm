@@ -24,10 +24,10 @@
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Upload Multiple Photos</label>
+                                        <label class="hrzn-fm">Upload Multiple Photos <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="file" class="form-control" name="center_photos[]" multiple required>
+										<input type="file" class="form-control" name="center_photos[]" multiple="multiple">
                                     </div>
 									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>							
@@ -69,7 +69,7 @@
                                 echo "No Gallery Found";
                             }else{
                               foreach($res_img as $rows){ ?>
-                                  <div class="col-lg-2" style="margin-bottom:5px;">
+                                  <div class="col-lg-2" style="margin-bottom:25px;">
                                       <div id="thumbnail">
 									  <img src="<?php echo base_url(); ?>assets/center/gallery/<?php echo $rows->center_photos; ?>" class="img-responsive" style="width:150px;height:100px;">
                                         <a id="close" onclick="delgal(<?php echo $rows->id; ?>)" data-toggle="tooltip" title="Delete" style="cursor:pointer"></a>
@@ -128,8 +128,24 @@
 	$('#mastersmenu').addClass('active');
 	$('#centers').addClass('active');
 
-	function delgal(gal_id) {
+	$('#myformsection').validate({
+		rules: {
+		  'center_photos[]': {
+		  required: true,
+		  accept: "jpg,jpeg,png",
+		}
+		},
+		messages:{
+			'center_photos[]':{
+			   required : "Please upload atleast 1 photo",
+			    accept:"Please upload .jpg or .png",
+			}
 
+		}
+	})
+	
+   
+	function delgal(gal_id) {
       $.ajax({
           type: "POST",
           url: "<?php echo base_url(); ?>center/delete_gal",

@@ -34,18 +34,18 @@ Class Yearsmodel extends CI_Model
                               $query     = "INSERT INTO edu_year_duration(period_from,period_to,pia_id,status,created_at,created_by)VALUES('$formatted_date','$formatted_date1','$user_id','$status',NOW(),'$user_id')";
                               $resultset = $this->db->query($query);
                                     if($resultset){
-                                      echo "success";
+										echo "success";
                                     }else{
-                                        echo "Something Went Wrong";
+                                        echo "Error";
                                     }
                             }else{
-                                  echo "Date Already Present in Database";
+                                  echo "Date already present";
                             }
                 }else{
-                    echo "Date Already Present in Database";
+                    echo "Date already present";
                 }
           }else{
-            echo 'Less than';
+            echo 'Please chk the dates';
          }
 
 
@@ -78,18 +78,18 @@ Class Yearsmodel extends CI_Model
                                 $query     = "UPDATE edu_year_duration SET period_from='$formatted_date',period_to='$formatted_date1',status='$status',updated_at=NOW(),updated_by='$user_id' WHERE id='$id'";
                                 $resultset = $this->db->query($query);
                                       if($resultset){
-											echo "Updated";
+											echo "updated";
                                       }else{
-											echo "Something Went Wrong";
+											echo "Error";
                                       }
                               }else{
-                                    echo "Date Present in Database";
+                                    echo "Date already present";
                               }
                   }else{
-                      echo "Date Already Present in Database";
+                      echo "Date already present";
                   }
             }else{
-              echo 'Less than';
+              echo 'Please chk the dates';
            }
 
 

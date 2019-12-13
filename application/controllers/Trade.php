@@ -19,12 +19,12 @@ class Trade extends CI_Controller
 		$user_type=$this->session->userdata('user_type');
 		$datas['result'] = $this->trademodel->getall_trade($user_id);
 		if($user_type==3){
-		$this->load->view('pia/pia_header');
-		$this->load->view('pia/trade/add_trade',$datas);
-		$this->load->view('pia/pia_footer');
+			$this->load->view('pia/pia_header');
+			$this->load->view('pia/trade/add_trade',$datas);
+			$this->load->view('pia/pia_footer');
 		}
 		else{
-		redirect('/');
+			redirect('/');
 		}
 	}
 
@@ -43,7 +43,7 @@ class Trade extends CI_Controller
 					$this->session->set_flashdata('msg', 'Added Successfully');
 					redirect('trade/home');
 				}else{
-					$this->session->set_flashdata('msg', 'Failed to Add');
+					$this->session->set_flashdata('msg', 'Trade Already Exist');
 					redirect('trade/home');
 				}
 
@@ -59,15 +59,16 @@ class Trade extends CI_Controller
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
 		if($user_type==3){
-		$trade_id=$this->uri->segment(3);
-		$datas['res'] = $this->trademodel->get_trade_id($trade_id);
-		$datas['result'] = $this->trademodel->getall_trade($user_id);
-	  $this->load->view('pia/pia_header');
-		$this->load->view('pia/trade/edit_trade',$datas);
-		$this->load->view('pia/pia_footer');
+			$trade_id=$this->uri->segment(3);
+			$datas['res'] = $this->trademodel->get_trade_id($trade_id);
+			$datas['result'] = $this->trademodel->getall_trade($user_id);
+			
+			$this->load->view('pia/pia_header');
+			$this->load->view('pia/trade/edit_trade',$datas);
+			$this->load->view('pia/pia_footer');
 		}
 		else{
-		redirect('/');
+			redirect('/');
 		}
 	}
 
@@ -86,14 +87,12 @@ class Trade extends CI_Controller
 					$this->session->set_flashdata('msg', 'Updated Successfully');
 					redirect('trade/home');
 				}else{
-					$this->session->set_flashdata('msg', 'Failed to Update');
+					$this->session->set_flashdata('msg', 'Trade Already Exist');
 					redirect('trade/home');
 				}
 		}else{
 				redirect('/');
 		}
-
-
 	}
 
 }

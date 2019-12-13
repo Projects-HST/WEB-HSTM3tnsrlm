@@ -25,13 +25,13 @@
                       <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Aadhaar Card Number</label>
+                                        <label class="hrzn-fm">Aadhaar Card Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Aadhaar Card Number" name="aadhar_card_num" maxlength="12"  class="form-control input-sm" value="<?php echo $rows->aadhaar_card_number; ?>">
                                     </div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Admission Date </label>
+                                        <label class="hrzn-fm">Admission Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" name="admission_date" class="form-control track_date input-sm" placeholder="Admission Date" value="<?php $adate=date_create($rows->admission_date);echo date_format($adate,"d-m-Y");  ?>"/>
@@ -40,13 +40,13 @@
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Admission Location</label>
+                                        <label class="hrzn-fm">Admission Location <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" name="admission_location" class="form-control input-sm" placeholder="Admission Location" value="<?php echo $rows->admission_location; ?>"/>
                                     </div>
                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Name</label>
+                                        <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" name="name" class="form-control input-sm" placeholder="Enter Name" value="<?php echo $rows->name; ?>"/>
@@ -55,7 +55,7 @@
 							
 							<div class="row page_row">
                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Gender</label>
+									<label class="hrzn-fm">Gender <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="sex" class="form-control" id="sex">
@@ -65,7 +65,7 @@
 									</select><script> $('#sex').val('<?php echo $rows->sex; ?>');</script>
 								</div>
 							   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Father Name</label>
+									<label class="hrzn-fm">Father Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" name="fname" class="form-control input-sm" placeholder="Father Name" value="<?php echo $rows->father_name; ?>"/>
@@ -80,7 +80,7 @@
 									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>"/>
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Date of Birth</label>
+                                        <label class="hrzn-fm">Date of Birth <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">									
 										<input type="text" name="dob" class="form-control dob input-sm" placeholder="Date of Birth" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>"/>
@@ -89,7 +89,7 @@
 							
 							<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Disability</label>
+									<label class="hrzn-fm">Disability <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="disability" class="form-control" id="disability">
@@ -99,7 +99,7 @@
 									</select><script> $('#disability').val('<?php echo $rows->disability; ?>');</script>
 								</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address</label>
+                                        <label class="hrzn-fm">Email Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Email Address" name="email"  class="form-control input-sm" value="<?php echo $rows->email; ?>" >
@@ -109,7 +109,7 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Mobile Number</label>
+									<label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Mobile Number" name="mobile"  class="form-control input-sm" value="<?php echo $rows->mobile; ?>">
@@ -124,13 +124,13 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Address</label>
+									<label class="hrzn-fm">Address <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<textarea name="address" rows="2" cols="40" placeholder="Address" class="form-control input-sm"><?php echo $rows->address; ?></textarea>
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">City Name</label>
+									<label class="hrzn-fm">City Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="City Name" name="city" class="form-control input-sm" value="<?php echo $rows->city; ?>">
@@ -140,13 +140,13 @@
 						   
 						   <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">State</label>
+                                        <label class="hrzn-fm">State <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="State Name" name="state" class="form-control input-sm" value="<?php echo $rows->state; ?>">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Nationality</label>
+                                        <label class="hrzn-fm">Nationality <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Nationality" name="nationality" class="form-control input-sm" value="<?php echo $rows->nationality; ?>">
@@ -155,13 +155,13 @@
 						   
 						   <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Religion</label>
+                                        <label class="hrzn-fm">Religion <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" value="<?php echo $rows->religion; ?>">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community</label>
+                                        <label class="hrzn-fm">Community <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Community" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>">
@@ -170,13 +170,13 @@
 						   
 						    <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community Class</label>
+                                        <label class="hrzn-fm">Community Class <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mother Tongue</label>
+                                        <label class="hrzn-fm">Mother Tongue <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control input-sm" value="<?php echo $rows->mother_tongue ; ?>">
@@ -211,7 +211,7 @@
 									</select><script> $('#qualified_promotion').val('<?php echo $rows->qualified_promotion; ?>');</script>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Status</label>
+									<label class="hrzn-fm">Status <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control" id="status">
@@ -319,7 +319,7 @@
  messages: {
 
      aadhar_card_num: {
-          required: "Enter The Aadhar Card Number",
+          required: "Enter Aadhar Card Number",
           remote: "Aadhar Card Number Already Exist",
           maxlength:"Maximum 12 digits",
           minlength:"Minimum 12 digits",
@@ -331,18 +331,18 @@
      fname: "Enter Father Name",
      mname:"Enter Mother Name",
      sex: "Select Gender",
-     address:"Enter The Address",
+     address:"Enter Address",
      dob: "Select Date of Birth",
      email:{
-          required: "Enter email id",
+          required: "Enter Email id",
           remote: "Email Already Exist"
       },
      disability:"Select Disability",
-     age: "Enter AGE",
-     nationality: "Nationality",
-     religion: "Enter the Religion",
-     community:"Enter the Community",
-     community_class:"Enter the Community Class",
+     age: "Enter Age",
+     nationality: "Enter Nationality",
+     religion: "Enter Religion",
+     community:"Enter Community",
+     community_class:"Enter Community Class",
      blood_group:"Select Blood Group",
      prefer_time:"Select Preferred Time",
      city:"Enter City Name",
@@ -350,11 +350,11 @@
      course:"Select Course",
      mother_tongue:"Enter Mother Tongue",
      mobile: {
-          required: "Enter mobile number",
+          required: "Enter Mobile number",
           maxlength:"Maximum 10 digits",
           minlength:"Minimum 10 digits",
           remote: "Mobile number Already Exist",
-          number:"Only Numbers"
+          number:"Enter Only Numbers"
 
       }
  }

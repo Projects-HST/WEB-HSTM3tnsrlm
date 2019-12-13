@@ -18,23 +18,23 @@
 			
 					 <form method="post" action="<?php echo base_url(); ?>trade/update_trade" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 					<div class="cmp-tb-hd cmp-int-hd">
-						<h2>Update Create Trade</h2>
+						<h2>Update Trade</h2>
 					</div>
 						
 					<div class="form-example-int form-horizental">
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Trade Name</label>
+                                        <label class="hrzn-fm">Trade Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text"  name="trade_name" id="trade_name" class="form-control " value="<?php echo $rows->trade_name; ?>" >
+										<input type="text"  name="trade_name" id="trade_name" class="form-control " value="<?php echo $rows->trade_name; ?>" maxlength="30">
                                     </div>
 									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Status</label>
+                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control valid" id="status">

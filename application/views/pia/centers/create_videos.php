@@ -24,22 +24,22 @@
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Video Title</label>
+                                        <label class="hrzn-fm">Video Title <span class="error">*</span></label>
                                     </div>
-                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="video_title" id="video_title" class="form-control" required>
+                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="video_title" id="video_title" class="form-control" maxlength="30">
                                     </div>
-									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">video URL Link</label>
+                                        <label class="hrzn-fm">video URL Link <span class="error">*</span></label>
                                     </div>
-                                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="video_link" id="video_link" class="form-control" required placeholder="Youtube Token E.g=d3OZVsHG9TM">
-                                        <small>https://www.youtube.com/watch?v=</small>
+                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" name="video_link" id="video_link" class="form-control" placeholder="Youtube Token E.g=d3OZVsHG9TM" maxlength="30">
+                                       <p style="margin-top:10px;"> Ex : https://www.youtube.com/watch?v=<span style="font-weight:bold;color:#e02329;;">d3OZVsHG9TM</span></p>
                                     </div>
-									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>									
 							<div class="row page_row">
 								 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -100,12 +100,7 @@
 
                                                     <td><a target="_blank" href="https://www.youtube.com/watch?v=<?php echo $rows->center_videos; ?>">Click to view</a></td>
 
-                                                    <td><?php if($rows->status=='Active'){ ?>
-                                                       <button class="btn btn-success notika-btn-success waves-effect">Active</button>
-                                                 <?php   }else{ ?>
-                                                     <button class="btn btn-warning notika-btn-warning waves-effect">Inactive</button>
-                                                     <?php   } ?>
-                                                   </td>
+                                                   <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                                                     <td><a onclick="delete_videos('<?php echo $rows->id; ?>')"><i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" title="Delete" style="cursor:pointer;font-size:20px;"></i></a></td>
                                                 </tr>
                                               <?php  $i++; } ?>

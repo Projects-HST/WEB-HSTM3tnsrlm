@@ -30,27 +30,27 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">From</label>
+                                        <label class="hrzn-fm">From <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										 <input type="text"  name="from_month" id="from_year" class="form-control from_date input-sm" value="<?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?>" >
+										 <input type="text"  name="from_month" id="from_year" class="form-control from_date input-sm" value="<?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?>" maxlength="15">
                                     </div>
 									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">To</label>
+                                        <label class="hrzn-fm">To <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											 <input type="text" name="end_month" id="to_year"  class="form-control from_date input-sm" value="<?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?>">
+											 <input type="text" name="end_month" id="to_year"  class="form-control from_date input-sm" value="<?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?>" maxlength="15">
                                     </div>
                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Status</label>
+									<label class="hrzn-fm">Status <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control" id="status">
@@ -85,6 +85,49 @@
 </div>
 </div>
 </div>
+
+<div class="container">
+	<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	  <div class="data-table-list">
+             <div class="basic-tb-hd">
+                 <h2>List Period Plans</h2>
+             </div>
+             <div class="table-responsive">
+                 <table id="data-table-basic" class="table table-striped">
+                     <thead>
+                         <tr>
+							<th>S.no</th>
+							<th>Period From</th>
+							<th>Period To</th>
+							<th>Status</th>
+							<th>Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                       <?php $i=1; foreach($result as $rows){ 
+					   $frm_date = $rows->period_from;
+					   $to_date = $rows->period_to;
+					  
+					   ?>
+                         <tr>
+                             <td><?php echo $i; ?></td>
+                             <td> <?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?></td>
+                             <td> <?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?></td>
+                             <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
+                             <td><a href="<?php echo base_url(); ?>years/edit_years/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Period Plan"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
+                         </tr>
+						<?php  $i++; } ?>
+
+                     </tbody>
+
+                 </table>
+             </div>
+         </div>
+
+	</div>
+	</div>
+</div>
 <style>
 .page_row{
   margin-bottom: 20px;
@@ -96,6 +139,8 @@
 <script type="text/javascript">
 $('#masters').addClass('active');
 $('#mastersmenu').addClass('active');
+$('#period_plan').addClass('active');
+
 
 
 $("#myformsection").validate({
@@ -115,16 +160,15 @@ $("#myformsection").validate({
                  type: 'POST',
                  data: $('#myformsection').serialize(),
                  success: function(response) {
-                     if (response=="Updated") {
+                     if (response=="updated") {
                        $.toast({
-                                 heading: 'Successfully',
-                                 text: response,
+                                 heading: 'Success',
+                                 text: 'Period Plan Updated',
                                  position: 'mid-center',
                                  icon:'success',
                                  stack: false
                              })
                               window.setTimeout(function(){location.reload()},3000);
-                              window.location = "<?php echo base_url(); ?>years/config";
                      }else{
                        $.toast({
                                  heading: 'Error',

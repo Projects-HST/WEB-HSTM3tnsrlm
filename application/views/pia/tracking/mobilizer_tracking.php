@@ -14,7 +14,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
 					
-					<form method="post" action="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo $piaid; ?>/<?php echo $mobid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
+					<form method="post" action="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo $mobid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
                             <h2>Mobilizer Tracking</h2>
                         </div>

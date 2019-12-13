@@ -41,7 +41,7 @@
                              <td><?php if($rows->status=='Active'){ ?>Active <?php }else{ ?>Inactive<?php   } ?>
                             </td>
 							<td>
-							<a href="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>
+							<a href="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>
                             
 <?php  $i++; } ?>
 

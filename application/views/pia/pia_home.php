@@ -77,6 +77,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_mobilizer) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -86,7 +87,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                 </div>
             </div>
@@ -121,6 +122,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_tasks) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -130,7 +132,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -157,6 +159,7 @@
                                     </tbody>
                                 </table>
                             </div>
+							<?php if (count($dash_trade) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -166,7 +169,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>
@@ -191,6 +194,8 @@
                                     </tbody>
                                 </table>
                             </div>
+							
+							<?php if (count($dash_students) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -200,7 +205,7 @@
                                     </div>
                                 </a>
                             </div>
-							
+							<?php } ?>
                         </div>
                     </div>
                 </div>

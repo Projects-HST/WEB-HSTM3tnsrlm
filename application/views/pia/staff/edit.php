@@ -25,7 +25,7 @@
 					<div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Role</label>
+                                        <label class="hrzn-fm">Select Role <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="select_role" class="form-control" id="select_role">
@@ -44,7 +44,7 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Name</label>
+                                        <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Name" name="name" class="form-control input-sm" value="<?php echo $rows->name; ?>" maxlength="30">
@@ -52,7 +52,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Date of Birth</label>
+                                        <label class="hrzn-fm">Date of Birth <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" placeholder="Date of Birth " name="dob" id="dob" class="form-control dob input-sm" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>"/>
@@ -61,7 +61,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile Number</label>
+                                        <label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" value="<?php echo $rows->phone; ?>" maxlength="10">
@@ -78,7 +78,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address</label>
+                                        <label class="hrzn-fm">Email Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->email; ?>" maxlength="30">
@@ -86,7 +86,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Gender</label>
+                                        <label class="hrzn-fm">Gender <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                            <select name="sex" class="form-control" id="sex">
@@ -124,7 +124,7 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Nationality</label>
+                                        <label class="hrzn-fm">Nationality <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                            <select name="nationality" class="form-control" id="nationality">
@@ -137,13 +137,13 @@
 								
 								<div class="row page_row">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Qualification</label>
+									<label class="hrzn-fm">Qualification <span class="error">*</span></label>
 								</div>
 								 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Qualification" name="qualification" class="form-control input-sm" value="<?php echo $rows->qualification; ?>" maxlength="30">
                                  </div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Address</label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                            <textarea name="address" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Address"><?php echo $rows->address; ?></textarea>
@@ -158,7 +158,7 @@
 											   <input type="file" name="staff_new_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
 										</div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-										<label class="hrzn-fm">Status</label>
+										<label class="hrzn-fm">Status <span class="error">*</span></label>
 									</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="status" class="form-control" id="status">
@@ -230,16 +230,14 @@
 									required: true,
 									email: true,
 									remote: {
-												 url: "<?php echo base_url(); ?>admin/checkemail_edit/<?php echo base64_encode($rows->id*98765); ?>",
+												 url: "<?php echo base_url(); ?>staff/checkemail_edit/<?php echo base64_encode($rows->id*98765); ?>",
 												 type: "post"
 											}
 							},
 							sex: {
 									required: true
 							},
-							dob: {
-									required: true
-							},
+							
 							nationality:{required:true},
 							mobile: {
 									required: true,
@@ -247,7 +245,7 @@
 									minlength:10,
 									number:true,
 									remote: {
-												 url: "<?php echo base_url(); ?>admin/checkmobile_edit/<?php echo base64_encode($rows->id*98765); ?>",
+												 url: "<?php echo base_url(); ?>staff/checkmobile_edit/<?php echo base64_encode($rows->id*98765); ?>",
 												 type: "post"
 											}
 							},
@@ -255,7 +253,7 @@
 							qualification: {
 									required: true
 							},
-							staff_new_pic:{required:false,accept: "jpg,jpeg,png", filesize: 1048576  },
+							staff_new_pic:{required:false,accept: "jpg,jpeg,png"},
 							status: {
 									required: true
 							}
@@ -288,8 +286,7 @@
 							 },
 							 staff_new_pic:{
 								  required:"",
-								  accept:"Please upload .jpg or .png .",
-								  fileSize:"File must be JPG or PNG, less than 1MB"
+								  accept:"Please upload .jpg or .png ."
 								},
 							status: "Select status"
 					}

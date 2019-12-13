@@ -24,16 +24,16 @@
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Trade Name</label>
+                                        <label class="hrzn-fm">Trade Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text"  name="trade_name" id="trade_name" class="form-control " >
+										<input type="text"  name="trade_name" id="trade_name" class="form-control " maxlength="30">
                                     </div>
 									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Status</label>
+                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control valid" id="statuss">
@@ -93,7 +93,7 @@
                                    <tr>
                                        <td><?php echo $i; ?></td>
                                        <td><?php echo $rows->trade_name; ?></td>
-                                       <td> <?php if($rows->status=='Active'){ ?> Active <?php   }else{ ?> Inactive <?php   } ?></td>
+                                       <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                                        <td><a href="<?php echo base_url(); ?>trade/edit_trade/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"data-toggle="tooltip" title="Edit" style="cursor:pointer;font-size:20px;"></i></a></td>
                                    </tr>
 							<?php  $i++; } ?>
@@ -129,9 +129,8 @@ $("#myformsection").validate({
            status:{required:true}
        },
        messages: {
-              status:"Select Status",
-             trade_name:"Please Enter trade name"
-
+			trade_name:"Enter trade name",
+            status:"Select status"
         }
    });
 
