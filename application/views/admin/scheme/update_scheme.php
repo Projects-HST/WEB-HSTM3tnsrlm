@@ -88,7 +88,7 @@
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
-					<form method="post" action="<?php echo base_url(); ?>scheme/gallery" class="form-horizontal" enctype="multipart/form-data" id="eventform">
+					<form method="post" action="<?php echo base_url(); ?>scheme/gallery" class="form-horizontal" enctype="multipart/form-data">
                         <div class="cmp-tb-hd cmp-int-hd">
                             <h2>Scheme Gallery</h2>
                         </div>
@@ -111,7 +111,8 @@
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><button class="btn btn-success notika-btn-success waves-effect">Add Gallery</button>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<button class="btn btn-success notika-btn-success waves-effect" id='scheme_gallery'>Add Gallery</button>
                                     </div>
 									 <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
                                     </div>
