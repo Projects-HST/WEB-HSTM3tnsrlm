@@ -159,16 +159,35 @@ class Apipiamodel extends CI_Model {
 //#################### Project Period List End ####################//
 
 //#################### Trade Creation ####################//
-	public function createTrade($pia_id,$trade_name)
+	public function createTrade($pia_id,$trade_name,$status)
 	{
-            $sQuery = "INSERT INTO edu_trade (trade_name,pia_id,status,created_by,created_at ) VALUES ('". $trade_name . "','". $pia_id . "','Active','". $pia_id . "',now())";
+      $sQuery = "INSERT INTO edu_trade (trade_name,pia_id,status,created_by,created_at ) VALUES ('". $trade_name . "','". $pia_id . "','$status','". $pia_id . "',now())";
 			$trade_create = $this->db->query($sQuery);
+      if($trade_create){
+        $response = array("status" => "success", "msg" => "Trade Created");
+      }else{
+        $response = array("status" => "error", "msg" => "Something went wrong");
 
-			$response = array("status" => "success", "msg" => "Trade Created");
+      }
 			return $response;
 	}
 //#################### Trade Creation End ####################//
 
+//#################### Trade Creation ####################//
+  public function update_trade($pia_id,$trade_name,$status,$trade_id)
+  {
+      $update="UPDATE edu_trade SET trade_name='$trade_name',status='$status' WHERE id='$trade_id' and pia_id='$pia_id'";
+      $result = $this->db->query($update);
+      if($result){
+        $response = array("status" => "success", "msg" => "Trade Updated");
+
+      }else{
+        $response = array("status" => "error", "msg" => "Something went wrong");
+
+      }
+      return $response;
+  }
+//#################### Trade Creation End ####################//
 
 //#################### Trade List ####################//
 	public function listTrade ($pia_id)
@@ -473,7 +492,7 @@ class Apipiamodel extends CI_Model {
 			$md5pwd = md5($OTP);
 
 
-            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,pia_id,status) VALUES('$name','$phone','$md5pwd','$select_role','$insert_id',NOW(),'$pia_id','Active')";
+            $user_table = "INSERT INTO edu_users (name,user_name,user_password,user_type,user_master_id,created_date,pia_id,status) VALUES('$name','$phone','$md5pwd','$select_role','$insert_id',NOW(),'$pia_id','$status')";
 			$result_user=$this->db->query($user_table);
 			$profile_id = $this->db->insert_id();
 
@@ -638,7 +657,7 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 
-					 $update_user="UPDATE edu_users SET user_name = '$phone', name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+					 $update_user="UPDATE edu_users SET user_name = '$phone', name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 
 					if ($select_role == '5'){
@@ -658,7 +677,7 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 
-					 $update_user="UPDATE edu_users SET name='$name' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+					 $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 
 					$response = array("status" => "success", "msg" => "User Updated Successfully");

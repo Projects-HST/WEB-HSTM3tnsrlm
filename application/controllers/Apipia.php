@@ -162,9 +162,47 @@ class Apipia extends CI_Controller {
 
 		$pia_id = $this->input->post("user_id");
 		$trade_name = $this->input->post("trade_name");
+		$status = $this->input->post("status");
 
 
-		$data['result']=$this->apipiamodel->createTrade($pia_id,$trade_name);
+		$data['result']=$this->apipiamodel->createTrade($pia_id,$trade_name,$status);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+//-----------------------------------------------//
+
+	public function update_trade()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Trade Creation";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$pia_id  ='';
+		$trade_name = '';
+
+		$pia_id = $this->input->post("user_id");
+		$trade_name = $this->input->post("trade_name");
+		$status = $this->input->post("status");
+		$trade_id=$this->input->post("trade_id");
+
+
+		$data['result']=$this->apipiamodel->update_trade($pia_id,$trade_name,$status,$trade_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
