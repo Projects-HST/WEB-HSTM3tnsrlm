@@ -21,10 +21,6 @@ class Login extends CI_Controller {
 		$username=$this->input->post('username');
 		$password=md5($this->input->post('password'));
 		$result = $this->loginmodel->login($username,$password);
-		
-		print_r($result);
-		exit;
-		$user_type = $result['user_type'];
 
 		if($result['status']=='Inactive'){
 			//$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
@@ -38,6 +34,7 @@ class Login extends CI_Controller {
 			redirect('/');
 		}
 		
+		$user_type = $result['user_type'];
 		if($result['status']=='Active'){
 			switch($user_type)
 			{
