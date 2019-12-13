@@ -3,14 +3,14 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				
 				
-				<?php if($this->session->flashdata('msg')): ?>
-				<div class="alert alert-success">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-						×</button>
-					<?php echo $this->session->flashdata('msg'); ?>
-				</div>
-				<?php endif; ?>
-			
+			<?php if($this->session->flashdata('msg')): ?>
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+					×</button>
+				<?php echo $this->session->flashdata('msg'); ?>
+			</div>
+			<?php endif; ?>
+		
 			
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -27,7 +27,7 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Mobilizer</label>
+                                        <label class="hrzn-fm">Select Mobilizer <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="select_user" class="form-control" id="select_user">
@@ -43,20 +43,19 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Date</label>
+                                        <label class="hrzn-fm">Task Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" placeholder="Task date" name="task_date" id="task_date" class="form-control track_date input-sm" />
                                     </div>
-									
-									
+
 									  <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
                                 </div>
 
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Title</label>
+                                        <label class="hrzn-fm">Task Title <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Task Title" name="task_title" class="form-control input-sm" maxlength="50">
@@ -69,14 +68,13 @@
 								<div class="row page_row">
 
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Description</label>
+                                        <label class="hrzn-fm">Task Description <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
                                            <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Task Description"></textarea>
                                     </div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
                                 </div>
-								
 								<!--
 								<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -84,8 +82,8 @@
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<select name="status" class="form-control" id="status">
-												<option value="Active">Active</option>
-												<option value="Inactive">Inactive</option>
+												<option value="Assigned">Assigned</option>
+												<option value="Assigned">Completed</option>
 									</select>
 								</div>
 								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>

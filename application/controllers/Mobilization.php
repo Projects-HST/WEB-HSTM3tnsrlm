@@ -9,10 +9,7 @@ class Mobilization extends CI_Controller
 			parent::__construct();
 			$this->load->helper('url');
 			$this->load->library('session');
-			$this->load->library('form_validation');
 			$this->load->model('mobilizationmodel');
-			// $this->load->model('mailmodel');
-		  //  $this->load->model('notificationmodel');
 	   }
 
 	public function home()
@@ -22,7 +19,6 @@ class Mobilization extends CI_Controller
 	  $user_type=$this->session->userdata('user_type');
 		  if($user_type==3)
 		  {
-			// $datas['res']=$this->taskmodel->get_mobilizer_user($user_id);
 			  $this->load->view('pia/pia_header');
 			  $this->load->view('pia/plan/upload',$datas);
 			  $this->load->view('pia/pia_footer');
@@ -57,16 +53,16 @@ class Mobilization extends CI_Controller
 		if($user_type==3)
 		{
 			$doc_name=$this->db->escape_str($this->input->post('doc_name'));
-			$profilepic = $_FILES['doc_file']['name'];
+			$docfile = $_FILES['doc_file']['name'];
 		
-		if(empty($profilepic)){
-			$doc_file=' ';
+		if(empty($docfile)){
+			$doc_file='';
 		}else{
-			$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+			$temp = pathinfo($docfile, PATHINFO_EXTENSION);
 			$doc_file = round(microtime(true)) . '.' . $temp;
 			$uploaddir = 'assets/mobilization_plan/';
-			$profilepic = $uploaddir.$doc_file;
-			move_uploaded_file($_FILES['doc_file']['tmp_name'], $profilepic);
+			$docfile = $uploaddir.$doc_file;
+			move_uploaded_file($_FILES['doc_file']['tmp_name'], $docfile);
 		}
 		
 		$doc_month_year=$this->input->post('doc_month_year');

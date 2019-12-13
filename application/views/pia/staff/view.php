@@ -6,7 +6,7 @@
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>View All Staffs</h2>
+                 <h2>List All Staffs</h2>
              </div>
              <?php if($this->session->flashdata('msg')): ?>
      <div class="alert alert-success">

@@ -108,7 +108,7 @@ $('#staffform').validate({
       messages: {
           doc_name: "Enter document title",
           doc_file :{
-            required: "Select file",extension: "Upload excel or doc or pdf"
+            required: "Select plan document",extension: "Upload excel or doc or pdf"
           },
           doc_month_year: "Select upload date"
       },

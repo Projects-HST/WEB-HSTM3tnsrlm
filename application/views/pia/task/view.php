@@ -21,11 +21,12 @@
                      <thead>
                          <tr>
                              <th>S.no</th>
-                             <th>Name</th>
-							  <th>Task Date</th>
-                             <th>Task title</th>
+                             <th>Assigned</th>
+							  <th>Date</th>
+                             <th>title</th>
                              <th style="width:500px;">Description</th>
-                            
+                            <th>Status</th>
+							<th>Actions</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -36,8 +37,8 @@
 							 <td> <?php $date=date_create($rows->task_date);echo date_format($date,"d-m-Y");  ?></td>
                              <td><?php echo $rows->task_title; ?></td>
                              <td><?php echo $rows->task_description; ?></td>
-                             <!-- <td>  <?php echo $rows->status; ?></td> -->
-                             <!-- <td><a href="<?php echo base_url(); ?>task/edit/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td> -->
+                             <td>  <?php echo $rows->status; ?></td>
+                             <td> <a href="<?php echo base_url(); ?>task/task_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>
                      </tbody>

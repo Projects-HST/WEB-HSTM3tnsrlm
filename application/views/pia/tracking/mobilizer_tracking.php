@@ -1,3 +1,4 @@
+<?php  foreach($mob_details as $mobdetails){} ?>
 <div class="container">
 	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -16,7 +17,7 @@
 					
 					<form method="post" action="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo $mobid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Mobilizer Tracking</h2>
+                            <h2>Mobilizer Tracking - <?php   echo $mobdetails->name; ?></h2>
                         </div>
                         <div class="form-example-int form-horizental">
                             <div class="form-group">

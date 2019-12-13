@@ -50,6 +50,7 @@ class Tracking extends CI_Controller {
 					
 			$datas['selected_date'] = $selected_date;
 		
+			$datas['mob_details']=$this->trackingmodel->mob_details($mob_id);
 			$datas['kms_using_lat']=$this->trackingmodel->kms_using_lat($mob_id,$selected_date);
 			$datas['res']=$this->trackingmodel->location_map($mob_id,$selected_date);
 			$datas['lat_long']=$this->trackingmodel->only_lat_long($mob_id,$selected_date);

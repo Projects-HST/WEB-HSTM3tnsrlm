@@ -156,8 +156,8 @@
                           <ul class="notika-main-menu-dropdown">
                               <li><a href="<?php echo base_url(); ?>staff/home" id="create_staff">Create Staff</a></li>
                               <li><a href="<?php echo base_url(); ?>staff/view" id="view_staff">All Staffs</a></li>
-                              <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">View  Trainers</a></li>
-                              <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">View  Mobilizers</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">List Trainers</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">List Mobilizers</a></li>
                           </ul>
                       </div>
                       <div id="taskmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
@@ -170,7 +170,7 @@
 					   <div id="mobilization_planmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
                               <li><a href="<?php echo base_url(); ?>mobilization/home" id="upload_plan">Upload Plan</a></li>
-                              <li><a href="<?php echo base_url(); ?>mobilization/view" id="view_plan">View Plans</a></li>
+                              <li><a href="<?php echo base_url(); ?>mobilization/view" id="view_plan">List Plans</a></li>
 
                           </ul>
                       </div>

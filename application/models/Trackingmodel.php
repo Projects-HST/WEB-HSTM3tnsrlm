@@ -117,6 +117,13 @@ Class Trackingmodel extends CI_Model
           return $get_result->result();
 
         }
+		
+		 function mob_details($mob_id){
+          $select="SELECT * FROM edu_users WHERE user_id = '$mob_id' ";
+          $get_result=$this->db->query($select);
+          return $get_result->result();
+        }
+
 
 }
 ?>
