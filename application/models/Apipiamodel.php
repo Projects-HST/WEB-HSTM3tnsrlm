@@ -300,7 +300,7 @@ class Apipiamodel extends CI_Model {
 			}
 				$response = array("status" => "success", "msg" => "Center Gallery","centerGallery"=>$centerGallery);
 		}else{
-				$response = array("status" => "error", "msg" => "Centers Not Found");
+				$response = array("status" => "error", "msg" => "No photo found");
 		}
 
 		return $response;
