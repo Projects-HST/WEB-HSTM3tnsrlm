@@ -461,6 +461,38 @@ class Apipia extends CI_Controller {
 
 //-----------------------------------------------//
 
+
+//-----------------------------------------------//
+
+	public function center_gallery_delete()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Center Gallery";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$gallery_id = $this->input->post("gallery_id");
+
+		$data['result']=$this->apipiamodel->center_gallery_delete($gallery_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function center_videos()
@@ -494,7 +526,36 @@ class Apipia extends CI_Controller {
 	}
 
 //-----------------------------------------------//
+//-----------------------------------------------//
 
+	public function center_video_delete()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Center Gallery";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$video_id = $this->input->post("video_id");
+
+		$data['result']=$this->apipiamodel->center_video_delete($video_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
 //-----------------------------------------------//
 
 	public function create_batch()
