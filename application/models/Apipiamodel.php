@@ -307,6 +307,23 @@ class Apipiamodel extends CI_Model {
 	}
 //#################### Center Gallery End ####################//
 
+
+//#################### Center Gallery Delete ####################//
+
+  function center_gallery_delete($gallery_id){
+    $query="DELETE FROM edu_center_photos WHERE id='$gallery_id'";
+    $result=$this->db->query($query);
+    if($result){
+      	$response = array("status" => "success", "msg" => "Successfully deleted!");
+    }else{
+      	$response = array("status" => "error", "msg" => "Something went wrong!");
+    }
+    	return $response;
+  }
+
+//#################### Center Gallery Delete ####################//
+
+
 //#################### Center Gallery ####################//
 	public function centerVideos ($pia_id,$center_id)
 	{
@@ -330,12 +347,25 @@ class Apipiamodel extends CI_Model {
 	}
 
 //#################### Center Gallery End ####################//
+//#################### Center Gallery  Video Delete ####################//
 
+  function center_video_delete($video_id){
+    $query="DELETE FROM edu_center_videos WHERE id='$video_id'";
+    $result=$this->db->query($query);
+    if($result){
+      	$response = array("status" => "success", "msg" => "Successfully deleted!");
+    }else{
+      	$response = array("status" => "error", "msg" => "Something went wrong!");
+    }
+    	return $response;
+  }
+
+//#################### Center Gallery  Video Delete ####################//
 
 //#################### Session Creation ####################//
 	public function createSession($pia_id,$session_name,$from_time,$to_time)
 	{
-            $sQuery = "INSERT INTO edu_timing (session_name,from_time,to_time,pia_id,status,created_by,created_at ) VALUES ('". $session_name . "','". $from_time . "','". $to_time . "','". $pia_id . "','Active','". $pia_id . "',now())";
+      $sQuery = "INSERT INTO edu_timing (session_name,from_time,to_time,pia_id,status,created_by,created_at ) VALUES ('". $session_name . "','". $from_time . "','". $to_time . "','". $pia_id . "','Active','". $pia_id . "',now())";
 			$session_create = $this->db->query($sQuery);
 
 			$response = array("status" => "success", "msg" => "Session Created");
