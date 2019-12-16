@@ -1,5 +1,4 @@
 <?php
-
 Class Smsmodel extends CI_Model
 {
 	public function __construct()
@@ -8,7 +7,7 @@ Class Smsmodel extends CI_Model
 
 	}
 
-	public function sendOTPtomobile($mob,$mobile_message)
+	public function send_sms($to_phone,$smsContent)
 	{
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
@@ -20,14 +19,14 @@ Class Smsmodel extends CI_Model
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "POST",
 		CURLOPT_POSTFIELDS => '{
-				 "sender": "HEYLAA",
+				 "sender": "M3ADMN",
 				 "route": "4",
 				 "country": "91",
 				 "sms": [
 				 {
-				   "message": "'.urlencode($mobile_message).'",
+				   "message": "'.urlencode($smsContent).'",
 				   "to": [
-				   "'.$mob.'"
+				   "'.$to_phone.'"
 				   ]
 				 }
 				 ]
