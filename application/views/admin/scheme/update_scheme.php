@@ -185,6 +185,19 @@
     $('#masters').addClass('active');
     $('#mastersmenu').addClass('active');
 
+	$('#myformsection').validate({
+					rules: {
+						scheme_name: { required: true },
+						scheme_info: { required: true },
+						scheme_video_link: { required: true}
+					},
+					messages: {
+							scheme_name: "Enter Scheme name",
+							scheme_info: "Enter Scheme details",
+							scheme_video_link: "Enter Scheme video link",
+					}
+		});
+		
     function delgal(gal_id) {
         $.ajax({
             type: "POST",
