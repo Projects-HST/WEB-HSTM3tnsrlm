@@ -5,6 +5,8 @@ Class Loginmodel extends CI_Model
   public function __construct()
   {
       parent::__construct();
+		$this->load->model('mailmodel');
+		$this->load->model('smsmodel');
   }
 
 	function login($username,$password)
@@ -15,14 +17,13 @@ Class Loginmodel extends CI_Model
 		   foreach($res->result() as $rows){
 			   $status = $rows->status;
 		   }
-				 if ($status = 'Active'){
-					 $data = array("status"=>$rows->status,"user_name"  => $rows->user_name,"name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
-					 return $data;
-				 } else {
-					  $data= array("status" => "Inactive");
-					  return $data;
-				 }
-
+			if ($status = 'Active'){
+				 $data = array("status"=>$rows->status,"user_name"  => $rows->user_name,"name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
+				 return $data;
+			 } else {
+				  $data= array("status" => "Inactive");
+				  return $data;
+			 }
 		} else{
 					  $data= array("status" => "Error");
 					  return $data;
@@ -152,6 +153,9 @@ Class Loginmodel extends CI_Model
 				 $result_pwd=$this->db->query($reset);
 			}
 
+
+			
+
 			 $subject = 'M3 - Password Reset';
              $htmlContent = '<html>
                <head><title></title>
@@ -164,13 +168,14 @@ Class Loginmodel extends CI_Model
 			   <p><a href="'.base_url() .'">Click here to Login</a></p>
                </body>
                </html>';
-
-           // Set content-type header for sending HTML email
+			$this->mailmodel->send_mail($to_email,$subject,$htmlContent);
+		  
+          /*  // Set content-type header for sending HTML email
            $headers = "MIME-Version: 1.0" . "\r\n";
            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
            // Additional headers
            $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-           mail($to_email,$subject,$htmlContent,$headers);
+           mail($to_email,$subject,$htmlContent,$headers); */
             echo "success";
          }else{
 			echo "error";
