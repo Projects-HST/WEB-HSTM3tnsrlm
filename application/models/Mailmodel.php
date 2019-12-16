@@ -7,6 +7,7 @@ Class Mailmodel extends CI_Model
 	}
 
 
+
 	function send_mail($to_email,$subject,$htmlContent)
 	{
 		// Set content-type header for sending HTML email

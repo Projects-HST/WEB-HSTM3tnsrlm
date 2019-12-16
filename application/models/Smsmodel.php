@@ -49,6 +49,7 @@ Class Smsmodel extends CI_Model
         ));
 
 
+
         //Ignore SSL certificate verification
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -67,6 +68,7 @@ Class Smsmodel extends CI_Model
 	}
 
 //#################### SMS End ####################//
+
 
 	public function send_sms($to_phone,$smsContent)
 	{
