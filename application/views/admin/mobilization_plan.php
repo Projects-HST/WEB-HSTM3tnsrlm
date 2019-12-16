@@ -20,9 +20,9 @@
                          <tr>
                              <th>S.no</th>
 							 <th>PIA Name</th>
-                             <th>Docment Name</th>
+                             <th>Document Name</th>
                              <th>Uploaded Date</th>
-							 <th>Document</th>
+							 <th>Download</th>
                          </tr>
                      </thead>
                      <tbody>
