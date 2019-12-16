@@ -1,13 +1,13 @@
 <?php
-
 Class Adminmodel extends CI_Model
 {
 
-public function __construct()
-{
-  parent::__construct();
-
-}
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('mailmodel');
+		$this->load->model('smsmodel');
+	}
 
 	function adminDashboard(){
 			
@@ -138,7 +138,7 @@ public function __construct()
 			$digits = 6;
 			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 			$md5pwd=md5($OTP);
-			$user_name=$mobile;
+			$user_name = $mobile;
 
 			$user_table="INSERT INTO edu_users (name,user_name,user_password,user_pic,user_type,user_master_id,created_date,status) VALUES('$name','$user_name','$md5pwd','$staff_prof_pic','$select_role','$insert_id',NOW(),'Active')";
 			$result_user=$this->db->query($user_table);
@@ -156,12 +156,18 @@ public function __construct()
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+							
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$user_name.' Password '.$OTP.'';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+							
+			/* // Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 
 			if ($result_user) {
 				$data = array("status" => "success");
@@ -240,12 +246,18 @@ public function __construct()
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+							
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$mobile.' is updated.';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+							
+			/* // Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
 			 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
@@ -304,12 +316,18 @@ public function __construct()
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+							
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$user_name.' Password '.$OTP.'';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+			
+/* 			// Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 
 			if ($result_user) {
 			$data = array("status" => "success");
@@ -376,12 +394,19 @@ public function __construct()
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+							
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$unique_number.' is updated.';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+			
+			
+/* 			// Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
 			$update_user="UPDATE edu_users SET name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
@@ -539,10 +564,29 @@ public function __construct()
 		$result=$this->db->query($update);
 
 
-		
 		if ($old_phone_number != $mobile){
 			 if ($user_type =='2'){
 				$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_pic ='$staff_prof_pic' WHERE user_master_id='$staff_id' AND user_type = '$user_type' ";
+				
+				$subject ='M3 - Login - Username Updated';
+				$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>PIA Login Details</p>
+							<p>Username: '.$mobile.'</p>
+							<p></p>
+							<p><a href="'.base_url() .'">Click here to Login</a></p>
+							</body>
+							</html>';
+							
+				$smsContent = 'Hi  '.$name.' Your Account Username : '.$mobile.' is updated.';
+				
+				$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+				$this->smsmodel->sendSMS($mobile,$smsContent);
+			
+				
 			 } else {
 				 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic' WHERE user_master_id='$staff_id' AND user_type = '$user_type' ";
 			 }

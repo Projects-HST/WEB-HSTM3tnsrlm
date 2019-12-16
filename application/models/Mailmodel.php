@@ -6,7 +6,7 @@ Class Mailmodel extends CI_Model
 	  parent::__construct();
 	}
 
-	function send_mail($to_email,$subject,$htmlContent)
+	function sendEmail($to_email,$subject,$htmlContent)
 	{
 		// Set content-type header for sending HTML email
 		$headers = "MIME-Version: 1.0" . "\r\n";

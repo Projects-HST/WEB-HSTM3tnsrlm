@@ -1,13 +1,13 @@
 <?php
-
 Class Staffmodel extends CI_Model
 {
-
-  public function __construct()
-  {
-      parent::__construct();
-
-  }
+	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('mailmodel');
+		$this->load->model('smsmodel');
+	}
 
 
     function checkemail($email){
@@ -86,12 +86,18 @@ Class Staffmodel extends CI_Model
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+							
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$user_name.' Password '.$OTP.'';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+			
+			/* // Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 			  
             if ($result_user) {
                 $data = array("status" => "success");
@@ -176,12 +182,19 @@ Class Staffmodel extends CI_Model
 							<p><a href="'.base_url() .'">Click here to Login</a></p>
 							</body>
 							</html>';
-			// Set content-type header for sending HTML email
+			
+			$smsContent = 'Hi  '.$name.' Your Account Username : '.$mobile.' is updated.';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);			
+							
+							
+/* 			// Set content-type header for sending HTML email
 			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
-			mail($email,$subject,$htmlContent,$headers);
+			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
 			 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
