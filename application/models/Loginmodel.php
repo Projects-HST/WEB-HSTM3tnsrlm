@@ -160,7 +160,7 @@ Class Loginmodel extends CI_Model
                </head>
                <body>
                <p>Hi  '.$name.'</p>
-               <p>Your Account Password is Reset.Please Use Below Password to login</p>
+               <p>Your Account Password is Reset. Please Use Below Password to login</p>
 			   <p>Password: '.$OTP.'</p>
 			   <p></p>
 			   <p><a href="'.base_url() .'">Click here to Login</a></p>
@@ -171,7 +171,7 @@ Class Loginmodel extends CI_Model
 			
 			
 			$this->mailmodel->send_mail($to_email,$subject,$htmlContent);
-			$this->mailmodel->send_sms($to_phone,$smsContent);
+			$this->smsmodel->send_sms($to_phone,$smsContent);
 			
           /*  // Set content-type header for sending HTML email
            $headers = "MIME-Version: 1.0" . "\r\n";
