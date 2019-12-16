@@ -171,7 +171,7 @@ Class Loginmodel extends CI_Model
 			
 			
 			$this->mailmodel->send_mail($to_email,$subject,$htmlContent);
-			$this->smsmodel->send_sms($to_phone,$smsContent);
+			$this->smsmodel->sendSMS($to_phone,$smsContent);
 			
 			exit;
 
