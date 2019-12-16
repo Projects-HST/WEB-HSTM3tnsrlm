@@ -182,9 +182,10 @@
         </div>
     </div>
     <!-- End Email Statistic area-->
-<script type="text/javascript">
-    $('#dashboard').addClass('active');
-</script>
+	
+	<script type="text/javascript">
+		$('#dashboard').addClass('active');
+	</script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">

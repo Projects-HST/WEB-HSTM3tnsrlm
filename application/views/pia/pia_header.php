@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>M3 - Admin Section </title>
+    <title>M3 - PIA Section </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -128,9 +128,8 @@
                       <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
                       <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a></li>
 					  <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>
-					  <li id="tracking"><a href="<?php echo base_url();?>tracking/home"><i class="fa fa-th-large" aria-hidden="true"></i> Tracking</a></li>
-                      <!--<li id="tracking"><a data-toggle="tab" href="#trackingmenu"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a></li>-->
-                      <li  id="graph"><a data-toggle="tab" href="#graphmenu"><i class="fa fa-bar-chart" aria-hidden="true"></i> Graph</a></li>
+					  <li id="tracking"><a href="<?php echo base_url();?>tracking/home"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a></li>
+					  <li id="graph"><a href="<?php echo base_url();?>graph/home"><i class="fa fa fa-bar-chart" aria-hidden="true"></i> Graph</a></li>
                   </ul>
 				  
 				<div class="tab-content custom-menu-content">

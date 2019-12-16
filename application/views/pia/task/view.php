@@ -37,7 +37,11 @@
 							 <td> <?php $date=date_create($rows->task_date);echo date_format($date,"d-m-Y");  ?></td>
                              <td><?php echo $rows->task_title; ?></td>
                              <td><?php echo $rows->task_description; ?></td>
-                             <td>  <?php echo $rows->status; ?></td>
+							 <td>
+									<?php if($rows->status=='Assigned'){ ?> <span class="blue">Assigned</span><?php } ?>
+									<?php if($rows->status=='Ongoing'){ ?><span class="red">Ongoing</span><?php } ?>
+									<?php if($rows->status=='Completed'){ ?><span class="green">Completed</span><?php } ?>
+							 </td>
                              <td> <a href="<?php echo base_url(); ?>task/task_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>

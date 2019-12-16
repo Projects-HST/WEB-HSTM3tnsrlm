@@ -34,12 +34,7 @@
                              <td><?php echo $rows->name; ?></td>
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
-                             <td><?php if($rows->status=='Active'){ ?>
-                             Active
-                          <?php }else{ ?>
-                                 Inactive
-                              <?php   } ?>
-                            </td>
+                            <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                              <td><a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Staff"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
                          </tr>
 <?php  $i++; } ?>
