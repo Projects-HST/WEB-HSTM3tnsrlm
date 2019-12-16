@@ -19,7 +19,7 @@ Class Smsmodel extends CI_Model
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "POST",
 		CURLOPT_POSTFIELDS => '{
-				 "sender": "M3ADMN",
+				 "sender": "MADMIN",
 				 "route": "4",
 				 "country": "91",
 				 "sms": [
