@@ -15,7 +15,7 @@ Class Mailmodel extends CI_Model
 		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 		// Additional headers
 		$headers .= 'From: M3 Administrator<info@happysanztech.com>' . "\r\n";
-		mail($to,$subject,$htmlContent,$headers);
+		mail($to_email,$subject,$htmlContent,$headers);
 	}
 }
 ?>

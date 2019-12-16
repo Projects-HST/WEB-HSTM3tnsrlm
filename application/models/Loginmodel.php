@@ -169,6 +169,7 @@ Class Loginmodel extends CI_Model
 			   
 			$smsContent = 'Hi  '.$name.' Your Account Password is Reset. Please Use this '.$OTP.' to login';
 			
+			
 			$this->mailmodel->send_mail($to_email,$subject,$htmlContent);
 			$this->mailmodel->send_sms($to_phone,$smsContent);
 			

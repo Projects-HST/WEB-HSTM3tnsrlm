@@ -34,7 +34,7 @@ Class Smsmodel extends CI_Model
 		CURLOPT_SSL_VERIFYHOST => 0,
 		CURLOPT_SSL_VERIFYPEER => 0,
 		CURLOPT_HTTPHEADER => array(
-		"authkey: 270429AChw544RizSP5deb6e61",
+		"authkey: 308533AMShxOBgKSt75df73187",
 		"content-type: application/json"
 		),
 		));
@@ -45,9 +45,9 @@ Class Smsmodel extends CI_Model
 		curl_close($curl);
 
 		if ($err) {
-		echo "cURL Error #:" . $err;
+			echo "cURL Error #:" . $err;
 		} else {
-		//echo $response;
+			echo $response;
 		}
 
 	}
