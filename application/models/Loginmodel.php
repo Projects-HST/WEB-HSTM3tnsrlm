@@ -173,14 +173,7 @@ Class Loginmodel extends CI_Model
 			$this->mailmodel->send_mail($to_email,$subject,$htmlContent);
 			$this->smsmodel->sendSMS($to_phone,$smsContent);
 			
-
-          /*  // Set content-type header for sending HTML email
-           $headers = "MIME-Version: 1.0" . "\r\n";
-           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-           // Additional headers
-           $headers .= 'From: happysanz<info@happysanz.com>' . "\r\n";
-           mail($to_email,$subject,$htmlContent,$headers); */
-            echo "success";
+			echo "success";
          }else{
 			echo "error";
 		 }

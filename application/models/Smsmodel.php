@@ -12,7 +12,7 @@ Class Smsmodel extends CI_Model
 	public function sendSMS($to_phone,$smsContent)
 	{
         //Your authentication key
-        $authKey = "270429AChw544RizSP5deb6e61";
+        $authKey = "308533AMShxOBgKSt75df73187";
 
         //Multiple mobiles numbers separated by comma
         $mobileNumber = "$to_phone";
