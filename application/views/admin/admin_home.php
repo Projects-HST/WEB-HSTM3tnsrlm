@@ -71,7 +71,7 @@
 			
 			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
-                        <div class="rc-it-ltd" style="min-height:400px;">
+                        <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
                                     <h2>Recent PIAs</h2>
@@ -108,7 +108,7 @@
 				
 				<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
-                        <div class="rc-it-ltd" style="min-height:400px;">
+                        <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
                                     <h2>Recent Mobilizers</h2>
@@ -145,7 +145,7 @@
 			
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
-                        <div class="rc-it-ltd" style="min-height:400px;">
+                        <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
                                     <h2>Recent Students</h2>
