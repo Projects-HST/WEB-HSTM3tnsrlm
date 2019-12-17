@@ -196,16 +196,15 @@
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
           ['Month', 'Students'],
-          ['Jan',  165],
-          ['Feb',  135],
-          ['Mar',  157],
-          ['Apr',  139],
-          ['May',  150],
-		  ['Jun',  20],
-		  ['Jul',  50],
-		  ['Aug',  5]
-        ]);
-
+		<?php if (count($admin_graph_details) >0) { 
+			$i=1;
+			$rec_count = count($admin_graph_details);
+			foreach($admin_graph_details as $rows){
+				echo "['$rows->month',  $rows->stu_count]"; if ($i<$rec_count) { echo ",\n";} else {echo "\n"; } 
+			$i++;
+			}
+		}
+		?>]);
         var options = {
           title : '',
           vAxis: {title: 'Students Count'},

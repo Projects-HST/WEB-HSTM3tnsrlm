@@ -133,17 +133,17 @@
                       <div id="piamenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
                               <li><a href="<?php echo base_url(); ?>admin/create_pia" id="create_pia">Create PIA</a></li>
-                              <li><a href="<?php echo base_url(); ?>admin/view_pia" id="view_pia">View PIA</a> </li>
+                              <li><a href="<?php echo base_url(); ?>admin/view_pia" id="view_pia">List PIA</a> </li>
 							  <li><a href="<?php echo base_url(); ?>admin/pia_dashboard/<?php echo $piaid; ?>" id="pia_dash">PIA Dashboard</a></li>
                               <li><a href="<?php echo base_url(); ?>admin/pia_center_list/<?php echo $piaid; ?>" id="center_list">Center List</a></li>
-							   <li><a href="<?php echo base_url(); ?>admin/pia_mobilizer_list/<?php echo $piaid; ?>" id="mobilizer_list">Mobilizer List</a></li>
+							  <li><a href="<?php echo base_url(); ?>admin/pia_mobilizer_list/<?php echo $piaid; ?>" id="mobilizer_list">Mobilizer List</a></li>
 							  <li><a href="<?php echo base_url(); ?>admin/pia_student_list/<?php echo $piaid; ?>" id="student_list">Student List</a></li>
                           </ul>
                       </div>
                       <div id="staffmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
                               <li><a href="<?php echo base_url(); ?>admin/create_staff" id="create_staff">Create Staff</a></li>
-                              <li><a href="<?php echo base_url(); ?>admin/view_staff" id="view_staff">View Staff</a></li>
+                              <li><a href="<?php echo base_url(); ?>admin/view_staff" id="view_staff">List Staff</a></li>
                           </ul>
                       </div>
                     </div>

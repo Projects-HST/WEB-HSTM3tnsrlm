@@ -71,6 +71,14 @@ Class Adminmodel extends CI_Model
       return $result->result();
     }
 	
+	
+	function admin_graph_details(){
+		$query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";
+		$res=$this->db->query($query);
+		$result=$res->result();
+		return $result;
+   } 
+   
 	function mobilization_plan($user_id){
 		$query="SELECT * FROM edu_mobilization_plan A, edu_users B  WHERE A.pia_id = B.user_id ORDER BY A.id desc";
 		$res=$this->db->query($query);
@@ -500,6 +508,12 @@ Class Adminmodel extends CI_Model
 		return $result->result();
 	}
 	
+	function pia_graph_details($pia_id){
+		$query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE pia_id = '$pia_id' AND PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";
+		$res=$this->db->query($query);
+		$result=$res->result();
+		return $result;
+   } 
 	
 	function kms_using_lat($mob_id,$selected_date){
           $select="SELECT (6371 * ACOS(

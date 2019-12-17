@@ -28,6 +28,7 @@ class Dashboard extends CI_Controller {
 			$datas['dash_tasks']=$this->loginmodel->dashTasks($user_id);
 		    $datas['dash_trade']=$this->loginmodel->dashTrades($user_id);
 			$datas['dash_students']=$this->loginmodel->dashStudents($user_id);
+			$datas['pia_graph_details']=$this->loginmodel->pia_graph_details($user_id);
 			 
 				if($user_type==1){
 

@@ -231,5 +231,12 @@ Class Loginmodel extends CI_Model
 		$result=$this->db->query($select);
 		return $result->result();
 	}
+	
+	function pia_graph_details($pia_id){
+		$query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE pia_id = '$pia_id' AND PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";
+		$res=$this->db->query($query);
+		$result=$res->result();
+		return $result;
+   } 
 }
 ?>

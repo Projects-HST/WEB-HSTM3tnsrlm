@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
 
 		$datas['result'] = $this->loginmodel->getadminuser($user_id);
 		$datas['dashboard']=$this->adminmodel->adminDashboard();
+		$datas['admin_graph_details']=$this->adminmodel->admin_graph_details();
 		$datas['pia_list']=$this->adminmodel->pia_list();
 		$datas['mobilizer_list']=$this->adminmodel->mobilizer_list();
 		$datas['students_list']=$this->adminmodel->students_list();
@@ -545,6 +546,8 @@ class Admin extends CI_Controller {
 				 $datas['dash_tasks']=$this->adminmodel->dashTasks($pia_id);
 				 $datas['dash_trade']=$this->adminmodel->dashTrades($pia_id);
 				 $datas['dash_students']=$this->adminmodel->dashStudents($pia_id);
+				 $datas['pia_graph_details']=$this->adminmodel->pia_graph_details($pia_id);
+				  
 				 //echo "<pre>"; print_r($datas['pia_details']); exit;
 				 $this->load->view('admin/admin_pia_header',$datas);
 				 $this->load->view('admin/pia_dashboard',$datas);
