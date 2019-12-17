@@ -52,7 +52,9 @@
                                  <h2>Graph and data on students registered every month.</h2>
                             </div>
                         </div>
-                        <div id="chart_div" style="height:325px;"></div>
+                        <?php if (count($pia_graph_details) >0) { ?>
+							<div id="chart_div" style="height:325px;"></div>
+						<?php } ?>
                     </div>
                 </div>
 				
