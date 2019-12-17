@@ -117,7 +117,7 @@
 <!-- End Header Top Area -->
 	
    <!-- Start Main Menu area -->
-   <div class="main-menu-area mg-tb-30" style="background:black;">
+   <div class="main-menu-area mg-tb-30">
       <div class="container">
           <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

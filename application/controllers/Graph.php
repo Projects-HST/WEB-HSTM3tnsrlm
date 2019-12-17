@@ -17,7 +17,7 @@ class Graph extends CI_Controller {
 		$user_type=$this->session->userdata('user_type');
 		
 		if($user_type==3){
-			$datas['res']=$this->graphmodel->get_mobilizer_id($user_id);
+			$datas['yearly_graph']=$this->graphmodel->yearly_graph($user_id);
 			$this->load->view('pia/pia_header');
 			$this->load->view('pia/graph/graph',$datas);
 			$this->load->view('pia/pia_footer');

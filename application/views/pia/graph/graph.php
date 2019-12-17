@@ -52,16 +52,19 @@
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
           ['Years', 'Confirmed', 'Rejected', 'Pending','Average'],
-          ['2004/05',  165,938,522,614.6],
-          ['2005/06',  135,1120,599,682],
-          ['2006/07',  157,1167,587,623],
-          ['2007/08',  139,1110,615,609.4],
-          ['2008/09',  136,691,629,569.6]
-        ]);
+          <?php if (count($yearly_graph) >0) { 
+			$i=1;
+			$rec_count = count($yearly_graph);
+			foreach($yearly_graph as $rows){
+				echo "['$rows->create_year',  $rows->confirmed, $rows->rejected, $rows->pending, $rows->average_total]"; if ($i<$rec_count) { echo ",\n";} else {echo "\n"; } 
+			$i++;
+			}
+		}
+		?>]);
 
         var options = {
           title : '',
-          vAxis: {title: 'Students'},
+          vAxis: {title: 'Students',format: '0'},
           hAxis: {title: 'Years'},
           seriesType: 'bars',
           series: {3: {type: 'line'}}        };

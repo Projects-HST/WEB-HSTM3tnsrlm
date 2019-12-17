@@ -167,7 +167,7 @@ Class Staffmodel extends CI_Model
 		$result=$this->db->query($update);
 		
 		if ($old_phone_number != $mobile){
-			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_type='$select_role',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type != '2'";
 			$result_user=$this->db->query($update_user);
 			
 			$subject ='M3 - Staff Login - Username Updated';
@@ -197,7 +197,7 @@ Class Staffmodel extends CI_Model
 			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
-			 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			 $update_user="UPDATE edu_users SET name='$name',user_type='$select_role', user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type != '2'";
 			$result_user=$this->db->query($update_user);
 		}
 

@@ -66,7 +66,7 @@ Class Adminmodel extends CI_Model
     }
 	
 	function students_list(){
-      $select="SELECT A.name as student_name, A.city, B.name as pia_name FROM edu_student_prospects A, edu_users B WHERE A.pia_id = B.user_id ORDER BY A.id desc LIMIT 5 ";
+      $select="SELECT A.name as student_name, A.city, B.name as pia_name FROM edu_student_prospects A, edu_users B WHERE A.pia_id = B.user_id ORDER BY A.id desc LIMIT 4";
       $result=$this->db->query($select);
       return $result->result();
     }
@@ -507,6 +507,13 @@ Class Adminmodel extends CI_Model
 		$result=$this->db->query($select);
 		return $result->result();
 	}
+	
+	function dashCenters($pia_id){
+		$select="SELECT * FROM `edu_center_master` WHERE pia_id = '$pia_id' ORDER BY id DESC LIMIT 5";
+		$result=$this->db->query($select);
+		return $result->result();
+	}
+	
 	
 	function pia_graph_details($pia_id){
 		$query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE pia_id = '$pia_id' AND PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";

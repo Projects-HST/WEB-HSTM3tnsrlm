@@ -39,27 +39,40 @@
     </div>
     <!-- End Status area-->
 	
-	
-    <!-- Start Sale Statistic area-->
+	 <!-- Start Sale Statistic area-->
     <div class="sale-statistic-area">
         <div class="container">
-		
-		<div class="row">
-                <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
+            <div class="row">
+			 <div class="col-lg-12 col-md-8 col-sm-7 col-xs-12">
                     <div class="sale-statistic-inner notika-shadow mg-tb-30">
                         <div class="curved-inner-pro">
                             <div class="curved-ctn">
-                                 <h2>Graph and data on students registered every month.</h2>
+                                <h2>Graph and data on students registered every month.</h2>
                             </div>
                         </div>
-                        <?php if (count($pia_graph_details) >0) { ?>
-							<div id="chart_div" style="height:325px;"></div>
+						<?php if (count($pia_graph_details) >0) { ?>
+							<div id="chart_div" style="height:400px;"></div>
 						<?php } ?>
                     </div>
                 </div>
-				
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
-					<div class="rc-it-ltd mg-tb-30" style="min-height:415px;">
+
+            </div>
+        </div>
+    </div>
+    <!-- End Sale Statistic area-->
+	
+	
+    
+	
+
+ <!-- Start Email Statistic area-->
+    <div class="notika-email-post-area">
+        <div class="container">
+            <div class="row">
+			
+			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
+                        <div class="rc-it-ltd" style="min-height:400px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
                                     <h2>Recent Mobilizers</h2>
@@ -80,58 +93,12 @@
                                     </tbody>
                                 </table>
                             </div>
-							<?php if (count($dash_mobilizer) >5){ ?>
+						<?php if (count($dash_mobilizer) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-							<?php } ?>
-                        </div>
-                </div>
-            </div>
-			
-        </div>
-    </div>
-    <!-- End Sale Statistic area-->
-	
-
- <!-- Start Email Statistic area-->
-    <div class="notika-email-post-area">
-        <div class="container">
-            <div class="row">
-			
-			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                    <div class="recent-items-wp notika-shadow sm-res-mg-t-30">
-                        <div class="rc-it-ltd" style="min-height:400px;">
-                            <div class="recent-items-ctn">
-                                <div class="recent-items-title">
-                                    <h2>Recent Task</h2>
-                                </div>
-                            </div>
-							
-                            <div class="recent-items-inn">
-                                <table class="table table-inner table-vmiddle">
-                                    <tbody>
-									 <?php $i=1; foreach($dash_tasks as $rows){ ?>
-                                        <tr>
-											<td style="width:15px;"><?php echo $i; ?>.</h2></td>
-											<td><b><?php echo $rows->task_title; ?></b><br><?php echo $rows->user_type_name; ?> - <?php echo $rows->name; ?></td>
-                                        </tr>
-										 <?php $i++; } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-							<?php if (count($dash_tasks) >5){ ?>
-							<div class="recent-post-signle">
-                                <a href="#">
-                                    <div class="recent-post-flex rc-ps-vw">
-                                        <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                            <p><a href="<?php echo base_url(); ?>admin/pia_mobilizer_list/<?php echo $piaid; ?>">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -146,7 +113,7 @@
                         <div class="rc-it-ltd" style="min-height:400px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Trade</h2>
+                                    <h2>Recent Centers</h2>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -154,21 +121,21 @@
                                     <tbody>
 									 <?php  
 									 $i=1; 
-									 foreach($dash_trade as $rows){ ?>
+									 foreach($dash_centers as $rows){ ?>
                                         <tr>
 											<td style="width:15px;"><?php echo $i; ?>.</h2></td>
-											<td><b><?php echo $rows->trade_name; ?></b><p></p></td>
+											<td><b><?php echo $rows->center_name; ?></b><p></p></td>
                                         </tr>
 										 <?php $i++; } ?>
                                     </tbody>
                                 </table>
                             </div>
-							<?php if (count($dash_trade) >5){ ?>
+							<?php if (count($dash_centers) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                            <p><a href="<?php echo base_url(); ?>admin/pia_center_list/<?php echo $piaid; ?>">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -203,7 +170,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                             <p><a href="<?php echo base_url(); ?>admin/pia_student_list/<?php echo $piaid; ?>">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -245,7 +212,7 @@
 
         var options = {
           title : '',
-          vAxis: {title: 'Students Count'},
+          vAxis: {title: 'Students Count',format: '0'},
           hAxis: {title: 'Month'},
           seriesType: 'bars',
           series: {5: {type: 'line'}}        };

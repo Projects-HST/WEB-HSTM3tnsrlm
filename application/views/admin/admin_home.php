@@ -52,7 +52,7 @@
                             </div>
                         </div>
 						<?php if (count($admin_graph_details) >0) { ?>
-						<div id="chart_div" style="height:400px;"></div>
+							<div id="chart_div" style="height:400px;"></div>
 						<?php } ?>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                           <p><a href="<?php echo base_url(); ?>admin/view_pia/">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -127,7 +127,7 @@
 										 <?php $i++; } ?>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div><!--
 							<?php if (count($mobilizer_list) >5){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
@@ -138,7 +138,7 @@
                                     </div>
                                 </a>
                             </div>
-							<?php }?>
+							<?php }?>-->
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                                     </tbody>
                                 </table>
                             </div>
-							<?php if (count($students_list) >4){ ?>
+							<!--<?php if (count($students_list) >4){ ?>
 							<div class="recent-post-signle">
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
@@ -174,7 +174,7 @@
                                     </div>
                                 </a>
                             </div>
-							<?php }?>
+							<?php }?>-->
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ['Month', 'Students'],
+          ['Months', 'Students'],
 		<?php if (count($admin_graph_details) >0) { 
 			$i=1;
 			$rec_count = count($admin_graph_details);
@@ -209,11 +209,11 @@
 		?>]);
         var options = {
           title : '',
-          vAxis: {title: 'Students Count'},
-          hAxis: {title: 'Month'},
+          vAxis: {title: 'Students Count',format: '0'},
+          hAxis: {title: 'Months'},
           seriesType: 'bars',
-          series: {5: {type: 'line'}}        };
-
+          series: {5: {type: 'line'}} 
+		  };
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }

@@ -84,7 +84,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                            <p><a href="<?php echo base_url(); ?>staff/view_mobilizer">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -129,7 +129,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                            <p><a href="<?php echo base_url(); ?>task/view">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -166,7 +166,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                             <p><a href="<?php echo base_url(); ?>trade/home">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -202,7 +202,7 @@
                                 <a href="#">
                                     <div class="recent-post-flex rc-ps-vw">
                                         <div class="recent-post-line rct-pt-mg">
-                                            <p>View All</p>
+                                            <p><a href="<?php echo base_url(); ?>admission/view">View All</a></p>
                                         </div>
                                     </div>
                                 </a>
@@ -242,7 +242,7 @@
 
         var options = {
           title : '',
-          vAxis: {title: 'Students Count'},
+          vAxis: {title: 'Students Count',format: '0'},
           hAxis: {title: 'Month'},
           seriesType: 'bars',
           series: {5: {type: 'line'}}        };

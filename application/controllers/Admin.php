@@ -546,6 +546,7 @@ class Admin extends CI_Controller {
 				 $datas['dash_tasks']=$this->adminmodel->dashTasks($pia_id);
 				 $datas['dash_trade']=$this->adminmodel->dashTrades($pia_id);
 				 $datas['dash_students']=$this->adminmodel->dashStudents($pia_id);
+				  $datas['dash_centers']=$this->adminmodel->dashCenters($pia_id);
 				 $datas['pia_graph_details']=$this->adminmodel->pia_graph_details($pia_id);
 				  
 				 //echo "<pre>"; print_r($datas['pia_details']); exit;
