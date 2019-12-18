@@ -30,7 +30,7 @@
                          <tr>
                              <td><?php echo $i; ?></td>
                              <td><?php echo $rows->name; ?></td>
-                             <td><?php echo $rows->aadhaar_card_number; ?></td>
+                             <td><?php $saathar = $rows->aadhaar_card_number;  echo $var = substr_replace($saathar, str_repeat("X", 8), 0, 8); ?></td>
                              <td><?php echo $rows->mobile; ?></td>
 								<td>
 									<?php if($rows->status=='Confirmed'){ ?> <span class="green">Confirmed</span><?php } ?>

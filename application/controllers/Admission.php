@@ -181,12 +181,13 @@ class Admission extends CI_Controller
 		if($user_type==3)
 		{
 			$had_aadhar_card=$this->input->post('had_aadhar_card');
-			$aadhar_card_num=$this->input->post('aadhar_card_num');
+			$aadhar_old=$this->input->post('aadhar_old');
+			$naadhar_card_num=$this->input->post('aadhar_card_num');
 			$admission_location=$this->input->post('admission_location');
 			$admit_date=$this->input->post('admission_date');
 			$dateTime1 = new DateTime($admit_date);
 			$admission_date=date_format($dateTime1,'Y-m-d' );
-      $admission_id=$this->input->post('admission_id');
+			$admission_id=$this->input->post('admission_id');
 			$name=$this->input->post('name');
 			$fname=$this->input->post('fname');
 			$mname=$this->input->post('mname');
@@ -216,16 +217,23 @@ class Admission extends CI_Controller
 			$city=$this->input->post('city');
 			$state=$this->input->post('state');
 			$user_pic_old=$this->input->post('user_pic_old');
+			
 			$student_pic = $_FILES["student_pic"]["name"];
 			$temp = pathinfo($student_pic, PATHINFO_EXTENSION);
-		   $userFileName = round(microtime(true)) . '.' . $temp;
+		    $userFileName = round(microtime(true)) . '.' . $temp;
 			$uploaddir = 'assets/students/';
 			$profilepic = $uploaddir.$userFileName;
 			move_uploaded_file($_FILES['student_pic']['tmp_name'], $profilepic);
 			if(empty($student_pic))
 			{
-			 $userFileName=$user_pic_old;
-			 }
+				$userFileName=$user_pic_old;
+			}
+			
+			if($naadhar_card_num !=''){
+				$aadhar_card_num = $naadhar_card_num;
+			} else {
+				$aadhar_card_num = $aadhar_old;
+			}
 			$datas=$this->admissionmodel->update_details($admission_id,$had_aadhar_card,$aadhar_card_num,$admission_location,$admission_date,$name,$fname,$mname,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$course,$mobile,$sec_mobile,$email,$userFileName,$institute_name,$last_studied,$qual,$tran_cert,$address,$disability,$city,$state,$blood_group,
 			$status,$user_id,$prefer_time);
 			if($datas['status']=="success"){

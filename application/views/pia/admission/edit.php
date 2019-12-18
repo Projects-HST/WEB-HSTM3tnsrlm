@@ -23,12 +23,22 @@
 						
 				 <div class="form-example-int form-horizental">
                       <div class="form-group">
-							<div class="row page_row">
+						<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Aadhaar Card Number <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Old Aadhaar Number</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Aadhaar Card Number" name="aadhar_card_num" maxlength="12"  class="form-control input-sm" value="<?php echo $rows->aadhaar_card_number; ?>">
+										<input type="text" placeholder="Aadhaar Card Number" name="old_aadhar_card_num" maxlength="12"  class="form-control input-sm" value="<?php $saathar = $rows->aadhaar_card_number;  echo $var = substr_replace($saathar, str_repeat("X", 8), 0, 8); ?>"  disabled>
+                                    </div>
+									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+                                    </div>
+                            </div>
+							<div class="row page_row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Aadhaar Number</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<input type="text" placeholder="Aadhaar Card Number" name="aadhar_card_num" maxlength="12"  class="form-control input-sm" value="">
                                     </div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Admission Date <span class="error">*</span></label>
@@ -208,7 +218,7 @@
 											<option value="pass">Pass</option>
 											<option value="fail">Fail</option>
 											<option value="drop">Drop Out</option>
-									</select><script> $('#qualified_promotion').val('<?php echo $rows->qualified_promotion; ?>');</script>
+									</select><script> $('#qual').val('<?php echo $rows->qualified_promotion; ?>');</script>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 									<label class="hrzn-fm">Status <span class="error">*</span></label>
@@ -233,6 +243,7 @@
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<input type="hidden" name="aadhar_old" class="form-control " placeholder=" " value="<?php echo $rows->aadhaar_card_number; ?>"/>
 									<input type="hidden" name="user_pic_old" class="form-control " placeholder=" " value="<?php echo $rows->student_pic; ?>"/>
 									 <input type="hidden" name="admission_id" class="form-control" placeholder="" value="<?php echo base64_encode($rows->id*98765); ?>"/>
 									 <button class="btn btn-success notika-btn-success waves-effect">Update</button>
@@ -273,7 +284,7 @@
    rules: {
      // had_aadhar_card:{required:true },
      aadhar_card_num:{
-       required:true,
+       required:false,
        maxlength: 12,
        minlength:12,
        number:true,
