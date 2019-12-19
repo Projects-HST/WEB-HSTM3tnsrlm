@@ -796,7 +796,11 @@ class Apimobilizermodel extends CI_Model {
 //#################### List Task ####################//
 	public function listTask ($user_id)
 	{
-            $task_query = "SELECT * FROM edu_task WHERE user_id  ='$user_id'";
+            // $task_query = "SELECT * FROM edu_task WHERE user_id  ='$user_id'";
+            $task_query="SELECT et.*,u.user_type,u.name as assigned_to,eu.name as assigned_from FROM edu_task as et
+            left join edu_users as u on u.user_id=et.user_id
+            left join edu_users as eu on eu.user_id=et.created_by
+            where et.user_id='$user_id'";
 			$task_res = $this->db->query($task_query);
 			$task_result= $task_res->result();
 
