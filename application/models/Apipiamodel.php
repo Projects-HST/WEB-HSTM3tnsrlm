@@ -84,7 +84,7 @@ class Apipiamodel extends CI_Model {
 
       $response = curl_exec($curl);
       $err = curl_error($curl);
-      curl_close($curl);   
+      curl_close($curl);
       if ($err) {
         echo "cURL Error #:" . $err;
       } else {
@@ -668,7 +668,7 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 
-					 $update_user="UPDATE edu_users SET user_name = '$phone', name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+					echo  $update_user="UPDATE edu_users SET user_name = '$phone', name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 
 					if ($select_role == '5'){
@@ -679,7 +679,7 @@ class Apipiamodel extends CI_Model {
 						$email_message = 'Username:'.$phone.'<br><br>';
 						$this->sendMail($email,$subject,$email_message);
 					}
-					$response = array("status" => "success", "msg" => "User Updated Successfully");
+					$response = array("status" => "success", "msg" => "User Updated Successfully first");
 				}
 
 			} else {
@@ -688,10 +688,10 @@ class Apipiamodel extends CI_Model {
 			qualification='$qualification',status='$status',updated_at=NOW(),updated_by='$pia_id' WHERE id='$user_master_id'";
 					$result=$this->db->query($update);
 
-					 $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+				echo	 $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					$result_user=$this->db->query($update_user);
 
-					$response = array("status" => "success", "msg" => "User Updated Successfully");
+					$response = array("status" => "success", "msg" => "User Updated Successfully second");
 
 			}
 
