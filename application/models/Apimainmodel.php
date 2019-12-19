@@ -447,7 +447,8 @@ class Apimainmodel extends CI_Model {
 					}
 				} else {
 
-					$staff_query = "SELECT * FROM edu_staff_details WHERE id  ='$user_master_id' and status='Active'";
+				 	$staff_query = "SELECT * FROM edu_staff_details WHERE id  ='$user_master_id' and status='Active'";
+
 					$staff_res = $this->db->query($staff_query);
 					$staff_result= $staff_res->result();
 
@@ -455,8 +456,8 @@ class Apimainmodel extends CI_Model {
 					{
 						foreach ($staff_result as $rows)
 						{
-						  $phone = $rows->email;
-						  $email = $rows->phone;
+						  $email = $rows->email;
+						  $phone = $rows->phone;
 						}
 					}
 				}
@@ -464,8 +465,8 @@ class Apimainmodel extends CI_Model {
 				$digits = 6;
     			$OTP = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
 
-				     
-              	$mobile_message = 'Username :'.PHP_EOL. $user_name .'Password:'.$OTP;
+
+              	$mobile_message = 'Hi '.$user_name.' your password is reseted successfully try new password to login'.PHP_EOL.'Username : '.$user_name.' '.PHP_EOL.'Password:'.$OTP;
                 $this->sendSMS($phone,$mobile_message);
 
 
