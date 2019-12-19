@@ -691,11 +691,11 @@ class Apipiamodel extends CI_Model {
 					//  $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
 					// $result_user=$this->db->query($update_user);
 
-          echo $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
-          exit;
+         $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_type='$select_role' AND user_master_id='$user_master_id'";
+
         $result_user=$this->db->query($update_user);
 
-					$response = array("status" => "success", "msg" => "User Updated Successfully");
+					$response = array("status" => "success", "msg" => $update_user);
 
 			}
 
