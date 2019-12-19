@@ -67,19 +67,30 @@ class Apipiamodel extends CI_Model {
 
 	public function sendSMS($Phoneno,$Message)
 	{
-		$textmsg = urlencode($Message);
-		$smsGatewayUrl = 'http://173.45.76.227/send.aspx?';
-		$api_element = 'username=kvmhss&pass=kvmhss123&route=trans1&senderid=KVMHSS';
-		$api_params = $api_element.'&numbers='.$Phoneno.'&message='.$textmsg;
-		$smsgatewaydata = $smsGatewayUrl.$api_params;
-		$url = $smsgatewaydata;
+    $msg=urlencode($Message);
+    $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?mobiles=$Phoneno&authkey=242202ALE69fBMks5bbee06b&route=4&sender=TNSRLM&message=$msg&country=91",
+        // CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+      ));
 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_POST, false);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$output = curl_exec($ch);
-		curl_close($ch);
+      $response = curl_exec($curl);
+      $err = curl_error($curl);
+      curl_close($curl);   
+      if ($err) {
+        echo "cURL Error #:" . $err;
+      } else {
+        // echo $response;
+      }
+
 	}
 
 //#################### SMS End ####################//
