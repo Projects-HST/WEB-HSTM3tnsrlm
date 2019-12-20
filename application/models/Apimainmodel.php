@@ -408,6 +408,39 @@ class Apimainmodel extends CI_Model {
 
 //#################### Main Login End ####################//
 
+
+//#################### Admin Dashboard ####################//
+
+    function admin_dashboard($user_id){
+      $mob_count = "SELECT * FROM edu_staff_details WHERE role_type = '5'";
+      $mob_count_res = $this->db->query($mob_count);
+      $mobilizer_count = $mob_count_res->num_rows();
+
+      $cen_count = "SELECT * FROM edu_center_master";
+      $cen_count_res = $this->db->query($cen_count);
+      $center_count = $cen_count_res->num_rows();
+
+      $stu_count = "SELECT * FROM edu_student_prospects";
+      $stu_count_res = $this->db->query($stu_count);
+      $student_count = $mob_count_res->num_rows();
+
+      $pia_count="SELECT * FROM edu_pia";
+      $pia_count_excution=$this->db->query($pia_count);
+      $total_pia_count= $pia_count_excution->num_rows();
+
+      $dashboardData  = array(
+          "mobilizer_count" => $mobilizer_count,
+          "center_count" => $center_count,
+          "student_count" => $student_count,
+          "pia_count"=>$total_pia_count
+        );
+      $response = array("status" => "success", "msg" => "Admin Dashboard details", "userData" => $userData,"dashboardData"=>$dashboardData);
+      return $response;
+    }
+
+//#################### Admin Dashboard ####################//
+
+
 //#################### Profile Pic Update ####################//
 	public function updateProfilepic($user_id,$userFileName)
 	{
