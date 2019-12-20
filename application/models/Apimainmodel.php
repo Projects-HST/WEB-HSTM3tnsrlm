@@ -255,7 +255,7 @@ class Apimainmodel extends CI_Model {
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
 							"student_count" => $student_count,
-              "pai_count"=>$total_pia_count
+              "pia_count"=>$total_pia_count
 						);
 					$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"dashboardData"=>$dashboardData);
 					return $response;
