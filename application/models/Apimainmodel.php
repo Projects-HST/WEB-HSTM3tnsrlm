@@ -247,10 +247,15 @@ class Apimainmodel extends CI_Model {
 					$stu_count_res = $this->db->query($stu_count);
 					$student_count = $mob_count_res->num_rows();
 
+          $pia_count="SELECT * FROM edu_pia";
+          $pia_count_excution=$this->db->query($pia_count);
+          $total_pia_count= $pia_count_excution->num_rows();
+
 					$dashboardData  = array(
 							"mobilizer_count" => $mobilizer_count,
 							"center_count" => $center_count,
-							"student_count" => $student_count
+							"student_count" => $student_count,
+              "pai_count"=>$total_pia_count
 						);
 					$response = array("status" => "loggedIn", "msg" => "User loggedIn successfully", "userData" => $userData,"dashboardData"=>$dashboardData);
 					return $response;
