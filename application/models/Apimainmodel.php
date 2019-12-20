@@ -432,7 +432,7 @@ class Apimainmodel extends CI_Model {
           "mobilizer_count" => $mobilizer_count,
           "center_count" => $center_count,
           "student_count" => $student_count,
-          "pia_count"=>"0"
+          "pia_count"=>$total_pia_count
         );
       $response = array("status" => "success", "msg" => "Admin Dashboard details","dashboardData"=>$dashboardData);
       return $response;
