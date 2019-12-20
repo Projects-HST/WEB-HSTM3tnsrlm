@@ -434,7 +434,7 @@ class Apimainmodel extends CI_Model {
           "student_count" => $student_count,
           "pia_count"=>$total_pia_count
         );
-      $response = array("status" => "success", "msg" => "Admin Dashboard details", "userData" => $userData,"dashboardData"=>$dashboardData);
+      $response = array("status" => "success", "msg" => "Admin Dashboard details","dashboardData"=>$dashboardData);
       return $response;
     }
 
