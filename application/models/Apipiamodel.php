@@ -133,7 +133,7 @@ class Apipiamodel extends CI_Model {
 				$response_photos = array("status" => "error", "msg" => "Schemes Not Found");
 		}
 
-    $response=array("status"=>"success","scheme_details"=>$response_details,"scheme_photo"=>$response_photos);
+    $response=array("status"=>"success","scheme_details"=>$response_details,"scheme_photo"=>$response_photos,"msg"=>"scheme data");
 
 
 
