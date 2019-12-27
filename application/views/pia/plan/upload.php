@@ -94,7 +94,7 @@ $('#upload_plan').addClass('active');
 
   $.validator.addMethod('filesize', function (value, element, param) {
       return this.optional(element) || (element.files[0].size <= param)
-  }, 'File size must be less than 1 MB');
+  }, 'File size must be less than 10 MB');
   
 $('#staffform').validate({
       rules: {
@@ -111,7 +111,7 @@ $('#staffform').validate({
       messages: {
           doc_name: "Enter document title",
           doc_file :{
-            required: "Select plan document",extension: "Upload excel or doc or pdf",fileSize:"File must be less than 10MB"
+            required: "Select plan document",extension: "Upload excel or doc or pdf",fileSize:"File size must be less than 10 MB"
           },
           doc_month_year: "Select upload date"
       },
