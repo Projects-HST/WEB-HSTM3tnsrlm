@@ -52,6 +52,7 @@ class Mobilization extends CI_Controller
 		
 		if($user_type==3)
 		{
+			$disp_doc_name=$this->input->post('doc_name');
 			$doc_name=$this->db->escape_str($this->input->post('doc_name'));
 			$docfile = $_FILES['doc_file']['name'];
 		
@@ -71,7 +72,7 @@ class Mobilization extends CI_Controller
 		$datas=$this->mobilizationmodel->upload_data($doc_name,$doc_month_year,$doc_file,$user_id);
 		
 		if($datas['status']=="success")	{
-			$this->session->set_flashdata('msg', ''.$doc_name.' Plan Added Successfully');
+			$this->session->set_flashdata('msg', ''.$disp_doc_name.' Plan Added Successfully');
 			redirect('mobilization/view');
 		}else{
 			$this->session->set_flashdata('msg', 'Failed to Add');

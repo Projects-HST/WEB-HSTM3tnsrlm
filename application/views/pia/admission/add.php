@@ -117,7 +117,7 @@
                                         <label class="hrzn-fm">Secondary Mobile</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control input-sm" >
+										<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control input-sm" maxlength="12">
                                     </div>
                            </div>
 							

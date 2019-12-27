@@ -159,7 +159,7 @@ class Admin extends CI_Controller {
 		if($user_type==1 || $user_type==2){
 			
 				$new_password=$this->input->post('new_password');
-				$datas=$this->adminmodel->password_update($new_password,$user_id);
+				$datas=$this->adminmodel->password_update($new_password,$user_id,$user_type);
 
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');

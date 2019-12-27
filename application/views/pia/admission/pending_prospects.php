@@ -14,7 +14,7 @@
                          <tr>
                              <th>S.no</th>
                              <th>Name</th>
-                             <th>Aadhar Card Number</th>
+                             <th>Aadhaar Card Number</th>
                               <th>Mobile</th>
                               <th>Status</th>
                                <th>Added by</th>

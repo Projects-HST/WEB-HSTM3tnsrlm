@@ -23,8 +23,8 @@
                              <th>S.no</th>
                              <th>Assigned</th>
 							  <th>Date</th>
-                             <th>title</th>
-                             <th style="width:500px;">Description</th>
+                             <th>Title</th>
+                             <th style="width:400px;">Description</th>
                             <th>Status</th>
 							<th>Actions</th>
                          </tr>

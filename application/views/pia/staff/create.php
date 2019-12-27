@@ -234,7 +234,7 @@
 			qualification: {
 					required: true
 			},
-			staff_pic:{required:true,accept: "jpg,jpeg,png", filesize: 1048576  },
+			staff_pic:{required:true,accept: "jpg,jpeg,png"},
 			status: {
 					required: true
 			}

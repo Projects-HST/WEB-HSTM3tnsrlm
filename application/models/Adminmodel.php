@@ -97,10 +97,44 @@ Class Adminmodel extends CI_Model
 	   }
    } 
 	   
-	function password_update($new_password,$user_id){
+	function password_update($new_password,$user_id,$user_type){
 		$pwd = md5($new_password);
-		$query="UPDATE edu_users SET user_password='$pwd', updated_date=NOW() WHERE user_id='$user_id'";
+		$query="UPDATE edu_users SET user_password='$pwd', updated_date=NOW() WHERE user_id='$user_id' AND user_type ='$user_type' ";
 		$ex = $this->db->query($query);
+		
+		$sQuery = "SELECT
+					B.name,B.email,B.phone
+				FROM
+					`edu_users` A, edu_staff_details B
+				WHERE
+					A.`user_id` = '$user_id' AND A.user_type = '$user_type' AND A.`user_master_id` = B.id";
+		$user_result = $this->db->query($sQuery);
+		$ress = $user_result->result();
+		if($user_result->num_rows()>0)
+		{
+			foreach ($user_result->result() as $rows)
+			{
+				 $name = $rows->name;
+				 $email = $rows->email;
+				 $mobile = $rows->phone;
+			}
+
+		$subject ='M3 - Password Update';
+		$htmlContent = '<html>
+							<head> <title></title>
+							</head>
+							<body>
+							<p>Hi  '.$name.'</p>
+							<p>Your Password Updated Sucessfully!</p>
+							</body>
+							</html>';
+			
+			$smsContent = 'Hi  '.$name.' Your Password Updated Sucessfully!';
+			
+			$this->mailmodel->sendEmail($email,$subject,$htmlContent);
+			$this->smsmodel->sendSMS($mobile,$smsContent);
+		}
+		
 		if ($ex) {
 		  $datas = array("status" => "success");
 		} else {

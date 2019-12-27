@@ -169,7 +169,7 @@ class Dashboard extends CI_Controller {
 		
 			if($user_type==3){
 				$new_password=$this->input->post('new_password');
-				$datas=$this->loginmodel->password_update($new_password,$user_id);
+				$datas=$this->loginmodel->password_update($new_password,$user_id,$user_type);
 
 				if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', 'Updated Successfully');

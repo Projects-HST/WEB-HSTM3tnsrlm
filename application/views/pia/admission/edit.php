@@ -53,13 +53,13 @@
                                         <label class="hrzn-fm">Admission Location <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" name="admission_location" class="form-control input-sm" placeholder="Admission Location" value="<?php echo $rows->admission_location; ?>"/>
+											<input type="text" name="admission_location" class="form-control input-sm" placeholder="Admission Location" value="<?php echo $rows->admission_location; ?>" maxlength="30"/>
                                     </div>
                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" name="name" class="form-control input-sm" placeholder="Enter Name" value="<?php echo $rows->name; ?>"/>
+											<input type="text" name="name" class="form-control input-sm" placeholder="Enter Name" value="<?php echo $rows->name; ?>" maxlength="30"/>
                                     </div>
 							</div>
 							
@@ -78,7 +78,7 @@
 									<label class="hrzn-fm">Father Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="fname" class="form-control input-sm" placeholder="Father Name" value="<?php echo $rows->father_name; ?>"/>
+										<input type="text" name="fname" class="form-control input-sm" placeholder="Father Name" value="<?php echo $rows->father_name; ?>" maxlength="30"/>
 								</div>
 							</div>
 							
@@ -87,7 +87,7 @@
 									<label class="hrzn-fm">Mother Name</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>"/>
+									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother Name" value="<?php echo $rows->mother_name; ?>" maxlength="30"/>
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Date of Birth <span class="error">*</span></label>
@@ -112,7 +112,7 @@
                                         <label class="hrzn-fm">Email Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Email Address" name="email"  class="form-control input-sm" value="<?php echo $rows->email; ?>" >
+										<input type="text" placeholder="Email Address" name="email"  class="form-control input-sm" value="<?php echo $rows->email; ?>" maxlength="30">
                                     </div>
 									
                             </div>
@@ -122,13 +122,13 @@
 									<label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Mobile Number" name="mobile"  class="form-control input-sm" value="<?php echo $rows->mobile; ?>">
+										<input type="text" placeholder="Mobile Number" name="mobile"  class="form-control input-sm" value="<?php echo $rows->mobile; ?>" maxlength="10">
 								</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Secondary Mobile</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control input-sm" value="<?php echo $rows->sec_mobile; ?>">
+										<input type="text" placeholder="Secondary Mobile Number" name="sec_mobile" class="form-control input-sm" value="<?php echo $rows->sec_mobile; ?>" maxlength="10">
                                     </div>
                            </div>
 							
@@ -137,13 +137,13 @@
 									<label class="hrzn-fm">Address <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<textarea name="address" rows="2" cols="40" placeholder="Address" class="form-control input-sm"><?php echo $rows->address; ?></textarea>
+										<textarea name="address" rows="2" cols="40" placeholder="Address" maxlength="100" class="form-control input-sm"><?php echo $rows->address; ?></textarea>
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 									<label class="hrzn-fm">City Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="City Name" name="city" class="form-control input-sm" value="<?php echo $rows->city; ?>">
+										<input type="text" placeholder="City Name" name="city" class="form-control input-sm" value="<?php echo $rows->city; ?>" maxlength="30">
 								</div>
                                     
                            </div>
@@ -153,13 +153,13 @@
                                         <label class="hrzn-fm">State <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="State Name" name="state" class="form-control input-sm" value="<?php echo $rows->state; ?>">
+										<input type="text" placeholder="State Name" name="state" class="form-control input-sm" value="<?php echo $rows->state; ?>" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Nationality <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Nationality" name="nationality" class="form-control input-sm" value="<?php echo $rows->nationality; ?>">
+										<input type="text" placeholder="Nationality" name="nationality" class="form-control input-sm" value="<?php echo $rows->nationality; ?>" maxlength="30">
                                     </div>
                            </div>
 						   
@@ -168,13 +168,13 @@
                                         <label class="hrzn-fm">Religion <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" value="<?php echo $rows->religion; ?>">
+										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" value="<?php echo $rows->religion; ?>" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Community <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>">
+										<input type="text" placeholder="Community" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>" maxlength="30">
                                     </div>
                            </div>
 						   
@@ -183,13 +183,13 @@
                                         <label class="hrzn-fm">Community Class <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>">
+										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Mother Tongue <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control input-sm" value="<?php echo $rows->mother_tongue ; ?>">
+										<input type="text" placeholder="Mother Tongue" name="mother_tongue" class="form-control input-sm" value="<?php echo $rows->mother_tongue ; ?>" maxlength="30">
                                     </div>
                            </div>
 						   
@@ -198,13 +198,13 @@
                                         <label class="hrzn-fm">Previous Institute</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Previous Institute" name="institute_name" class="form-control input-sm" value="<?php echo $rows->last_institute; ?>">
+										<input type="text" placeholder="Previous Institute" name="institute_name" class="form-control input-sm" value="<?php echo $rows->last_institute; ?>" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Class Or Degree</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Class Or Degree" name="last_studied" class="form-control input-sm" value="<?php echo $rows->last_studied; ?>">
+										<input type="text" placeholder="Class Or Degree" name="last_studied" class="form-control input-sm" value="<?php echo $rows->last_studied; ?>" maxlength="30">
                                     </div>
                            </div>
 						   

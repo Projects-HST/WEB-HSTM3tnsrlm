@@ -22,9 +22,9 @@
                          <tr>
                              <th>S.no</th>
                              <th>Name</th>
-							  <th>Task Date</th>
-                             <th>Task title</th>
-                             <th style="width:500px;">Description</th>
+							  <th>Date</th>
+                             <th>Title</th>
+                             <th style="width:400px;">Description</th>
                             
                          </tr>
                      </thead>
