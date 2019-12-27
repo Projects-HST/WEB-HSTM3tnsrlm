@@ -92,14 +92,17 @@ $('#mobilization_plan').addClass('active');
 $('#mobilization_planmenu').addClass('active');
 $('#upload_plan').addClass('active');
 
-
+  $.validator.addMethod('filesize', function (value, element, param) {
+      return this.optional(element) || (element.files[0].size <= param)
+  }, 'File size must be less than 1 MB');
+  
 $('#staffform').validate({
       rules: {
           doc_name: {
               required: true
           },
           doc_file: {
-              required: true,extension: "xls|doc|docx|xlsx|pdf"
+              required: true,extension: "xls|doc|docx|xlsx|pdf",filesize: 10485760 
           },
           doc_month_year: {
               required: true
@@ -108,7 +111,7 @@ $('#staffform').validate({
       messages: {
           doc_name: "Enter document title",
           doc_file :{
-            required: "Select plan document",extension: "Upload excel or doc or pdf"
+            required: "Select plan document",extension: "Upload excel or doc or pdf",fileSize:"File must be less than 10MB"
           },
           doc_month_year: "Select upload date"
       },
