@@ -136,12 +136,12 @@ Class Loginmodel extends CI_Model
 				if($results->num_rows()>0){
 					foreach($results->result() as $rows){
 						 $to_email = $rows->pia_email;
+						 $to_phone = $rows->pia_phone;
 					}
 				}
 				 $reset="UPDATE edu_users SET user_password='$reset_pwd' WHERE user_type='3' AND user_id='$user_id'";
 				 $result_pwd=$this->db->query($reset);
 			} else {
-				
 				$squery = "SELECT * FROM edu_staff_details WHERE id ='$user_master_id'";
 				$results = $this->db->query($squery);
 				if($results->num_rows()>0){
