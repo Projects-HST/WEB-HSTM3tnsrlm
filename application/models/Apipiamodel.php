@@ -125,8 +125,8 @@ class Apipiamodel extends CI_Model {
 
 
 				 $sch_photo[]  = array(
-						"scheme_id" => $rows_gallery->id,
-						"scheme_photo" => base_url().'assets/scheme/'.$rows_gallery->scheme_photo, 
+						"gallery_id" => $rows_gallery->id,
+						"scheme_photo" => base_url().'assets/scheme/'.$rows_gallery->scheme_photo,
 				);
 			}
 				$response_photos = array("status" => "success", "msg" => "Scheme photos","scheme_gallery"=>$sch_photo);
