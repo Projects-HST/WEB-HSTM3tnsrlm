@@ -56,7 +56,7 @@ Class Loginmodel extends CI_Model
 
 		if ($user_type == '3')
 		{
-				echo $sQuery = "SELECT
+				$sQuery = "SELECT
 					B.pia_name,B.pia_email,B.pia_phone
 				FROM
 					`edu_users` A, edu_pia B
