@@ -1029,5 +1029,39 @@ class Apimainmodel extends CI_Model {
 //#################### user_activity End ####################//
 
 
+//#################### Admin Graph Details ####################//
+
+        function admin_graph_details(){
+          $query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";
+          $res=$this->db->query($query);
+          if($res->num_rows()==0){
+              $response = array("status" => "error", "msg" => "Something Went Wrong");
+          }else{
+            $result=$res->result();
+            $response = array("status" => "success", "msg" => "Graph details here","graph_data"=>$result);
+          }
+          return $response;
+
+         }
+
+
+//#################### Admin Graph Details ####################//
+
+//#################### Pia  Graph Details ####################//
+
+    function pia_graph_details($pia_id){
+  		$query="SELECT CONCAT(SUBSTRING(DATE_FORMAT(`created_at`, '%M'),1,3),DATE_FORMAT(`created_at`,'-%Y')) as month, COUNT(*) as stu_count FROM edu_student_prospects WHERE pia_id = '$pia_id' AND PERIOD_DIFF(DATE_FORMAT(NOW(), '%Y%m'), DATE_FORMAT(`created_at`, '%Y%m'))<12 GROUP BY YEAR(`created_at`), MONTH(`created_at`)";
+  		$res=$this->db->query($query);
+      if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "Something Went Wrong");
+      }else{
+        $result=$res->result();
+        $response = array("status" => "success", "msg" => "Graph details here","graph_data"=>$result);
+      }
+      return $response;
+     }
+ //#################### Pia Graph Details ####################//
+
+
 }
 ?>
