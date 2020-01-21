@@ -370,11 +370,8 @@ class Apimainmodel extends CI_Model {
 				}
 				else if ($user_type==5) {
 
-						$mobilizer_id = $rows->user_master_id;
-
-
-
-                        $staff_query = "SELECT t.id, t.pia_id, t.role_type, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
+					   $mobilizer_id = $rows->user_master_id;
+            $staff_query = "SELECT t.id, t.pia_id, t.role_type, t.name, t.sex, t.age, t.nationality, t.religion, t.community_class, t.community, t.address, t.email, t.phone, t.profile_pic, t.qualification FROM edu_staff_details AS t WHERE t.id = '$mobilizer_id'";
 						$staff_res = $this->db->query($staff_query);
 						$staff_profile = $staff_res->result();
 						if($staff_res->num_rows()>0)
