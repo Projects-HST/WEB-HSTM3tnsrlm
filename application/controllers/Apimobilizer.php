@@ -318,7 +318,7 @@ class Apimobilizer extends CI_Controller {
 		$created_at = '';
 
 		$pia_id = $this->input->post("pia_id");
-        $have_aadhaar_card = $this->input->post("have_aadhaar_card");
+    $have_aadhaar_card = $this->input->post("have_aadhaar_card");
 		$aadhaar_card_number = $this->input->post("aadhaar_card_number");
 		$name = $this->input->post("name");
 		$sex = $this->input->post("sex");
