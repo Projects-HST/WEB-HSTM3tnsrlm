@@ -25,7 +25,7 @@
 							  <th>Date</th>
                              <th>Title</th>
                              <th style="width:400px;">Description</th>
-                            
+                            <th>Action</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -36,7 +36,7 @@
 							 <td> <?php $date=date_create($rows->task_date);echo date_format($date,"d-m-Y");  ?></td>
                              <td><?php echo $rows->task_title; ?></td>
                              <td><?php echo $rows->task_description; ?></td>
-                             <!-- <td>  <?php echo $rows->status; ?></td> -->
+                             <td>  <a href="<?php echo base_url(); ?>task/task_mob_gallery/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Gallery"><i class="fa fa-file-image-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
                              <!-- <td><a href="<?php echo base_url(); ?>task/edit/<?php echo base64_encode($rows->id*98765); ?>"><i class="notika-icon notika-edit"></i></a></td> -->
                          </tr>
 						<?php  $i++; } ?>

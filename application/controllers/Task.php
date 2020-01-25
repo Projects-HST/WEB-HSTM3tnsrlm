@@ -150,6 +150,49 @@ class Task extends CI_Controller
 	   }
 	}
 
+	public function task_gallery()
+    {
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		$task_id=base64_decode($this->uri->segment(3))/98765;
+
+		if($user_type==3)
+		{
+			$datas['res']=$this->taskmodel->get_mobilizer_user($user_id);
+			$datas['result']=$this->taskmodel->task_details($task_id);
+			$datas['gallery']=$this->taskmodel->task_gallery($task_id);
+
+			$this->load->view('pia/pia_header');
+			$this->load->view('pia/task/task_gallery.php',$datas);
+			$this->load->view('pia/pia_footer');
+		}
+		else{
+
+		}
+	}
+
+	public function task_mob_gallery()
+    {
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		$task_id=base64_decode($this->uri->segment(3))/98765;
+
+		if($user_type==3)
+		{
+			$datas['res']=$this->taskmodel->get_mobilizer_user($user_id);
+			$datas['result']=$this->taskmodel->task_details($task_id);
+			$datas['gallery']=$this->taskmodel->task_gallery($task_id);
+
+			$this->load->view('pia/pia_header');
+			$this->load->view('pia/task/task_mob_gallery.php',$datas);
+			$this->load->view('pia/pia_footer');
+		}
+		else{
+
+		}
+	}
 
 }
 ?>

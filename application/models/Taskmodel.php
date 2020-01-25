@@ -83,7 +83,7 @@ Class Taskmodel extends CI_Model
 
 	  function task_details($task_id)
 	  {
-		$query="SELECT * from edu_task WHERE id='$task_id'";
+		 $query="SELECT * from edu_task WHERE id='$task_id'";
 		$resultset=$this->db->query($query);
 		return $resultset->result();
 	  }
@@ -138,5 +138,12 @@ Class Taskmodel extends CI_Model
             return $data;
           }
        }
+	   
+	  function task_gallery($task_id)
+	  {
+		$query="SELECT * from edu_task_photos WHERE task_id='$task_id'";
+		$resultset=$this->db->query($query);
+		return $resultset->result();
+	  }
 }
 ?>

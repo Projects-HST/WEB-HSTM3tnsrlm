@@ -42,7 +42,7 @@
 									<?php if($rows->status=='Ongoing'){ ?><span class="red">Ongoing</span><?php } ?>
 									<?php if($rows->status=='Completed'){ ?><span class="green">Completed</span><?php } ?>
 							 </td>
-                             <td> <a href="<?php echo base_url(); ?>task/task_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
+                             <td> <a href="<?php echo base_url(); ?>task/task_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>task/task_gallery/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Gallery"><i class="fa fa-file-image-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>
                      </tbody>
