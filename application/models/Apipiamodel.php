@@ -316,6 +316,22 @@ class Apipiamodel extends CI_Model {
 	}
 //#################### Center Details End ####################//
 
+//#################### Center Details Update ####################//
+
+  function update_center_details($center_id,$center_name,$center_info,$center_address,$pia_id){
+    $center_query = "UPDATE edu_center_master SET center_name='$center_name',center_info='$center_info',center_address='$center_address',updated_by='$pia_id',updated_at=NOW() WHERE id='$center_id'";
+		$res = $this->db->query($center_query);
+    if($res){
+      	$response = array("status" => "success", "msg" => "Center Details Update successfully");
+    }else{
+      	$response = array("status" => "error", "msg" => "Something went wrong!");
+    }
+    	return $response;
+
+  }
+  //#################### Center Details Update ####################//
+
+
 //#################### Center Gallery ####################//
 	public function centerGallery ($pia_id,$center_id)
 	{
