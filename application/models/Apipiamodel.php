@@ -293,7 +293,7 @@ class Apipiamodel extends CI_Model {
 //#################### Center Details ####################//
 	public function centerDetails ($pia_id,$center_id)
 	{
-		$center_query = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id' AND id='$center_id' AND status = 'Active'";
+		$center_query = "SELECT * FROM edu_center_master WHERE id='$center_id' AND status = 'Active'";
 		$center_res = $this->db->query($center_query);
 		 if($center_res->num_rows()>0){
 			 foreach ($center_res->result() as $rows)
