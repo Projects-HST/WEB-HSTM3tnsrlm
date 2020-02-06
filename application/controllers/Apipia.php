@@ -66,6 +66,44 @@ class Apipia extends CI_Controller {
 
 //-----------------------------------------------//
 
+	public function pia_dashboard()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Admin Dashboard";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$user_id = '';
+		$old_password = '';
+		$password = '';
+
+		$user_id = $this->input->post("user_id");
+
+
+		$data['result']=$this->apipiamodel->pia_dashboard($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
 	public function project_period()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);

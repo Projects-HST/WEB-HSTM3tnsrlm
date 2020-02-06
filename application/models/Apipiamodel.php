@@ -96,6 +96,35 @@ class Apipiamodel extends CI_Model {
 //#################### SMS End ####################//
 
 
+//#################### Admin Dashboard ####################//
+
+    function pia_dashboard($user_id){
+      $mob_count = "SELECT * FROM edu_staff_details WHERE role_type = '5' AND pia_id='$user_id'";
+      $mob_count_res = $this->db->query($mob_count);
+      $mobilizer_count = $mob_count_res->num_rows();
+
+      $cen_count = "SELECT * FROM edu_center_master WHERE pia_id='$user_id'";
+      $cen_count_res = $this->db->query($cen_count);
+      $center_count = $cen_count_res->num_rows();
+
+      $stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id='$user_id'";
+      $stu_count_res = $this->db->query($stu_count);
+      $student_count = $mob_count_res->num_rows();
+
+      $dashboardData  = array(
+          "mobilizer_count" => $mobilizer_count,
+          "center_count" => $center_count,
+          "student_count" => $student_count
+
+        );
+      $response = array("status" => "success", "msg" => "Pia Dashboard details","dashboardData"=>$dashboardData);
+      return $response;
+    }
+
+//#################### Admin Dashboard ####################//
+
+
+
 //#################### Scheme ####################//
 	public function listScheme ($pia_id)
 	{
