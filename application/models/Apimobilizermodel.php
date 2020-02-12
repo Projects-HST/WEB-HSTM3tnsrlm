@@ -524,7 +524,50 @@ class Apimobilizermodel extends CI_Model {
 			 if($student_res->num_rows()==0){
 				 $response = array("status" => "error", "msg" => "Students Not Found");
 			}else{
-				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$student_result);
+        foreach($student_result as $rows_student){}
+          $response_student_list=array(
+            "id"=>$rows_student->id,
+            "pia_id"=>$rows_student->pia_id,
+            "have_aadhaar_card"=>$rows_student->have_aadhaar_card,
+            "aadhaar_card_number"=>$rows_student->aadhaar_card_number,
+            "name"=>$rows_student->name,
+            "sex"=>$rows_student->sex,
+            "dob"=>$rows_student->dob,
+            "age"=>$rows_student->age,
+            "nationality"=>$rows_student->nationality,
+            "religion"=>$rows_student->religion,
+            "community_class"=>$rows_student->community_class,
+            "community"=>$rows_student->community,
+            "father_name"=>$rows_student->father_name,
+            "mother_name"=>$rows_student->mother_name,
+            "mobile"=>$rows_student->mobile,
+            "sec_mobile"=>$rows_student->sec_mobile,
+            "email"=>$rows_student->email,
+            "state"=>$rows_student->state,
+            "city"=>$rows_student->city,
+            "address"=>$rows_student->address,
+            "mother_tongue"=>$rows_student->mother_tongue,
+            "disability"=>$rows_student->disability,
+            "student_pic"=>base_url().'assets/students/'.$rows_student->student_pic,
+            "blood_group"=>$rows_student->blood_group,
+            "admission_date"=>$rows_student->admission_date,
+            "admission_location"=>$rows_student->admission_location,
+            "admission_latitude"=>$rows_student->admission_latitude,
+            "admission_longitude"=>$rows_student->admission_longitude,
+            "preferred_trade"=>$rows_student->preferred_trade,
+            "preferred_timing"=>$rows_student->preferred_timing,
+            "last_institute"=>$rows_student->last_institute,
+            "last_studied"=>$rows_student->last_studied,
+            "qualified_promotion"=>$rows_student->qualified_promotion,
+            "transfer_certificate"=>$rows_student->transfer_certificate,
+            "enrollment"=>$rows_student->enrollment,
+            "status"=>$rows_student->status,
+            "created_by"=>$rows_student->created_by,
+            "created_at"=>$rows_student->created_at,
+            "updated_by"=>$rows_student->updated_by,
+            "updated_at"=>$rows_student->updated_at,
+          );
+				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$response_student_list);
 			}
 
 			return $response;

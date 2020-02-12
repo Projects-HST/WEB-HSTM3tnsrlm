@@ -66,6 +66,44 @@ class Apipia extends CI_Controller {
 
 //-----------------------------------------------//
 
+	public function pia_dashboard()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Admin Dashboard";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$user_id = '';
+		$old_password = '';
+		$password = '';
+
+		$user_id = $this->input->post("user_id");
+
+
+		$data['result']=$this->apipiamodel->pia_dashboard($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
 	public function project_period()
 	{
 	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
@@ -276,6 +314,47 @@ class Apipia extends CI_Controller {
 		$pia_id = $this->input->post("user_id");
 
 		$data['result']=$this->apipiamodel->createCenter($center_name,$center_info,$center_address,$pia_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function update_center_details()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Center Creation";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$center_name  = '';
+		$center_info  = '';
+		$center_address ='';
+		$pia_id  ='';
+
+		$center_name = $this->input->post("center_name");
+		$center_id = $this->input->post("center_id");
+		$center_info = $this->input->post("center_info");
+		$center_address = $this->input->post("center_address");
+		$pia_id = $this->input->post("user_id");
+
+		$data['result']=$this->apipiamodel->update_center_details($center_id,$center_name,$center_info,$center_address,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

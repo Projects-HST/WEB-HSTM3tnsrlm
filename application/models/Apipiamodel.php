@@ -96,6 +96,35 @@ class Apipiamodel extends CI_Model {
 //#################### SMS End ####################//
 
 
+//#################### Admin Dashboard ####################//
+
+    function pia_dashboard($user_id){
+      $mob_count = "SELECT * FROM edu_staff_details WHERE role_type = '5' AND pia_id='$user_id'";
+      $mob_count_res = $this->db->query($mob_count);
+      $mobilizer_count = $mob_count_res->num_rows();
+
+      $cen_count = "SELECT * FROM edu_center_master WHERE pia_id='$user_id'";
+      $cen_count_res = $this->db->query($cen_count);
+      $center_count = $cen_count_res->num_rows();
+
+      $stu_count = "SELECT * FROM edu_student_prospects WHERE pia_id='$user_id'";
+      $stu_count_res = $this->db->query($stu_count);
+      $student_count = $mob_count_res->num_rows();
+
+      $dashboardData  = array(
+          "mobilizer_count" => $mobilizer_count,
+          "center_count" => $center_count,
+          "student_count" => $student_count
+
+        );
+      $response = array("status" => "success", "msg" => "Pia Dashboard details","dashboardData"=>$dashboardData);
+      return $response;
+    }
+
+//#################### Admin Dashboard ####################//
+
+
+
 //#################### Scheme ####################//
 	public function listScheme ($pia_id)
 	{
@@ -293,7 +322,7 @@ class Apipiamodel extends CI_Model {
 //#################### Center Details ####################//
 	public function centerDetails ($pia_id,$center_id)
 	{
-		$center_query = "SELECT * FROM edu_center_master WHERE pia_id = '$pia_id' AND id='$center_id' AND status = 'Active'";
+		$center_query = "SELECT * FROM edu_center_master WHERE id='$center_id' AND status = 'Active'";
 		$center_res = $this->db->query($center_query);
 		 if($center_res->num_rows()>0){
 			 foreach ($center_res->result() as $rows)
@@ -315,6 +344,22 @@ class Apipiamodel extends CI_Model {
 		return $response;
 	}
 //#################### Center Details End ####################//
+
+//#################### Center Details Update ####################//
+
+  function update_center_details($center_id,$center_name,$center_info,$center_address,$pia_id){
+    $center_query = "UPDATE edu_center_master SET center_name='$center_name',center_info='$center_info',center_address='$center_address',updated_by='$pia_id',updated_at=NOW() WHERE id='$center_id'";
+		$res = $this->db->query($center_query);
+    if($res){
+      	$response = array("status" => "success", "msg" => "Center Details Update successfully");
+    }else{
+      	$response = array("status" => "error", "msg" => "Something went wrong!");
+    }
+    	return $response;
+
+  }
+  //#################### Center Details Update ####################//
+
 
 //#################### Center Gallery ####################//
 	public function centerGallery ($pia_id,$center_id)
