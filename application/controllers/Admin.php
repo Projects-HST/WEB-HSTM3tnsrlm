@@ -384,7 +384,8 @@ class Admin extends CI_Controller {
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
 		$datas['result'] = $this->loginmodel->getuser($user_id);
-			
+		$datas['schemes'] = $this->adminmodel->list_schemes();
+		//print_r($datas['schemes']);
 			if($user_type==1 || $user_type==2){
 				$this->load->view('admin/admin_header');
 				$this->load->view('admin/create_pia',$datas);
@@ -466,6 +467,7 @@ class Admin extends CI_Controller {
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 			if($user_type==1 || $user_type==2){
+				$datas['schemes'] = $this->adminmodel->list_schemes();
 				 $datas['result']=$this->adminmodel->get_pia_details_by_id($pia_id);
 				  //echo "<pre>"; print_r($datas['result']);exit;
 				 $this->load->view('admin/admin_header');
@@ -505,6 +507,7 @@ class Admin extends CI_Controller {
 					$email=$this->input->post('email');
 					$state=$this->input->post('state');
 					$address= $this->db->escape_str($this->input->post('address'));
+					$scheme=$this->input->post('scheme');
 					$status=$this->input->post('status');
 					$staff_old_pic=$this->input->post('staff_old_pic');
 					$profilepic = $_FILES['staff_new_pic']['name'];
@@ -518,7 +521,7 @@ class Admin extends CI_Controller {
 						$profilepic = $uploaddir.$staff_prof_pic;
 						move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 					}
-					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id);
+					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id,$pia_id);
 
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');

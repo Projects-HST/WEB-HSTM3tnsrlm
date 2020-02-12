@@ -78,7 +78,18 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                            <input type="file" name="staff_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
                                     </div>
-									 <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
+									  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Select Scheme <span class="error">*</span></label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                          <select name="scheme" class="form-control input-sm" id="scheme" style="width:360px;">
+											<option value="">Select</option>
+											 <?php foreach ($schemes as $rows) {  ?>
+												<option value="<?php echo $rows->id; ?>"><?php echo $rows->scheme_name; ?></option>
+											<?php } ?>
+										
+										</select>
+                                    </div>
                                 </div>
 								
 								<div class="row page_row">
@@ -154,6 +165,9 @@
 						required: true
 				},
 				staff_pic:{required:true,accept: "jpg,jpeg,png", filesize: 1048576  },
+				scheme: {
+						required: true
+				},
 				status: {
 						required: true
 				}
@@ -184,7 +198,8 @@
 								  accept:"Please upload .jpg or .png .",
 								  fileSize:"File must be JPG or PNG, less than 1MB"
 								},
-				status: "Select status"
+				scheme: "Select Scheme",
+				status: "Select Status"
 			}
 		});
 </script>

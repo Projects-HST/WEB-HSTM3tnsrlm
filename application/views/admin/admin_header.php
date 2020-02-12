@@ -123,23 +123,29 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                       <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
+					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Staff</a></li>
+					  <li id="scheme"><a data-toggle="tab" href="#schememenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Scheme</a></li>
                       <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-address-card" aria-hidden="true"></i> PIA</a></li>
-                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Staff</a></li>
-					  <li id="masters"><a  href="<?php echo base_url(); ?>scheme/home"><i class="fa fa-file" aria-hidden="true"></i> Scheme</a></li>
-                      <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
+                      <li id="mobilization_plan"><a href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
                   </ul>
 				  
                   <div class="tab-content custom-menu-content">
+				      <div id="staffmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
+                          <ul class="notika-main-menu-dropdown">
+                              <li><a href="<?php echo base_url(); ?>admin/create_staff" id="create_staff">Create Staff</a></li>
+                              <li><a href="<?php echo base_url(); ?>admin/view_staff" id="view_staff">List Staff</a></li>
+                          </ul>
+                      </div>
+					  <div id="schememenu" class="tab-pane notika-tab-menu-bg animated flipInX">
+                          <ul class="notika-main-menu-dropdown">
+                              <li><a href="<?php echo base_url(); ?>scheme/create_scheme" id="create_scheme">Create Scheme</a></li>
+                              <li><a href="<?php echo base_url(); ?>scheme/view_scheme" id="view_scheme">List Scheme</a> </li>
+                          </ul>
+                      </div>
                       <div id="piamenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
                               <li><a href="<?php echo base_url(); ?>admin/create_pia" id="create_pia">Create PIA</a></li>
                               <li><a href="<?php echo base_url(); ?>admin/view_pia" id="view_pia">List PIA</a> </li>
-                          </ul>
-                      </div>
-                      <div id="staffmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
-                          <ul class="notika-main-menu-dropdown">
-                              <li><a href="<?php echo base_url(); ?>admin/create_staff" id="create_staff">Create Staff</a></li>
-                              <li><a href="<?php echo base_url(); ?>admin/view_staff" id="view_staff">List Staff</a></li>
                           </ul>
                       </div>
                     </div>

@@ -403,7 +403,7 @@ Class Adminmodel extends CI_Model
 			}
     }  
 	
-	function update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id,$pia_id){
+	function update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id,$pia_id){
 
 		$sQuery = "SELECT * FROM edu_pia WHERE id = '$pia_id'";
 		$user_result = $this->db->query($sQuery);
@@ -416,7 +416,7 @@ Class Adminmodel extends CI_Model
 			}
 		}
 	
-		 $update = "UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_email ='$email',pia_phone ='$mobile',pia_state='$state',pia_address ='$address',status='$status',profile_pic = '$staff_prof_pic', updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
+		 $update = "UPDATE edu_pia SET pia_unique_number='$unique_number',pia_name='$name',pia_email ='$email',pia_phone ='$mobile',pia_state='$state',pia_address ='$address',scheme_id='$scheme',status='$status',profile_pic = '$staff_prof_pic', updated_at=NOW(),updated_by='$user_id' WHERE id='$pia_id'";
 		$result=$this->db->query($update);
 		
 		if ($old_unique_number != $unique_number){
@@ -664,5 +664,11 @@ Class Adminmodel extends CI_Model
 		}
 
     }
+	
+	function list_schemes(){
+	  $select="SELECT * FROM edu_scheme_details ORDER BY id desc";
+	  $get_all=$this->db->query($select);
+	  return $get_all->result();
+	}
 }
 ?>

@@ -118,6 +118,35 @@ Class Trackingmodel extends CI_Model
 
         }
 		
+		
+		function tracking_report($user_id,$frmdate,$tdate){
+			
+			/* echo $user_id;
+			echo $frmdate;
+			echo $tdate; */
+			
+			
+          $select="SELECT user_id,created_at,sum((6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+                ) )) AS km
+				FROM
+					edu_tracking_details
+				WHERE
+					user_id = '$user_id' AND DATE_FORMAT(created_at, '%Y-%m-%d') >= '$frmdate' AND DATE_FORMAT(created_at, '%Y-%m-%d') <= '$tdate' GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
+				//exit;
+          $get_result=$this->db->query($select);
+          return $get_result->result();
+
+        }
+		
+		
+		
+		
+		
 		 function mob_details($mob_id){
           $select="SELECT * FROM edu_users WHERE user_id = '$mob_id' ";
           $get_result=$this->db->query($select);

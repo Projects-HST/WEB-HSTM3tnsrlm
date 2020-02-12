@@ -5,7 +5,7 @@
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
-					<form method="post" action="<?php echo base_url(); ?>admin/update_pia_details" class="form-horizontal" enctype="multipart/form-data" id="piaform">
+					<form method="post" action="<?php echo base_url(); ?>admin/update_pia_details" class="form-horizontal" enctype="multipart/form-data" id="piaform" name="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
                             <h2>Update PIA</h2>
                         </div>
@@ -65,13 +65,14 @@
                                            <input type="file" name="staff_new_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
                                     </div>
 									  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Scheme <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<select name="status" class="form-control input-sm" id="status">
-													<option value="Active">Active</option>
-													<option value="Inactive">Inactive</option>
-										</select><script> $('#status').val('<?php echo $rows->status; ?>');</script>
+                                          <select name="scheme" class="form-control input-sm" id="scheme" style="width:360px;">
+											 <?php foreach ($schemes as $row) {  ?>
+												<option value="<?php echo $row->id; ?>"><?php echo $row->scheme_name; ?></option>
+											<?php } ?>
+										</select><script>document.piaform.scheme.value="<?php echo $rows->scheme_id; ?>";</script>
                                     </div>
                                 </div>
 								
@@ -83,6 +84,16 @@
 											<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
 									<?php	} ?>
                                     </div>
+									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Status <span class="error">*</span></label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<select name="status" class="form-control input-sm" id="status">
+													<option value="Active">Active</option>
+													<option value="Inactive">Inactive</option>
+										</select><script> $('#status').val('<?php echo $rows->status; ?>');</script>
+                                    </div>
+									 
                                 </div>
 								
 								<div class="row page_row">

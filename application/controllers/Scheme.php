@@ -28,60 +28,103 @@ class Scheme extends CI_Controller {
 	 // Class section
 
 
-
-
-	 	public function view(){
-	 		$datas=$this->session->userdata();
-  	 		$user_id=$this->session->userdata('user_id');
-  			$user_type=$this->session->userdata('user_type');
-			if($user_type==3){
-				 $datas['res_img']=$this->schememodel->get_scheme_gallery_img();
-				 $datas['res_scheme']=$this->schememodel->get_scheme_details();
-				 // print_r($datas['res_scheme']);exit;
-				 $this->load->view('pia/pia_header');
-				 $this->load->view('pia/scheme/view_scheme',$datas);
-				 $this->load->view('pia/pia_footer');
-	 		 }
-	 		 else{
-	 				redirect('/');
-	 		 }
-	 	}
-		
-	public function home(){
-	 		 	$datas=$this->session->userdata();
-  	 		$user_id=$this->session->userdata('user_id');
-  			$user_type=$this->session->userdata('user_type');
+		public function create_scheme()
+		{
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			//$datas['result'] = $this->loginmodel->getuser($user_id);
+				
 				if($user_type==1 || $user_type==2){
-			 $datas['res_img']=$this->schememodel->get_scheme_gallery_img();
-			 $datas['res_scheme']=$this->schememodel->get_scheme_details();
-			 // print_r($datas['res_scheme']);exit;
-			 $this->load->view('admin/admin_header');
-			 $this->load->view('admin/scheme/update_scheme',$datas);
-			 $this->load->view('admin/admin_footer');
-	 		 }
-	 		 else{
-	 				redirect('/');
-	 		 }
-	 	}
-
-
-    public function create(){
-        $datas=$this->session->userdata();
-        $user_id=$this->session->userdata('user_id');
+					$this->load->view('admin/admin_header');
+					$this->load->view('admin/create_scheme',$datas);
+					$this->load->view('admin/admin_footer');
+				}else{
+					redirect('/');
+				}
+		}
+		
+		
+		public function create(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				if($user_type==1 || $user_type==2){
+					$scheme_name=$this->input->post('scheme_name');
+					$scheme_info= $this->db->escape_str($this->input->post('scheme_info'));
+					$scheme_video_link=$this->db->escape_str($this->input->post('scheme_video_link'));
+					$status=$this->db->escape_str($this->input->post('status'));
+				
+					$datas=$this->schememodel->create_scheme($scheme_name,$scheme_info,$scheme_video_link,$status,$user_id);
+					if($datas['status']=="success"){
+						$this->session->set_flashdata('msg', 'Created Successfully');
+						redirect('scheme/view_scheme');
+					}else{
+						$this->session->set_flashdata('msg', 'Failed to Add');
+						redirect('scheme/view_scheme');
+					}
+				}
+			   else{
+				  redirect('/');
+			   }
+    }
+		
+		
+		public function view_scheme(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+					if($user_type==1 || $user_type==2){
+						 $datas['result']=$this->schememodel->list_schemes();
+						  //echo "<pre>"; print_r($datas['result']);exit;
+						 $this->load->view('admin/admin_header');
+						 $this->load->view('admin/view_scheme',$datas);
+						 $this->load->view('admin/admin_footer');
+					 }else{
+						redirect('/');
+					 }
+		}
+		
+		
+	public function edit_scheme(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		$scheme_id=base64_decode($this->uri->segment(3))/98765;
+		
+			if($user_type==1 || $user_type==2){
+				 $datas['res_img']=$this->schememodel->get_scheme_gallery_img($scheme_id);
+				 $datas['res_scheme']=$this->schememodel->get_scheme_details($scheme_id);
+				 
+				 $this->load->view('admin/admin_header');
+				 $this->load->view('admin/edit_scheme',$datas);
+				 $this->load->view('admin/admin_footer');
+	 		 }
+	 		 else{
+	 				redirect('/');
+	 		 }
+	 	}
+
+
+     public function update(){
+        $datas=$this->session->userdata();
+        $user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		
+		if($user_type==1 || $user_type==2){
+				$scheme_id=$this->input->post('scheme_id');
 			 	$scheme_name=$this->input->post('scheme_name');
 				$scheme_info= $this->db->escape_str($this->input->post('scheme_info'));
 			    $scheme_video_link=$this->db->escape_str($this->input->post('scheme_video_link'));
-			
-				$scheme_photos=$this->input->post('scheme_photos');
-				$datas=$this->schememodel->update_scheme($scheme_name,$scheme_info,$scheme_video_link,$scheme_photos,$user_id);
+				$status=$this->db->escape_str($this->input->post('status'));
+				
+				$datas=$this->schememodel->update_scheme($scheme_id,$scheme_name,$scheme_info,$scheme_video_link,$status,$user_id);
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', 'Updated Successfully');
-					redirect('scheme/home');
+					redirect('scheme/view_scheme');
 				}else{
 					$this->session->set_flashdata('msg', 'Failed to Add');
-					redirect('scheme/home');
+					redirect('scheme/view_scheme');
 				}
        }
        else{
@@ -90,11 +133,33 @@ class Scheme extends CI_Controller {
     }
 
 
-		public function gallery(){
+	public function scheme_gallery(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		$scheme_id=base64_decode($this->uri->segment(3))/98765;
+		
+		
+			if($user_type==1 || $user_type==2){
+				 $datas['res_img']=$this->schememodel->get_scheme_gallery_img($scheme_id);
+				 $datas['res_scheme']=$this->schememodel->get_scheme_details($scheme_id);
+				 
+				 $this->load->view('admin/admin_header');
+				 $this->load->view('admin/scheme_gallery',$datas);
+				 $this->load->view('admin/admin_footer');
+	 		 }
+	 		 else{
+	 				redirect('/');
+	 		 }
+	 	}
+
+		public function add_update_gallery(){
 				$datas=$this->session->userdata();
 				$user_id=$this->session->userdata('user_id');
 				$user_type=$this->session->userdata('user_type');
 				if($user_type==1 || $user_type==2){
+					
+					$scheme_id=$this->input->post('scheme_id');
 					$name_array = $_FILES['scheme_photos']['name'];
 					$tmp_name_array = $_FILES['scheme_photos']['tmp_name'];
 					$count_tmp_name_array = count($tmp_name_array);
@@ -104,16 +169,16 @@ class Scheme extends CI_Controller {
 					 $file_name[]=$static_final_name.$i.".".$extension;
 					move_uploaded_file($tmp_name_array[$i], "assets/scheme/".$static_final_name.$i.".".$extension);
 					}
-				$datas=$this->schememodel->create_gallery($file_name,$user_id);
+				$datas=$this->schememodel->create_gallery($scheme_id,$file_name,$user_id);
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('gallery', 'Gallery Updated Successfully');
-					redirect('scheme/home');
+					redirect('scheme/view_scheme');
 				}else if($datas['status']=="limit"){
 					$this->session->set_flashdata('gallery', 'Gallery Maximum images Exceeds');
-					redirect('scheme/home');
+					redirect('scheme/view_scheme');
 				}else{
 					$this->session->set_flashdata('gallery', 'Failed to Add');
-					redirect('scheme/home');
+					redirect('scheme/view_scheme');
 				}
 			 }
 			 else{
@@ -133,12 +198,20 @@ class Scheme extends CI_Controller {
 				redirect('/');
 			}
 		}
-
-
-
-
-
-
-
-
+		
+		public function view_pia_scheme(){
+			
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			$datas['res_scheme'] = $this->schememodel->getpia_scheme($user_id);
+			$datas['res_img'] = $this->schememodel->getpia_scheme_gallery($user_id);
+				if($user_type==3){
+					$this->load->view('pia/pia_header');
+					$this->load->view('pia/scheme/view_scheme',$datas);
+					$this->load->view('pia/pia_footer');
+				}else{
+					redirect('/');
+				}
+		}
 }

@@ -68,6 +68,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/dialog/sweetalert2.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/dialog/dialog.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+	
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/bootstrap-select/bootstrap-select.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/jquery.galpop.css">
