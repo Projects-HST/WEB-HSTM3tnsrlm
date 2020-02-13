@@ -1054,6 +1054,30 @@ class Apipiamodel extends CI_Model {
 
 	}
 //#################### User Tracking End ####################//
+  //#################### Mobilizer Tracking Report ####################//
+
+  function mobilizier_tracking_report($mob_id,$frmdate,$tdate){
+    $select="SELECT user_id,DATE_FORMAT(created_at,'%d-%m-%Y') AS created_at,sum((6371 * ACOS(
+              COS( RADIANS(to_lat) )
+            * COS( RADIANS( user_lat ) )
+            * COS( RADIANS( user_long ) - RADIANS(to_long) )
+            + SIN( RADIANS(to_lat) )
+            * SIN( RADIANS( user_lat ) )
+              ) )) AS km
+      FROM edu_tracking_details WHERE
+        user_id = '$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d') >= '$frmdate' AND DATE_FORMAT(created_at, '%Y-%m-%d') <= '$tdate' GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
+        $get_result=$this->db->query($select);
+        $result= $get_result->result();
+        if($get_result->num_rows()==0){
+          $response = array("status" => "error", "msg" => "Track Not Found");
+        }else{
+          $response = array("status" => "success", "msg" => "Tracking record Found","tracking_report"=>$result);
+        }
+        	return $response;
+
+  }
+  //#################### Mobilizer Tracking Report ####################//
+
 
 //#################### Current User Tracking ####################//
 	public function userTrackingCurrent($mob_id,$track_date)

@@ -1891,6 +1891,37 @@ public function user_profilepic()
 
 //-----------------------------------------------//
 
+
+	public function mobilizier_tracking_report(){
+
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User Tracking";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$mob_id = $this->input->post("mobilizer_id");
+		$frmdate = $this->input->post("from_date");
+		$tdate = $this->input->post("to_date");
+
+		$data['result']=$this->apipiamodel->mobilizier_tracking_report($mob_id,$frmdate,$tdate);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
 //-----------------------------------------------//
 
 	public function user_tracking_current()
