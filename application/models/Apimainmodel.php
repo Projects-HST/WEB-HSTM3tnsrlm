@@ -318,6 +318,7 @@ class Apimainmodel extends CI_Model {
 						{
 							$piaData  = array(
 							"pia_profile_id" => $pia_profile[0]->id,
+              "scheme_id" => $pia_profile[0]->scheme_id,
 							"pia_unique_number" => $pia_profile[0]->pia_unique_number,
 							"pia_name" => $pia_profile[0]->pia_name,
 							"pia_address" => $pia_profile[0]->pia_address,
