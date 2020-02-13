@@ -63,6 +63,41 @@ class Apipia extends CI_Controller {
 
 
 //-----------------------------------------------//
+//-----------------------------------------------//
+
+	public function scheme_details()
+	{
+	   $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "View Scheme";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$pia_id  ='';
+		$pia_id = $this->input->post("user_id");
+		$scheme_id = $this->input->post("scheme_id");
+
+		$data['result']=$this->apipiamodel->scheme_details($pia_id,$scheme_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+
+//-----------------------------------------------//
+
+
 
 //-----------------------------------------------//
 
@@ -1855,6 +1890,37 @@ public function user_profilepic()
 	}
 
 //-----------------------------------------------//
+
+
+	public function mobilizier_tracking_report(){
+
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User Tracking";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$mob_id = $this->input->post("mobilizer_id");
+		$frmdate = $this->input->post("from_date");
+		$tdate = $this->input->post("to_date");
+
+		$data['result']=$this->apipiamodel->mobilizier_tracking_report($mob_id,$frmdate,$tdate);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
 
 //-----------------------------------------------//
 
