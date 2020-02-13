@@ -218,6 +218,10 @@
 }
 </style>
 <script type="text/javascript">
+
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
 	
 	$('#staffform').validate({
 					rules: {
@@ -258,7 +262,7 @@
 							qualification: {
 									required: true
 							},
-							staff_new_pic:{required:false,accept: "jpg,jpeg,png"},
+							staff_new_pic:{required:false,accept: "jpg,jpeg,png",filesize: 1048576},
 							status: {
 									required: true
 							}
@@ -291,7 +295,7 @@
 							  staff_new_pic:{
 								  required:"",
 								  accept:"Please upload .jpg or .png .",
-								  fileSize:"File must be JPG or PNG, less than 1MB"
+								  filesize:"File must be JPG or PNG, less than 1MB"
 								},
 							status: "Select status"
 					}

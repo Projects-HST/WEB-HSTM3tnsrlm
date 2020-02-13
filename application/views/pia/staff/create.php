@@ -92,19 +92,25 @@
                                 </div>
 								
 								<div class="row page_row">
-                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community</label>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community" name="community" class="form-control input-sm" maxlength="30">
-                                    </div>
-									
-									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community Class</label>
+                                        <label class="hrzn-fm">Caste</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                         <input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" maxlength="30">
+                                         <input type="text" placeholder="Caste" name="community" class="form-control input-sm" maxlength="30">
+                                    </div>
+									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Community</label>
+                                    </div>	
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+											<select name="community_class" class="form-control" id="community_class">
+													<option value="">Select</option>
+													<option value="SC">SC</option>
+													<option value="ST">ST</option>
+													<option value="BC">BC</option>
+													<option value="MBC">MBC</option>
+													<option value="OC">OC</option>
+										</select>
+										<!--<input type="text" placeholder="Community" name="community" class="form-control input-sm" maxlength="30">-->
                                     </div>
                                 </div>
 								
@@ -195,6 +201,10 @@
     $('#staffmenu').addClass('active');
 	$('#create_staff').addClass('active');
 
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
+	
 	$('#staffform').validate({
 		rules: {
 			select_role: {
@@ -234,7 +244,7 @@
 			qualification: {
 					required: true
 			},
-			staff_pic:{required:true,accept: "jpg,jpeg,png"},
+			staff_pic:{required:true,accept: "jpg,jpeg,png", filesize: 1048576 },
 			status: {
 					required: true
 			}
@@ -265,7 +275,8 @@
 				 },
 				 staff_pic:{
 					  required:"Select staff picture",
-					  accept:"Please upload .jpg or .png ."
+					  accept:"Please upload .jpg or .png .",
+					  filesize:"File must be JPG or PNG, less than 1MB"
 					},
 				status: "Select status"
 		}

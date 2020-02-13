@@ -16,7 +16,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>admin/createpia" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Create PIA</h2>
+                            <h2>Create Training Partner</h2>
                         </div>
 						
                         <div class="form-example-int form-horizental">
@@ -133,6 +133,10 @@
     $('#piamenu').addClass('active');
 	$('#create_pia').addClass('active');
 
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
+	
 		$('#piaform').validate({
 			rules: {
 				unique_number: {
@@ -196,7 +200,7 @@
 				staff_pic:{
 								  required:"Select PIA picture",
 								  accept:"Please upload .jpg or .png .",
-								  fileSize:"File must be JPG or PNG, less than 1MB"
+								  filesize:"File must be JPG or PNG, less than 1MB"
 								},
 				scheme: "Select Scheme",
 				status: "Select Status"

@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> PIAs</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> Training Partners</p>
                         </div>
                         <h2><span class="counter"><?php echo $dashboard['pia_count']; ?></span></h2>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent PIAs</h2>
+                                    <h2>Recent Training Partners</h2>
                                 </div>
                             </div>
 							

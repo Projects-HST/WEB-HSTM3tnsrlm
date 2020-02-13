@@ -13,7 +13,7 @@
 			
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>List PIA</h2>
+                            <h2>List Training Partner</h2>
                         </div>
                         <div class="table-responsive">
 							
@@ -37,7 +37,7 @@
                              <td><?php echo $rows->pia_phone ; ?></td>
                              <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                              <td>
-                               <a href="<?php echo base_url(); ?>admin/edit_pia/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit PIA"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a> &nbsp;  <a href="<?php echo base_url(); ?>admin/pia_dashboard/<?php echo base64_encode($rows->user_id*98765); ?>" data-toggle="tooltip" title="PIA Dashboard"><i class="fa fa-sitemap" aria-hidden="true" style="font-size:20px;"></i></a></td>
+                               <a href="<?php echo base_url(); ?>admin/edit_pia/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Partner"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a> &nbsp;  <a href="<?php echo base_url(); ?>admin/pia_dashboard/<?php echo base64_encode($rows->user_id*98765); ?>" data-toggle="tooltip" title="Partner Dashboard"><i class="fa fa-sitemap" aria-hidden="true" style="font-size:20px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>
                                     

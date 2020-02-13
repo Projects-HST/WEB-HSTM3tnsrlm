@@ -35,7 +35,7 @@
                                     </div>
 									
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Name</label>
+                                    <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -46,7 +46,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile Number</label>
+                                        <label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -55,7 +55,7 @@
                                     </div>
 									
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address</label>
+                                        <label class="hrzn-fm">Email Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -66,7 +66,7 @@
 																
 								<div class="row page_row">
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Address</label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-										<label class="hrzn-fm">State</label>
+										<label class="hrzn-fm">State <span class="error">*</span></label>
 									</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="State" name="pia_state" class="form-control input-sm" value="<?php echo $rows->pia_state; ?>">
@@ -128,6 +128,10 @@
 }
 </style>
 <script type="text/javascript">
+
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
 	
  $("#myformsection").validate({
          rules: {
@@ -145,8 +149,9 @@
                  number:true,
              },
 			 staff_new_pic:{
-				  required: false,
-				accept: "jpg,jpeg,png"
+					required: false,
+					accept: "jpg,jpeg,png",
+					filesize: 1048576
 			}
          },
          messages: {
@@ -167,7 +172,7 @@
                 },
 				staff_new_pic:{
 				  accept:"Please upload .jpg or .png .",
-				  fileSize:"File must be JPG or PNG, less than 1MB"
+				  filesize:"File must be JPG or PNG, less than 1MB"
 				}
              }
 		});

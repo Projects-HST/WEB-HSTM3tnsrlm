@@ -171,19 +171,28 @@
 										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" value="<?php echo $rows->religion; ?>" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Caste <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>" maxlength="30">
+										<input type="text" placeholder="Caste" name="community" class="form-control input-sm" value="<?php echo $rows->community ; ?>" maxlength="30">
                                     </div>
                            </div>
 						   
 						    <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community Class <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Community <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>" maxlength="30">
+										<select name="community_class" class="form-control" id="community_class">
+													<option value="">Select</option>
+													<option value="SC">SC</option>
+													<option value="ST">ST</option>
+													<option value="BC">BC</option>
+													<option value="MBC">MBC</option>
+													<option value="OC">OC</option>
+										</select><script> $('#community_class').val('<?php echo $rows->community_class; ?>');</script>
+										
+										<!--<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" value="<?php echo $rows->community_class ; ?>" maxlength="30">-->
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Mother Tongue <span class="error">*</span></label>
@@ -239,7 +248,7 @@
 									<label class="hrzn-fm">Profile Picture</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										  <input type="file" class="form-control" name="student_pic">
+										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -279,7 +288,11 @@
 <script type="text/javascript">
     $('#prospects').addClass('active');
     $('#prospectsmenu').addClass('active');
-	
+
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
+
     $('#admissionform').validate({ // initialize the plugin
    rules: {
      // had_aadhar_card:{required:true },
@@ -318,14 +331,17 @@
      course:{required:true },
      mother_tongue:{required:true},
      // prefer_time:{required:true},
-     mobile:{required:true,
-       maxlength: 10,
-       minlength:10,
-       number:true,remote: {
+     mobile:{
+		required:true,
+		maxlength: 10,
+		minlength:10,
+		number:true,
+		remote: {
                  url: "<?php echo base_url(); ?>admission/check_mobile_already/<?php echo base64_encode($rows->id*98765); ?>",
                  type: "post"
               }
-     }
+     },
+	 student_pic:{required:false,accept: "jpg,jpeg,png",filesize: 1048576}
      },
  messages: {
 
@@ -352,8 +368,8 @@
      age: "Enter Age",
      nationality: "Enter Nationality",
      religion: "Enter Religion",
-     community:"Enter Community",
-     community_class:"Enter Community Class",
+     community:"Enter Caste",
+     community_class:"Select Community",
      blood_group:"Select Blood Group",
      prefer_time:"Select Preferred Time",
      city:"Enter City Name",
@@ -366,8 +382,12 @@
           minlength:"Minimum 10 digits",
           remote: "Mobile number Already Exist",
           number:"Enter Only Numbers"
-
-      }
+      },
+	 student_pic:{
+		  required:"",
+		  accept:"Please upload .jpg or .png .",
+		  filesize:"File must be JPG or PNG, less than 1MB"
+		}
  }
  });
 

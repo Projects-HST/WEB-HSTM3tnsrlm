@@ -99,7 +99,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
-							<li class="nav-item"><a style="padding-top:40px;"><span>Wecome <?php echo $this->session->userdata('name'); ?></span></a></li>
+							<li class="nav-item"><a style="padding-top:40px;"><span>Welcome <?php echo $this->session->userdata('name'); ?></span></a></li>
                             <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/staff/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
                                     <div class="hd-message-info">
@@ -125,7 +125,7 @@
                       <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
 					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Staff</a></li>
 					  <li id="scheme"><a data-toggle="tab" href="#schememenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Scheme</a></li>
-                      <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-address-card" aria-hidden="true"></i> PIA</a></li>
+                      <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-address-card" aria-hidden="true"></i> Training Partner</a></li>
                       <li id="mobilization_plan"><a href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
                   </ul>
 				  
@@ -144,8 +144,8 @@
                       </div>
                       <div id="piamenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="<?php echo base_url(); ?>admin/create_pia" id="create_pia">Create PIA</a></li>
-                              <li><a href="<?php echo base_url(); ?>admin/view_pia" id="view_pia">List PIA</a> </li>
+                              <li><a href="<?php echo base_url(); ?>admin/create_pia" id="create_pia">Create Training Partner</a></li>
+                              <li><a href="<?php echo base_url(); ?>admin/view_pia" id="view_pia">List Training Partner</a> </li>
                           </ul>
                       </div>
                     </div>

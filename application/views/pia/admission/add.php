@@ -160,19 +160,27 @@
 										<input type="text" placeholder="Religion" name="religion" class="form-control input-sm" maxlength="30">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Caste <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community" name="community" class="form-control input-sm" maxlength="30">
+										<input type="text" placeholder="Caste" name="community" class="form-control input-sm" maxlength="30">
                                     </div>
                            </div>
 						   
 						    <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Community Class <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Community <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" maxlength="30">
+										<select name="community_class" class="form-control" id="community_class">
+													<option value="">Select</option>
+													<option value="SC">SC</option>
+													<option value="ST">ST</option>
+													<option value="BC">BC</option>
+													<option value="MBC">MBC</option>
+													<option value="OC">OC</option>
+										</select>
+										<!--<input type="text" placeholder="Community Class" name="community_class" class="form-control input-sm" maxlength="30">-->
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Mother Tongue <span class="error">*</span></label>
@@ -213,7 +221,7 @@
                                         <label class="hrzn-fm">Profile Picture</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											  <input type="file" class="form-control" name="student_pic">
+											  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
                                     </div>
                            </div>
 							
@@ -268,10 +276,13 @@ $('#prospects').addClass('active');
 $('#prospectsmenu').addClass('active');
 $('#add_prospect').addClass('active');
 
+	$.validator.addMethod('filesize', function (value, element, param) {
+		return this.optional(element) || (element.files[0].size <= param)
+	}, 'File size must be less than 1 MB');
+	
 $('#admissionform').validate({ // initialize the plugin
    rules: {
- 
-     aadhar_card_num:{
+      aadhar_card_num:{
        required:true,
        maxlength: 12,
        minlength:12,
@@ -311,7 +322,7 @@ $('#admissionform').validate({ // initialize the plugin
                  type: "post"
               }
      },
-	 student_pic:{required:false,accept: "jpg,jpeg,png"}
+	 student_pic:{required:false,accept: "jpg,jpeg,png",filesize: 1048576}
      },
  messages: {
 
@@ -338,8 +349,8 @@ $('#admissionform').validate({ // initialize the plugin
      age: "Enter Age",
      nationality: "Enter Nationality",
      religion: "Enter Religion",
-     community:"Enter Community",
-     community_class:"Enter Community Class",
+     community:"Enter Caste",
+     community_class:"Select Community",
      blood_group:"Select Blood Group",
      prefer_time:"Select Preferred Time",
      city:"Enter City Name",
@@ -357,7 +368,7 @@ $('#admissionform').validate({ // initialize the plugin
 	  student_pic:{
 		  required:"",
 		  accept:"Please upload .jpg or .png .",
-		  fileSize:"File must be JPG or PNG, less than 1MB"
+		  filesize:"File must be JPG or PNG, less than 1MB"
 		}
  }
  });

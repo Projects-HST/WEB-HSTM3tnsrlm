@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>M3 - PIA Section </title>
+    <title>M3 - Training Partner Section </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -101,7 +101,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
-							<li class="nav-item"><a style="padding-top:40px;"><span>Wecome <?php echo $this->session->userdata('name'); ?></span></a></li>
+							<li class="nav-item"><a style="padding-top:40px;"><span>Welcome <?php echo $this->session->userdata('name'); ?></span></a></li>
                             <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/pia/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
                                     <div class="hd-message-info">
@@ -126,8 +126,8 @@
                   <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                       <li id="dashboard"><a href="<?php echo base_url(); ?>dashboard/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
                       <li id="masters"><a data-toggle="tab" href="#mastersmenu"><i class="fa fa-sitemap" aria-hidden="true"></i> Masters</a></li>
+					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
                       <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Prospects</a></li>
-                      <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
                       <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a></li>
 					  <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>
 					  <li id="tracking"><a href="<?php echo base_url();?>tracking/home"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a></li>
