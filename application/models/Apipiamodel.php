@@ -685,6 +685,7 @@ class Apipiamodel extends CI_Model {
               }
               $user_profile=array(
                 "pia_id"=>$rows->id,
+                "scheme_id"=>$rows->scheme_id,
                 "pia_name"=>$rows->pia_name,
                 "pia_address"=>$rows->pia_address,
                 "pia_phone"=>$rows->pia_phone,
