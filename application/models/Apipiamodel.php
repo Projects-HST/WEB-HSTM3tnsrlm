@@ -126,9 +126,33 @@ class Apipiamodel extends CI_Model {
 
 
 //#################### Scheme ####################//
-	public function listScheme ($pia_id)
+	function listScheme($pia_id)
 	{
 		$scheme_query = "SELECT * FROM edu_scheme_details WHERE status = 'Active'";
+		$scheme_res = $this->db->query($scheme_query);
+		 if($scheme_res->num_rows()>0){
+			 foreach ($scheme_res->result() as $rows)
+				{
+				 $schemeDetails[] = array(
+						"scheme_id" => $rows->id,
+						"scheme_name" => $rows->scheme_name,
+
+				    );
+        }
+
+				$response = array("status" => "success", "msg" => "Scheme Details","schemeDetails"=>$schemeDetails);
+		}else{
+				$response = array("status" => "error", "msg" => "Schemes Not Found");
+		}
+
+		return $response;
+	}
+//#################### Scheme End ####################//
+
+//#################### Scheme ####################//
+	function scheme_details($pia_id,$scheme_id)
+	{
+		$scheme_query = "SELECT * FROM edu_scheme_details WHERE status = 'Active' and id='$scheme_id'";
 		$scheme_res = $this->db->query($scheme_query);
 		 if($scheme_res->num_rows()>0){
 			 foreach ($scheme_res->result() as $rows)
@@ -146,7 +170,7 @@ class Apipiamodel extends CI_Model {
 		}
 
 
-    $scheme_query_gallery = "SELECT * FROM edu_scheme_photos WHERE scheme_id='1' and status = 'Active'";
+    $scheme_query_gallery = "SELECT * FROM edu_scheme_photos WHERE scheme_id='$scheme_id' and status = 'Active'";
 		$scheme_res_gallery = $this->db->query($scheme_query_gallery);
 		 if($scheme_res_gallery->num_rows()>0){
 			 foreach ($scheme_res_gallery->result() as $rows_gallery)
