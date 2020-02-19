@@ -1066,13 +1066,13 @@ class Apipiamodel extends CI_Model {
     if($tdate < $frmdate){
       $response = array("status" => "error", "msg" => "End date cannot be lesser than start date!.");
     }else{
-      $select="SELECT user_id,DATE_FORMAT(created_at,'%d-%m-%Y') AS created_at,sum((6371 * ACOS(
+      $select="SELECT user_id,DATE_FORMAT(created_at,'%d-%m-%Y') AS created_at,Round(sum((6371 * ACOS(
                 COS( RADIANS(to_lat) )
               * COS( RADIANS( user_lat ) )
               * COS( RADIANS( user_long ) - RADIANS(to_long) )
               + SIN( RADIANS(to_lat) )
               * SIN( RADIANS( user_lat ) )
-                ) )) AS km
+            ) )),2) AS km
         FROM edu_tracking_details WHERE
           user_id = '$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d') >= '$frmdate' AND DATE_FORMAT(created_at, '%Y-%m-%d') <= '$tdate' GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
           $get_result=$this->db->query($select);
