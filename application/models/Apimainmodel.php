@@ -597,9 +597,9 @@ class Apimainmodel extends CI_Model {
 //#################### User List End ####################//
 
 //#################### User Details ####################//
-	public function userDetails ($user_master_id)
+	public function userDetails ($user_master_id,$user_role)
 	{
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='$user_role'";
 			$s_res = $this->db->query($sQuery);
 			$s_result= $s_res->result();
 
@@ -613,9 +613,9 @@ class Apimainmodel extends CI_Model {
 //#################### User Details End ####################//
 
 //#################### User Update ####################//
-	public function updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status)
+	public function updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status,$user_role)
 	{
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='$user_role'";
 			$user_result = $this->db->query($sQuery);
 			$ress = $user_result->result();
 			if($user_result->num_rows()>0)
