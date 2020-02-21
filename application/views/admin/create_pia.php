@@ -198,7 +198,7 @@
 				state: "Enter state",
 				address: "Enter address",
 				staff_pic:{
-								  required:"Select PIA picture",
+								  required:"Select training partner picture",
 								  accept:"Please upload .jpg or .png .",
 								  filesize:"File must be JPG or PNG, less than 1MB"
 								},
