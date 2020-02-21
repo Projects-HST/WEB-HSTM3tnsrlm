@@ -1421,7 +1421,9 @@ public function user_profilepic()
 		//$created_by = '';
 		//$created_at = '';
 
-		$pia_id = $this->input->post("user_id");
+		 $pia_id = $this->input->post("user_id");
+		// $pia_id = $this->input->post("pia_id");
+
         $have_aadhaar_card = $this->input->post("have_aadhaar_card");
 		$aadhaar_card_number = $this->input->post("aadhaar_card_number");
 		$name = $this->input->post("name");
@@ -1445,7 +1447,7 @@ public function user_profilepic()
 		$blood_group = $this->input->post("blood_group");
 		$admission_date = $this->input->post("admission_date");
 		$admission_location = $this->input->post("admission_location");
-		$admission_latitude = $this->input->post("admission_latitude");
+	  $admission_latitude = $this->input->post("admission_latitude");
 		$admission_longitude = $this->input->post("admission_longitude");
 		$preferred_trade = $this->input->post("preferred_trade");
 		$preferred_timing = $this->input->post("preferred_timing");

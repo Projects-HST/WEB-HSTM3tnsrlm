@@ -249,12 +249,12 @@ class Apimobilizermodel extends CI_Model {
 //#################### Main Login End ####################//
 
 //#################### Profile Pic Update ####################//
-	 public function updateProfilepic($user_id,$userFileName)
+	 public function updateProfilepic($user_id,$userFileName,$profilepic)
 	{
       $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
 			$update_result = $this->db->query($update_sql);
 
-			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
+			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$profilepic);
 			return $response;
 	}
 //#################### Profile Pic Update End ####################//
