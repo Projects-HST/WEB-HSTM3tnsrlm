@@ -596,10 +596,24 @@ class Apimainmodel extends CI_Model {
 	}
 //#################### User List End ####################//
 
+//#################### User profile  ####################//
+    function user_profile($user_master_id,$role_type){
+      $select="SELECT * FROM edu_staff_details where role_type='$role_type'";
+      $s_res = $this->db->query($sQuery);
+      $s_result= $s_res->result();
+
+      if($s_res->num_rows()>0){
+            $response = array("status" => "success", "msg" => "User profile","userList"=>$s_result);
+      }else{
+              $response = array("status" => "error", "msg" => "Users Not Found");
+      }
+      return $response;
+    }
+//#################### User profile  ####################//
 //#################### User Details ####################//
-	public function userDetails ($user_master_id,$user_role)
+	public function userDetails ($user_master_id)
 	{
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='$user_role'";
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
 			$s_res = $this->db->query($sQuery);
 			$s_result= $s_res->result();
 
@@ -613,9 +627,9 @@ class Apimainmodel extends CI_Model {
 //#################### User Details End ####################//
 
 //#################### User Update ####################//
-	public function updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status,$user_role)
+	public function updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status)
 	{
-			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='$user_role'";
+			$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$user_master_id' AND role_type='2'";
 			$user_result = $this->db->query($sQuery);
 			$ress = $user_result->result();
 			if($user_result->num_rows()>0)

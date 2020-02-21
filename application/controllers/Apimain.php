@@ -300,6 +300,41 @@ class Apimain extends CI_Controller {
 
 //-----------------------------------------------//
 
+
+//-----------------------------------------------//
+
+	public function user_profile()
+	{
+	  $_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User List";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$user_master_id  ='';
+		$user_master_id = $this->input->post("user_master_id");
+		$role_type = $this->input->post("role_type");
+
+
+		$data['result']=$this->apimainmodel->user_profile($user_master_id,$role_type);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
 //-----------------------------------------------//
 
 	public function user_details()
@@ -324,9 +359,9 @@ class Apimain extends CI_Controller {
 
 		$user_master_id  ='';
 		$user_master_id = $this->input->post("user_master_id");
-		$user_role = $this->input->post("user_role");
 
-		$data['result']=$this->apimainmodel->userDetails($user_master_id,$user_role);
+
+		$data['result']=$this->apimainmodel->userDetails($user_master_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -388,9 +423,9 @@ class Apimain extends CI_Controller {
 		$sec_phone = $this->input->post('sec_phone');
 		$qualification = $this->input->post('qualification');
 		$status =$this->input->post('status');
-		$user_role = $this->input->post("user_role");
 
-		$data['result']=$this->apimainmodel->updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status,$user_role);
+
+		$data['result']=$this->apimainmodel->updateUser($user_id,$user_master_id,$name,$sex,$dob,$nationality,$religion,$community_class,$community,$address,$email,$sec_email,$phone,$sec_phone,$qualification,$status);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
