@@ -598,7 +598,7 @@ class Apimainmodel extends CI_Model {
 
 //#################### User profile  ####################//
     function user_profile($user_master_id,$role_type){
-      $select="SELECT * FROM edu_staff_details where role_type='$role_type'";
+      $sQuery="SELECT * FROM edu_staff_details where role_type='$role_type'";
       $s_res = $this->db->query($sQuery);
       $s_result= $s_res->result();
 
