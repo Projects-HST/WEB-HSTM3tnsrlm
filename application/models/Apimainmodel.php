@@ -596,6 +596,26 @@ class Apimainmodel extends CI_Model {
 	}
 //#################### User List End ####################//
 
+
+//#################### User profile Update ####################//
+
+    function user_profile_update($user_master_id,$role_type,$name,$address,$email,$phone){
+
+      $update="UPDATE edu_staff_details SET name='$name',address='$address',email='$email',phone='$phone',updated_at=NOW(),updated_by='$user_master_id' WHERE role_type='$role_type'";
+      $result=$this->db->query($update);
+
+      $update_user="UPDATE edu_users SET name='$name' WHERE user_type='$role_type' AND user_master_id='$user_master_id'";
+      $result_user=$this->db->query($update_user);
+      if($result_user){
+            $response = array("status" => "success", "msg" => "User profile updated!.");
+      }else{
+              $response = array("status" => "error", "msg" => "Something went wrong!.");
+      }
+      return $response;
+    }
+    
+//#################### User profile Update  ####################//
+
 //#################### User profile  ####################//
     function user_profile($user_master_id,$role_type){
       $sQuery="SELECT * FROM edu_staff_details where role_type='$role_type'";
