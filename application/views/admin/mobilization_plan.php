@@ -19,7 +19,7 @@
                      <thead>
                          <tr>
                              <th>S.no</th>
-							 <th>PIA Name</th>
+							 <th>Partner's Name</th>
                              <th>Document Name</th>
                              <th>Uploaded Date</th>
 							 <th>Download</th>
