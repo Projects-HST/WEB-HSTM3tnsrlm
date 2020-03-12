@@ -17,13 +17,13 @@
                                         <label class="hrzn-fm">PRN Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" value="<?php echo $rows->pia_unique_number; ?>" maxlength="13">
+										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" value="<?php echo $rows->pia_unique_number; ?>" maxlength="15">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Name" name="name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="30">
+                                            <input type="text" placeholder="Name" name="name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="100">
                                     </div>
                                 </div>
 								
@@ -38,7 +38,7 @@
                                         <label class="hrzn-fm">Email <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="30">
+                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
                                     </div>
                                 </div>
 								
@@ -47,7 +47,7 @@
                                         <label class="hrzn-fm">State <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="State" name="state" class="form-control input-sm" value="<?php echo $rows->pia_state; ?>" maxlength="30">
+                                            <input type="text" placeholder="State" name="state" class="form-control input-sm" value="<?php echo $rows->pia_state; ?>" maxlength="50">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Address <span class="error">*</span></label>
@@ -128,6 +128,10 @@
     $('#piamenu').addClass('active');
 	$('#view_pia').addClass('active');
 
+	jQuery.validator.addMethod("alphanumeric", function(value, element) {
+			return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+	}); 
+	
 	$.validator.addMethod('filesize', function (value, element, param) {
 		return this.optional(element) || (element.files[0].size <= param)
 	}, 'File size must be less than 1 MB');
@@ -136,9 +140,9 @@
 			rules: {
 				unique_number: {
 						required: true,
-						maxlength: 13,
 						minlength:13,
-						number:true,
+						maxlength: 15,
+						alphanumeric:true,
 						remote: {
 									 url: "<?php echo base_url(); ?>admin/check_unique_number_edit/<?php echo base64_encode($rows->id*98765); ?>",
 									 type: "post"
@@ -174,7 +178,7 @@
 					maxlength:"Maximum 13 digits",
 					minlength:"Minimum 13 digits",
 					remote: "PRN number already exist!",
-					number:"Enter only numbers"
+					alphanumeric:"Enter alphanumeric values"
 				 },
 				//unique_number: "Enter Unique Number",
 				name: "Enter Name",

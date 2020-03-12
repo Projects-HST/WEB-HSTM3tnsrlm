@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
-										<input type="text" placeholder="Name" name="pia_name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="30">
+										<input type="text" placeholder="Name" name="pia_name" class="form-control input-sm" value="<?php echo $rows->pia_name; ?>" maxlength="100">
                                         </div>
                                     </div>
 								</div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
-										<input type="text" placeholder="Email Address" name="pia_email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="30">
+										<input type="text" placeholder="Email Address" name="pia_email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
                                         </div>
                                     </div>
                                 </div>

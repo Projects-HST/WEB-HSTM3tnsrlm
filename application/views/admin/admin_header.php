@@ -70,7 +70,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/bootstrap-select/bootstrap-select.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
-
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/jquery.galpop.css">
 	<script src="<?php echo base_url(); ?>assets/admin/js/vendor/modernizr-2.8.3.min.js"></script>	
 
 	<script src="<?php echo base_url(); ?>assets/admin/js/vendor/jquery-1.12.4.min.js"></script>
@@ -126,7 +126,7 @@
 					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Staff</a></li>
 					  <li id="scheme"><a data-toggle="tab" href="#schememenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Scheme</a></li>
                       <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-address-card" aria-hidden="true"></i> Training Partner</a></li>
-                      <li id="mobilization_plan"><a href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
+                      <!--<li id="mobilization_plan"><a href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>-->
                   </ul>
 				  
                   <div class="tab-content custom-menu-content">

@@ -25,7 +25,11 @@
                                 <h2>Yearly Students</h2>
                             </div>
                         </div>
-						<div id="chart_div" style="height:400px;"></div>
+						<?php if (count($yearly_graph) >0) { ?>
+							<div id="chart_div" style="height:400px;"></div>
+						<?php } else { ?>
+							<div style="height:350px;"><p>No Rocords Found!..</p></div>
+						<?php } ?>
                     </div>
                 </div>
 

@@ -30,7 +30,7 @@
                                         <label class="hrzn-fm">Center Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" class="form-control input-sm" name="center_name" maxlength="30">
+										<input type="text" class="form-control input-sm" name="center_name" maxlength="100">
 										 
                                     </div>
 									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
@@ -41,7 +41,7 @@
                                         <label class="hrzn-fm">Center Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											 <input type="text" class="form-control  input-sm" name="center_address" maxlength="50">
+											 <input type="text" class="form-control  input-sm" name="center_address" maxlength="100">
                                     </div>
                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>
@@ -51,7 +51,7 @@
                                         <label class="hrzn-fm">Center Info <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											 <input type="text" class="form-control  input-sm" name="center_info" maxlength="50">
+											 <input type="text" class="form-control  input-sm" name="center_info" maxlength="100">
                                     </div>
                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>

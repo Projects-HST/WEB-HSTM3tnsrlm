@@ -123,10 +123,10 @@
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                       <li id="dashboard"><a  href="<?php echo base_url(); ?>admin/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
-					   <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-user-plus" aria-hidden="true"></i> Staff</a></li>
-					   <li id="scheme"><a data-toggle="tab" href="#schememenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Scheme</a></li>
+					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-user-plus" aria-hidden="true"></i> Staff</a></li>
+					  <li id="scheme"><a data-toggle="tab" href="#schememenu"><i class="fa fa-address-card-o" aria-hidden="true"></i> Scheme</a></li>
                       <li id="pia"><a data-toggle="tab" href="#piamenu"><i class="fa fa-user" aria-hidden="true"></i> Training Partner</a></li>				  
-                      <li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>
+                      <!--<li id="mobilization_plan"><a  href="<?php echo base_url(); ?>admin/mobilization_plan"><i class="fa fa-file-text" aria-hidden="true"></i> Mobilization Plan</a></li>-->
                   </ul>
 				  
                   <div class="tab-content custom-menu-content">

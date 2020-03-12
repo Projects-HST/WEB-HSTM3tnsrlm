@@ -1,4 +1,6 @@
-<?php foreach($result as $rows){} ?>
+<?php foreach($result as $rows){
+	$sDOB = trim($rows->dob);
+} ?>
 <div class="container">
 	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -53,7 +55,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
-											<input type="text" placeholder="Date of Birth " name="dob" id="dob" class="form-control dob input-sm" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>"/>
+											<input type="text" placeholder="Date of Birth " name="dob" id="dob" class="form-control dob input-sm" value="<?php if ($sDOB !="0000-00-00") { $date=date_create($sDOB);echo date_format($date,"d-m-Y"); } ?>"/>
                                         </div>
                                     </div>
                                 </div>

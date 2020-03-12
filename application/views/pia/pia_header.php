@@ -129,7 +129,7 @@
 					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
                       <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Prospects</a></li>
                       <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a></li>
-					  <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>
+					  <!--<li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>-->
 					  <li id="tracking"><a href="<?php echo base_url();?>tracking/home"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a></li>
 					  <li id="graph"><a href="<?php echo base_url();?>graph/home"><i class="fa fa fa-bar-chart" aria-hidden="true"></i> Graph</a></li>
                   </ul>

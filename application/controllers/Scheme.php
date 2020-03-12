@@ -106,6 +106,25 @@ class Scheme extends CI_Controller {
 	 	}
 
 
+	public function view_scheme_details(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		$scheme_id=base64_decode($this->uri->segment(3))/98765;
+		
+			if($user_type==1 || $user_type==2){
+				 $datas['res_scheme']=$this->schememodel->get_scheme_details($scheme_id);
+				 $datas['res_img']=$this->schememodel->get_scheme_gallery_img($scheme_id);
+				 
+				 $this->load->view('admin/admin_header');
+				 $this->load->view('admin/view_scheme_details',$datas);
+				 $this->load->view('admin/admin_footer');
+	 		 }
+	 		 else{
+	 				redirect('/');
+	 		 }
+	 	}
+
      public function update(){
         $datas=$this->session->userdata();
         $user_id=$this->session->userdata('user_id');

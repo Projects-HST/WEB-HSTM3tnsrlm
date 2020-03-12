@@ -32,10 +32,7 @@
                                                 <label class="hrzn-fm">Scheme Info</label>
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                                <div class="nk-int-st" style="text-align:justify;">
-                                                  <?php echo $res->scheme_info;  ?>
-
-                                                </div>
+                                                <div class="nk-int-st" style="text-align:justify;"><?php echo $res->scheme_info;  ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -105,9 +102,9 @@
 }
 </style>
 <script type="text/javascript">
-    $('#masters').addClass('active');
-    $('#mastersmenu').addClass('active');
-	$('#schemes').addClass('active');
+	$('#scheme').addClass('active');
+    $('#schememenu').addClass('active');
+	$('#view_scheme').addClass('active');
 	
 	$(document).ready(function() {
 	$('.galpop-multiple').galpop();
