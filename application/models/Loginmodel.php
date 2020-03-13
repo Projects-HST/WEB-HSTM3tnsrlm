@@ -125,7 +125,8 @@ Class Loginmodel extends CI_Model
          $pia_id=base64_decode($pia_id)/98765;
 		 $user_type=$this->session->userdata('user_type');
 		 
-         $query="UPDATE edu_pia SET pia_address='$pia_address',pia_state = '$pia_state',pia_name='$pia_name',pia_phone='$pia_phone',pia_email='$pia_email',profile_pic = '$staff_prof_pic' WHERE id='$pia_id'";
+         //$query="UPDATE edu_pia SET pia_address='$pia_address',pia_state = '$pia_state',pia_name='$pia_name',pia_phone='$pia_phone',pia_email='$pia_email',profile_pic = '$staff_prof_pic' WHERE id='$pia_id'";
+		 $query="UPDATE edu_pia SET pia_address='$pia_address',pia_state = '$pia_state',pia_name='$pia_name',pia_phone='$pia_phone',pia_email='$pia_email' WHERE id='$pia_id'";
          $ex = $this->db->query($query);
 		 
 		 $update_user="UPDATE edu_users SET name='$pia_name',user_pic ='$staff_prof_pic' WHERE user_id='$user_id' AND user_type = '$user_type'";

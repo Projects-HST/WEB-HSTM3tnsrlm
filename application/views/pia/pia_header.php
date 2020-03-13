@@ -102,7 +102,7 @@
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
 							<li class="nav-item"><a style="padding-top:40px;"><span>Welcome <?php echo $this->session->userdata('name'); ?></span></a></li>
-                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/pia/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
+                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/profile/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
                                     <div class="hd-message-info">
 										<a href="<?php echo base_url(); ?>dashboard/profile/"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Profile Update</p></div></div></a>

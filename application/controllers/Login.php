@@ -48,22 +48,22 @@ class Login extends CI_Controller {
 					$user_id=$result['user_id'];
 					$user_pic=$result['user_pic'];
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-						$session_data=$this->session->set_userdata($datas);
-						redirect('admin/home');
+					$session_data=$this->session->set_userdata($datas);
+					redirect('admin/home');
 				break;
 				
 				case '2':
-				$user_name=$result['user_name'];
-				$pia_id=$result['pia_id'];
-				//$msg=$result['msg'];
-				$name=$result['name'];
-				$user_type=$result['user_type'];
-				$status=$result['status'];
-				$user_id=$result['user_id'];
-				$user_pic=$result['user_pic'];
-				$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
-						$session_data=$this->session->set_userdata($datas);
-						redirect('admin/home');
+					$user_name=$result['user_name'];
+					$pia_id=$result['pia_id'];
+					//$msg=$result['msg'];
+					$name=$result['name'];
+					$user_type=$result['user_type'];
+					$status=$result['status'];
+					$user_id=$result['user_id'];
+					$user_pic=$result['user_pic'];
+					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+					$session_data=$this->session->set_userdata($datas);
+					redirect('admin/home');
 				break;
 				
 				case '3':

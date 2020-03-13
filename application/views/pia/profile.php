@@ -1,4 +1,4 @@
-<?php foreach($result as $rows){} ?>
+<?php foreach($result as $rows){ } ?>
 <div class="container">
 	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -94,7 +94,7 @@
 									</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<?php if($rows->profile_pic!=''){?>
-											<img src="<?php echo base_url(); ?>assets/pia/<?php echo $rows->profile_pic; ?>" style="width:100px;">
+											<img src="<?php echo base_url(); ?>assets/profile/<?php echo $rows->user_pic; ?>" style="width:100px;">
 										<?php } ?>
 									</div>
 								</div>
@@ -103,10 +103,9 @@
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="hidden" class="form-control input-sm" name="pia_id" value="<?php echo base64_encode($rows->id*98765); ?>">
-											<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
+											<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->user_pic; ?>">
 											<button type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
 										</div>
-									
 									<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12"></div>
 								</div>
 								

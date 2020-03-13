@@ -48,7 +48,7 @@ class Dashboard extends CI_Controller {
 			 $datas=$this->session->userdata();
 			 $user_id=$this->session->userdata('user_id');
 			 $user_type=$this->session->userdata('user_type');
-				$datas['result'] = $this->loginmodel->getuser($user_id);
+			 $datas['result'] = $this->loginmodel->getuser($user_id);
 				if($user_type==1){
 
 				}else if($user_type==2){
@@ -101,7 +101,7 @@ class Dashboard extends CI_Controller {
 						}else{
 							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-							$uploaddir = 'assets/pia/';
+							$uploaddir = 'assets/profile/';
 							$profilepic = $uploaddir.$staff_prof_pic;
 							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 						}

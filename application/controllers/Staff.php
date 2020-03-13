@@ -53,9 +53,21 @@ class Staff extends CI_Controller {
 					}else{
 						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+						
+						$uploaddir = 'assets/staff/';
+						$uploaddir1 = 'assets/profile/';
+						
+						$profilepic = $uploaddir.$staff_prof_pic;
+						$profilepic1 = $uploaddir1.$staff_prof_pic;
+						
+						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
+						copy($profilepic, $profilepic1);
+						
+						/* $temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
 						$uploaddir = 'assets/staff/';
 						$profilepic = $uploaddir.$staff_prof_pic;
-						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
+						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic); */
 					}
 					$datas=$this->staffmodel->create_staff_details($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id);
 					

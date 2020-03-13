@@ -273,7 +273,7 @@ Class Adminmodel extends CI_Model
 		$result=$this->db->query($update);
 		
 		if ($old_phone_number != $mobile){
-			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
 			$result_user=$this->db->query($update_user);
 			
 			$subject ='M3 - Staff Login - Username Updated';
@@ -302,7 +302,7 @@ Class Adminmodel extends CI_Model
 			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
-			 $update_user="UPDATE edu_users SET name='$name',user_pic ='$staff_prof_pic',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
+			 $update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_master_id='$staff_id' AND user_type = '2'";
 			$result_user=$this->db->query($update_user);
 		}
 
@@ -324,7 +324,7 @@ Class Adminmodel extends CI_Model
 		  }
     }  
 
-	function create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id){
+	function create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id){
 
 		$select = "SELECT * FROM edu_pia Where pia_unique_number='$unique_number'";
 		$result=$this->db->query($select);
@@ -332,7 +332,7 @@ Class Adminmodel extends CI_Model
 			$data = array("status" => "already");
 			return $data;
 		}else{
-			$insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,pia_state,profile_pic,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$state','$staff_prof_pic','$status','$user_id',NOW())";
+			$insert="INSERT INTO edu_pia (pia_unique_number,pia_name,pia_address,pia_phone,pia_email,pia_state,profile_pic,scheme_id,status,created_by,created_at) VALUES('$unique_number','$name','$address','$mobile','$email','$state','$staff_prof_pic','$scheme','$status','$user_id',NOW())";
 			$result=$this->db->query($insert);
 			$insert_id = $this->db->insert_id();
 
@@ -420,7 +420,7 @@ Class Adminmodel extends CI_Model
 		$result=$this->db->query($update);
 		
 		if ($old_unique_number != $unique_number){
-			$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
+			$update_user="UPDATE edu_users SET user_name='$unique_number',name='$name',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
 			$result_user=$this->db->query($update_user);
 			
 			$subject ='M3 - PIA Username Updated';
@@ -451,7 +451,7 @@ Class Adminmodel extends CI_Model
 			mail($email,$subject,$htmlContent,$headers); */
 			
 		}else {
-			$update_user="UPDATE edu_users SET name='$name',user_pic='$staff_prof_pic',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
+			$update_user="UPDATE edu_users SET name='$name',status='$status' WHERE user_master_id='$pia_id' AND user_type = '3'";
 			$result_user=$this->db->query($update_user);
 		}
 		
@@ -615,7 +615,7 @@ Class Adminmodel extends CI_Model
 				}
 			}
 			
-		 $update = "UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community',community='$community',qualification='$qualification',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
+		 $update = "UPDATE edu_staff_details SET name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community',community='$community',qualification='$qualification',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
 		$result=$this->db->query($update);
 
 

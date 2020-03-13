@@ -68,6 +68,8 @@ class Admin extends CI_Controller {
 				redirect('/');
 			}
 	}
+	
+	
 	public function profile_update(){
 					$datas=$this->session->userdata();
 					$user_id=$this->session->userdata('user_id');
@@ -98,7 +100,7 @@ class Admin extends CI_Controller {
 						}else{
 							$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 							$staff_prof_pic = round(microtime(true)) . '.' . $temp;
-							$uploaddir = 'assets/staff/';
+							$uploaddir = 'assets/profile/';
 							$profilepic = $uploaddir.$staff_prof_pic;
 							move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 						}
@@ -245,9 +247,22 @@ class Admin extends CI_Controller {
 					}else{
 						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+						
+						$uploaddir = 'assets/staff/';
+						$uploaddir1 = 'assets/profile/';
+						
+						$profilepic = $uploaddir.$staff_prof_pic;
+						$profilepic1 = $uploaddir1.$staff_prof_pic;
+						
+						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
+						copy($profilepic, $profilepic1);
+										
+						/* 
+						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
+						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
 						$uploaddir = 'assets/staff/';
 						$profilepic = $uploaddir.$staff_prof_pic;
-						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
+						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic); */
 					}
 					$datas=$this->adminmodel->create_staff_details($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
@@ -418,6 +433,7 @@ class Admin extends CI_Controller {
 					$email=$this->input->post('email');
 					$state=$this->input->post('state');
 					$address= $this->db->escape_str($this->input->post('address'));
+					$scheme=$this->input->post('scheme');
 					$status=$this->input->post('status');
 					$profilepic = $_FILES['staff_pic']['name'];
 					if(empty($profilepic)){
@@ -425,11 +441,19 @@ class Admin extends CI_Controller {
 					}else{
 						$temp = pathinfo($profilepic, PATHINFO_EXTENSION);
 						$staff_prof_pic = round(microtime(true)) . '.' . $temp;
+						
 						$uploaddir = 'assets/pia/';
+						$uploaddir1 = 'assets/profile/';
+						
 						$profilepic = $uploaddir.$staff_prof_pic;
+						$profilepic1 = $uploaddir1.$staff_prof_pic;
+						
 						move_uploaded_file($_FILES['staff_pic']['tmp_name'], $profilepic);
+						copy($profilepic, $profilepic1);
+
 					}
-					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$status,$staff_prof_pic,$user_id);
+
+					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
 						$this->session->set_flashdata('msg', 'PIA Created Successfully');
 						redirect('admin/view_pia');
