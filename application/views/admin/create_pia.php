@@ -26,7 +26,7 @@
                                         <label class="hrzn-fm">PRN Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" maxlength="15">
+										<input type="text" placeholder="PRN Number" name="unique_number" class="form-control input-sm" maxlength="20">
                                     </div>
 									
 									
@@ -145,8 +145,8 @@
 			rules: {
 				unique_number: {
 						required: true,
-						minlength:13,
-						maxlength: 15,
+						minlength:12,
+						maxlength: 20,
 						alphanumeric:true,
 						remote: {
 							 url: "<?php echo base_url(); ?>admin/check_unique_number",
@@ -183,8 +183,8 @@
 		messages: {
 				unique_number: {
 					required: "Enter PRN number",
-					minlength:"Minimum 13 digits",
-					maxlength:"Maximum 15 digits",
+					minlength:"Minimum 12 digits",
+					maxlength:"Maximum 20 digits",
 					remote: "PRN number already exist!",
 					alphanumeric:"Enter alphanumeric values"
 				 },

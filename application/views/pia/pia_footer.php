@@ -95,7 +95,7 @@
 
 <script type="text/javascript">
 
-	$('#data-table-basic').dataTable({
+$('#data-table-basic').dataTable({
 		"oLanguage": {
 			"sEmptyTable": "No data available"
 		},
@@ -104,9 +104,7 @@
 		"ordering": false,
 		"bAutoWidth": false
 	});
-	
-	
-		
+
 $(document).ready(function () {
 	
 	$('#data-table-export').dataTable({
