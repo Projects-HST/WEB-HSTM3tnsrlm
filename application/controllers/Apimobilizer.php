@@ -56,7 +56,7 @@ class Apimobilizer extends CI_Controller {
 			$profile = $_FILES["user_pic"]["name"];
 			$userFileName = time().'-'.$profile;
 
-			$uploadPicdir = 'assets/staff/profile/';
+			$uploadPicdir = 'assets/profile/';
 
 			$profilepic = $uploadPicdir.$userFileName;
 			move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);

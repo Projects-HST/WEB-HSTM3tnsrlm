@@ -295,7 +295,7 @@ class Apimobilizermodel extends CI_Model {
                   $url='';
 
                 }else{
-                  $url=base_url().'assets/staff/profile/'.$rows->user_pic;
+                  $url=base_url().'assets/profile/'.$rows->user_pic;
                 }
                 $user_profile=array(
                   "id"=>$rows->id,
