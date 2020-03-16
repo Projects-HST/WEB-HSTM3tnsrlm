@@ -1082,12 +1082,12 @@ public function user_profilepic()
 		$profile_id = $this->uri->segment(3);
 		// $profile_id = 11;
 		$profile = $_FILES["user_pic"]["name"];
-		$userFileName = time().'-'.$profile;
+		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+		$userFileName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/profile/';
+		$profilepic = $uploaddir.$userFileName;
+		move_uploaded_file($_FILES['user_pic']['tmp_name'], $userFileName);
 
-		$uploadPicdir = 'assets/profile/';
-
-		$profilepic = $uploadPicdir.$userFileName;
-		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
 		$data['result']=$this->apipiamodel->updateProfilepic($profile_id,$userFileName);
 		$response = $data['result'];
