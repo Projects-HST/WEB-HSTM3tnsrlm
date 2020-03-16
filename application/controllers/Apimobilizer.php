@@ -53,13 +53,11 @@ class Apimobilizer extends CI_Controller {
 	    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 			$user_id = $this->uri->segment(3);
-			$profile = $_FILES["user_pic"]["name"];
-			$userFileName = time().'-'.$profile;
-
-			$uploadPicdir = 'assets/profile/';
-
-			$profilepic = $uploadPicdir.$userFileName;
-			move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
+			$temp = pathinfo($profile, PATHINFO_EXTENSION);
+			$userFileName = round(microtime(true)) . '.' . $temp;
+			$uploaddir = 'assets/profile/';
+			$profilepic = $uploaddir.$userFileName;
+			move_uploaded_file($_FILES['user_pic']['tmp_name'], $userFileName);
 
 			$data['result']=$this->apimobilizermodel->updateProfilepic($user_id,$userFileName,$profilepic);
 			$response = $data['result'];
