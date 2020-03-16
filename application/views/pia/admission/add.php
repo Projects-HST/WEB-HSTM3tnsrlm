@@ -18,8 +18,8 @@
 						<h2>Personal Details</h2>
 					</div>
 							
-					<div class="form-example-int ">
-					  
+					<div class="form-example-int">
+					
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                         <label class="hrzn-fm">Admission Date <span class="error">*</span></label>
@@ -295,8 +295,8 @@
 
 	<div class="row page_row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		
 			<div class="form-example-wrap">
+			
 				<div class="cmp-tb-hd cmp-int-hd">
                     <h2>Educational Details</h2>
                 </div>
@@ -369,11 +369,12 @@
                                     </div>
                            </div>
 				</div>
+				
             </div>
         </div>
 	</div>
 	
-		<div class="row page_row">
+	<div class="row page_row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="form-example-wrap">
 				
@@ -451,9 +452,11 @@
 							</div>
 						</div>
 				</div>
+				
             </div>
         </div>
 	</div>
+	
 	
 	</form>
 </div>
