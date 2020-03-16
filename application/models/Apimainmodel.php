@@ -442,7 +442,7 @@ class Apimainmodel extends CI_Model {
 //#################### Profile Pic Update ####################//
 	public function updateProfilepic($user_id,$userFileName)
 	{
-            $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
+      $update_sql= "UPDATE edu_users SET user_pic='$userFileName', updated_date=NOW() WHERE user_id='$user_id'";
 			$update_result = $this->db->query($update_sql);
 
 			$response = array("status" => "success", "msg" => "Profile Picture Updated","user_picture"=>$userFileName);
@@ -613,7 +613,7 @@ class Apimainmodel extends CI_Model {
       }
       return $response;
     }
-    
+
 //#################### User profile Update  ####################//
 
 //#################### User profile  ####################//
