@@ -7,9 +7,7 @@
 			</div>
 			</div>
 			<?php endif; ?>
-			
 			<form method="post" action="<?php echo base_url(); ?>admission/create" class="form-horizontal" enctype="multipart/form-data" id="admissionform">
-			
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
