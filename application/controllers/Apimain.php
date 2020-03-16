@@ -97,7 +97,7 @@ class Apimain extends CI_Controller {
 		$userFileName = round(microtime(true)) . '.' . $temp;
 		$uploaddir = 'assets/profile/';
 		$profilepic = $uploaddir.$userFileName;
-		move_uploaded_file($_FILES['user_pic']['tmp_name'], $userFileName);
+		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
 		$data['result']=$this->apimainmodel->updateProfilepic($user_id,$userFileName);
 		$response = $data['result'];

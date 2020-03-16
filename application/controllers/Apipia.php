@@ -1086,7 +1086,7 @@ public function user_profilepic()
 		$userFileName = round(microtime(true)) . '.' . $temp;
 		$uploaddir = 'assets/profile/';
 		$profilepic = $uploaddir.$userFileName;
-		move_uploaded_file($_FILES['user_pic']['tmp_name'], $userFileName);
+		move_uploaded_file($_FILES['user_pic']['tmp_name'], $profilepic);
 
 
 		$data['result']=$this->apipiamodel->updateProfilepic($profile_id,$userFileName);
