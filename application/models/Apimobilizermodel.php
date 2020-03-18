@@ -400,20 +400,20 @@ class Apimobilizermodel extends CI_Model {
 
 
 //#################### Add Student ####################//
-	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at)
+	public function addStudent ($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,
+  $transfer_certificate,$status,$created_by,$created_at,$father_mobile,$mother_mobile,$qualification,$qualification_details,$year_of_edu,$year_of_pass,$identification_mark_1,$identification_mark_2,$lang_known,$head_family_name,$head_family_edu,$no_family,$yearly_income)
 	{
 	        $chk_query = "SELECT * from edu_student_prospects WHERE aadhaar_card_number = '$aadhaar_card_number'";
-			$chk_res = $this->db->query($chk_query);
+			    $chk_res = $this->db->query($chk_query);
 
 			 if($chk_res->num_rows()>0){
 			     	$response = array("status" => "error", "msg" => "Already Exist");
 
 			}else{
-			        $student_query = "INSERT INTO edu_student_prospects (pia_id,have_aadhaar_card, aadhaar_card_number, name, sex, dob, age, nationality, religion, community_class, community, father_name, mother_name, mobile, sec_mobile, email, state, city, address, mother_tongue, disability, blood_group, admission_date, admission_location, admission_latitude, admission_longitude, preferred_trade, preferred_timing, last_institute, last_studied, qualified_promotion, transfer_certificate, status, created_by, created_at) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate', '$status', '$created_by', '$created_at')";
-	                $student_res = $this->db->query($student_query);
-                    $admission_id = $this->db->insert_id();
-
-                	if($student_res) {
+			        $student_query = "INSERT INTO edu_student_prospects (pia_id,have_aadhaar_card, aadhaar_card_number, name, sex, dob, age, nationality, religion, community_class, community, father_name, mother_name, mobile, sec_mobile, email, state, city, address, mother_tongue, disability, blood_group, admission_date, admission_location, admission_latitude, admission_longitude, preferred_trade, preferred_timing, last_institute, last_studied, qualified_promotion, transfer_certificate, status, created_by, created_at,father_mobile,mother_mobile,qualification,qualification_details,year_of_edu,year_of_pass,identification_mark_1,identification_mark_2,lang_known,head_family_name,head_family_edu,no_family,yearly_income) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate','$status','$created_by','$created_at','$father_mobile','$mother_mobile','$qualification','$qualification_details','$year_of_edu','$year_of_pass','$identification_mark_1','$identification_mark_2','$lang_known','$head_family_name','$head_family_edu','$no_family','$yearly_income')";
+	             $student_res = $this->db->query($student_query);
+               $admission_id = $this->db->insert_id();
+              if($student_res) {
         			    $response = array("status" => "success", "msg" => "Student Added", "admission_id"=>$admission_id);
         			} else {
         			    $response = array("status" => "error");
@@ -999,6 +999,27 @@ class Apimobilizermodel extends CI_Model {
 			return $response;
 	}
 //#################### Mobilizer Location End ####################//
+
+
+//#################### Upload Documents upload ####################//
+
+    function document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number){
+
+      $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$userFileName','Active',NOW(),'$user_id')";
+      $result = $this->db->query($query);
+			if($result) {
+			    $response = array("status" => "success", "msg" => "Document uploaded");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+
+
+    }
+//#################### Upload Documents upload ####################//
+
+
 
 
 }

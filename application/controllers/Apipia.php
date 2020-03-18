@@ -1457,7 +1457,23 @@ public function user_profilepic()
 		//$created_by = $this->input->post("created_by");
 		//$created_at = $this->input->post("created_at");
 
-		$data['result']=$this->apipiamodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status);
+		
+		$father_mobile=$this->input->post('father_mobile');
+		$mother_mobile=$this->input->post('mother_mobile');
+		$qualification=$this->input->post('qualification');
+		$qualification_details=$this->input->post('qualification_details');
+		$year_of_edu=$this->input->post('year_of_edu');
+		$year_of_pass=$this->input->post('year_of_pass');
+		$identification_mark_1=$this->input->post('identification_mark_1');
+		$identification_mark_2=$this->input->post('identification_mark_2');
+		$lang_known=$this->input->post('lang_known');
+		$head_family_name=$this->input->post('head_family_name');
+		$head_family_edu=$this->input->post('head_family_edu');
+		$no_family=$this->input->post('no_family');
+		$yearly_income=$this->input->post('yearly_income');
+
+		$data['result']=$this->apipiamodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,
+		$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$father_mobile,$mother_mobile,$qualification,$qualification_details,$year_of_edu,$year_of_pass,$identification_mark_1,$identification_mark_2,$lang_known,$head_family_name,$head_family_edu,$no_family,$yearly_income);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
