@@ -1726,6 +1726,91 @@ public function user_profilepic()
 
 //-----------------------------------------------//
 
+
+//-----------------------------------------------//
+
+	public function document_details_upload()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		$user_id = $this->uri->segment(3);
+		$doc_master_id = $this->uri->segment(4);
+		$prospect_id = $this->uri->segment(5);
+		$proof_number = $this->uri->segment(6);
+
+		$profile = $_FILES["upload_document"]["name"];
+		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+		$userFileName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/documents/';
+		$profilepic = $uploaddir.$userFileName;
+		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
+
+		$data['result']=$this->apipiamodel->document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function prospects_document()
+	{
+	   	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "Input";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+	    $user_id = '';
+	    $prospect_id = $this->input->post("prospect_id");
+		$data['result']=$this->apipiamodel->prospects_document($prospect_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function document_details_update()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		$user_id = $this->uri->segment(3);
+		$doc_master_id = $this->uri->segment(4);
+		$prospect_id = $this->uri->segment(5);
+		$proof_number = $this->uri->segment(6);
+		$id = $this->uri->segment(7);
+
+		$profile = $_FILES["upload_document"]["name"];
+		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+		$userFileName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/documents/';
+		$profilepic = $uploaddir.$userFileName;
+		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
+
+		$data['result']=$this->apipiamodel->document_details_update($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number,$id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
 //-----------------------------------------------//
 	public function add_task()
 	{

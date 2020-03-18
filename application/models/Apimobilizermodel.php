@@ -1019,7 +1019,49 @@ class Apimobilizermodel extends CI_Model {
     }
 //#################### Upload Documents upload ####################//
 
+//#################### Update Documents upload ####################//
 
+    function document_details_update($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number,$id){
+
+      $query="UPDATE document_details SET file_name='$userFileName',doc_proof_number='$proof_number',updated_by='$user_id',updated_at=NOW() WHERE prospect_student_id='$prospect_id' AND id='$id'";
+      $result = $this->db->query($query);
+			if($result) {
+			    $response = array("status" => "success", "msg" => "Document Updated");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+
+
+    }
+//#################### Update Documents upload ####################//
+
+
+//#################### Prospects Document  ####################//
+
+function prospects_document($prospect_id){
+  $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id where dd.status='Active'";
+  $result=$this->db->query($query);
+  if($result->num_rows()==0){
+      $response = array("status" => "error", "msg" => "Something Went Wrong");
+  }else{
+    $res=$result->result();
+    foreach($res as $rows){
+      $doc_list[]=array(
+        'id'=>$rows->id,
+        'doc_proof_number'=>$rows->doc_proof_number,
+        'file_name'=> base_url().'assets/documents/'.$rows->file_name,
+        'doc_master_id'=>$rows->doc_master_id,
+        'status'=>$rows->status,
+      );
+    }
+
+    $response = array("status" => "success", "msg" => "Document list","doc_data"=>$doc_list);
+  }
+  return $response;
+}
+//#################### Prospects Document  ####################//
 
 
 }
