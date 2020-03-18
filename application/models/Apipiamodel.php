@@ -289,7 +289,7 @@ class Apipiamodel extends CI_Model {
 //#################### Center banner Update ####################//
 	public function updateCenterBanner($center_id,$bannerName)
 	{
-            $update_sql= "UPDATE edu_center_master SET center_banner='$bannerName' WHERE id='$center_id'";
+      $update_sql= "UPDATE edu_center_master SET center_banner='$bannerName' WHERE id='$center_id'";
 			$update_result = $this->db->query($update_sql);
 
 			if ($this->db->affected_rows() > 0)

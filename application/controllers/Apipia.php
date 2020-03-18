@@ -432,16 +432,16 @@ class Apipia extends CI_Controller {
 
 	public function update_center_banner()
 	{
-        $_POST = json_decode(file_get_contents("php://input"), TRUE);
+    $_POST = json_decode(file_get_contents("php://input"), TRUE);
 
 		$center_id = $this->uri->segment(3);
 		//$center_id = 34;
 		$banner = $_FILES["center_banner"]["name"];
-		$bannerName = time().'-'.$banner;
-
-		$uploadPicdir = 'assets/center/logo/';
-		$bannerpic = $uploadPicdir.$bannerName;
-		move_uploaded_file($_FILES['center_banner']['tmp_name'], $bannerpic);
+		$temp = pathinfo($banner, PATHINFO_EXTENSION);
+		$bannerName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/center/logo/';
+		$profilepic = $uploaddir.$bannerName;
+		move_uploaded_file($_FILES['center_banner']['tmp_name'], $profilepic);
 
 		$data['result']=$this->apipiamodel->updateCenterBanner($center_id,$bannerName);
 		$response = $data['result'];
@@ -457,14 +457,12 @@ class Apipia extends CI_Controller {
         $_POST = json_decode(file_get_contents("php://input"), TRUE);
 		$center_id = $this->uri->segment(3);
 		$pia_id = $this->uri->segment(4);
-		//$center_id = 1;
-		//$pia_id = 2;
 		$photo = $_FILES["center_photo"]["name"];
-		$photoName = time().'-'.$photo;
-
-		$uploadPicdir = 'assets/center/gallery/';
-		$photopic = $uploadPicdir.$photoName;
-		move_uploaded_file($_FILES['center_photo']['tmp_name'], $photopic);
+		$temp = pathinfo($photo, PATHINFO_EXTENSION);
+		$photoName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/center/gallery/';
+		$profilepic = $uploaddir.$photoName;
+		move_uploaded_file($_FILES['center_photo']['tmp_name'], $profilepic);
 
 		$data['result']=$this->apipiamodel->addCenterPhotos($center_id,$pia_id,$photoName);
 		$response = $data['result'];
