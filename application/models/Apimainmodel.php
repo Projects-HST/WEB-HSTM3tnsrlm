@@ -1095,5 +1095,26 @@ class Apimainmodel extends CI_Model {
  //#################### Pia Graph Details ####################//
 
 
+
+
+//#################### Document master list ####################//
+ function document_master_list($user_id){
+   $query="SELECT id,doc_name,doc_type,status FROM document_master WHERE status='Active'";
+   $result=$this->db->query($query);
+   if($result->num_rows()==0){
+       $response = array("status" => "error", "msg" => "Something Went Wrong");
+   }else{
+     $res=$result->result();
+     $response = array("status" => "success", "msg" => "Document list","doc_data"=>$res);
+   }
+   return $response;
+ }
+ //#################### Document master list ####################//
+
+
+
+
+
+
 }
 ?>

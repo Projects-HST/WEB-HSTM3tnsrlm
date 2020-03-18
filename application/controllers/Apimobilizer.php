@@ -351,7 +351,26 @@ class Apimobilizer extends CI_Controller {
 		$created_by = $this->input->post("created_by");
 		$created_at = $this->input->post("created_at");
 
-		$data['result']=$this->apimobilizermodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at);
+
+
+		$father_mobile=$this->input->post('father_mobile');
+		$mother_mobile=$this->input->post('mother_mobile');
+		$qualification=$this->input->post('qualification');
+		$qualification_details=$this->input->post('qualification_details');
+		$year_of_edu=$this->input->post('year_of_edu');
+		$year_of_pass=$this->input->post('year_of_pass');
+		$identification_mark_1=$this->input->post('identification_mark_1');
+		$identification_mark_2=$this->input->post('identification_mark_2');
+		$lang_known=$this->input->post('lang_known');
+		$head_family_name=$this->input->post('head_family_name');
+		$head_family_edu=$this->input->post('head_family_edu');
+		$no_family=$this->input->post('no_family');
+		$yearly_income=$this->input->post('yearly_income');
+		$jobcard_type=$this->input->post('jobcard_type');
+
+
+		$data['result']=$this->apimobilizermodel->addStudent($pia_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,
+		$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$created_by,$created_at,$father_mobile,$mother_mobile,$qualification,$qualification_details,$year_of_edu,$year_of_pass,$identification_mark_1,$identification_mark_2,$lang_known,$head_family_name,$head_family_edu,$no_family,$yearly_income,$jobcard_type);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -578,12 +597,59 @@ class Apimobilizer extends CI_Controller {
 		$updated_at = $this->input->post("updated_at");
 
 
-		$data['result']=$this->apimobilizermodel->updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at);
+		$father_mobile=$this->input->post('father_mobile');
+		$mother_mobile=$this->input->post('mother_mobile');
+		$qualification=$this->input->post('qualification');
+		$qualification_details=$this->input->post('qualification_details');
+		$year_of_edu=$this->input->post('year_of_edu');
+		$year_of_pass=$this->input->post('year_of_pass');
+		$identification_mark_1=$this->input->post('identification_mark_1');
+		$identification_mark_2=$this->input->post('identification_mark_2');
+		$lang_known=$this->input->post('lang_known');
+		$head_family_name=$this->input->post('head_family_name');
+		$head_family_edu=$this->input->post('head_family_edu');
+		$no_family=$this->input->post('no_family');
+		$yearly_income=$this->input->post('yearly_income');
+		$jobcard_type=$this->input->post('jobcard_type');
+
+
+		$data['result']=$this->apimobilizermodel->updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at,$father_mobile,$mother_mobile,$qualification,$qualification_details,$year_of_edu,$year_of_pass,$identification_mark_1,$identification_mark_2,$lang_known,$head_family_name,$head_family_edu,$no_family,$yearly_income,$jobcard_type);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
 
 
+//-----------------------------------------------//
+	//-----------------------------------------------//
+
+		public function prospects_document()
+		{
+		   	$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			if(!$this->checkMethod())
+			{
+				return FALSE;
+			}
+
+			if($_POST == FALSE)
+			{
+				$res = array();
+				$res["opn"] = "Input";
+				$res["scode"] = 204;
+				$res["message"] = "Input error";
+
+				echo json_encode($res);
+				return;
+			}
+
+		    $user_id = '';
+		    $prospect_id = $this->input->post("prospect_id");
+			$data['result']=$this->apimobilizermodel->prospects_document($prospect_id);
+			$response = $data['result'];
+			echo json_encode($response);
+		}
+
+	//-----------------------------------------------//
 //-----------------------------------------------//
 
 	public function view_centerdetails()
@@ -1079,5 +1145,61 @@ class Apimobilizer extends CI_Controller {
 	}
 
 //-----------------------------------------------//
+
+
+
+//-----------------------------------------------//
+
+	public function document_details_upload()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		$user_id = $this->uri->segment(3);
+		$doc_master_id = $this->uri->segment(4);
+		$prospect_id = $this->uri->segment(5);
+		$proof_number = $this->uri->segment(6);
+
+		$profile = $_FILES["upload_document"]["name"];
+		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+		$userFileName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/documents/';
+		$profilepic = $uploaddir.$userFileName;
+		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
+
+		$data['result']=$this->apimobilizermodel->document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function document_details_update()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		$user_id = $this->uri->segment(3);
+		$doc_master_id = $this->uri->segment(4);
+		$prospect_id = $this->uri->segment(5);
+		$proof_number = $this->uri->segment(6);
+		$id = $this->uri->segment(7);
+
+		$profile = $_FILES["upload_document"]["name"];
+		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+		$userFileName = round(microtime(true)) . '.' . $temp;
+		$uploaddir = 'assets/documents/';
+		$profilepic = $uploaddir.$userFileName;
+		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
+
+		$data['result']=$this->apimobilizermodel->document_details_update($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number,$id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+
 
 }
