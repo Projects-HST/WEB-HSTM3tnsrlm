@@ -134,15 +134,22 @@ $(document).ready(function () {
         autoclose: true
     });
 	
-		$('.from_date').datepicker({
+	$('.from_date').datepicker({
         format: "dd-mm-yyyy",
         autoclose: true
     });
 	
-		$('.to_date').datepicker({
-        format: "dd-mm-yyyy",
+	$('.to_date').datepicker({
+		format: "dd-mm-yyyy",
         autoclose: true
     });
+	
+	$('.date-own').datepicker({
+		minViewMode: 2,
+		format: 'yyyy',
+		endDate: new Date(),
+		autoclose: true
+       });
 	
 });
 
