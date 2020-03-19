@@ -1131,7 +1131,7 @@ class Apimobilizer extends CI_Controller {
 		$location_datetime  = '';
 
 		$user_id = $this->input->post("user_id");
-		$pia_id = $this->input->post("$pia_id");
+		$pia_id = $this->input->post("pia_id");
 		$latitude = $this->input->post("latitude");
 		$longitude  = $this->input->post("longitude");
 		$location = $this->input->post("location");
@@ -1140,6 +1140,53 @@ class Apimobilizer extends CI_Controller {
 
 
 		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function start_and_stop_tracking()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+
+			$res = array();
+			$res["opn"] = " Mobilizer Location";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+		$user_id = '';
+		$pia_id = '';
+		$latitude  = '';
+		$longitude = '';
+		$location = '';
+		$miles = '';
+		$location_datetime  = '';
+
+		$user_id = $this->input->post("user_id");
+		$pia_id = $this->input->post("pia_id");
+		$latitude = $this->input->post("latitude");
+		$longitude  = $this->input->post("longitude");
+		$location = $this->input->post("location");
+		$miles = $this->input->post("miles");
+		$location_datetime = $this->input->post("location_datetime");
+		$tracking_status= $this->input->post("tracking_status");
+
+		$data['result']=$this->apimobilizermodel->start_and_stop_tracking($user_id,$tracking_status,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}

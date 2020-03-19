@@ -1016,6 +1016,37 @@ class Apimobilizermodel extends CI_Model {
 //#################### Mobilizer Location End ####################//
 
 
+//#################### Add Mobilizer Location ####################//
+	public function start_and_stop_tracking($user_id,$tracking_status,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id)
+	{
+            $dt = strtotime($location_datetime); //make timestamp with datetime string
+            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created
+
+	       $user_query = "SELECT * FROM edu_tracking_details WHERE user_id = '$user_id' AND date(created_at) = '$chk_date' ORDER BY id DESC LIMIT 1";
+           $user_result = $this->db->query($user_query);
+           $user_res = $user_result->result();
+
+        	    if($user_result->num_rows()>0){
+        		   foreach($user_res as $rows){
+						$to_latitude = $rows->to_lat;
+						$to_longitude = $rows->to_long;
+					}
+
+        	        $location_query = "INSERT INTO edu_tracking_details (user_id,tracking_status,user_lat,user_long,user_location,to_lat,to_long,miles,created_at,pia_id) VALUES ('$user_id','$tracking_status','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        	        $response = array("status" => "Sucess", "msg" => "Location Added");
+        		} else {
+
+        		    $location_query = "INSERT INTO edu_tracking_details (user_id,tracking_status,user_lat,user_long,user_location,to_lat,to_long,miles,created_at,pia_id) VALUES ('$user_id','$tracking_status','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        		    $response = array("status" => "Sucess", "msg" => "Location Added");
+        		}
+
+			return $response;
+	}
+//#################### Mobilizer Location End ####################//
+
+
 //#################### Upload Documents upload ####################//
 
     function document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number){
