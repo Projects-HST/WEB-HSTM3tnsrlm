@@ -566,6 +566,21 @@ class Apimobilizermodel extends CI_Model {
             "created_at"=>$rows_student->created_at,
             "updated_by"=>$rows_student->updated_by,
             "updated_at"=>$rows_student->updated_at,
+
+            "father_mobile"=>$rows_student->father_mobile,
+            "mother_mobile"=>$rows_student->mother_mobile,
+            "lang_known"=>$rows_student->lang_known,
+            "identification_mark_1"=>$rows_student->identification_mark_1,
+            "identification_mark_2"=>$rows_student->identification_mark_2,
+            "head_family_name"=>$rows_student->head_family_name,
+            "head_family_edu"=>$rows_student->head_family_edu,
+            "no_family"=>$rows_student->no_family,
+            "yearly_income"=>$rows_student->yearly_income,
+            "qualification"=>$rows_student->qualification,
+            "qualification_details"=>$rows_student->qualification_details,
+            "year_of_edu"=>$rows_student->year_of_edu,
+            "year_of_pass"=>$rows_student->year_of_pass,
+            "jobcard_type"=>$rows_student->jobcard_type,
           );
 				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$response_student_list);
 			}
