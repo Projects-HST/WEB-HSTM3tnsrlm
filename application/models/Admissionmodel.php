@@ -136,22 +136,93 @@ Class Admissionmodel extends CI_Model
          }
        }
 
-       function update_details($admission_id,$had_aadhar_card,$aadhar_card_num,$admission_location,$admission_date,$name,$fname,$mname,$sex,$dob_date,$age,$nationality,$religion,$community_class,$community,$mother_tongue,$course,$mobile,$sec_mobile,$email,$userFileName,$institute_name,$last_studied,$qual,$tran_cert,$address,$disability,$city,$state,$blood_group,$status,$user_id,$prefer_time)
+     function update_details($admission_id,$had_aadhar_card,$aadhar_card_num,$admission_location,$admission_date,$name,$sex,$fname,$mname,$dob_date,$age,$mobile,$sec_mobile,$email,$father_mobile,$mother_mobile,$head_family,$head_education,$yearly_income,$no_family,$languages,$address,$city,$state,$nationality,$religion,$mother_tongue,$community,$community_class,$identification_marks1,$identification_marks2,$blood_group,$prefer_trade,$disability,$qualification,$qualification_details,$promotion_status,$year_education,$year_passing,$institute_name,$edu_doc_type,$job_type,$userPicName,$status,$user_id)
        {
-        $id=base64_decode($admission_id)/98765;
-         $query="UPDATE edu_student_prospects SET have_aadhaar_card='$had_aadhar_card',aadhaar_card_number='$aadhar_card_num',name='$name',sex='$sex',dob='$dob_date',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',father_name='$fname',mother_name='$mname',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',       state='$state',city='$city',address='$address',mother_tongue='$mother_tongue',disability='$disability',student_pic='$userFileName',blood_group='$blood_group',admission_date='$admission_date',admission_location='$admission_location',preferred_trade='$course',preferred_timing='$prefer_time',last_institute='$institute_name',last_studied='$last_studied',qualified_promotion='$qual',transfer_certificate='$tran_cert',status='$status',       updated_by='$user_id',updated_at=NOW() WHERE id='$id'";
-
-
-       $res=$this->db->query($query);
-         if($res){
-         $data= array("status" => "success");
-         return $data;
-       }else{
-         $data= array("status" => "Failed to Update");
-         return $data;
+			$id=base64_decode($admission_id)/98765;	
+			
+			if ($disability == 0){
+				$sQuery = "SELECT * FROM `document_details` WHERE `prospect_student_id` = '$id' AND `doc_master_id` = '7'";
+				$doc_result = $this->db->query($sQuery);
+				if($doc_result->num_rows()>0)
+					{
+						foreach ($doc_result->result() as $rows)
+						{
+							$doc_id = $rows->id;
+							$doc_file_name = $rows->file_name;
+							
+							$query = "DELETE FROM `document_details` WHERE `id` = '$doc_id'";
+							$resultset = $this->db->query($query);
+							
+							$uploaddir = 'assets/documents/'.$doc_file_name;
+							unlink($uploaddir);
+							
+						}
+					}
+			}
+			if ($community_class=='BC' || $community_class=='MBC' || $community_class=='OC'){
+				$sQuery = "SELECT * FROM `document_details` WHERE `prospect_student_id` = '$id' AND `doc_master_id` = '3'";
+				$doc_result = $this->db->query($sQuery);
+				if($doc_result->num_rows()>0)
+					{
+						foreach ($doc_result->result() as $rows)
+						{
+							$doc_id = $rows->id;
+							$doc_file_name = $rows->file_name;
+							
+							$query = "DELETE FROM `document_details` WHERE `id` = '$doc_id'";
+							$resultset = $this->db->query($query);
+							
+							$uploaddir = 'assets/documents/'.$doc_file_name;
+							unlink($uploaddir);
+							
+						}
+					}
+			}
+			
+			
+			
+			$query="UPDATE edu_student_prospects SET admission_date='$admission_date',admission_location='$admission_location',have_aadhaar_card='$had_aadhar_card',aadhaar_card_number='$aadhar_card_num',name='$name',sex='$sex',dob='$dob_date',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',state='$state',city='$city',address='$address',father_name='$fname',father_mobile='$father_mobile',mother_name='$mname',mother_mobile='$mother_mobile',mother_tongue='$mother_tongue',lang_known='$languages',disability='$disability',blood_group='$blood_group',identification_mark_1='$identification_marks1', identification_mark_2='$identification_marks2',head_family_name='$head_family',head_family_edu='$head_education',no_family='$no_family',yearly_income='$yearly_income',preferred_trade='$prefer_trade',qualification='$qualification',qualification_details='$qualification_details',year_of_edu='$year_education',year_of_pass='$year_passing',qualified_promotion='$promotion_status',last_institute='$institute_name',edu_certificate='$edu_doc_type',student_pic='$userPicName',jobcard_type='$job_type',status='$status',updated_by='$user_id',updated_at=NOW() WHERE id='$id'";
+		   $res=$this->db->query($query);
+		if($res){
+				$data= array("status" => "success");
+				return $data;
+		   }else{
+				$data= array("status" => "Failed to Update");
+				return $data;
+		   }
        }
+		function check_doc_exist($admission_id,$doc_master_id,$doc_Name,$user_id)
+		{
+			$id = base64_decode($admission_id)/98765;
+		
+			$sQuery = "SELECT * FROM `document_details` WHERE `prospect_student_id` = '$id' AND `doc_master_id` = '$doc_master_id'";
+			$doc_result = $this->db->query($sQuery);
+			if($doc_result->num_rows()>0)
+			{
+				foreach ($doc_result->result() as $rows)
+				{
+					$doc_id = $rows->id;
+					$doc_file_name = $rows->file_name;
+					
+					$query = "DELETE FROM `document_details` WHERE `id` = '$doc_id'";
+					$resultset = $this->db->query($query);
+					
+					$uploaddir = 'assets/documents/'.$doc_file_name;
+					unlink($uploaddir);
 
-       }
+					 $sQuery = "INSERT INTO `document_details` (`prospect_student_id`, `doc_master_id`, `file_name`, `status`, `created_at`, `created_by`) VALUES ('$id', '$doc_master_id', '$doc_Name', 'Active', NOW(),'$user_id')";
+					$resultset=$this->db->query($sQuery);
+				
+					
+				}
+			} else {
+					 $sQuery = "INSERT INTO `document_details` (`prospect_student_id`, `doc_master_id`, `file_name`, `status`, `created_at`, `created_by`) VALUES ('$id', '$doc_master_id', '$doc_Name', 'Active', NOW(),'$user_id')";
+					$resultset=$this->db->query($sQuery);
+		
+			}
+			
+		}
+
 
 	function getData($email)
 	{

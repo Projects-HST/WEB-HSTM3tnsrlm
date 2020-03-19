@@ -1,9 +1,49 @@
-<?php foreach($res as $rows){
+<?php 
+foreach($res as $rows){
 	$old_disability = $rows->disability;
 	$old_community_class = $rows->community_class ;
 	$old_edu_certificate = $rows->edu_certificate ;
 	$old_jobcard_type = $rows->jobcard_type ;
-} ?>
+} 
+
+	$old_aadhar_doc = "";
+	$old_edu_doc = "";
+	$old_community_doc = "";
+	$old_ration_doc = "";
+	$old_voter_doc = "";
+	$old_job_doc = "";
+	$old_disability_doc = "";
+	$old_bank_doc = "";
+
+foreach($doc as $row){
+	$doc_master_id = $row->doc_master_id;
+	
+	if ($doc_master_id == '1'){
+		$old_aadhar_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '2'){
+		$old_edu_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '3'){
+		$old_community_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '4'){
+		$old_ration_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '5'){
+		$old_voter_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '6'){
+		$old_job_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '7'){
+		$old_disability_doc = $row->file_name ;
+	}
+	if ($doc_master_id == '8'){
+		$old_bank_doc = $row->file_name ;
+	}
+} 
+?>
 	<div class="container">
 			<?php if($this->session->flashdata('msg')): ?>
 			<div class="row page_row">
@@ -106,14 +146,14 @@
 									<label class="hrzn-fm">Date of Birth <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<input type="text" name="dob" class="form-control dob input-sm" placeholder="Date of Birth" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>"/>
+									<input type="text" name="dob" class="form-control dob input-sm" id="dob" placeholder="Date of Birth" value="<?php $date=date_create($rows->dob);echo date_format($date,"d-m-Y");  ?>" />
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 									<label class="hrzn-fm">Age <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<input type="text" name="age" class="form-control input-sm" id="age" placeholder="Age" readonly="true" value="<?php echo $rows->age ; ?>" />
+									<input type="text" name="age" class="form-control input-sm" id="age" placeholder="Age" readonly="true" value="<?php echo $rows->age; ?>" />
 								</div>
 							</div>
 							
@@ -509,7 +549,7 @@
 				<div class="form-example-int">
 						<div class="row page_row">
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Ration Card <span class="error">*</span></label>
+								<label class="hrzn-fm">Ration Card</label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="file" class="form-control" name="rationcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -541,7 +581,7 @@
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Document  <span class="error">*</span></label>
+									<label class="hrzn-fm">Select Document</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="file" class="form-control" name="jobcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -556,7 +596,7 @@
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Status <span class="error">*</span></label>
+								<label class="hrzn-fm">Status</label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<select name="status" class="form-control" id="status">
@@ -569,7 +609,18 @@
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-								   <button class="btn btn-success notika-btn-success waves-effect">Submit</button>
+							<input type="hidden" name="aadhar_old" class="form-control " placeholder=" " value="<?php echo $rows->aadhaar_card_number; ?>"/>
+							<input type="hidden" name="user_pic_old" class="form-control " placeholder=" " value="<?php echo $rows->student_pic; ?>"/>
+							 <input type="hidden" name="admission_id" class="form-control" placeholder="" value="<?php echo base64_encode($rows->id*98765); ?>"/>
+							<input type="hidden" name="old_aadhar_doc" value="<?php echo $old_aadhar_doc; ?>">
+							<input type="hidden" name="old_edu_doc" value="<?php echo $old_edu_doc; ?>">
+							<input type="hidden" name="old_community_doc" value="<?php echo $old_community_doc; ?>">
+							<input type="hidden" name="old_ration_doc" value="<?php echo $old_ration_doc; ?>">
+							<input type="hidden" name="old_voter_doc" value="<?php echo $old_voter_doc; ?>">
+							<input type="hidden" name="old_job_doc" value="<?php echo $old_job_doc; ?>">
+							<input type="hidden" name="old_disability_doc" value="<?php echo $old_disability_doc; ?>">
+							<input type="hidden" name="old_bank_doc" value="<?php echo $old_bank_doc; ?>">
+								<button class="btn btn-success notika-btn-success waves-effect">UPDATE</button>
 							</div>
 							<div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
 							</div>
@@ -644,17 +695,17 @@ Disability.change(function () {
 
 $('#admissionform').validate({ // initialize the plugin
    rules: {
-      aadhar_card_num:{
+       aadhar_card_num:{
        required:false,
        maxlength: 12,
        minlength:12,
        number:true,
        remote: {
-              url: "<?php echo base_url(); ?>admission/check_aadhar_exist",
+              url: "<?php echo base_url(); ?>admission/check_aadhar_exist_already/<?php echo base64_encode($rows->id*98765); ?>",
               type: "post"
            }
           },
-	 aadhar_card_doc:{required:true,accept: "pdf",filesize: 2097152},
+	 aadhar_card_doc:{required:false,accept: "pdf",filesize: 2097152},
      admission_location:{required:true },
      admission_date:{required:true },
      name:{required:true },
@@ -662,8 +713,8 @@ $('#admissionform').validate({ // initialize the plugin
 	 mname:{required:true},
      sex:{required:true },
      dob:{required:true },
-     email:{required:true,email:true, remote: {
-               url: "<?php echo base_url(); ?>admission/check_email_exist",
+     email:{required:true,email:true,   remote: {
+               url: "<?php echo base_url(); ?>admission/check_email_exist_already/<?php echo base64_encode($rows->id*98765); ?>",
                type: "post"
             }
            },
@@ -673,17 +724,19 @@ $('#admissionform').validate({ // initialize the plugin
      community_class:{required:true },
      community:{required:true },
      blood_group:{required:true },
-	 pref_trader:{required:true },
+	 prefer_trade:{required:true },
      address:{required:true },
      city:{required:true },
      state:{required:true },
      course:{required:true },
      mother_tongue:{required:true},
-     mobile:{required:true,
-		   maxlength: 10,
-		   minlength:10,
-		   number:true,remote: {
-                 url: "<?php echo base_url(); ?>admission/check_mobile",
+      mobile:{
+		required:true,
+		maxlength: 10,
+		minlength:10,
+		number:true,
+		remote: {
+                 url: "<?php echo base_url(); ?>admission/check_mobile_already/<?php echo base64_encode($rows->id*98765); ?>",
                  type: "post"
               }
      },
@@ -702,14 +755,26 @@ $('#admissionform').validate({ // initialize the plugin
 	 yearly_income:{
 		   required:false,
 		   number:true
-     },
-	 community_doc : {required:true,accept: "pdf",filesize: 2097152},
-	 student_pic:{required:true,accept: "jpg,jpeg,png",filesize: 1048576},
-	 rationcard_doc : {required:true,accept: "pdf",filesize: 2097152},
-	 edu_doc : {required:true,accept: "pdf",filesize: 2097152},
-	 disability_doc : {required:true,accept: "pdf",filesize: 2097152},
+     }, 
+	 <?php if ($old_community_doc!=""){ ?>
+		community_doc : {required:false,accept: "pdf",filesize: 2097152},
+	 <?php } else { ?>
+		community_doc : {required:true,accept: "pdf",filesize: 2097152},
+	 <?php }  ?>
+	 student_pic:{required:false,accept: "jpg,jpeg,png",filesize: 1048576},
+	 rationcard_doc : {required:false,accept: "pdf",filesize: 2097152},
+	 edu_doc : {required:false,accept: "pdf",filesize: 2097152},
+	 
+	  <?php if ($old_disability_doc!=""){ ?>
+		disability_doc : {required:false,accept: "pdf",filesize: 2097152},
+	 <?php } else { ?>
+		disability_doc : {required:true,accept: "pdf",filesize: 2097152},
+	 <?php }  ?>
+	
+	 
+	 
 	 voterid_doc : {required:false,accept: "pdf",filesize: 2097152},
-	 jobcard_doc : {required:true,accept: "pdf",filesize: 2097152},
+	 jobcard_doc : {required:false,accept: "pdf",filesize: 2097152},
 	 bankac_doc : {required:false,accept: "pdf",filesize: 2097152}
      },
  messages: {
@@ -744,7 +809,7 @@ $('#admissionform').validate({ // initialize the plugin
      community:"Enter Caste",
      community_class:"Select Community",
      blood_group:"Select Blood Group",
-	 pref_trader:"Select Preferred Trade",
+	 prefer_trade:"Select Preferred Trade",
     /*  prefer_time:"Select Preferred Time", */
      city:"Enter City Name",
      state:"Enter State Name",
@@ -776,27 +841,36 @@ $('#admissionform').validate({ // initialize the plugin
           number:"Enter Only Numbers"
       },
 	student_pic:{
-		  required:"Select Student's Picture",
+		  required:"",
 		  accept:"Please upload .jpg or .png .",
 		  filesize:"File must be JPG or PNG, less than 1MB"
 		},
 	rationcard_doc:{
-		  required:"Select Ration Card",
+		  required:"",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	edu_doc:{
-		  required:"Select Educational Documents",
+		  required:"",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	community_doc:{
-		  required:"Select Community Certificate",
+			<?php if ($old_community_doc!=""){ ?>
+				 required:"",
+			<?php } else { ?>
+				 required:"Select Community Certificate",
+			<?php }  ?>
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	disability_doc:{
-		  required:"Select Differently-abled National ID Card",
+	<?php if ($old_disability_doc!=""){ ?>
+		required:"",
+	 <?php } else { ?>
+		required:"Select Differently-abled National ID Card",
+	 <?php }  ?>
+		  
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
@@ -806,7 +880,7 @@ $('#admissionform').validate({ // initialize the plugin
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	jobcard_doc:{
-		  required:"Select Job Card",
+		  required:"",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
