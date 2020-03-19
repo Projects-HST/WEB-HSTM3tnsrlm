@@ -410,7 +410,7 @@ class Apimobilizermodel extends CI_Model {
 			     	$response = array("status" => "error", "msg" => "Already Exist");
 
 			}else{
-			        $student_query = "INSERT INTO edu_student_prospects (pia_id,have_aadhaar_card, aadhaar_card_number, name, sex, dob, age, nationality, religion, community_class, community, father_name, mother_name, mobile, sec_mobile, email, state, city, address, mother_tongue, disability, blood_group, admission_date, admission_location, admission_latitude, admission_longitude, preferred_trade, preferred_timing, last_institute, last_studied, qualified_promotion, transfer_certificate, status, created_by, created_at,father_mobile,mother_mobile,qualification,qualification_details,year_of_edu,year_of_pass,identification_mark_1,identification_mark_2,lang_known,head_family_name,head_family_edu,no_family,yearly_income,jobcard_type) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate','$status','$created_by','$created_at','$father_mobile','$mother_mobile','$qualification','$qualification_details','$year_of_edu','$year_of_pass','$identification_mark_1','$identification_mark_2','$lang_known','$head_family_name','$head_family_edu','$no_family','$yearly_income','$jobcard_type')";
+			        $student_query = "INSERT INTO edu_student_prospects (pia_id,have_aadhaar_card, aadhaar_card_number, name, sex, dob, age, nationality, religion, community_class, community, father_name, mother_name, mobile, sec_mobile, email, state, city, address, mother_tongue, disability, blood_group, admission_date, admission_location, admission_latitude, admission_longitude, preferred_trade, preferred_timing, last_institute, last_studied, qualified_promotion, edu_certificate, status, created_by, created_at,father_mobile,mother_mobile,qualification,qualification_details,year_of_edu,year_of_pass,identification_mark_1,identification_mark_2,lang_known,head_family_name,head_family_edu,no_family,yearly_income,jobcard_type) VALUES ('$pia_id','$have_aadhaar_card', '$aadhaar_card_number', '$name', '$sex', '$dob', '$age', '$nationality', '$religion', '$community_class', '$community', '$father_name', '$mother_name', '$mobile', '$sec_mobile', '$email', '$state', '$city', '$address', '$mother_tongue', '$disability', '$blood_group', '$admission_date', '$admission_location', '$admission_latitude', '$admission_longitude', '$preferred_trade', '$preferred_timing', '$last_institute', '$last_studied', '$qualified_promotion', '$transfer_certificate','$status','$created_by','$created_at','$father_mobile','$mother_mobile','$qualification','$qualification_details','$year_of_edu','$year_of_pass','$identification_mark_1','$identification_mark_2','$lang_known','$head_family_name','$head_family_edu','$no_family','$yearly_income','$jobcard_type')";
 	             $student_res = $this->db->query($student_query);
                $admission_id = $this->db->insert_id();
               if($student_res) {
@@ -559,13 +559,28 @@ class Apimobilizermodel extends CI_Model {
             "last_institute"=>$rows_student->last_institute,
             "last_studied"=>$rows_student->last_studied,
             "qualified_promotion"=>$rows_student->qualified_promotion,
-            "transfer_certificate"=>$rows_student->transfer_certificate,
+            "transfer_certificate"=>$rows_student->edu_certificate,
             "enrollment"=>$rows_student->enrollment,
             "status"=>$rows_student->status,
             "created_by"=>$rows_student->created_by,
             "created_at"=>$rows_student->created_at,
             "updated_by"=>$rows_student->updated_by,
             "updated_at"=>$rows_student->updated_at,
+
+            "father_mobile"=>$rows_student->father_mobile,
+            "mother_mobile"=>$rows_student->mother_mobile,
+            "lang_known"=>$rows_student->lang_known,
+            "identification_mark_1"=>$rows_student->identification_mark_1,
+            "identification_mark_2"=>$rows_student->identification_mark_2,
+            "head_family_name"=>$rows_student->head_family_name,
+            "head_family_edu"=>$rows_student->head_family_edu,
+            "no_family"=>$rows_student->no_family,
+            "yearly_income"=>$rows_student->yearly_income,
+            "qualification"=>$rows_student->qualification,
+            "qualification_details"=>$rows_student->qualification_details,
+            "year_of_edu"=>$rows_student->year_of_edu,
+            "year_of_pass"=>$rows_student->year_of_pass,
+            "jobcard_type"=>$rows_student->jobcard_type,
           );
 				$response = array("status" => "success", "msg" => "View Events", "studentDetails"=>$response_student_list);
 			}
@@ -577,7 +592,7 @@ class Apimobilizermodel extends CI_Model {
 //#################### Update Student ####################//
 	public function updateStudent($admission_id,$have_aadhaar_card,$aadhaar_card_number,$name,$sex,$dob,$age,$nationality,$religion,$community_class,$community,$father_name,$mother_name,$mobile,$sec_mobile,$email,$state,$city,$address,$mother_tongue,$disability,$blood_group,$admission_date,$admission_location,$admission_latitude,$admission_longitude,$preferred_trade,$preferred_timing,$last_institute,$last_studied,$qualified_promotion,$transfer_certificate,$status,$updated_by,$updated_at,$father_mobile,$mother_mobile,$qualification,$qualification_details,$year_of_edu,$year_of_pass,$identification_mark_1,$identification_mark_2,$lang_known,$head_family_name,$head_family_edu,$no_family,$yearly_income,$jobcard_type)
 	{
-		 	$student_query = "UPDATE edu_student_prospects SET have_aadhaar_card='$have_aadhaar_card',aadhaar_card_number='$aadhaar_card_number',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',father_name='$father_name',mother_name='$mother_name',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',state='$state',city='$city',address='$address',mother_tongue='$mother_tongue',disability='$disability',blood_group='$blood_group',admission_date='$admission_date',admission_location='$admission_location',admission_latitude='$admission_latitude',admission_longitude='$admission_longitude',preferred_trade='$preferred_trade',preferred_timing='$preferred_timing',last_institute='$last_institute',last_studied='$last_studied',qualified_promotion='$qualified_promotion',transfer_certificate='$transfer_certificate',status='$status',updated_by='$updated_by',updated_at='$updated_at',father_mobile='$father_mobile',mother_mobile='$mother_mobile',qualification='$qualification',qualification_details='$qualification_details',year_of_edu='$year_of_edu',year_of_pass='$year_of_pass',identification_mark_1='$identification_mark_1',identification_mark_2='$identification_mark_2',lang_known='$lang_known',head_family_name='$head_family_name',head_family_edu='$head_family_edu',no_family='$no_family',yearly_income='$yearly_income',jobcard_type='$jobcard_type' WHERE id ='$admission_id'";
+		 	$student_query = "UPDATE edu_student_prospects SET have_aadhaar_card='$have_aadhaar_card',aadhaar_card_number='$aadhaar_card_number',name='$name',sex='$sex',dob='$dob',age='$age',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',father_name='$father_name',mother_name='$mother_name',mobile='$mobile',sec_mobile='$sec_mobile',email='$email',state='$state',city='$city',address='$address',mother_tongue='$mother_tongue',disability='$disability',blood_group='$blood_group',admission_date='$admission_date',admission_location='$admission_location',admission_latitude='$admission_latitude',admission_longitude='$admission_longitude',preferred_trade='$preferred_trade',preferred_timing='$preferred_timing',last_institute='$last_institute',last_studied='$last_studied',qualified_promotion='$qualified_promotion',edu_certificate='$transfer_certificate',status='$status',updated_by='$updated_by',updated_at='$updated_at',father_mobile='$father_mobile',mother_mobile='$mother_mobile',qualification='$qualification',qualification_details='$qualification_details',year_of_edu='$year_of_edu',year_of_pass='$year_of_pass',identification_mark_1='$identification_mark_1',identification_mark_2='$identification_mark_2',lang_known='$lang_known',head_family_name='$head_family_name',head_family_edu='$head_family_edu',no_family='$no_family',yearly_income='$yearly_income',jobcard_type='$jobcard_type' WHERE id ='$admission_id'";
 			$student_res = $this->db->query($student_query);
 
 			if($student_res) {
@@ -992,6 +1007,37 @@ class Apimobilizermodel extends CI_Model {
         		} else {
 
         		    $location_query = "INSERT INTO edu_tracking_details (user_id,user_lat,user_long,user_location,to_lat,to_long,miles,created_at,pia_id) VALUES ('$user_id','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        		    $response = array("status" => "Sucess", "msg" => "Location Added");
+        		}
+
+			return $response;
+	}
+//#################### Mobilizer Location End ####################//
+
+
+//#################### Add Mobilizer Location ####################//
+	public function start_and_stop_tracking($user_id,$tracking_status,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id)
+	{
+            $dt = strtotime($location_datetime); //make timestamp with datetime string
+            $chk_date = date("Y-m-d", $dt); //echo the year of the datestamp just created
+
+	       $user_query = "SELECT * FROM edu_tracking_details WHERE user_id = '$user_id' AND date(created_at) = '$chk_date' ORDER BY id DESC LIMIT 1";
+           $user_result = $this->db->query($user_query);
+           $user_res = $user_result->result();
+
+        	    if($user_result->num_rows()>0){
+        		   foreach($user_res as $rows){
+						$to_latitude = $rows->to_lat;
+						$to_longitude = $rows->to_long;
+					}
+
+        	        $location_query = "INSERT INTO edu_tracking_details (user_id,tracking_status,user_lat,user_long,user_location,to_lat,to_long,miles,created_at,pia_id) VALUES ('$user_id','$tracking_status','$to_latitude','$to_longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
+	                $location_res = $this->db->query($location_query);
+        	        $response = array("status" => "Sucess", "msg" => "Location Added");
+        		} else {
+
+        		    $location_query = "INSERT INTO edu_tracking_details (user_id,tracking_status,user_lat,user_long,user_location,to_lat,to_long,miles,created_at,pia_id) VALUES ('$user_id','$tracking_status','$latitude','$longitude','$location','$latitude','$longitude','$miles','$location_datetime','$pia_id')";
 	                $location_res = $this->db->query($location_query);
         		    $response = array("status" => "Sucess", "msg" => "Location Added");
         		}
