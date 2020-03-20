@@ -700,22 +700,22 @@ $('#admissionform').validate({ // initialize the plugin
       },
      disability:"Select Disability",
      age: "Enter Age",
-     nationality: "Enter Nationality",
+     nationality: "Select Nationality",
      religion: "Enter Religion",
      community:"Enter Caste",
      community_class:"Select Community",
      blood_group:"Select Blood Group",
 	 prefer_trade:"Select Preferred Trade",
     /*  prefer_time:"Select Preferred Time", */
-     city:"Enter City Name",
-     state:"Enter State Name",
+     city:"Enter City",
+     state:"Select State",
     /*  course:"Select Course", */
      mother_tongue:"Enter Mother Tongue",
      mobile: {
           required: "Enter Mobile number",
           maxlength:"Maximum 10 digits",
           minlength:"Minimum 10 digits",
-          remote: "Mobile number Already Exist",
+          remote: "Mobile Number Already Exist",
           number:"Enter Only Numbers"
 
       },
