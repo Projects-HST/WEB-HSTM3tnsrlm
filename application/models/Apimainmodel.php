@@ -1112,6 +1112,21 @@ class Apimainmodel extends CI_Model {
  //#################### Document master list ####################//
 
 
+ //#################### Prospects Documents status ####################//
+
+     function prospects_document_status($prospect_id){
+       $query="SELECT dm.id,IFNULL(dd.prospect_student_id,'0') as selected,dm.doc_name,dm.doc_type from document_master as dm left join document_details as dd on dd.doc_master_id=dm.id and dd.status='Active' and dd.prospect_student_id='$prospect_id' where dm.status='Active'";
+       $result=$this->db->query($query);
+       if($result->num_rows()==0){
+           $response = array("status" => "error", "msg" => "Something Went Wrong");
+       }else{
+         $res=$result->result();
+         $response = array("status" => "success", "msg" => "Document list","doc_status"=>$res);
+       }
+       return $response;
+     }
+
+     //#################### Prospects Documents status ####################//
 
 
 

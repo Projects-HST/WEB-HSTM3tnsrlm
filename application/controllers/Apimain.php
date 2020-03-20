@@ -1024,5 +1024,36 @@ class Apimain extends CI_Controller {
 
 //-----------------------------------------------//
 
+//-----------------------------------------------//
+
+	public function prospects_document_status(){
+
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+	 if(!$this->checkMethod())
+	 {
+		 return FALSE;
+	 }
+
+	 if($_POST == FALSE)
+	 {
+		 $res = array();
+		 $res["opn"] = "Error";
+		 $res["scode"] = 204;
+		 $res["message"] = "Input error";
+
+		 echo json_encode($res);
+		 return;
+	 }
+
+
+	 $prospect_id = $this->input->post("prospect_id");
+
+	 $data['result']=$this->apimainmodel->prospects_document_status($prospect_id);
+	 $response = $data['result'];
+	 echo json_encode($response);
+	}
+	//-----------------------------------------------//
+
 
 }
