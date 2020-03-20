@@ -452,7 +452,7 @@
 
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Type</label>
+                                        <label class="hrzn-fm">Select Type <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="radio" id="edu_doc_type" name="edu_doc_type" value="TC" checked>Transfer Certificate &nbsp;&nbsp;
@@ -460,7 +460,7 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Document</label>
+                                        <label class="hrzn-fm">Select Document <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="edu_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -498,7 +498,7 @@
 						</div>
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Type</label>
+									<label class="hrzn-fm">Select Type <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="radio" id="job_type" name="job_type" value="MG" checked>MGNRGEA Job Card &nbsp;
@@ -506,7 +506,7 @@
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Document  <span class="error">*</span></label>
+									<label class="hrzn-fm">Select Document <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="file" class="form-control" name="jobcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">

@@ -54,6 +54,7 @@ class Tracking extends CI_Controller {
 			$datas['kms_using_lat']=$this->trackingmodel->kms_using_lat($mob_id,$selected_date);
 			//$datas['res']=$this->trackingmodel->location_map($mob_id,$selected_date);
 			$datas['lat_long']=$this->trackingmodel->only_lat_long($mob_id,$selected_date);
+			$datas['start_stop']=$this->trackingmodel->start_stop_status($mob_id,$selected_date);
 			
 			$this->load->view('pia/pia_header',$datas);
 			$this->load->view('pia/tracking/mobilizer_tracking',$datas);

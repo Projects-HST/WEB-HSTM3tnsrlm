@@ -73,7 +73,7 @@ foreach($doc as $row){
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<?php if ($old_aadhar_doc !="") { ?>
-										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_aadhar_doc; ?>" target="_blank"><?php echo $old_aadhar_doc;?></a> 
+										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_aadhar_doc; ?>" target="_blank"><?php echo $old_aadhar_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_aadhar_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 									<?php } ?>
                                     </div>								
                             </div>
@@ -286,7 +286,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<?php if ($old_community_doc !="") { ?>
-								 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_community_doc; ?>" target="_blank"><?php echo $old_community_doc;?></a> 
+								 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_community_doc; ?>" target="_blank"><?php echo $old_community_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_community_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 								<?php } ?>
 								</div>
 								
@@ -366,7 +366,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<?php if ($old_disability_doc !="") { ?>
-								 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_disability_doc; ?>" target="_blank"><?php echo $old_disability_doc;?></a> 
+								 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_disability_doc; ?>" target="_blank"><?php echo $old_disability_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_disability_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a> 
 								<?php } ?>
 								</div>
 							
@@ -458,7 +458,7 @@ foreach($doc as $row){
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<?php if ($old_edu_doc !="") { ?>
-										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_edu_doc; ?>" target="_blank"><?php echo $old_edu_doc;?></a>
+										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_edu_doc; ?>" target="_blank"><?php echo $old_edu_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_edu_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a> 
 									<?php } ?>
                                     </div>
                            </div>
@@ -483,7 +483,7 @@ foreach($doc as $row){
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<?php if ($old_ration_doc !="") { ?>
-									<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_ration_doc; ?>" target="_blank"><?php echo $old_ration_doc;?></a>
+									<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_ration_doc; ?>" target="_blank"><?php echo $old_ration_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_ration_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 							<?php } ?>
 							</div>
 							<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
@@ -492,7 +492,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<?php if ($old_voter_doc !="") { ?>
-										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_voter_doc; ?>" target="_blank"><?php echo $old_voter_doc;?></a>
+										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_voter_doc; ?>" target="_blank"><?php echo $old_voter_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_voter_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 								<?php } ?>
 								</div>
 						</div>
@@ -506,9 +506,7 @@ foreach($doc as $row){
 									} else {
 										echo "BPL/PIP Card";
 									}
-									?>
-									
-									
+									?>									
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								
@@ -517,7 +515,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<?php if ($old_job_doc !="") { ?>
-										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_job_doc; ?>" target="_blank"><?php echo $old_job_doc;?></a>
+										<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_job_doc; ?>" target="_blank"><?php echo $old_job_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_job_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 										<?php } ?>
 								</div>
 								
@@ -529,7 +527,7 @@ foreach($doc as $row){
 
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<?php if ($old_bank_doc !="") { ?>
-										 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_bank_doc; ?>" target="_blank"><?php echo $old_bank_doc;?></a> 
+										 <a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_bank_doc; ?>" target="_blank"><?php echo $old_bank_doc;?></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>assets/documents/<?php echo $old_bank_doc; ?>" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download"></a>
 										 <?php } ?>
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>

@@ -40,23 +40,40 @@
                                          <div id="map" style="width:750px; height:400px;"></div>
                                     </div>
 				
-									 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12"> <h1 style="font-size:18px;">Total Travelled : <span style="font-size:16px;color:#e02329;">
+									 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+										 <div>
+										 <h1 style="font-size:18px;">Total Travelled : <span style="font-size:16px;color:#e02329;">
+											<?php
+													//$lats= json_encode( $res, JSON_NUMERIC_CHECK );
+													if(empty($kms_using_lat)){
+															echo "No datas found";
+													}else{
+													 foreach($kms_using_lat as $mile){}
+													   $kms=$mile->km;
+													   if(empty($kms)){
+														 echo "No datas found";
+													   }else{
+														 echo number_format($kms,3)." KM";
+													   }
+													}
+											?>
+										</span></h1>
+										</div>
+										
+										<div style="padding-top:15px;">
 										<?php
-												//$lats= json_encode( $res, JSON_NUMERIC_CHECK );
-												if(empty($kms_using_lat)){
-														echo "No datas found";
-												}else{
-												 foreach($kms_using_lat as $mile){}
-												   $kms=$mile->km;
-												   if(empty($kms)){
-													 echo "No datas found";
-												   }else{
-													 echo number_format($kms,3)." KM";
-												   }
-
-												}
+										$i = 1;
+										foreach($start_stop as $sStatus){
+											$time = $sStatus->created_at;;
+											$date = DateTime::createFromFormat( 'Y-m-d H:i:s', $time, new DateTimeZone( 'Asia/Kolkata'));
+											echo $sStatus->tracking_status; echo " : "; echo $date->format( 'H:i:s');  echo "<br>"; 
+											if ($i%2 == '0'){
+												echo "<hr>";
+											}
+											$i++;
+										} 
 										?>
-                                    </span></h1>
+										</div>
 									</div>
                                 </div>
 
