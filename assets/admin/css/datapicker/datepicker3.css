@@ -128,8 +128,8 @@
 .datepicker table tr td.today.disabled,
 .datepicker table tr td.today.disabled:hover {
   color: #000000;
-  background-color: #ffdb99;
-  border-color: #ffb733;
+  background-color: #DCDCDD;
+  border-color: #ceced0;
 }
 .datepicker table tr td.today:hover,
 .datepicker table tr td.today:hover:hover,
@@ -152,8 +152,8 @@
 .open .dropdown-toggle.datepicker table tr td.today.disabled,
 .open .dropdown-toggle.datepicker table tr td.today.disabled:hover {
   color: #000000;
-  background-color: #ffcd70;
-  border-color: #f59e00;
+  background-color: #ceced0;
+  border-color: #ceced0;
 }
 .datepicker table tr td.today:active,
 .datepicker table tr td.today:hover:active,

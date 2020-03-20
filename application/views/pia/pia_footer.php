@@ -131,7 +131,8 @@ $(document).ready(function () {
 	
 	$('.track_date').datepicker({
         format: "dd-mm-yyyy",
-        autoclose: true
+        autoclose: true,
+		todayHighlight: true
     });
 	
 	$('.from_date').datepicker({
