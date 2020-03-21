@@ -1049,9 +1049,9 @@ class Apimobilizermodel extends CI_Model {
 
 //#################### Upload Documents upload ####################//
 
-    function document_details_upload($user_id,$documentFileName,$doc_master_id,$prospect_id,$proof_number){
+    function document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number){
 
-      $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$documentFileName','Active',NOW(),'$user_id')";
+      $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$userFileName','Active',NOW(),'$user_id')";
       $result = $this->db->query($query);
 			if($result) {
 			    $response = array("status" => "success", "msg" => "Document uploaded");
