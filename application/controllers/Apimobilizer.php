@@ -1216,12 +1216,12 @@ class Apimobilizer extends CI_Controller {
 // 		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
 
 
-				$document         = $_FILES["upload_document"]["name"];
-	      $extension        = end((explode(".", $document)));
-        $documentFileName = $user_id . '-' . time() . '.' . $extension;
-        $uploaddir        = 'assets/documents/';
-        $documentFile     = $uploaddir . $documentFileName;
-        move_uploaded_file($_FILES['upload_document']['tmp_name'], $documentFile);
+    $document         = $_FILES["upload_document"]["name"];
+		$extension        = end((explode(".", $document)));
+		$documentFileName = $user_id . '-' . time() . '.' . $extension;
+		$uploaddir        = 'assets/documents/';
+		$documentFile     = $uploaddir . $documentFileName;
+		move_uploaded_file($_FILES['upload_document']['tmp_name'], $documentFile);
 
 		$data['result']=$this->apimobilizermodel->document_details_upload($user_id,$documentFileName,$doc_master_id,$prospect_id,$proof_number);
 		$response = $data['result'];
