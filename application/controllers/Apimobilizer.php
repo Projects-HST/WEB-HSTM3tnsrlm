@@ -1216,8 +1216,8 @@ class Apimobilizer extends CI_Controller {
 // 		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
 
 
-		$document         = $_FILES["upload_document"]["name"];
-        $extension        = end((explode(".", $document)));
+				$document         = $_FILES["upload_document"]["name"];
+	      $extension        = end((explode(".", $document)));
         $documentFileName = $user_id . '-' . time() . '.' . $extension;
         $uploaddir        = 'assets/documents/';
         $documentFile     = $uploaddir . $documentFileName;
