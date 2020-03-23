@@ -263,5 +263,42 @@ class Staff extends CI_Controller {
 				redirect('/');
 			}
 		}
+		
+		public function view_mobilizer_job(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				$staff_id=$this->uri->segment(3);
+				//$staff_id=base64_decode($this->uri->segment(3))/98765;
+				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+				$datas['result']=$this->staffmodel->get_all_staff_mobilizer($user_id);
+				 $this->load->view('pia/pia_header');
+				 $this->load->view('pia/staff/view_mobilizer_job',$datas);
+				 //$this->load->view('pia/staff/view_mobilizer_job');
+				 $this->load->view('pia/pia_footer');
+			 }else{
+					redirect('/');
+			 }
+		}
+		
+		public function add_mobilizer_job(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				$staff_id=$this->uri->segment(3);
+				//$staff_id=base64_decode($this->uri->segment(3))/98765;
+				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+				$datas['work_types']=$this->staffmodel->get_work_type();
+				//$datas['mob_tasks']=$this->staffmodel->get_mob_tasks($staff_id);
+				 $this->load->view('pia/pia_header');
+				 $this->load->view('pia/staff/add_mobilizer_job',$datas);
+				 //$this->load->view('pia/staff/view_mobilizer_job');
+				 $this->load->view('pia/pia_footer');
+			 }else{
+					redirect('/');
+			 }
+		}
 
 }

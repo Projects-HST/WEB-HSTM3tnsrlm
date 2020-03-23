@@ -209,7 +209,18 @@ Class Staffmodel extends CI_Model
 			}
 			  return $data;
     }
-
+	
+	function get_work_type(){
+      $select="SELECT * FROM work_type_master WHERE status='Active' ORDER BY id";
+      $result=$this->db->query($select);
+      return $result->result();
+    }
+	
+	function get_mob_tasks($staff_id,$task_date){
+      $select="SELECT * FROM edu_task WHERE user_id='$staff_id' AND task_date = '$task_date' AND pia_id !=0 ORDER BY id";
+      $result=$this->db->query($select);
+      return $result->result();
+    }
 
 }
 ?>
