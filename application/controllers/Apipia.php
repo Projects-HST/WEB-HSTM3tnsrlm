@@ -2082,4 +2082,112 @@ public function user_profilepic()
 	}
 
 //-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function work_type_master()
+	{
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		if(!$this->checkMethod())
+		{
+			return FALSE;
+		}
+
+		if($_POST == FALSE)
+		{
+			$res = array();
+			$res["opn"] = "User Tracking";
+			$res["scode"] = 204;
+			$res["message"] = "Input error";
+
+			echo json_encode($res);
+			return;
+		}
+
+
+		$mob_id = '';
+		$track_date = '';
+		$user_id = $this->input->post("user_id");
+
+		$data['result']=$this->apipiamodel->work_type_master($user_id);
+		$response = $data['result'];
+		echo json_encode($response);
+	}
+
+//-----------------------------------------------//
+
+//-----------------------------------------------//
+
+	public function add_attendance_task(){
+
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+	 if(!$this->checkMethod())
+	 {
+		 return FALSE;
+	 }
+
+	 if($_POST == FALSE)
+	 {
+		 $res = array();
+		 $res["opn"] = "Error";
+		 $res["scode"] = 204;
+		 $res["message"] = "Input error";
+
+		 echo json_encode($res);
+		 return;
+	 }
+
+
+	 $mobilizer_id = $this->input->post("mobilizer_id");
+	 $task_type = $this->input->post("task_type");
+	 $attendance_date = $this->input->post("attendance_date");
+	  $title = $this->input->post("title");
+	 $comments = $this->input->post("comments");
+	 $status = $this->input->post("status");
+	 $task_id = $this->input->post("task_id");
+	 $user_id = $this->input->post("user_id");
+	 $created_at = $this->input->post("created_at");
+	 $data['result']=$this->apipiamodel->add_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$created_at);
+	 $response = $data['result'];
+	 echo json_encode($response);
+	}
+	//-----------------------------------------------//
+
+
+
+	//-----------------------------------------------//
+
+		public function list_attendance_task(){
+
+			$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		 if(!$this->checkMethod())
+		 {
+			 return FALSE;
+		 }
+
+		 if($_POST == FALSE)
+		 {
+			 $res = array();
+			 $res["opn"] = "Error";
+			 $res["scode"] = 204;
+			 $res["message"] = "Input error";
+
+			 echo json_encode($res);
+			 return;
+		 }
+
+
+		 $mobilizer_id = $this->input->post("mobilizer_id");
+		 $data['result']=$this->apipiamodel->list_attendance_task($mobilizer_id);
+		 $response = $data['result'];
+		 echo json_encode($response);
+		}
+		//-----------------------------------------------//
+
+
+
 }
