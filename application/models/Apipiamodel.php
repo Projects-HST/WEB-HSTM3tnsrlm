@@ -1115,12 +1115,12 @@ class Apipiamodel extends CI_Model {
 
 //#################### Upload Documents upload ####################//
 
-    function document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number){
+    function document_details_upload($user_id,$documentFileName,$doc_master_id,$prospect_id,$proof_number){
 
-      $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$userFileName','Active',NOW(),'$user_id')";
+      $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$documentFileName','Active',NOW(),'$user_id')";
       $result = $this->db->query($query);
 			if($result) {
-			    $response = array("status" => "success", "msg" => "Document uploaded");
+			    $response = array("status" => "success", "msg" => "Document uploaded","doc_file_name"=>$documentFileName);
 			}else{
 				$response = array("status" => "error");
 			}
@@ -1135,7 +1135,7 @@ class Apipiamodel extends CI_Model {
 //#################### Prospects Document  ####################//
 
 function prospects_document($prospect_id){
-  $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id where dd.status='Active'";
+  $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status,dm.doc_name,dm.doc_type FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id  where dd.status='Active' and dd.prospect_student_id='$prospect_id'";
   $result=$this->db->query($query);
   if($result->num_rows()==0){
       $response = array("status" => "error", "msg" => "Something Went Wrong");
@@ -1147,6 +1147,8 @@ function prospects_document($prospect_id){
         'doc_proof_number'=>$rows->doc_proof_number,
         'file_name'=> base_url().'assets/documents/'.$rows->file_name,
         'doc_master_id'=>$rows->doc_master_id,
+        'doc_name'=>$rows->doc_name,
+        'doc_type'=>$rows->doc_type,
         'status'=>$rows->status,
       );
     }
@@ -1164,7 +1166,7 @@ function prospects_document($prospect_id){
       $query="UPDATE document_details SET file_name='$userFileName',doc_proof_number='$proof_number',updated_by='$user_id',updated_at=NOW() WHERE prospect_student_id='$prospect_id' AND id='$id'";
       $result = $this->db->query($query);
 			if($result) {
-			    $response = array("status" => "success", "msg" => "Document Updated");
+			    $response = array("status" => "success", "msg" => "Document Updated",,"doc_file_name"=>$userFileName);
 			}else{
 				$response = array("status" => "error");
 			}

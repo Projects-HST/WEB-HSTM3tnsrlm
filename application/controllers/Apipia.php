@@ -1738,14 +1738,21 @@ public function user_profilepic()
 		$prospect_id = $this->uri->segment(5);
 		$proof_number = $this->uri->segment(6);
 
-		$profile = $_FILES["upload_document"]["name"];
-		$temp = pathinfo($profile, PATHINFO_EXTENSION);
-		$userFileName = round(microtime(true)) . '.' . $temp;
-		$uploaddir = 'assets/documents/';
-		$profilepic = $uploaddir.$userFileName;
-		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
+// 		$profile = $_FILES["upload_document"]["name"];
+// 		$temp = pathinfo($profile, PATHINFO_EXTENSION);
+// 		$userFileName = round(microtime(true)) . '.' . $temp;
+// 		$uploaddir = 'assets/documents/';
+// 		$profilepic = $uploaddir.$userFileName;
+// 		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
 
-		$data['result']=$this->apipiamodel->document_details_upload($user_id,$userFileName,$doc_master_id,$prospect_id,$proof_number);
+		$document         = $_FILES["upload_document"]["name"];
+        $extension        = end((explode(".", $document)));
+        $documentFileName = $user_id . '-' . time() . '.' . $extension;
+        $uploaddir        = 'assets/documents/';
+        $documentFile     = $uploaddir . $documentFileName;
+        move_uploaded_file($_FILES['upload_document']['tmp_name'], $documentFile);
+
+		$data['result']=$this->apipiamodel->document_details_upload($user_id,$documentFileName,$doc_master_id,$prospect_id,$proof_number);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
