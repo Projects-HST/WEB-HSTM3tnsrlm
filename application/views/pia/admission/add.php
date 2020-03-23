@@ -375,7 +375,9 @@
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
 								</div>
-						
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<p style="color:#e3242b;">Also ensure it is in passport size</p>
+                                    </div>
 							</div>
 						</div>	
    
@@ -770,7 +772,7 @@ $('#admissionform').validate({ // initialize the plugin
           number:"Enter Only Numbers"
       },
 	student_pic:{
-		  required:"Select Student's Picture",
+		  required:"Selectpassport size photo",
 		  accept:"Please upload .jpg or .png .",
 		  filesize:"File must be JPG or PNG, less than 1MB"
 		},

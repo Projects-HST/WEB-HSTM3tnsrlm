@@ -1578,9 +1578,14 @@ ul.wizard-nav-ac li .disabled{
 	background:#ccc;
 	padding: 40px 190px;
 }
-.modal-inner-pro{
+.modal-inner-pro_old{
 	background:#fff;
 	padding:40px 100px;
+	box-shadow: 0 2px 10px rgba(0,0,0,.2);
+}
+.modal-inner-pro{
+	background:#fff;
+	padding:10px;
 	box-shadow: 0 2px 10px rgba(0,0,0,.2);
 }
 .modal-inner-pro h2, .modals-default .modal-body h2, .modal-sm .modal-body h2, .modal-large .modal-body h2{

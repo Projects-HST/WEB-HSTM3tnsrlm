@@ -433,7 +433,9 @@ foreach($doc as $row){
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
 								</div>
-						
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+									<p style="color:#e3242b;">Also ensure it is in passport size</p>
+                                    </div>
 							</div>
 						</div>	
    
