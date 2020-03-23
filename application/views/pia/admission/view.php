@@ -38,8 +38,7 @@
 									<?php if($rows->status=='Pending'){ ?><span class="blue">Pending</span><?php } ?>
 								</td>
 								<td><?php echo $rows->added_by; ?></td>
-							
-                             <td><a href="<?php echo base_url(); ?>admission/view_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Prospects"><i class="notika-icon notika-eye" style="font-size:22px;"></i></a>&nbsp;&nbsp;<a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Prospects"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>
+                             <td><a href="<?php echo base_url(); ?>admission/view_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Prospects"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Prospects"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
 
 
                          </tr>

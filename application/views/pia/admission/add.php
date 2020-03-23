@@ -43,7 +43,7 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Attach Aadhaar Card</label>
+                                        <label class="hrzn-fm">Attach Aadhaar Card <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="aadhar_card_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -295,7 +295,7 @@
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div id="com_doc_div" class="com_doc_div">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Document</label>
+                                        <label class="hrzn-fm">Select Document <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									  <input type="file" class="form-control" name="community_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -360,7 +360,7 @@
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div id ="disability_div" class="disability_div">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Differently-abled National ID Card (PWD)</label>
+                                        <label class="hrzn-fm">Differently-abled National ID Card (PWD)  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									 <input type="file" class="form-control" name="disability_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -370,7 +370,7 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Profile Picture <span class="error">*</span></label>
+									<label class="hrzn-fm">Passport Size Photo <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
@@ -569,6 +569,35 @@ $('#add_prospect').addClass('active');
 		return this.optional(element) || (element.files[0].size <= param)
 	}, 'Check your file size');
 
+
+jQuery.validator.addMethod(
+        "validDOB",
+        function(value, element) {              
+            var from = value.split("-"); // DD MM YYYY
+            // var from = value.split("/"); // DD/MM/YYYY
+
+            var day = from[0];
+            var month = from[1];
+            var year = from[2];
+            var age = 15;
+
+            var mydate = new Date();
+            mydate.setFullYear(year, month-1, day);
+
+            var currdate = new Date();
+            var setDate = new Date();
+
+            setDate.setFullYear(mydate.getFullYear() + age, month-1, day);
+
+            if ((currdate - setDate) > 0){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        "Sorry, you must be 15 years of age to apply"
+    );
+	
  $("#dob").change(function () {
         var today = new Date();
         var birthDate = new Date($(this).datepicker('getDate'));
@@ -622,7 +651,8 @@ $('#admissionform').validate({ // initialize the plugin
      fname:{required:true},
 	 mname:{required:true},
      sex:{required:true },
-     dob:{required:true },
+     dob:{required:true,validDOB : true },
+	 age:{required:true },
      email:{required:true,email:true,   remote: {
                url: "<?php echo base_url(); ?>admission/check_email_exist",
                type: "post"
@@ -693,10 +723,14 @@ $('#admissionform').validate({ // initialize the plugin
      mname:"Enter Mother Name",
      sex: "Select Gender",
      address:"Enter Address",
-     dob: "Select Date of Birth",
-     email:{
+     //dob: "Select Date of Birth",
+	 email:{
           required: "Enter Email id",
           remote: "Email Already Exist"
+      },
+     dob:{
+          required: "Select Date of Birth",
+          validDOB: "Age must be at least 15 years old!"
       },
      disability:"Select Disability",
      age: "Enter Age",

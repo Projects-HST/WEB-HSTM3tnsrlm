@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <div class="container">
 	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -37,7 +38,7 @@
                                           <label class="hrzn-fm">Scheme Details <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-8 col-md-3 col-sm-3 col-xs-12">
-                                                <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="editor1" placeholder="Scheme Info"></textarea>
+                                                <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="scheme_info" placeholder="Scheme Info"></textarea><script>CKEDITOR.replace( 'scheme_info' );</script>
                                     </div>
                                 </div>
 								
@@ -95,15 +96,24 @@
 	$('#create_scheme').addClass('active');
 
 	$('#myformsection').validate({
+		ignore: [],
+        debug: false,
 			rules: {
 				scheme_name: { required: true },
-				scheme_info: { required: true },
+				  scheme_info:{
+					 required: function() 
+						{
+							CKEDITOR.instances.scheme_info.updateElement();
+						}
+                    },
 				scheme_video_link: { required: true},
 				status:{ required: true}
 			},
 			messages: {
 					scheme_name: "Enter Scheme name",
-					scheme_info: "Enter Scheme details",
+					 scheme_info:{
+                        required:"Enter Scheme info"
+					 },
 					scheme_video_link: "Enter Scheme video link",
 					status:"Select Status"
 			}

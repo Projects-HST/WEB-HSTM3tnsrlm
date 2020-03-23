@@ -98,7 +98,7 @@ foreach($doc as $row){
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Attach Aadhaar Card</label>
+                                        <label class="hrzn-fm">Attach Aadhaar Card <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											  <input type="file" class="form-control" name="aadhar_card_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -349,7 +349,7 @@ foreach($doc as $row){
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div id="com_doc_div" class="com_doc_div">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Document</label>
+                                        <label class="hrzn-fm">Select Document <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									  <input type="file" class="form-control" name="community_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -417,7 +417,7 @@ foreach($doc as $row){
 								
 								<div id ="disability_div" class="disability_div">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Differently-abled National ID Card (PWD)</label>
+                                        <label class="hrzn-fm">Differently-abled National ID Card (PWD)  <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									 <input type="file" class="form-control" name="disability_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -428,7 +428,7 @@ foreach($doc as $row){
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Profile Picture <span class="error">*</span></label>
+									<label class="hrzn-fm">Passport Size Photo <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
@@ -526,7 +526,7 @@ foreach($doc as $row){
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Document</label>
+                                        <label class="hrzn-fm">Select Document <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="edu_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -549,7 +549,7 @@ foreach($doc as $row){
 				<div class="form-example-int">
 						<div class="row page_row">
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Ration Card</label>
+								<label class="hrzn-fm">Ration Card <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="file" class="form-control" name="rationcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -581,7 +581,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Document</label>
+									<label class="hrzn-fm">Select Document <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="file" class="form-control" name="jobcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -596,7 +596,7 @@ foreach($doc as $row){
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Status</label>
+								<label class="hrzn-fm">Status <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<select name="status" class="form-control" id="status">

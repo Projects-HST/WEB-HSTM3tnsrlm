@@ -125,7 +125,6 @@ $(document).ready(function () {
     $('.dob').datepicker({
         format: "dd-mm-yyyy",
         autoclose: true,
-		maxDate: new Date(),
 	    endDate: new Date()
     });
 	

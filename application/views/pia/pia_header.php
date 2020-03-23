@@ -83,7 +83,7 @@
 	<script src="<?php echo base_url(); ?>assets/admin/js/bootstrap-select/bootstrap-select.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
-
+	
 </head>
 
 <body>
@@ -159,6 +159,7 @@
                               <li><a href="<?php echo base_url(); ?>staff/view" id="view_staff">All Staffs</a></li>
                               <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">List Trainers</a></li>
                               <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">List Mobilizers</a></li>
+							  <li><a href="<?php echo base_url(); ?>staff/view_mobilizer_list" id="view_mobilizer_list">Mobilizers Job</a></li>
                           </ul>
                       </div>
                       <div id="taskmenu" class="tab-pane notika-tab-menu-bg animated flipInX">

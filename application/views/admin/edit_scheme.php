@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <?php   foreach($res_scheme as $res){} ?>
 <div class="container">
 	<div class="row page_row">
@@ -46,7 +47,7 @@
                                           <label class="hrzn-fm">Scheme Details</label>
                                     </div>
                                     <div class="col-lg-8 col-md-3 col-sm-3 col-xs-12">
-                                                <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="editor1" placeholder="Scheme Info"><?php echo $res->scheme_info;  ?></textarea>
+									 <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="scheme_info" placeholder="Scheme Info"><?php echo $res->scheme_info;  ?></textarea><script>CKEDITOR.replace( 'scheme_info' );</script>                        
                                     </div>
                                 </div>
 								
@@ -202,17 +203,28 @@
     $('#schememenu').addClass('active');
 	$('#view_scheme').addClass('active');
 
-	$('#myformsection').validate({
-					rules: {
-						scheme_name: { required: true },
-						scheme_info: { required: true },
-						scheme_video_link: { required: true}
-					},
-					messages: {
-							scheme_name: "Enter Scheme name",
-							scheme_info: "Enter Scheme details",
-							scheme_video_link: "Enter Scheme video link",
-					}
+		$('#myformsection').validate({
+		ignore: [],
+        debug: false,
+			rules: {
+				scheme_name: { required: true },
+				  scheme_info:{
+					 required: function() 
+						{
+							CKEDITOR.instances.scheme_info.updateElement();
+						}
+                    },
+				scheme_video_link: { required: true},
+				status:{ required: true}
+			},
+			messages: {
+					scheme_name: "Enter Scheme name",
+					 scheme_info:{
+                        required:"Enter Scheme info"
+					 },
+					scheme_video_link: "Enter Scheme video link",
+					status:"Select Status"
+			}
 		});
 		
     function delgal(gal_id) {

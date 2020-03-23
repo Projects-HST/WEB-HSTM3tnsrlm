@@ -132,7 +132,20 @@ class Staff extends CI_Controller {
 					redirect('/');
 			 }
 		}
-
+		
+		public function view_mobilizer_list(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				 $datas['result']=$this->staffmodel->get_all_staff_mobilizer($user_id);
+				 $this->load->view('pia/pia_header');
+				 $this->load->view('pia/staff/view_mobilizer_list',$datas);
+				 $this->load->view('pia/pia_footer');
+			 }else{
+					redirect('/');
+			 }
+		}
 
 		public function edit($staff_id){
 			$datas=$this->session->userdata();

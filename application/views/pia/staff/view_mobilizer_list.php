@@ -35,7 +35,7 @@
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
                              <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
-                              <td><a href="<?php echo base_url(); ?>staff/edit/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Staff"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/view_mobilizer_job/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Mobilizer Job"><i class="fa fa-calendar-check-o" style="font-size:20px;"></i></a></td>
+                              <td><a href="<?php echo base_url(); ?>staff/view_mobilizer_job/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Mobilizer Job"><i class="fa fa-calendar-check-o" style="font-size:20px;"></i></a></td>
                          </tr>
 <?php  $i++; } ?>
                      </tbody>
@@ -53,6 +53,5 @@
 <script type="text/javascript">
     $('#staff').addClass('active');
     $('#staffmenu').addClass('active');
-	$('#view_mobilizer').addClass('active');
-	
+	$('#view_mobilizer_list').addClass('active');
 </script>
