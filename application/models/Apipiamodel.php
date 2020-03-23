@@ -1120,7 +1120,7 @@ class Apipiamodel extends CI_Model {
       $query="INSERT INTO document_details (prospect_student_id,doc_master_id,doc_proof_number,file_name,status,created_at,created_by) VALUES('$prospect_id','$doc_master_id','$proof_number','$documentFileName','Active',NOW(),'$user_id')";
       $result = $this->db->query($query);
 			if($result) {
-			    $response = array("status" => "success", "msg" => "Document uploaded");
+			    $response = array("status" => "success", "msg" => "Document uploaded","doc_file_name"=>$documentFileName);
 			}else{
 				$response = array("status" => "error");
 			}
@@ -1166,7 +1166,7 @@ function prospects_document($prospect_id){
       $query="UPDATE document_details SET file_name='$userFileName',doc_proof_number='$proof_number',updated_by='$user_id',updated_at=NOW() WHERE prospect_student_id='$prospect_id' AND id='$id'";
       $result = $this->db->query($query);
 			if($result) {
-			    $response = array("status" => "success", "msg" => "Document Updated");
+			    $response = array("status" => "success", "msg" => "Document Updated",,"doc_file_name"=>$userFileName);
 			}else{
 				$response = array("status" => "error");
 			}
