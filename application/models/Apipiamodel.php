@@ -1166,7 +1166,7 @@ function prospects_document($prospect_id){
       $query="UPDATE document_details SET file_name='$userFileName',doc_proof_number='$proof_number',updated_by='$user_id',updated_at=NOW() WHERE prospect_student_id='$prospect_id' AND id='$id'";
       $result = $this->db->query($query);
 			if($result) {
-			    $response = array("status" => "success", "msg" => "Document Updated",,"doc_file_name"=>$userFileName);
+			    $response = array("status" => "success", "msg" => "Document Updated","doc_file_name"=>$userFileName);
 			}else{
 				$response = array("status" => "error");
 			}
@@ -1176,9 +1176,64 @@ function prospects_document($prospect_id){
 
     }
 //#################### Update Documents upload ####################//
+//#################### Work Master  ####################//
+	public function work_type_master($user_id)
+	{
+      $query = "SELECT id,work_type,status FROM work_type_master WHERE status='Active'";
+			$res = $this->db->query($query);
+			$result= $res->result();
+			 if($res->num_rows()==0){
+				 $response = array("status" => "error", "msg" => "Work Master Not Found");
+			}else{
+
+				$response = array("status" => "success", "msg" => "Work Master", "result"=>$result);
+			}
+			return $response;
+
+	}
+  //#################### Work Master  ####################//
+
+//#################### Attendance task update ####################//
+
+    function add_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$created_at){
+      $date=date_create($attendance_date);
+      $atten_date= date_format($date,"Y-m-d");
+      $query="INSERT INTO mobilizer_attendance(mobilizer_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by) VALUES('$mobilizer_id','$task_type','$task_id','$title','$comments','$atten_date','Active','$user_id','$created_at')";
+      $result = $this->db->query($query);
+
+      if($result) {
+			    $response = array("status" => "success", "msg" => "task added");
+			}else{
+				$response = array("status" => "error");
+			}
+
+			return $response;
+    }
 
 
+//#################### Attendance task update ####################//
 
+
+//#################### List Attendance task update ####################//
+
+  function list_attendance_task($mobilizer_id){
+    $query="SELECT ma.id,wtm.work_type,ma.task_id,ma.title,ma.comments,ma.work_type_id,ma.attendance_date,ma.status,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
+    left join edu_task as et on et.id=ma.task_id
+    left join work_type_master as wtm on wtm.id=ma.work_type_id
+    where mobilizer_id='$mobilizer_id'";
+    $res = $this->db->query($query);
+    $result= $res->result();
+     if($res->num_rows()==0){
+       $response = array("status" => "error", "msg" => "Work Master Not Found");
+    }else{
+
+      $response = array("status" => "success", "msg" => "Work Master", "result"=>$result);
+    }
+    return $response;
+
+  }
+
+  //#################### List Attendance task update ####################//
 
 
 }
