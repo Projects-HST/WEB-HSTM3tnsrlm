@@ -270,12 +270,11 @@ class Staff extends CI_Controller {
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==3){
 				$staff_id=$this->uri->segment(3);
-				//$staff_id=base64_decode($this->uri->segment(3))/98765;
 				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 				$datas['result']=$this->staffmodel->get_all_staff_mobilizer($user_id);
-				 $this->load->view('pia/pia_header');
-				 $this->load->view('pia/staff/view_mobilizer_job',$datas);
-				 //$this->load->view('pia/staff/view_mobilizer_job');
+				$this->load->view('pia/pia_header');
+				$this->load->view('pia/staff/view_mobilizer_job',$datas);
+				 
 				 $this->load->view('pia/pia_footer');
 			 }else{
 					redirect('/');
@@ -287,15 +286,12 @@ class Staff extends CI_Controller {
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==3){
-				$staff_id=$this->uri->segment(3);
-				//$staff_id=base64_decode($this->uri->segment(3))/98765;
-				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
-				$datas['work_types']=$this->staffmodel->get_work_type();
-				//$datas['mob_tasks']=$this->staffmodel->get_mob_tasks($staff_id);
-				 $this->load->view('pia/pia_header');
-				 $this->load->view('pia/staff/add_mobilizer_job',$datas);
-				 //$this->load->view('pia/staff/view_mobilizer_job');
-				 $this->load->view('pia/pia_footer');
+					$staff_id=$this->uri->segment(3);
+					$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+					$datas['work_types']=$this->staffmodel->get_work_type();
+					$this->load->view('pia/pia_header');
+					$this->load->view('pia/staff/add_mobilizer_job',$datas);
+					$this->load->view('pia/pia_footer');
 			 }else{
 					redirect('/');
 			 }
@@ -341,8 +337,9 @@ class Staff extends CI_Controller {
 					 $t_title= $this->input->post('t_title');
 					 $t_desc=$this->input->post('t_desc');
 					 $mob_id=$this->input->post('mob_id');
-					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id);
-					$red_id = base64_encode($mob_id*98765);
+					 $user_master_id=$this->input->post('user_master_id');
+					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id,$user_master_id);
+					$red_id = base64_encode($user_master_id*98765);
 					
 					if($datas['status']=="Success"){
 						$this->session->set_flashdata('msg', 'Work Assigned');

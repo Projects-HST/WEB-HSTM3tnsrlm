@@ -137,6 +137,7 @@ Class Staffmodel extends CI_Model
       $result=$this->db->query($select);
       return $result->result();
     }
+	
     function get_all_staff_details_by_id($staff_id){
       $id=base64_decode($staff_id)/98765;
       $select="SELECT
