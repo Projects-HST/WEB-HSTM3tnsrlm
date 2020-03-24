@@ -221,6 +221,93 @@ Class Staffmodel extends CI_Model
       $result=$this->db->query($select);
       return $result->result();
     }
+	
+	function checkmob_task($task_date,$mob_id)
+	{
+		$date = date_create($task_date);
+		$sdate = date_format($date,"Y-m-d");
+
+		$sql="SELECT * FROM edu_task WHERE user_id ='$mob_id' AND task_date = '$sdate' ";
+		$resultset=$this->db->query($sql);
+		$res=$resultset->result();
+		if(empty($res))
+		{
+				$data=array("status" =>"Nill");
+				return $data;
+		}else{
+				foreach($res as $rows){
+					$task_id[]=$rows->id;$task_title[]=$rows->task_title;
+				}
+				$data=array("status" =>"Success","task_id" =>$task_id,"task_title" =>$task_title);
+				return $data; 
+		}
+	}
+	
+	function check_task_id($task_title_id)
+	{
+	$sql="SELECT * FROM edu_task WHERE id ='$task_title_id'";
+	$resultset=$this->db->query($sql);
+	$res=$resultset->result();
+		if(empty($res))
+		{
+				$data=array("status" =>"Nill");
+				return $data;
+		}else{
+				foreach($res as $rows){
+					$task_desc =$rows->task_description;
+				}
+				$data=array("status" =>"Success","task_desc" =>$task_desc);
+				return $data; 
+		}
+	}
+
+	function add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id)
+	{
+		$date = date_create($task_date);
+		$sdate = date_format($date,"Y-m-d");
+		$status = "Active";
+		
+		if ($select_type == '2'){
+			
+			$check_task ="SELECT * FROM edu_task WHERE id='$task_title_id' ";
+			$resultset=$this->db->query($check_task);
+			$res=$resultset->result();
+			if($resultset->num_rows()!=0)
+			{
+				foreach($res as $rows){
+					$mob_task_title =$rows->task_title;
+					$task_description=$rows->task_description;
+				}
+			}
+			$check_job ="SELECT * FROM mobilizer_attendance WHERE attendance_date='$sdate' AND mobilizer_id='$mob_id' AND work_type_id = '$select_type' AND task_id = '$task_title_id'";
+			$result=$this->db->query($check_job);
+			if($result->num_rows()==0)
+			{
+				$query = "INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by)VALUES('$mob_id','$user_id','$select_type','$task_title_id','$mob_task_title','$task_description','$sdate','$status',NOW(),'$user_id')";
+				$resultset=$this->db->query($query);
+				$data= array("status"=>"Success");
+				return $data;
+			}else{
+				$data= array("status"=>"Already");
+				return $data;
+			}
+		} else {
+			
+			$check_job ="SELECT * FROM mobilizer_attendance WHERE attendance_date='$sdate' AND mobilizer_id='$mob_id' AND work_type_id = '$select_type'";
+			$result=$this->db->query($check_job);
+			if($result->num_rows()==0)
+			{
+				$query = "INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,title,comments,attendance_date,status,created_at,created_by)VALUES('$mob_id','$user_id','$select_type','$t_title','$t_desc','$sdate','$status',NOW(),'$user_id')";
+				$resultset=$this->db->query($query);
+				$data= array("status"=>"Success");
+				return $data;
+			}else{
+				$data= array("status"=>"Already");
+				return $data;
+			}
+			
+		}
+	}
 
 }
 ?>

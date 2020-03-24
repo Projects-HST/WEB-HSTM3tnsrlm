@@ -300,5 +300,69 @@ class Staff extends CI_Controller {
 					redirect('/');
 			 }
 		}
+		
+		public function chk_jobtype(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+					 $task_date=$this->input->post('task_date');
+					 $mob_id=$this->input->post('mob_id');
+					 $data =$this->staffmodel->checkmob_task($task_date,$mob_id);
+					echo json_encode($data);
+			 }else{
+					redirect('/');
+			 }
+		}
+		
+		public function chk_task_title(){
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+					 $task_title_id=$this->input->post('task_title_id');
+					 $data =$this->staffmodel->check_task_id($task_title_id);
+					echo json_encode($data);
+			 }else{
+					redirect('/');
+			 }
+		}
+		
+		
+		public function add_mob_job(){
+				$datas=$this->session->userdata();
+				$user_id=$this->session->userdata('user_id');
+				$user_type=$this->session->userdata('user_type');
+				if($user_type==3){
+					 $task_date=$this->input->post('task_date');
+					 $select_type=$this->input->post('select_type');
+					 $task_title_id= $this->input->post('task_title');
+					 $task_desc=$this->input->post('task_desc');
+					 $t_title= $this->input->post('t_title');
+					 $t_desc=$this->input->post('t_desc');
+					 $mob_id=$this->input->post('mob_id');
+					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title,$task_desc,$t_title,$t_desc,$mob_id,$user_id);
+					$red_id = base64_encode($mob_id*98765);
+					
+					if($datas['status']=="Success"){
+						$this->session->set_flashdata('msg', 'Work Assigned');
+						redirect('staff/view_mobilizer_job'.$red_id);
+					}else if($datas['status']=="Already"){
+						$this->session->set_flashdata('msg', 'Work Already Exists');
+						redirect('staff/view_mobilizer_job'.$red_id);
+					}
+					else{
+						$this->session->set_flashdata('msg', 'Failed to Add');
+						redirect('staff/view_mobilizer_job'.$red_id);
+					}
+       }
+       else{
+          redirect('/');
+       }
+    }
+	
+		
+		
 
 }
+?>

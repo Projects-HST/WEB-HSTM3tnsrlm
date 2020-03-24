@@ -1,5 +1,4 @@
-<div class="container">
-				
+	<div class="container">
 			<?php if($this->session->flashdata('msg')): ?>
 			<div class="row page_row">
 			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
