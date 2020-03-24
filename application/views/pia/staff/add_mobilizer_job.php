@@ -100,7 +100,7 @@
 								 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="hidden" name="mob_id" id="mob_id" value="<?php echo $mobi->id;; ?>">
+											<input type="hidden" name="mob_id" id="mob_id" value="<?php echo $mobi->user_id;; ?>">
                                            <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Assign</button>
 										  <a href="<?php echo base_url(); ?>task/home" class="btn btn-success notika-btn-success waves-effect" id="task_btn">Add Task</a>									   
                                     </div>

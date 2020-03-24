@@ -121,13 +121,33 @@ Class Staffmodel extends CI_Model
     }
 
     function get_all_staff_mobilizer($user_id){
-      $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' AND role_type='5' ORDER BY id desc";
+		
+		$select="SELECT
+					A.*,
+					B.user_master_id
+				FROM
+					edu_staff_details A,
+					edu_users B
+				WHERE
+					A.pia_id = '$user_id' AND A.role_type = '5' AND A.id=B.user_master_id
+				ORDER BY
+					id
+				DESC";
+      //echo $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' AND role_type='5' ORDER BY id desc";
       $result=$this->db->query($select);
       return $result->result();
     }
     function get_all_staff_details_by_id($staff_id){
       $id=base64_decode($staff_id)/98765;
-      $select="SELECT * FROM edu_staff_details WHERE id='$id'";
+      $select="SELECT
+				A.*,
+				B.user_master_id,
+				B.user_id
+			FROM
+				edu_staff_details A,
+				edu_users B
+			WHERE
+				A.id = '$id' AND B.user_type = '5' AND A.id = B.user_master_id";
       $result=$this->db->query($select);
       return $result->result();
     }
