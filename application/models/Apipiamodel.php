@@ -1198,7 +1198,7 @@ function prospects_document($prospect_id){
     function add_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$created_at){
       $date=date_create($attendance_date);
       $atten_date= date_format($date,"Y-m-d");
-      $query="INSERT INTO mobilizer_attendance(mobilizer_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by) VALUES('$mobilizer_id','$task_type','$task_id','$title','$comments','$atten_date','Active','$user_id','$created_at')";
+      $query="INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by) VALUES('$mobilizer_id','$user_id','$task_type','$task_id','$title','$comments','$atten_date','Active','$user_id','$created_at')";
       $result = $this->db->query($query);
 
       if($result) {
@@ -1235,6 +1235,112 @@ function prospects_document($prospect_id){
 
   //#################### List Attendance task update ####################//
 
+  //#################### get mobilizer task list ####################//
+
+    function get_task_list_for_mobilizer($mobilizer_user_id,$user_id,$attendance_date){
+      $date=date_create($attendance_date);
+      $atten_date= date_format($date,"Y-m-d");
+      $query="SELECT id,task_title FROM edu_task  where task_date='$atten_date' and created_by='$user_id' and user_id='$mobilizer_user_id'";
+      $res = $this->db->query($query);
+      	$result= $res->result();
+      if($res->num_rows()==0){
+        $response = array("status" => "error", "msg" => "Task list not found");
+     }else{
+
+       $response = array("status" => "success", "msg" => "Task found", "result"=>$result);
+     }
+     return $response;
+    }
+
+ //#################### get mobilizer task list ####################//
+
+
+ //#################### get mobilizer  list ####################//
+
+   function get_list_mobilizer_for_pia($user_id){
+     $query="SELECT esd.id,esd.name,eu.user_id as mobilizer_user_id,eu.status FROM edu_staff_details as esd left join edu_users as eu on eu.user_master_id=esd.id and eu.user_type=5  where esd.pia_id='$user_id' and esd.role_type=5 and eu.status='Active'";
+     $res = $this->db->query($query);
+       $result= $res->result();
+     if($res->num_rows()==0){
+       $response = array("status" => "error", "msg" => "Mobilizer list not found");
+    }else{
+
+      $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
+    }
+    return $response;
+
+   }
+ //#################### get mobilizer  list ####################//
+
+
+ //#################### get year list attendance ####################//
+
+    function get_year_list_attendance($mobilizer_id,$user_id){
+      $query="SELECT YEAR(attendance_date) as year_id FROM mobilizer_attendance where mobilizer_id='$mobilizer_id' GROUP by year_id";
+      $res = $this->db->query($query);
+        $result= $res->result();
+      if($res->num_rows()==0){
+        $response = array("status" => "error", "msg" => "Mobilizer list not found");
+     }else{
+
+       $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
+     }
+     return $response;
+    }
+
+//#################### get year list attendance ####################//
+
+ //#################### get mobilizer  month list ####################//
+
+      function get_month_list_attendance($mobilizer_id,$user_id){
+        $query="SELECT MONTHNAME(attendance_date) as month_name,Month(attendance_date) as month_id
+        FROM mobilizer_attendance where mobilizer_id='$mobilizer_id' GROUP by month_id";
+        $res = $this->db->query($query);
+          $result= $res->result();
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "Mobilizer list not found");
+       }else{
+
+         $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
+       }
+       return $response;
+      }
+
+      //#################### get mobilizer  month list ####################//
+
+      //#################### get mobilizer  month based attendance list ####################//
+      function get_month_day_list_attendance($mobilizer_id,$user_id,$month_id){
+        $query="SELECT ma.*,wtm.work_type,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
+        left join work_type_master as wtm on wtm.id=ma.work_type_id
+        left join edu_task as et on et.id=ma.task_id
+        where ma.mobilizer_id='$mobilizer_id' and Month(attendance_date)='$month_id'";
+        $res = $this->db->query($query);
+          $result= $res->result();
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "Mobilizer task list not found");
+       }else{
+
+         $response = array("status" => "success", "msg" => "Mobilizer task found", "result"=>$result);
+       }
+       return $response;
+      }
+      //#################### get mobilizer  month based attendance list ####################//
+
+
+      //#################### get mobilizer  month based attendance list ####################//
+      function get_month_attendance_report($mobilizer_id,$user_id,$month_id){
+         $query="SELECT  wm.work_type,COUNT(ma.work_type_id) as count from work_type_master as wm left join mobilizer_attendance as ma on ma.work_type_id=wm.id and  ma.mobilizer_id='$mobilizer_id' and Month(ma.attendance_date)='$month_id' GROUP by wm.id";
+        $res = $this->db->query($query);
+          $result= $res->result();
+        if($res->num_rows()==0){
+          $response = array("status" => "error", "msg" => "Mobilizer attendance list not found");
+       }else{
+
+         $response = array("status" => "success", "msg" => "Mobilizer attendance list found", "result"=>$result);
+       }
+       return $response;
+      }
+      //#################### get mobilizer  month based attendance list ####################//
 
 }
 ?>
