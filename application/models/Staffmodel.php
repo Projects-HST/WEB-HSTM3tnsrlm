@@ -122,7 +122,9 @@ Class Staffmodel extends CI_Model
 
     function get_all_staff_mobilizer($user_id){
 		
-		$select="SELECT
+		$select="SELECT A.user_id, A.user_master_id, A.name, A.user_name, B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_type = '5' AND A.user_master_id = C.id ";
+		
+		/* $select="SELECT
 					A.*,
 					B.user_master_id
 				FROM
@@ -132,7 +134,7 @@ Class Staffmodel extends CI_Model
 					A.pia_id = '$user_id' AND A.role_type = '5' AND A.id=B.user_master_id
 				ORDER BY
 					id
-				DESC";
+				DESC"; */
       //echo $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' AND role_type='5' ORDER BY id desc";
       $result=$this->db->query($select);
       return $result->result();
