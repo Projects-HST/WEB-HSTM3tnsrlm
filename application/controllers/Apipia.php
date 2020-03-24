@@ -2189,5 +2189,67 @@ public function user_profilepic()
 		//-----------------------------------------------//
 
 
+			//-----------------------------------------------//
+
+				public function get_list_mobilizer_for_pia(){
+
+					$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+				 if(!$this->checkMethod())
+				 {
+					 return FALSE;
+				 }
+
+				 if($_POST == FALSE)
+				 {
+					 $res = array();
+					 $res["opn"] = "Error";
+					 $res["scode"] = 204;
+					 $res["message"] = "Input error";
+
+					 echo json_encode($res);
+					 return;
+				 }
+
+
+				 $user_id = $this->input->post("user_id");
+				 $data['result']=$this->apipiamodel->get_list_mobilizer_for_pia($user_id);
+				 $response = $data['result'];
+				 echo json_encode($response);
+				}
+				//-----------------------------------------------//
+	//-----------------------------------------------//
+
+		public function get_task_list_for_mobilizer(){
+
+			$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+		 if(!$this->checkMethod())
+		 {
+			 return FALSE;
+		 }
+
+		 if($_POST == FALSE)
+		 {
+			 $res = array();
+			 $res["opn"] = "Error";
+			 $res["scode"] = 204;
+			 $res["message"] = "Input error";
+
+			 echo json_encode($res);
+			 return;
+		 }
+
+
+		 $mobilizer_user_id = $this->input->post("mobilizer_user_id");
+		 $user_id = $this->input->post("user_id");
+		 $attendance_date = $this->input->post("attendance_date");
+		 $data['result']=$this->apipiamodel->get_task_list_for_mobilizer($mobilizer_user_id,$user_id,$attendance_date);
+		 $response = $data['result'];
+		 echo json_encode($response);
+		}
+		//-----------------------------------------------//
+
+
 
 }

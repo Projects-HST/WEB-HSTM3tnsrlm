@@ -1235,6 +1235,43 @@ function prospects_document($prospect_id){
 
   //#################### List Attendance task update ####################//
 
+  //#################### get mobilizer task list ####################//
+
+    function get_task_list_for_mobilizer($mobilizer_user_id,$user_id,$attendance_date){
+      $date=date_create($attendance_date);
+      $atten_date= date_format($date,"Y-m-d");
+      $query="SELECT id,task_title FROM edu_task  where task_date='$atten_date' and created_by='$user_id' and user_id='$mobilizer_user_id'";
+      $res = $this->db->query($query);
+      	$result= $res->result();
+      if($res->num_rows()==0){
+        $response = array("status" => "error", "msg" => "Task list not found");
+     }else{
+
+       $response = array("status" => "success", "msg" => "Task found", "result"=>$result);
+     }
+     return $response;
+    }
+
+ //#################### get mobilizer task list ####################//
+
+
+ //#################### get mobilizer  list ####################//
+
+   function get_list_mobilizer_for_pia($user_id){
+     $query="SELECT esd.id,esd.name,eu.user_id as mobilizer_user_id,eu.status FROM edu_staff_details as esd left join edu_users as eu on eu.user_master_id=esd.id and eu.user_type=5  where esd.pia_id='$user_id' and esd.role_type=5 and eu.status='Active'";
+     $res = $this->db->query($query);
+       $result= $res->result();
+     if($res->num_rows()==0){
+       $response = array("status" => "error", "msg" => "Mobilizer list not found");
+    }else{
+
+      $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
+    }
+    return $response;
+
+   }
+ //#################### get mobilizer  list ####################//
+
 
 }
 ?>
