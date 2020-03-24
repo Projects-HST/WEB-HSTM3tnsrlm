@@ -2250,6 +2250,130 @@ public function user_profilepic()
 		}
 		//-----------------------------------------------//
 
+		//-----------------------------------------------//
 
+			public function get_year_list_attendance(){
+
+				$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			 if(!$this->checkMethod())
+			 {
+				 return FALSE;
+			 }
+
+			 if($_POST == FALSE)
+			 {
+				 $res = array();
+				 $res["opn"] = "Error";
+				 $res["scode"] = 204;
+				 $res["message"] = "Input error";
+
+				 echo json_encode($res);
+				 return;
+			 }
+
+
+			 $mobilizer_id = $this->input->post("mobilizer_id");
+			 $user_id = $this->input->post("user_id");
+			 $data['result']=$this->apipiamodel->get_year_list_attendance($mobilizer_id,$user_id);
+			 $response = $data['result'];
+			 echo json_encode($response);
+			}
+			//-----------------------------------------------//
+		//-----------------------------------------------//
+
+			public function get_month_list_attendance(){
+
+				$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			 if(!$this->checkMethod())
+			 {
+				 return FALSE;
+			 }
+
+			 if($_POST == FALSE)
+			 {
+				 $res = array();
+				 $res["opn"] = "Error";
+				 $res["scode"] = 204;
+				 $res["message"] = "Input error";
+
+				 echo json_encode($res);
+				 return;
+			 }
+
+
+			 $mobilizer_id = $this->input->post("mobilizer_id");
+			 $user_id = $this->input->post("user_id");
+			 $data['result']=$this->apipiamodel->get_month_list_attendance($mobilizer_id,$user_id);
+			 $response = $data['result'];
+			 echo json_encode($response);
+			}
+			//-----------------------------------------------//
+
+			//-----------------------------------------------//
+
+				public function get_month_day_list_attendance(){
+
+					$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+				 if(!$this->checkMethod())
+				 {
+					 return FALSE;
+				 }
+
+				 if($_POST == FALSE)
+				 {
+					 $res = array();
+					 $res["opn"] = "Error";
+					 $res["scode"] = 204;
+					 $res["message"] = "Input error";
+
+					 echo json_encode($res);
+					 return;
+				 }
+
+
+				 $mobilizer_id = $this->input->post("mobilizer_id");
+				 $user_id = $this->input->post("user_id");
+				 $month_id = $this->input->post("month_id");
+				 $data['result']=$this->apipiamodel->get_month_day_list_attendance($mobilizer_id,$user_id,$month_id);
+				 $response = $data['result'];
+				 echo json_encode($response);
+				}
+				//-----------------------------------------------//
+
+
+				//-----------------------------------------------//
+
+					public function get_month_attendance_report(){
+
+						$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+					 if(!$this->checkMethod())
+					 {
+						 return FALSE;
+					 }
+
+					 if($_POST == FALSE)
+					 {
+						 $res = array();
+						 $res["opn"] = "Error";
+						 $res["scode"] = 204;
+						 $res["message"] = "Input error";
+
+						 echo json_encode($res);
+						 return;
+					 }
+
+
+					 $mobilizer_id = $this->input->post("mobilizer_id");
+					 $user_id = $this->input->post("user_id");
+					 $month_id = $this->input->post("month_id");
+					 $data['result']=$this->apipiamodel->get_month_attendance_report($mobilizer_id,$user_id,$month_id);
+					 $response = $data['result'];
+					 echo json_encode($response);
+					}
+					//-----------------------------------------------//
 
 }
