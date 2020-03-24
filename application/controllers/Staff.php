@@ -341,7 +341,7 @@ class Staff extends CI_Controller {
 					 $t_title= $this->input->post('t_title');
 					 $t_desc=$this->input->post('t_desc');
 					 $mob_id=$this->input->post('mob_id');
-					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title,$task_desc,$t_title,$t_desc,$mob_id,$user_id);
+					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id);
 					$red_id = base64_encode($mob_id*98765);
 					
 					if($datas['status']=="Success"){
