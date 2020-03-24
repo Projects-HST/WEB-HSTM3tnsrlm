@@ -346,14 +346,14 @@ class Staff extends CI_Controller {
 					
 					if($datas['status']=="Success"){
 						$this->session->set_flashdata('msg', 'Work Assigned');
-						redirect('staff/view_mobilizer_job'.$red_id);
+						redirect('staff/view_mobilizer_job/'.$red_id);
 					}else if($datas['status']=="Already"){
 						$this->session->set_flashdata('msg', 'Work Already Exists');
-						redirect('staff/view_mobilizer_job'.$red_id);
+						redirect('staff/view_mobilizer_job/'.$red_id);
 					}
 					else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
-						redirect('staff/view_mobilizer_job'.$red_id);
+						redirect('staff/view_mobilizer_job/'.$red_id);
 					}
        }
        else{
