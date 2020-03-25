@@ -1,14 +1,12 @@
 <?php
 Class Staffmodel extends CI_Model
 {
-	
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('mailmodel');
 		$this->load->model('smsmodel');
 	}
-
 
     function checkemail($email){
 	$select="SELECT * FROM edu_staff_details Where email='$email'";
@@ -123,21 +121,9 @@ Class Staffmodel extends CI_Model
     function get_all_staff_mobilizer($user_id){
 		
 		$select="SELECT A.user_id, A.user_master_id, A.name, A.user_name, B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_type = '5' AND A.user_master_id = C.id ";
-		
-		/* $select="SELECT
-					A.*,
-					B.user_master_id
-				FROM
-					edu_staff_details A,
-					edu_users B
-				WHERE
-					A.pia_id = '$user_id' AND A.role_type = '5' AND A.id=B.user_master_id
-				ORDER BY
-					id
-				DESC"; */
-      //echo $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' AND role_type='5' ORDER BY id desc";
-      $result=$this->db->query($select);
-      return $result->result();
+
+		$result=$this->db->query($select);
+		return $result->result();
     }
 	
     function get_all_staff_details_by_id($staff_id){
@@ -219,7 +205,6 @@ Class Staffmodel extends CI_Model
 			// Additional headers
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
 			mail($email,$subject,$htmlContent,$headers); */
-			
 		}else {
 			 $update_user="UPDATE edu_users SET name='$name',user_type='$select_role',status='$status' WHERE user_master_id='$staff_id' AND user_type != '2'";
 			$result_user=$this->db->query($update_user);
@@ -234,15 +219,15 @@ Class Staffmodel extends CI_Model
     }
 	
 	function get_work_type(){
-      $select="SELECT * FROM work_type_master WHERE status='Active' ORDER BY id";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $select="SELECT * FROM work_type_master WHERE status='Active' ORDER BY id";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
 	
 	function get_mob_tasks($staff_id,$task_date){
-      $select="SELECT * FROM edu_task WHERE user_id='$staff_id' AND task_date = '$task_date' AND pia_id !=0 ORDER BY id";
-      $result=$this->db->query($select);
-      return $result->result();
+		  $select="SELECT * FROM edu_task WHERE user_id='$staff_id' AND task_date = '$task_date' AND pia_id !=0 ORDER BY id";
+		  $result=$this->db->query($select);
+		  return $result->result();
     }
 	
 	function checkmob_task($task_date,$mob_id)
@@ -253,35 +238,35 @@ Class Staffmodel extends CI_Model
 		$sql="SELECT * FROM edu_task WHERE user_id ='$mob_id' AND task_date = '$sdate' ";
 		$resultset=$this->db->query($sql);
 		$res=$resultset->result();
-		if(empty($res))
-		{
+			if(empty($res))
+			{
 				$data=array("status" =>"Nill");
 				return $data;
-		}else{
+			}else{
 				foreach($res as $rows){
 					$task_id[]=$rows->id;$task_title[]=$rows->task_title;
 				}
 				$data=array("status" =>"Success","task_id" =>$task_id,"task_title" =>$task_title);
 				return $data; 
-		}
+			}
 	}
 	
 	function check_task_id($task_title_id)
 	{
-	$sql="SELECT * FROM edu_task WHERE id ='$task_title_id'";
-	$resultset=$this->db->query($sql);
-	$res=$resultset->result();
-		if(empty($res))
-		{
-				$data=array("status" =>"Nill");
-				return $data;
-		}else{
-				foreach($res as $rows){
-					$task_desc =$rows->task_description;
-				}
-				$data=array("status" =>"Success","task_desc" =>$task_desc);
-				return $data; 
-		}
+		$sql="SELECT * FROM edu_task WHERE id ='$task_title_id'";
+		$resultset=$this->db->query($sql);
+		$res=$resultset->result();
+			if(empty($res))
+			{
+					$data=array("status" =>"Nill");
+					return $data;
+			}else{
+					foreach($res as $rows){
+						$task_desc =$rows->task_description;
+					}
+					$data=array("status" =>"Success","task_desc" =>$task_desc);
+					return $data; 
+			}
 	}
 
 	function add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id)
@@ -333,7 +318,6 @@ Class Staffmodel extends CI_Model
 	}
 	
 	
-	
 	function get_job_mobilizer($staff_id,$month,$year){
 		$id=base64_decode($staff_id)/98765;
 			$select="SELECT
@@ -343,7 +327,7 @@ Class Staffmodel extends CI_Model
 				mobilizer_attendance A,
 				work_type_master B
 			WHERE
-				A.mobilizer_id = '$id' AND MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year'AND A.work_type_id = B.id
+				A.mobilizer_id = '$id' AND MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND A.work_type_id = B.id
 			ORDER BY
 				attendance_date";
       $result=$this->db->query($select);
@@ -354,7 +338,7 @@ Class Staffmodel extends CI_Model
 		
 			$id=base64_decode($staff_id)/98765;
 			$month_name = date("F", mktime(0, 0, 0, $month, 10)); 
-			$total_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id'";
+			$total_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' GROUP BY attendance_date";
 			$total_count_res = $this->db->query($total_count);
 			$total_count = $total_count_res->num_rows();
 									
@@ -395,9 +379,6 @@ Class Staffmodel extends CI_Model
 							$km_travel=$rows->km;
 						}
 					}
-		
-				
-			
 			$count_result  = array(
 					"month_name" => $month_name,
 					"total_count" => $total_count,

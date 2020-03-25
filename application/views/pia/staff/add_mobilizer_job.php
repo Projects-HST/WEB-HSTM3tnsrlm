@@ -5,7 +5,7 @@
 				
 				
 			<?php if($this->session->flashdata('msg')): ?>
-			<div class="alert alert-success">
+			<div class="alert alert-danger">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 					×</button>
 				<?php echo $this->session->flashdata('msg'); ?>
