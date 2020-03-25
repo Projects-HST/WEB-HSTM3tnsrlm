@@ -1363,15 +1363,42 @@ function prospects_document($prospect_id){
 
 
       //#################### get mobilizer  month based attendance list ####################//
-      function get_month_attendance_report($mobilizer_id,$user_id,$month_id){
+      function get_month_attendance_report($mobilizer_id,$user_id,$month_id,$year_id){
          $query="SELECT  wm.work_type,COUNT(ma.work_type_id) as count from work_type_master as wm left join mobilizer_attendance as ma on ma.work_type_id=wm.id and  ma.mobilizer_id='$mobilizer_id' and Month(ma.attendance_date)='$month_id' GROUP by wm.id";
         $res = $this->db->query($query);
-          $result= $res->result();
+        $result=$res->result();
+
+
+        $query_km="SELECT et.user_id,Round(sum((6371 * ACOS(
+                COS( RADIANS(to_lat) )
+              * COS( RADIANS( user_lat ) )
+              * COS( RADIANS( user_long ) - RADIANS(to_long) )
+              + SIN( RADIANS(to_lat) )
+              * SIN( RADIANS( user_lat ) )
+            ) )),2) AS km
+        FROM edu_tracking_details as et left join edu_users as eu on eu.user_id=et.user_id WHERE eu.user_master_id='$mobilizer_id' and eu.user_type='5' AND Month(et.created_at)='$month_id' and year(et.created_at)='$year_id'";
+
+          $res_km = $this->db->query($query_km);
+          if($res_km->num_rows()==0){
+            $km_res='0';
+          }else{
+            $result_km= $res_km->result();
+            foreach($result_km as $rows_km){}
+              if($rows_km->km='NULL'){
+                $km_res='0';
+              }else{
+                $km_res=$rows_km->km;
+              }
+          }
+
+
+
+
         if($res->num_rows()==0){
-          $response = array("status" => "error", "msg" => "Mobilizer attendance list not found");
+          $response = array("status" => "error", "msg" => "Mobilizer work report not found");
        }else{
 
-         $response = array("status" => "success", "msg" => "Mobilizer attendance list found", "result"=>$result);
+         $response = array("status" => "success", "msg" => "Mobilizer work report found", "result"=>$result,"km_result"=>$km_res);
        }
        return $response;
       }
