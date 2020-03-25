@@ -1,14 +1,17 @@
 <?php   foreach($mobilizer_details as $mobi){} ?>
 	<div class="container">
+		<div class="row page_row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		
 			<?php if($this->session->flashdata('msg')): ?>
-			<div class="row page_row">
-			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-				<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true"×</button><?php echo $this->session->flashdata('msg'); ?></div>
-			</div>
-			</div>
-			<?php endif; ?>
-			
-			
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						×</button>
+					<?php echo $this->session->flashdata('msg'); ?>
+				</div>
+				<?php endif; ?>
+		</div>
+		</div>
 			<form method="post" action="<?php echo base_url(); ?>staff/view_mobilizer_job/<?php echo base64_encode($mobi->user_id*98765); ?>" class="form-horizontal" enctype="multipart/form-data" id="search_form">
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -142,47 +145,49 @@
 	
 	<div class="row page_row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="form-example-wrap">
-				
-			<div class="cmp-tb-hd cmp-int-hd">
-				<h2>Work Details</h2>
-			</div>
-			<div class="table-responsive">
-                 <table id="data-table-basic" class="table table-striped">
-                     <thead>
-                         <tr>
-                             <th>S.no</th>
-                             <th>Date</th>
-                             <th>Day</th>
-                             <th>Task Type</th>
-                             <th>Task Title</th>
-                              <th>Action</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                       <?php $i=1; foreach($mob_jobs as $rows){  
-					   $sdate = $rows->attendance_date;
-						$date = '2020-03-24';
-						$nameOfDay = date('l', strtotime($sdate));
-					   
-					   ?>
-
-                         <tr>
-                             <td><?php echo $i; ?></td>
-                             <td><?php $date=date_create($rows->attendance_date);echo date_format($date,"d-m-Y");  ?></td>
-                             <td><?php echo $nameOfDay; ?></td>
-                             <td><?php echo $rows->work_type; ?></td>
-                             <td><?php echo $rows->title; ?></td>
-                              <td>
-							  <a href="<?php echo base_url(); ?>staff/view_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Work"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Work"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
-                         </tr>
-<?php  $i++; } ?>
-                     </tbody>
-
-                 </table>
-             </div>
-				
-            </div>
+			<div class="normal-table-list">
+                        <div class="basic-tb-hd">
+                            <h2>Work Details</h2>
+                        </div>
+                        <div class="bsc-tbl">
+                            <table class="table table-sc-ex">
+							
+							<?php if (count($mob_jobs) >0 ){ ?>
+                                <thead>
+                                    <tr>
+										<th>S.no</th>
+										<th>Date</th>
+										<th>Day</th>
+										<th>Task Type</th>
+										<th>Task Title</th>
+										<th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								<?php $i=1; foreach($mob_jobs as $rows){  
+									$sdate = $rows->attendance_date;
+									$date = '2020-03-24';
+									$nameOfDay = date('l', strtotime($sdate));
+								?>
+							<tr>
+								 <td><?php echo $i; ?></td>
+								 <td><?php $date=date_create($rows->attendance_date);echo date_format($date,"d-m-Y");  ?></td>
+								 <td><?php echo $nameOfDay; ?></td>
+								 <td><?php echo $rows->work_type; ?></td>
+								 <td><?php echo $rows->title; ?></td>
+								  <td>
+								  <a href="<?php echo base_url(); ?>staff/view_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Work"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Work"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
+							</tr>
+							<?php  $i++; } ?>
+							<?php } else { ?>
+							<tr>
+								 <td colspan = "6" style="text-align:center;"><p> No Recods Found!..</p></td>
+							</tr>
+							<?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
         </div>
 	</div>
 	

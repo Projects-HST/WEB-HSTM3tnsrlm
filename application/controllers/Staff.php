@@ -303,7 +303,6 @@ class Staff extends CI_Controller {
 				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 				$datas['consolidate_report']=$this->staffmodel->consolidate_report($staff_id,$month,$year);
 				$datas['mob_jobs']=$this->staffmodel->get_job_mobilizer($staff_id,$month,$year);
-				
 				$this->load->view('pia/pia_header');
 				$this->load->view('pia/staff/view_mobilizer_job',$datas);
 				 $this->load->view('pia/pia_footer');
@@ -370,18 +369,18 @@ class Staff extends CI_Controller {
 					 $mob_id=$this->input->post('mob_id');
 					 $user_master_id=$this->input->post('user_master_id');
 					$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id,$user_master_id);
-					$red_id = base64_encode($user_master_id*98765);
+					$red_id = base64_encode($mob_id*98765);
 					
 					if($datas['status']=="Success"){
 						$this->session->set_flashdata('msg', 'Work Assigned');
 						redirect('staff/view_mobilizer_job/'.$red_id);
 					}else if($datas['status']=="Already"){
 						$this->session->set_flashdata('msg', 'Work Already Exists');
-						redirect('staff/view_mobilizer_job/'.$red_id);
+						redirect('staff/add_mobilizer_job/'.$red_id);
 					}
 					else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
-						redirect('staff/view_mobilizer_job/'.$red_id);
+						redirect('staff/add_mobilizer_job/'.$red_id);
 					}
        }
        else{
