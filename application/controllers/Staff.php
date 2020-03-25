@@ -263,18 +263,49 @@ class Staff extends CI_Controller {
 				redirect('/');
 			}
 		}
-		
+
+				
+		 public function chk_month(){
+			
+			$datas=$this->session->userdata();
+			$user_id=$this->session->userdata('user_id');
+			$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				//$staff_id=$this->uri->segment(3);
+				$staff_id = $this->input->post('staff_id');
+				$syear = $this->input->post('syear');
+				$data =$this->staffmodel->get_job_months($staff_id,$syear);
+				echo json_encode($data);
+			 }else{
+					redirect('/');
+			 }
+		} 
+
 		public function view_mobilizer_job(){
 			$datas=$this->session->userdata();
 			$user_id=$this->session->userdata('user_id');
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==3){
 				$staff_id=$this->uri->segment(3);
+				$month=$this->input->post('month');
+				$year=$this->input->post('year');
+
+				if ($month == ''){
+					$month = date("m");
+				}
+				if ($year == ''){
+					$year = date("Y"); 
+				}
+				$datas['month'] = $month;
+				$datas['year'] = $year;
+				
+				$datas['job_years']=$this->staffmodel->get_job_year($staff_id);
 				$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
-				$datas['result']=$this->staffmodel->get_all_staff_mobilizer($user_id);
+				$datas['consolidate_report']=$this->staffmodel->consolidate_report($staff_id,$month,$year);
+				$datas['mob_jobs']=$this->staffmodel->get_job_mobilizer($staff_id,$month,$year);
+				
 				$this->load->view('pia/pia_header');
 				$this->load->view('pia/staff/view_mobilizer_job',$datas);
-				 
 				 $this->load->view('pia/pia_footer');
 			 }else{
 					redirect('/');

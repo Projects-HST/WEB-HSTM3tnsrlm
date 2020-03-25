@@ -150,7 +150,7 @@ Class Staffmodel extends CI_Model
 				edu_staff_details A,
 				edu_users B
 			WHERE
-				A.id = '$id' AND B.user_type = '5' AND A.id = B.user_master_id";
+				B.user_id  = '$id' AND B.user_type = '5' AND A.id = B.user_master_id";
       $result=$this->db->query($select);
       return $result->result();
     }
@@ -331,6 +331,119 @@ Class Staffmodel extends CI_Model
 			
 		}
 	}
-
+	
+	
+	
+	function get_job_mobilizer($staff_id,$month,$year){
+		$id=base64_decode($staff_id)/98765;
+			$select="SELECT
+				A.*,
+				B.work_type
+			FROM
+				mobilizer_attendance A,
+				work_type_master B
+			WHERE
+				A.mobilizer_id = '$id' AND MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year'AND A.work_type_id = B.id
+			ORDER BY
+				attendance_date";
+      $result=$this->db->query($select);
+      return $result->result();
+    }
+	
+	function consolidate_report($staff_id,$month,$year){
+		
+			$id=base64_decode($staff_id)/98765;
+			$month_name = date("F", mktime(0, 0, 0, $month, 10)); 
+			$total_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id'";
+			$total_count_res = $this->db->query($total_count);
+			$total_count = $total_count_res->num_rows();
+									
+			$office_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '1'";
+			$office_count_res = $this->db->query($office_count);
+			$office_count = $office_count_res->num_rows();
+			
+			$field_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '2'";
+			$field_count_res = $this->db->query($field_count);
+			$field_count = $field_count_res->num_rows();
+			
+			$holiday_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '3'";
+			$holiday_count_res = $this->db->query($holiday_count);
+			$holiday_count = $holiday_count_res->num_rows();
+			
+			$leave_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '3'";
+			$leave_count_res = $this->db->query($leave_count);
+			$leave_count = $leave_count_res->num_rows();
+			
+			$sql="SELECT user_id,sum((6371 * ACOS(
+					COS( RADIANS(to_lat) )
+				  * COS( RADIANS( user_lat ) )
+				  * COS( RADIANS( user_long ) - RADIANS(to_long) )
+				  + SIN( RADIANS(to_lat) )
+				  * SIN( RADIANS( user_lat ) )
+					) )) AS km
+					FROM
+						edu_tracking_details
+					WHERE
+						user_id = '85' AND MONTH(`created_at`)='$month' AND YEAR (created_at)= '$year' ";
+					$resultset=$this->db->query($sql);
+					$res=$resultset->result();
+					if(empty($res))
+					{
+							$km_travel = '0';
+					}else{
+						foreach($res as $rows){
+							$km_travel=$rows->km;
+						}
+					}
+		
+				
+			
+			$count_result  = array(
+					"month_name" => $month_name,
+					"total_count" => $total_count,
+					"office_count" => $office_count,
+					"field_count" => $field_count,
+					"holiday_count" => $holiday_count,
+					"leave_count" => $leave_count,
+					"km_travel" => $km_travel
+				);
+					
+			return $count_result;
+			
+		/* echo $select="SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id'";
+		$result=$this->db->query($select);
+		return $result->result(); */
+    }
+	
+	function get_job_year($staff_id){
+		$id=base64_decode($staff_id)/98765;
+		 $select="SELECT YEAR(attendance_date) AS years FROM mobilizer_attendance WHERE mobilizer_id = '$id' GROUP BY YEAR(attendance_date)";
+		$result=$this->db->query($select);
+		return $result->result();
+    }
+	
+	function get_job_months($staff_id,$syear){
+		$id=base64_decode($staff_id)/98765;
+		
+		$sql="Select DATE_FORMAT(`attendance_date`, '%m') AS month_id, DATE_FORMAT(`attendance_date`, '%M') AS months from mobilizer_attendance WHERE mobilizer_id = '$id' AND YEAR(attendance_date) = '$syear' group by DATE_FORMAT(`attendance_date`, '%m')";
+		$resultset=$this->db->query($sql);
+		$res=$resultset->result();
+		if(empty($res))
+		{
+				$data=array("status" =>"Nill");
+				return $data;
+		}else{
+				foreach($res as $rows){
+					$month_id[]=$rows->month_id;$months[]=$rows->months;
+				}
+				$data=array("status" =>"Success","month_id" =>$month_id,"months" =>$months);
+				return $data; 
+		}
+		
+		$result=$this->db->query($select);
+		return $result->result();
+    }
+	
+	
 }
 ?>

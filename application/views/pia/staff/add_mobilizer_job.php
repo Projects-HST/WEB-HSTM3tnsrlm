@@ -272,7 +272,7 @@
 	var task_title = $('#task_title').val();
 	var task_desc = $('#task_desc').val();
 	var mob_id = $('#mob_id').val();
-	alert(task_date);alert(select_type);alert(task_title);alert(task_desc);alert(mob_id);
+	//alert(task_date);alert(select_type);alert(task_title);alert(task_desc);alert(mob_id);
 			$.ajax({
 			   type:'post',
 			   url:'<?php echo base_url(); ?>staff/add_mob_job',
