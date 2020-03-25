@@ -2189,6 +2189,74 @@ public function user_profilepic()
 		//-----------------------------------------------//
 
 
+		//-----------------------------------------------//
+
+			public function get_attendance_task_detail(){
+
+				$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+			 if(!$this->checkMethod())
+			 {
+				 return FALSE;
+			 }
+
+			 if($_POST == FALSE)
+			 {
+				 $res = array();
+				 $res["opn"] = "Error";
+				 $res["scode"] = 204;
+				 $res["message"] = "Input error";
+
+				 echo json_encode($res);
+				 return;
+			 }
+
+			 $attendance_id = $this->input->post("attendance_id");
+			 $data['result']=$this->apipiamodel->get_attendance_task_detail($attendance_id);
+			 $response = $data['result'];
+			 echo json_encode($response);
+			}
+			//-----------------------------------------------//
+
+			//-----------------------------------------------//
+
+				public function update_attendance_task(){
+
+					$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+				 if(!$this->checkMethod())
+				 {
+					 return FALSE;
+				 }
+
+				 if($_POST == FALSE)
+				 {
+					 $res = array();
+					 $res["opn"] = "Error";
+					 $res["scode"] = 204;
+					 $res["message"] = "Input error";
+
+					 echo json_encode($res);
+					 return;
+				 }
+
+
+				 $mobilizer_id = $this->input->post("mobilizer_id");
+				 $attendance_id = $this->input->post("attendance_id");
+				 $task_type = $this->input->post("task_type");
+				 $attendance_date = $this->input->post("attendance_date");
+				  $title = $this->input->post("title");
+				 $comments = $this->input->post("comments");
+				 $status = $this->input->post("status");
+				 $task_id = $this->input->post("task_id");
+				 $user_id = $this->input->post("user_id");
+				 $created_at = $this->input->post("updated_at");
+				 $data['result']=$this->apipiamodel->update_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$created_at,$attendance_id);
+				 $response = $data['result'];
+				 echo json_encode($response);
+				}
+				//-----------------------------------------------//
+
 			//-----------------------------------------------//
 
 				public function get_list_mobilizer_for_pia(){

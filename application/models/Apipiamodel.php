@@ -1135,7 +1135,7 @@ class Apipiamodel extends CI_Model {
 //#################### Prospects Document  ####################//
 
 function prospects_document($prospect_id){
-  $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status,dm.doc_name,dm.doc_type FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id  where dd.status='Active' and dd.prospect_student_id='$prospect_id'";
+  $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status,dm.doc_name,dm.doc_type FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id  where dd.status='Active' and dd.prospect_student_id='$prospect_id' GROUP BY dd.doc_master_id";
   $result=$this->db->query($query);
   if($result->num_rows()==0){
       $response = array("status" => "error", "msg" => "Something Went Wrong");
@@ -1224,16 +1224,51 @@ function prospects_document($prospect_id){
     $res = $this->db->query($query);
     $result= $res->result();
      if($res->num_rows()==0){
-       $response = array("status" => "error", "msg" => "Work Master Not Found");
+       $response = array("status" => "error", "msg" => "Attendance list Not Found");
     }else{
 
-      $response = array("status" => "success", "msg" => "Work Master", "result"=>$result);
+      $response = array("status" => "success", "msg" => "Attendance list found", "result"=>$result);
     }
     return $response;
 
   }
 
   //#################### List Attendance task update ####################//
+
+  //#################### Get Attendance task details ####################//
+
+  function get_attendance_task_detail($attendance_id){
+    $query="SELECT ma.id,wtm.work_type,ma.task_id,ma.title,ma.comments,ma.work_type_id,ma.attendance_date,ma.status,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
+    left join edu_task as et on et.id=ma.task_id
+    left join work_type_master as wtm on wtm.id=ma.work_type_id
+    where  ma.id='$attendance_id'";
+    $res = $this->db->query($query);
+    $result= $res->result();
+     if($res->num_rows()==0){
+       $response = array("status" => "error", "msg" => "Attendance list not  found");
+    }else{
+      $response = array("status" => "success", "msg" => "Attendance list", "result"=>$result);
+    }
+    return $response;
+  }
+  //#################### Get Attendance task details ####################//
+
+
+  //#################### Get Attendance task details update ####################//
+
+  function update_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$updated_at,$attendance_id){
+    $query="UPDATE mobilizer_attendance SET work_type_id='$task_type',task_id='$task_id',title='$title',comments='$comments',status='$status',updated_at='$updated_at',updated_by='$user_id' where id='$attendance_id'";
+    $res = $this->db->query($query);
+   if($res){
+         $response = array("status" => "success", "msg" => "Attendance details updated");
+    }else{
+      $response = array("status" => "error", "msg" => "Something went wrong!");
+    }
+    return $response;
+  }
+  //#################### Get Attendance task details update ####################//
+
+
 
   //#################### get mobilizer task list ####################//
 
