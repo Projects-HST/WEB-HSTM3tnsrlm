@@ -909,9 +909,9 @@ class Apimobilizermodel extends CI_Model {
 
 
 //#################### Task Pic Add ####################//
-	public function taskPic($task_id,$task_pic)
+	public function taskPic($task_id,$task_pic,$task_lat)
 	{
-       $task_query = "INSERT INTO edu_task_photos (task_id, task_image) VALUES ('$task_id','$task_pic')";
+     $task_query = "INSERT INTO edu_task_photos (task_id, task_image,task_lat,created_at) VALUES ('$task_id','$task_pic','$task_lat',NOW())";
       $task_res = $this->db->query($task_query);
         $task_id = $this->db->insert_id();
 
@@ -1110,6 +1110,21 @@ function prospects_document($prospect_id){
   return $response;
 }
 //#################### Prospects Document  ####################//
+
+
+
+
+function update_attendance_mobilizer_comment($attendance_id,$mobilizer_comments,$user_id){
+  $query="UPDATE mobilizer_attendance SET mobilizer_comments='$mobilizer_comments',updated_at=NOW(),updated_by='$user_id' WHERE id='$attendance_id'";
+  $result = $this->db->query($query);
+  if($result) {
+      $response = array("status" => "success", "msg" => "comments Updated");
+  }else{
+    $response = array("status" => "error");
+  }
+
+  return $response;
+}
 
 
 }

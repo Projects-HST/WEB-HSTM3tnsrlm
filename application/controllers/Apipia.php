@@ -2411,6 +2411,38 @@ public function user_profilepic()
 				}
 				//-----------------------------------------------//
 
+				//-----------------------------------------------//
+
+					public function get_month_day_report_details(){
+
+						$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+					 if(!$this->checkMethod())
+					 {
+						 return FALSE;
+					 }
+
+					 if($_POST == FALSE)
+					 {
+						 $res = array();
+						 $res["opn"] = "Error";
+						 $res["scode"] = 204;
+						 $res["message"] = "Input error";
+
+						 echo json_encode($res);
+						 return;
+					 }
+
+
+					 $mobilizer_id = $this->input->post("mobilizer_id");
+					 $user_id = $this->input->post("user_id");
+					 $attendance_id = $this->input->post("attendance_id");
+					 $data['result']=$this->apipiamodel->get_month_day_report_details($mobilizer_id,$user_id,$attendance_id);
+					 $response = $data['result'];
+					 echo json_encode($response);
+					}
+					//-----------------------------------------------//
+
 
 				//-----------------------------------------------//
 
