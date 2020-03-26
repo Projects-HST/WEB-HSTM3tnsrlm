@@ -1019,13 +1019,16 @@ class Apimobilizer extends CI_Controller {
 
 		$task_id = $this->uri->segment(3);
 		$profile = $_FILES["task_pic"]["name"];
+		echo $task_lat = $this->input->post("task_lat");
+		exit;
+
 		$taskFileName = time().'-'.$task_id.'-'.$profile;
 
 		$uploadPicdir = './assets/task/';
 		$taskpic = $uploadPicdir.$taskFileName;
 		move_uploaded_file($_FILES['task_pic']['tmp_name'], $taskpic);
 
-		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName);
+		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName,$task_lat);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
@@ -1206,16 +1209,6 @@ class Apimobilizer extends CI_Controller {
 		$prospect_id = $this->uri->segment(5);
 		$proof_number = $this->uri->segment(6);
 
-// 		$profile = $_FILES["upload_document"]["name"];
-// 		//$temp = pathinfo($profile, PATHINFO_EXTENSION);
-// 		//$userFileName = round(microtime(true)) . '.' . $temp;
-// 		$extension        = end((explode(".", $profile)));
-//         $documentFileName = $user_id . '-' . time() . '.' . $extension;
-// 		$uploaddir = 'assets/documents/';
-// 		$profilepic = $uploaddir.$documentFileName;
-// 		move_uploaded_file($_FILES['upload_document']['tmp_name'], $profilepic);
-
-
 	$document         = $_FILES["upload_document"]["name"];
 		$extension        = end((explode(".", $document)));
 		$documentFileName = $user_id . '-' . time() . '.' . $extension;
@@ -1256,6 +1249,40 @@ class Apimobilizer extends CI_Controller {
 	}
 
 //-----------------------------------------------//
+
+
+//-----------------------------------------------//
+
+	public function update_attendance_mobilizer_comment(){
+
+		$_POST = json_decode(file_get_contents("php://input"), TRUE);
+
+	 if(!$this->checkMethod())
+	 {
+		 return FALSE;
+	 }
+
+	 if($_POST == FALSE)
+	 {
+		 $res = array();
+		 $res["opn"] = "Error";
+		 $res["scode"] = 204;
+		 $res["message"] = "Input error";
+
+		 echo json_encode($res);
+		 return;
+	 }
+
+
+	 $attendance_id = $this->input->post("attendance_id");
+	 $mobilizer_comments = $this->input->post("mobilizer_comments");
+	 $user_id = $this->input->post("user_id");
+
+	 $data['result']=$this->apimobilizermodel->update_attendance_mobilizer_comment($attendance_id,$mobilizer_comments,$user_id);
+	 $response = $data['result'];
+	 echo json_encode($response);
+	}
+	//-----------------------------------------------//
 
 
 
