@@ -1,25 +1,18 @@
-<?php   foreach($mobilizer_details as $mobi){} ?>
+<?php   
+foreach($job_details as $job){
+	$work_type_id = $job->work_type_id; 
+} ?>
 <div class="container">
 	<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				
-				
-			<?php if($this->session->flashdata('msg')): ?>
-			<div class="alert alert-danger">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-					×</button>
-				<?php echo $this->session->flashdata('msg'); ?>
-			</div>
-			<?php endif; ?>
-		
 			
 			<div class="row page_row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                     <div class="form-example-wrap">
 			
-			 <form method="post" action="<?php echo base_url(); ?>staff/add_mob_job" class="form-horizontal" enctype="multipart/form-data" id="staffform" >
+			
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Create Mobilizers Work</h2>
+					<h2>View Mobilizers Work</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -27,24 +20,19 @@
            
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Date <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Task Date : </label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" placeholder="Task date" name="task_date" id="task_date" class="form-control track_date input-sm" />
+											<?php $date=date_create($job->attendance_date);echo date_format($date,"d-m-Y");  ?>
                                     </div>
 									  <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
                                 </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select type <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Select type : </label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<select name="select_type" class="form-control" id="select_type">
-											<option value="">Select</option>
-											<?php foreach($work_types as $rows){ ?>
-												<option value="<?php echo $rows->id; ?>"><?php echo $rows->work_type; ?></option>
-											<?php  } ?>
-										</select>
+										<?php echo $job->work_type; ?>
                                     </div>
 									 <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 								
@@ -52,46 +40,84 @@
 								<div id="other_work" class="other_work">
 									<div class="row page_row">
 										<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-											<label class="hrzn-fm">Task Title <span class="error">*</span></label>
+											<label class="hrzn-fm">Task Title : </label>
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" placeholder="Task Title" name="task_title" class="form-control input-sm" maxlength="50">
+											<?php echo $job->title; ?>
 										</div>
-									
 										<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 									</div>
 								</div>
 								
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Description <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Task Description : </label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
-                                           <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Task Description"></textarea>
+                                           <?php echo $job->comments; ?>
                                     </div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
                             </div>
 							<div class="row page_row">
-								 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Mobilizer Comments : </label>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="hidden" name="mob_id" id="mob_id" value="<?php echo $mobi->user_id; ?>">
-											<input type="hidden" name="user_master_id" id="user_master_id" value="<?php echo $mobi->user_master_id; ?>">
-                                           <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Assign</button>
-										  <!--<a href="<?php echo base_url(); ?>task/home" class="btn btn-success notika-btn-success waves-effect" id="task_btn">Add Task</a>-->								   
+                                    <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
+                                           <?php echo $job->mobilizer_comments; ?>
                                     </div>
-								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
-								</div>
-							</div>
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+                            </div>
 							
-								
+	
 					</div>
                 </div>	
-              </form>
+           
                     
             </div>
 		</div>
 	</div>
+	
+	<div class="row page_row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-example-wrap">
+		
+				<div class="form-example-int">
+							<div class="row page_row">
+									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                      	<div class="cmp-tb-hd cmp-int-hd"><h2>Gallery</h2></div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
+                           </div>
+						   
+						   <div class="row page_row" style="margin-top:20px;min-height:100px;">
+							<?php if(empty($job_gallery)){ ?>
+								<div class="clearfix" style="text-align:center;">No Gallery Found</div>
+							<?php }else{
+								foreach($job_gallery as $rows){ ?>
+								<div class="col-lg-2" style="margin-bottom:5px;">
+									<div id="thumbnail">
+									<a class="galpop-multiple" data-galpop-group="multiple" href="<?php echo base_url(); ?>assets/task/<?php echo $rows->task_image; ?>">
+			<img src="<?php echo base_url(); ?>assets/task/<?php echo $rows->task_image; ?>" alt="" class="img-responsive" style="width:150px;height:100px;" />
+		</a>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+
+				<?php
+					}
+				  } ?>
+
+				</div>
+				</div>
+
+				<div class="row page_row">
+					<button onclick="history.go(-1);" class="btn btn-wd btn-default pull-right waves-effect">Go Back</button>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+		
 	
 </div>
 </div>
@@ -106,9 +132,18 @@
     $('#staff').addClass('active');
     $('#staffmenu').addClass('active');
 	$('#view_mobilizer_list').addClass('active');
+
+	$(document).ready(function() {
+		$('.galpop-multiple').galpop();
+	});
+	
+	/* <?php if($work_type_id == '1' ||  $work_type_id == '2') { ?>
+		$('.other_work').show();
+	<?php } else { ?>
+		$('.other_work').hide();
+	<?php } ?>
 	
 	var select_type = jQuery('#select_type');
-
 	select_type.change(function () {
 		if ($(this).val() == '1' || $(this).val() == '2') {
 			$('.other_work').show();
@@ -148,7 +183,7 @@
           task_desc: "Enter description",
           task_status: "Select status"
       }
-	});
+	}); */
 	
 	/* $("#field_work").hide();
 	$("#other_work").hide();

@@ -169,6 +169,7 @@ class Staff extends CI_Controller {
 			$user_type=$this->session->userdata('user_type');
 			if($user_type==3){
 				$select_role=$this->input->post('select_role');
+				$old_role=$this->input->post('staff_old_type');
 				$staff_id=base64_decode($this->input->post('staff_id'));
 				$name=$this->input->post('name');
 				$address= $this->db->escape_str($this->input->post('address'));
@@ -188,6 +189,7 @@ class Staff extends CI_Controller {
 				$status=$this->input->post('status');
 				$staff_old_pic=$this->input->post('staff_old_pic');
 				$profilepic = $_FILES['staff_new_pic']['name'];
+								
 				if(empty($profilepic)){
 					$staff_prof_pic=$staff_old_pic;
 				}else{
@@ -197,7 +199,7 @@ class Staff extends CI_Controller {
 					$profilepic = $uploaddir.$staff_prof_pic;
 					move_uploaded_file($_FILES['staff_new_pic']['tmp_name'], $profilepic);
 				}
-				$datas=$this->staffmodel->update_staff_details_to_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id);
+				$datas=$this->staffmodel->update_staff_details_to_id($old_role,$select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id);
 				if($datas['status']=="success"){
 					$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
 					redirect('staff/view');
@@ -299,7 +301,7 @@ class Staff extends CI_Controller {
 			$datas['job_years']=$this->staffmodel->get_job_year($staff_id);
 			$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 			$datas['consolidate_report']=$this->staffmodel->consolidate_report($staff_id,$month,$year);
-			$datas['mob_jobs']=$this->staffmodel->get_job_mobilizer($staff_id,$month,$year);
+			$datas['mob_jobs']=$this->staffmodel->list_mobilizer_job($staff_id,$month,$year);
 			$this->load->view('pia/pia_header');
 			$this->load->view('pia/staff/view_mobilizer_job',$datas);
 			 $this->load->view('pia/pia_footer');
@@ -323,8 +325,123 @@ class Staff extends CI_Controller {
 				redirect('/');
 		 }
 	}
-		
-	public function chk_jobtype(){
+				
+	public function add_mob_job(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				 $task_date=$this->input->post('task_date');
+				 $select_type=$this->input->post('select_type');
+				 $task_title_id= $this->input->post('task_title');
+				 $task_desc=$this->input->post('task_desc');
+				 $mob_id=$this->input->post('mob_id');
+				 $user_master_id=$this->input->post('user_master_id');
+				 
+				$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$mob_id,$user_id,$user_master_id);
+				$red_id = base64_encode($mob_id*98765);
+				
+				if($datas['status']=="Success"){
+					$this->session->set_flashdata('msg', 'Work Assigned');
+					redirect('staff/view_mobilizer_job/'.$red_id);
+				}else if($datas['status']=="Already"){
+					$this->session->set_flashdata('msg', 'Work Already Exists');
+					redirect('staff/add_mobilizer_job/'.$red_id);
+				}
+				else{
+					$this->session->set_flashdata('msg', 'Failed to Add');
+					redirect('staff/add_mobilizer_job/'.$red_id);
+				}
+		}
+		else{
+		  redirect('/');
+		}
+	}
+	
+	public function edit_mobilizer_job(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+				$job_id=$this->uri->segment(3);
+				$datas['job_details']=$this->staffmodel->get_job_details($job_id);
+				$datas['work_types']=$this->staffmodel->get_work_type();
+				$this->load->view('pia/pia_header');
+				$this->load->view('pia/staff/edit_mobilizer_job',$datas);
+				$this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	}
+	
+	public function update_mobilizer_job(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+			if($user_type==3){
+				 $job_id=$this->input->post('job_id');
+				 $task_date=$this->input->post('task_date');
+				 $select_type=$this->input->post('select_type');
+				 $task_title= $this->input->post('task_title');
+				 $task_desc=$this->input->post('task_desc');
+				 $mob_id=$this->input->post('mob_id');
+				 //$user_master_id=$this->input->post('user_master_id');
+				 
+				$datas=$this->staffmodel->update_mob_job($job_id,$task_date,$select_type,$task_title,$task_desc,$mob_id,$user_id);
+				$red_id = base64_encode($mob_id*98765);
+				
+				if($datas['status']=="Success"){
+					$this->session->set_flashdata('msg', 'Work Update');
+					redirect('staff/view_mobilizer_job/'.$red_id);
+				}else if($datas['status']=="Already"){
+					$this->session->set_flashdata('msg', 'Work Already Exists');
+					redirect('staff/add_mobilizer_job/'.$red_id);
+				}
+				else{
+					$this->session->set_flashdata('msg', 'Failed to Update');
+					redirect('staff/add_mobilizer_job/'.$red_id);
+				}
+		}
+		else{
+		  redirect('/');
+		}
+	}
+	
+	public function edit_job_details(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+				$job_id=$this->uri->segment(3);
+				$datas['job_details']=$this->staffmodel->get_job_details($job_id);
+				$datas['job_gallery']=$this->staffmodel->get_job_gallery($job_id);
+				$datas['work_types']=$this->staffmodel->get_work_type();
+				$this->load->view('pia/pia_header');
+				$this->load->view('pia/staff/edit_mobilizer_job',$datas);
+				$this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	}
+	
+	
+	public function view_job_details(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+				$job_id=$this->uri->segment(3);
+				$datas['job_details']=$this->staffmodel->get_job_details($job_id);
+				$datas['job_gallery']=$this->staffmodel->get_job_gallery($job_id);
+				$datas['work_types']=$this->staffmodel->get_work_type();
+				$this->load->view('pia/pia_header');
+				$this->load->view('pia/staff/view_job_details',$datas);
+				$this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	}
+	/* public function chk_jobtype(){
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('user_id');
 		$user_type=$this->session->userdata('user_type');
@@ -349,41 +466,7 @@ class Staff extends CI_Controller {
 		 }else{
 				redirect('/');
 		 }
-	}
-		
-		
-	public function add_mob_job(){
-		$datas=$this->session->userdata();
-		$user_id=$this->session->userdata('user_id');
-		$user_type=$this->session->userdata('user_type');
-			if($user_type==3){
-				 $task_date=$this->input->post('task_date');
-				 $select_type=$this->input->post('select_type');
-				 $task_title_id= $this->input->post('task_title');
-				 $task_desc=$this->input->post('task_desc');
-				 $t_title= $this->input->post('t_title');
-				 $t_desc=$this->input->post('t_desc');
-				 $mob_id=$this->input->post('mob_id');
-				 $user_master_id=$this->input->post('user_master_id');
-				$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id,$user_master_id);
-				$red_id = base64_encode($mob_id*98765);
-				
-				if($datas['status']=="Success"){
-					$this->session->set_flashdata('msg', 'Work Assigned');
-					redirect('staff/view_mobilizer_job/'.$red_id);
-				}else if($datas['status']=="Already"){
-					$this->session->set_flashdata('msg', 'Work Already Exists');
-					redirect('staff/add_mobilizer_job/'.$red_id);
-				}
-				else{
-					$this->session->set_flashdata('msg', 'Failed to Add');
-					redirect('staff/add_mobilizer_job/'.$red_id);
-				}
-		}
-		else{
-		  redirect('/');
-		}
-	}
+	} */
 	
 		
 		

@@ -12,13 +12,14 @@ Class Loginmodel extends CI_Model
 	function login($username,$password)
 	{
 		$chkUser = "SELECT * FROM edu_users WHERE user_name='$username' AND user_password='$password'";
+		//exit;
 		$res=$this->db->query($chkUser);
 		if($res->num_rows()==1){
 		   foreach($res->result() as $rows){
 			   $status = $rows->status;
 		   }
 			if ($status = 'Active'){
-				 $data = array("status"=>$rows->status,"user_name"  => $rows->user_name,"name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
+				  $data = array("status"=>$rows->status,"user_name"  => $rows->user_name,"name"=>$rows->name, "pia_id" => $rows->pia_id,"user_type"=>$rows->user_type,"user_id"=>$rows->user_id,"user_pic"=>$rows->user_pic);
 				 return $data;
 			 } else {
 				  $data= array("status" => "Inactive");

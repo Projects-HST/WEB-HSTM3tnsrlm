@@ -155,18 +155,19 @@
 							<?php if (count($mob_jobs) >0 ){ ?>
                                 <thead>
                                     <tr>
-										<th>S.no</th>
-										<th>Date</th>
-										<th>Day</th>
-										<th>Task Type</th>
-										<th>Task Title</th>
-										<th>Action</th>
+										<th width="5%">S.no</th>
+										<th width="10%">Date</th>
+										<th width="10%">Day</th>
+										<th width="15%">Task Type</th>
+										<th width="35%">Task Title</th>
+										<th width="15%">Status</th>
+										<th width="10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 								<?php $i=1; foreach($mob_jobs as $rows){  
 									$sdate = $rows->attendance_date;
-									$date = '2020-03-24';
+									//$date = '2020-03-24';
 									$nameOfDay = date('l', strtotime($sdate));
 								?>
 							<tr>
@@ -175,8 +176,9 @@
 								 <td><?php echo $nameOfDay; ?></td>
 								 <td><?php echo $rows->work_type; ?></td>
 								 <td><?php echo $rows->title; ?></td>
+								  <td><?php echo $rows->status; ?></td>
 								  <td>
-								  <a href="<?php echo base_url(); ?>staff/view_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Work"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mob_work/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Work"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
+								  <a href="<?php echo base_url(); ?>staff/view_job_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Work"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mobilizer_job/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Work"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
 							</tr>
 							<?php  $i++; } ?>
 							<?php } else { ?>
@@ -223,33 +225,33 @@
 	
 	function chkmonth()
 	{ 
-			var year = document.getElementById('year');
-			var syear = year.value;
-			var staff_id = '<?php echo base64_encode($mobi->user_id*98765); ?>';
-				$.ajax({
-				   type:'post',
-				   url:'<?php echo base_url(); ?>staff/chk_month',
-				   data:'staff_id=' + staff_id + '&syear=' + syear,
-				   dataType: 'json',
-				   success:function(data)
-				   {
-					   if (data.status=='Success') {
-						   var month_id = data.month_id;
-						   var months = data.months;
-						   var leng = months.length;
-							var i;
-							var job_month = '<option value="">Select</option>';
-							for (i = 0; i < leng; i++) {
-								job_month  += '<option value="' + month_id[i] + '">' + months[i] + '</option>'
-							}
-							$("#month").html(job_month);
-						} else {
-							var job_month = '<option value="">Select</option><option selected value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>';
-							$("#month").html(job_month);
-						}
-				   }
-				});
-
+	var year = document.getElementById('year');
+	var syear = year.value;
+	var staff_id = '<?php echo base64_encode($mobi->user_id*98765); ?>';
+		
+		$.ajax({
+		   type:'post',
+		   url:'<?php echo base_url(); ?>staff/chk_month',
+		   data:'staff_id=' + staff_id + '&syear=' + syear,
+		   dataType: 'json',
+		   success:function(data)
+		   {
+			   if (data.status=='Success') {
+				   var month_id = data.month_id;
+				   var months = data.months;
+				   var leng = months.length;
+					var i;
+					var job_month = '<option value="">Select</option>';
+					for (i = 0; i < leng; i++) {
+						job_month  += '<option value="' + month_id[i] + '">' + months[i] + '</option>'
+					}
+					$("#month").html(job_month);
+				} else {
+					var job_month = '<option value="">Select</option><option selected value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>';
+					$("#month").html(job_month);
+				}
+		   }
+		});
    }
 </script>
 

@@ -107,28 +107,26 @@ Class Staffmodel extends CI_Model
    }
 
     function get_all_staff_details($user_id){
-      $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' ORDER BY id desc";
+       $select="SELECT A.user_id, A.user_master_id, A.name, A.user_name,B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_master_id = C.id ";
       $result=$this->db->query($select);
       return $result->result();
     }
 
     function get_all_staff_trainer($user_id){
-      $select="SELECT * FROM edu_staff_details WHERE pia_id='$user_id' AND role_type='4' ORDER BY id desc";
+       $select="SELECT A.user_id, A.user_master_id, A.name, A.user_name, B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_type = '4' AND A.user_master_id = C.id ";
       $result=$this->db->query($select);
       return $result->result();
     }
 
     function get_all_staff_mobilizer($user_id){
-		
-		$select="SELECT A.user_id, A.user_master_id, A.name, A.user_name, B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_type = '5' AND A.user_master_id = C.id ";
-
+		 $select="SELECT A.user_id, A.user_master_id, A.name, A.user_name, B.user_type_name, A.status, C.email, C.phone FROM edu_users A, edu_role B, edu_staff_details C WHERE A.user_type = B.id AND A.pia_id = '$user_id' AND A.user_type = '5' AND A.user_master_id = C.id ";
 		$result=$this->db->query($select);
 		return $result->result();
     }
 	
     function get_all_staff_details_by_id($staff_id){
       $id=base64_decode($staff_id)/98765;
-      $select="SELECT
+       $select="SELECT
 				A.*,
 				B.user_master_id,
 				B.user_id
@@ -136,7 +134,7 @@ Class Staffmodel extends CI_Model
 				edu_staff_details A,
 				edu_users B
 			WHERE
-				B.user_id  = '$id' AND B.user_type = '5' AND A.id = B.user_master_id";
+				B.user_id  = '$id' AND A.id = B.user_master_id";
       $result=$this->db->query($select);
       return $result->result();
     }
@@ -160,9 +158,9 @@ Class Staffmodel extends CI_Model
     }
  */
 
-	function update_staff_details_to_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id){
+	function update_staff_details_to_id($old_role,$select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id){
    
-		$sQuery = "SELECT * FROM edu_staff_details WHERE id = '$staff_id'";
+		 $sQuery = "SELECT * FROM edu_staff_details WHERE id = '$staff_id' AND role_type = '$old_role'";
 		$user_result = $this->db->query($sQuery);
 		$ress = $user_result->result();
 		if($user_result->num_rows()>0)
@@ -173,11 +171,11 @@ Class Staffmodel extends CI_Model
 			}
 		}
 
-		$update = "UPDATE edu_staff_details SET role_type='$select_role',name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id'";
+		 $update = "UPDATE edu_staff_details SET role_type='$select_role',name='$name',sex='$sex',address='$address',email='$email',trade_batch_id='$class_tutor',phone='$mobile',sec_phone='$sec_phone',dob='$dob',nationality='$nationality',religion='$religion',community_class='$community_class',community='$community',qualification='$qualification',status='$status',profile_pic='$staff_prof_pic',updated_at=NOW(),updated_by='$user_id' WHERE id='$staff_id' AND role_type = '$old_role'";
 		$result=$this->db->query($update);
 		
 		if ($old_phone_number != $mobile){
-			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_type='$select_role',status='$status' WHERE user_master_id='$staff_id' AND user_type != '2'";
+			$update_user="UPDATE edu_users SET user_name='$mobile',name='$name',user_type='$select_role',status='$status' WHERE user_master_id='$staff_id' AND user_type = '$old_role'";
 			$result_user=$this->db->query($update_user);
 			
 			$subject ='M3 - Staff Login - Username Updated';
@@ -206,7 +204,8 @@ Class Staffmodel extends CI_Model
 			$headers .= 'From: info<info@happysanz.com>' . "\r\n";
 			mail($email,$subject,$htmlContent,$headers); */
 		}else {
-			 $update_user="UPDATE edu_users SET name='$name',user_type='$select_role',status='$status' WHERE user_master_id='$staff_id' AND user_type != '2'";
+			  $update_user="UPDATE edu_users SET name='$name',user_type='$select_role',status='$status' WHERE user_master_id='$staff_id' AND user_type = '$old_role'";
+			 //exit;
 			$result_user=$this->db->query($update_user);
 		}
 
@@ -224,7 +223,7 @@ Class Staffmodel extends CI_Model
 		  return $result->result();
     }
 	
-	function get_mob_tasks($staff_id,$task_date){
+/* 	function get_mob_tasks($staff_id,$task_date){
 		  $select="SELECT * FROM edu_task WHERE user_id='$staff_id' AND task_date = '$task_date' AND pia_id !=0 ORDER BY id";
 		  $result=$this->db->query($select);
 		  return $result->result();
@@ -249,9 +248,9 @@ Class Staffmodel extends CI_Model
 				$data=array("status" =>"Success","task_id" =>$task_id,"task_title" =>$task_title);
 				return $data; 
 			}
-	}
+	} */
 	
-	function check_task_id($task_title_id)
+/* 	function check_task_id($task_title_id)
 	{
 		$sql="SELECT * FROM edu_task WHERE id ='$task_title_id'";
 		$resultset=$this->db->query($sql);
@@ -267,71 +266,37 @@ Class Staffmodel extends CI_Model
 					$data=array("status" =>"Success","task_desc" =>$task_desc);
 					return $data; 
 			}
-	}
+	} */
 
-	function add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$t_title,$t_desc,$mob_id,$user_id)
-	{
-		$date = date_create($task_date);
-		$sdate = date_format($date,"Y-m-d");
-		$status = "Active";
-		
-		if ($select_type == '2'){
-			
-			$check_task ="SELECT * FROM edu_task WHERE id='$task_title_id' ";
-			$resultset=$this->db->query($check_task);
-			$res=$resultset->result();
-			if($resultset->num_rows()!=0)
-			{
-				foreach($res as $rows){
-					$mob_task_title =$rows->task_title;
-					$task_description=$rows->task_description;
-				}
-			}
-			$check_job ="SELECT * FROM mobilizer_attendance WHERE attendance_date='$sdate' AND mobilizer_id='$mob_id' AND work_type_id = '$select_type' AND task_id = '$task_title_id'";
-			$result=$this->db->query($check_job);
-			if($result->num_rows()==0)
-			{
-				$query = "INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by)VALUES('$mob_id','$user_id','$select_type','$task_title_id','$mob_task_title','$task_description','$sdate','$status',NOW(),'$user_id')";
-				$resultset=$this->db->query($query);
-				$data= array("status"=>"Success");
-				return $data;
-			}else{
-				$data= array("status"=>"Already");
-				return $data;
-			}
-		} else {
-			
-			$check_job ="SELECT * FROM mobilizer_attendance WHERE attendance_date='$sdate' AND mobilizer_id='$mob_id' AND work_type_id = '$select_type'";
-			$result=$this->db->query($check_job);
-			if($result->num_rows()==0)
-			{
-				$query = "INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,title,comments,attendance_date,status,created_at,created_by)VALUES('$mob_id','$user_id','$select_type','$t_title','$t_desc','$sdate','$status',NOW(),'$user_id')";
-				$resultset=$this->db->query($query);
-				$data= array("status"=>"Success");
-				return $data;
-			}else{
-				$data= array("status"=>"Already");
-				return $data;
-			}
-			
-		}
-	}
+
 	
-	
-	function get_job_mobilizer($staff_id,$month,$year){
+	function get_job_year($staff_id){
 		$id=base64_decode($staff_id)/98765;
-			$select="SELECT
-				A.*,
-				B.work_type
-			FROM
-				mobilizer_attendance A,
-				work_type_master B
-			WHERE
-				A.mobilizer_id = '$id' AND MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND A.work_type_id = B.id
-			ORDER BY
-				attendance_date";
-      $result=$this->db->query($select);
-      return $result->result();
+		 $select="SELECT YEAR(attendance_date) AS years FROM mobilizer_attendance WHERE mobilizer_id = '$id' GROUP BY YEAR(attendance_date)";
+		$result=$this->db->query($select);
+		return $result->result();
+    }
+	
+	function get_job_months($staff_id,$syear){
+		$id=base64_decode($staff_id)/98765;
+		
+		$sql="Select DATE_FORMAT(`attendance_date`, '%m') AS month_id, DATE_FORMAT(`attendance_date`, '%M') AS months from mobilizer_attendance WHERE mobilizer_id = '$id' AND YEAR(attendance_date) = '$syear' group by DATE_FORMAT(`attendance_date`, '%m')";
+		$resultset=$this->db->query($sql);
+		$res=$resultset->result();
+		if(empty($res))
+		{
+				$data=array("status" =>"Nill");
+				return $data;
+		}else{
+				foreach($res as $rows){
+					$month_id[]=$rows->month_id;$months[]=$rows->months;
+				}
+				$data=array("status" =>"Success","month_id" =>$month_id,"months" =>$months);
+				return $data; 
+		}
+		
+		$result=$this->db->query($select);
+		return $result->result();
     }
 	
 	function consolidate_report($staff_id,$month,$year){
@@ -354,7 +319,7 @@ Class Staffmodel extends CI_Model
 			$holiday_count_res = $this->db->query($holiday_count);
 			$holiday_count = $holiday_count_res->num_rows();
 			
-			$leave_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '3'";
+			$leave_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '4'";
 			$leave_count_res = $this->db->query($leave_count);
 			$leave_count = $leave_count_res->num_rows();
 			
@@ -390,41 +355,86 @@ Class Staffmodel extends CI_Model
 				);
 					
 			return $count_result;
-			
-		/* echo $select="SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id'";
-		$result=$this->db->query($select);
-		return $result->result(); */
     }
 	
-	function get_job_year($staff_id){
+	function list_mobilizer_job($staff_id,$month,$year){
 		$id=base64_decode($staff_id)/98765;
-		 $select="SELECT YEAR(attendance_date) AS years FROM mobilizer_attendance WHERE mobilizer_id = '$id' GROUP BY YEAR(attendance_date)";
-		$result=$this->db->query($select);
-		return $result->result();
+			$select="SELECT
+				A.*,
+				B.work_type
+			FROM
+				mobilizer_attendance A,
+				work_type_master B
+			WHERE
+				A.mobilizer_id = '$id' AND MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND A.work_type_id = B.id
+			ORDER BY
+				attendance_date";
+      $result=$this->db->query($select);
+      return $result->result();
     }
 	
-	function get_job_months($staff_id,$syear){
-		$id=base64_decode($staff_id)/98765;
+	function add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$mob_id,$user_id)
+	{
+		$date = date_create($task_date);
+		$sdate = date_format($date,"Y-m-d");
+		$status = "Active";
 		
-		$sql="Select DATE_FORMAT(`attendance_date`, '%m') AS month_id, DATE_FORMAT(`attendance_date`, '%M') AS months from mobilizer_attendance WHERE mobilizer_id = '$id' AND YEAR(attendance_date) = '$syear' group by DATE_FORMAT(`attendance_date`, '%m')";
-		$resultset=$this->db->query($sql);
-		$res=$resultset->result();
-		if(empty($res))
+		$check_job ="SELECT * FROM mobilizer_attendance WHERE attendance_date='$sdate' AND mobilizer_id='$mob_id'";
+		$result=$this->db->query($check_job);
+		if($result->num_rows()==0)
 		{
-				$data=array("status" =>"Nill");
-				return $data;
+			 $query = "INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,title,comments,attendance_date,status,created_at,created_by)VALUES('$mob_id','$user_id','$select_type','$task_title_id','$task_desc','$sdate','$status',NOW(),'$user_id')";
+			
+			$resultset=$this->db->query($query);
+			$data= array("status"=>"Success");
+			return $data;
 		}else{
-				foreach($res as $rows){
-					$month_id[]=$rows->month_id;$months[]=$rows->months;
-				}
-				$data=array("status" =>"Success","month_id" =>$month_id,"months" =>$months);
-				return $data; 
+			$data= array("status"=>"Already");
+			return $data;
 		}
-		
+	}
+	
+	function get_job_details($job_id)
+	{
+		$id=base64_decode($job_id)/98765;
+		$select="SELECT
+					A.*,
+					B.work_type
+				FROM
+					mobilizer_attendance A,
+					work_type_master B
+				WHERE
+					A.id = '$id' AND A.work_type_id = B.id";
 		$result=$this->db->query($select);
 		return $result->result();
-    }
+	}
 	
+	function get_job_gallery($job_id)
+	{
+		$id=base64_decode($job_id)/98765;
+		$select="SELECT * from edu_task_photos WHERE task_id = '$id'";
+		$result=$this->db->query($select);
+		return $result->result();
+	}
+	
+	
+	function update_mob_job($job_id,$task_date,$select_type,$task_title,$task_desc,$mob_id,$user_id)
+	{
+		$date = date_create($task_date);
+		$sdate = date_format($date,"Y-m-d");
+		$status = "Active";
+		
+			if ($select_type =='3' || $select_type == '4')
+			{
+				$task_title = "";
+			}
+
+			 $query="UPDATE mobilizer_attendance SET mobilizer_id='$mob_id',pia_id='$user_id',work_type_id='$select_type',title='$task_title',comments='$task_desc',attendance_date='$sdate',status='$status',updated_at='NOW()', updated_by = '$user_id' WHERE id='$job_id'";
+			$resultset=$this->db->query($query);
+
+			$data= array("status"=>"Success");
+			return $data;
+	}
 	
 }
 ?>

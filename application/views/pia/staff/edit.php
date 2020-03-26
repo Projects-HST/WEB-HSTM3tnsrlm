@@ -187,6 +187,7 @@
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">											
 										<input type="hidden" name="staff_id" value="<?php  echo base64_encode($rows->id); ?>">
 										<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
+										<input type="hidden" name="staff_old_type" value="<?php  echo $rows->role_type; ?>">
 										<button type="submit" class="btn btn-success notika-btn-success waves-effect ">Update </button>
 									</div>
 									

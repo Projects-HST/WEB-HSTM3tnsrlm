@@ -21,7 +21,6 @@ class Login extends CI_Controller {
 		$username=$this->input->post('username');
 		$password=md5($this->input->post('password'));
 		$result = $this->loginmodel->login($username,$password);
-
 		if($result['status']=='Inactive'){
 			//$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
 			$this->session->set_flashdata('msg', 'Account inactive, please contact admin');
@@ -48,6 +47,7 @@ class Login extends CI_Controller {
 					$user_id=$result['user_id'];
 					$user_pic=$result['user_pic'];
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+					//print_r($datas);
 					$session_data=$this->session->set_userdata($datas);
 					redirect('admin/home');
 				break;
@@ -62,6 +62,7 @@ class Login extends CI_Controller {
 					$user_id=$result['user_id'];
 					$user_pic=$result['user_pic'];
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id, "name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+					//print_r($datas);
 					$session_data=$this->session->set_userdata($datas);
 					redirect('admin/home');
 				break;
@@ -76,8 +77,17 @@ class Login extends CI_Controller {
 					$user_id=$result['user_id']
 					;$user_pic=$result['user_pic'];
 					$datas= array("user_name"=>$user_name,"pia_id"=>$pia_id,"name"=>$name,"user_type"=>$user_type,"status"=>$status,"user_id"=>$user_id,"user_pic"=>$user_pic);
+					//print_r($datas);
 					$session_data=$this->session->set_userdata($datas);
 					redirect('dashboard/home');
+				break;
+				
+				case '4':
+					redirect('/');
+				break;
+				
+				case '5':
+					redirect('/');
 				break;
 			}
 		}
