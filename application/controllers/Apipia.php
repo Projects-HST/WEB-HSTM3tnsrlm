@@ -2373,7 +2373,8 @@ public function user_profilepic()
 
 			 $mobilizer_id = $this->input->post("mobilizer_id");
 			 $user_id = $this->input->post("user_id");
-			 $data['result']=$this->apipiamodel->get_month_list_attendance($mobilizer_id,$user_id);
+			 $year_id = $this->input->post("year_id");
+			 $data['result']=$this->apipiamodel->get_month_list_attendance($mobilizer_id,$user_id,$year_id);
 			 $response = $data['result'];
 			 echo json_encode($response);
 			}
