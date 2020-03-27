@@ -429,7 +429,7 @@ Class Staffmodel extends CI_Model
 				$task_title = "";
 			}
 
-			 echo $query="UPDATE mobilizer_attendance SET mobilizer_id='$mob_id',pia_id='$user_id',work_type_id='$select_type',title='$task_title',comments='$task_desc',attendance_date='$sdate',status='$status',updated_at=NOW(), updated_by = '$user_id' WHERE id='$job_id'";
+			 $query="UPDATE mobilizer_attendance SET mobilizer_id='$mob_id',pia_id='$user_id',work_type_id='$select_type',title='$task_title',comments='$task_desc',attendance_date='$sdate',status='$status',updated_at=NOW(), updated_by = '$user_id' WHERE id='$job_id'";
 			$resultset=$this->db->query($query);
 
 			$data= array("status"=>"Success");
