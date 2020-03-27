@@ -1376,7 +1376,7 @@ function prospects_document($prospect_id){
               + SIN( RADIANS(to_lat) )
               * SIN( RADIANS( user_lat ) )
             ) )),2) AS km
-        FROM edu_tracking_details as et left join edu_users as eu on eu.user_id=et.user_id WHERE eu.user_master_id='$mobilizer_id' and eu.user_type='5' AND Month(et.created_at)='$month_id' and year(et.created_at)='$year_id'";
+        FROM edu_tracking_details as et left join edu_users as eu on eu.user_id=et.user_id WHERE eu.user_id='$mobilizer_id' and eu.user_type='5' AND Month(et.created_at)='$month_id' and year(et.created_at)='$year_id'";
 
           $res_km = $this->db->query($query_km);
           if($res_km->num_rows()==0){

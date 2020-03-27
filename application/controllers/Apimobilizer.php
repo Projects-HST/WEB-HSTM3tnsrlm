@@ -1019,8 +1019,10 @@ class Apimobilizer extends CI_Controller {
 
 		$task_id = $this->uri->segment(3);
 		$profile = $_FILES["task_pic"]["name"];
-		echo $task_lat = $this->input->post("task_lat");
-		exit;
+		$task_lat = $this->uri->segment(4);
+		$task_long = $this->uri->segment(5);
+		$task_location = $this->uri->segment(6);
+
 
 		$taskFileName = time().'-'.$task_id.'-'.$profile;
 
@@ -1028,7 +1030,7 @@ class Apimobilizer extends CI_Controller {
 		$taskpic = $uploadPicdir.$taskFileName;
 		move_uploaded_file($_FILES['task_pic']['tmp_name'], $taskpic);
 
-		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName,$task_lat);
+		$data['result']=$this->apimobilizermodel->taskPic($task_id,$taskFileName,$task_lat,$task_long,$task_location);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
