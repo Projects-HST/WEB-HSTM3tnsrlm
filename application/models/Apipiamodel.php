@@ -1333,10 +1333,10 @@ function prospects_document($prospect_id){
         $res = $this->db->query($query);
           $result= $res->result();
         if($res->num_rows()==0){
-          $response = array("status" => "error", "msg" => "Mobilizer list not found");
+          $response = array("status" => "error", "msg" => "attendance month list not found");
        }else{
 
-         $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
+         $response = array("status" => "success", "msg" => "attendance month found", "result"=>$result);
        }
        return $response;
       }
