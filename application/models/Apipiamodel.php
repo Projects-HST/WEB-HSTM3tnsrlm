@@ -1329,7 +1329,7 @@ function prospects_document($prospect_id){
 
       function get_month_list_attendance($mobilizer_id,$user_id,$year_id){
         $query="SELECT MONTHNAME(attendance_date) as month_name,Month(attendance_date) as month_id
-        FROM mobilizer_attendance where mobilizer_id='$mobilizer_id' GROUP by month_id";
+        FROM mobilizer_attendance where mobilizer_id='$mobilizer_id' and year(attendance_date)='$year_id' GROUP by month_id";
         $res = $this->db->query($query);
           $result= $res->result();
         if($res->num_rows()==0){
