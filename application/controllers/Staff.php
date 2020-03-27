@@ -441,6 +441,96 @@ class Staff extends CI_Controller {
 				redirect('/');
 		 }
 	}
+	
+	public function consolidated_report(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+			$staff_id=$this->uri->segment(3);
+			$year=$this->uri->segment(4);
+			$month=$this->uri->segment(5);
+			
+			$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+			$datas['consolidate_report']=$this->staffmodel->consolidate_report_details($staff_id,$month,$year);
+			//print_r ($datas['consolidate_report']);
+			//$this->load->view('pia/pia_header');
+			$this->load->view('pia/staff/consolidated_report',$datas);
+			 //$this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	}
+	
+	public function detailed_report(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+			$staff_id=$this->uri->segment(3);
+			$year=$this->uri->segment(4);
+			$month=$this->uri->segment(5);
+
+			
+			$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+			//$datas['mob_jobs']=$this->staffmodel->list_mobilizer_job($staff_id,$month,$year);
+			$datas['detailed_report']=$this->staffmodel->detailed_report_details($staff_id,$month,$year);
+			$datas['detailed_report_list']=$this->staffmodel->detailed_report_list($staff_id,$month,$year);
+			//print_r ($datas['detailed_report_list']);
+			//exit;
+			//$this->load->view('pia/pia_header');
+			$this->load->view('pia/staff/detailed_report',$datas);
+			// $this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	}
+	
+	
+	
+	/* function convertpdf(){
+
+		// Get output html
+		
+		$html = "html";
+        //$html = $this->output->get_output();
+		//$html = this->load->view('pia/staff/generatepdf');
+		
+        // Load pdf library
+        $this->load->library('pdf');
+
+       
+        // Load HTML content
+        $this->pdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation
+        $this->pdf->setPaper('A4', 'landscape');
+        
+        // Render the HTML as PDF
+        $this->pdf->render();
+        
+        // Output the generated PDF (1 = download and 0 = preview)
+        $this->pdf->stream("welcome.pdf", array("Attachment"=>0));
+   }
+   
+   
+   public function generatepdf(){
+		$datas=$this->session->userdata();
+		$user_id=$this->session->userdata('user_id');
+		$user_type=$this->session->userdata('user_type');
+		if($user_type==3){
+				 $job_id=$this->uri->segment(3);
+				$datas['job_details']=$this->staffmodel->get_job_details($job_id);
+				$datas['job_gallery']=$this->staffmodel->get_job_gallery($job_id);
+				$datas['work_types']=$this->staffmodel->get_work_type(); 
+				//$this->load->view('pia/pia_header');
+				$this->load->view('pia/staff/generatepdf');
+				//$this->load->view('pia/pia_footer');
+		 }else{
+				redirect('/');
+		 }
+	} 
+	
 	/* public function chk_jobtype(){
 		$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('user_id');

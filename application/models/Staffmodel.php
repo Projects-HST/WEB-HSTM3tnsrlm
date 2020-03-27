@@ -333,7 +333,7 @@ Class Staffmodel extends CI_Model
 					FROM
 						edu_tracking_details
 					WHERE
-						user_id = '85' AND MONTH(`created_at`)='$month' AND YEAR (created_at)= '$year' ";
+						user_id = '$id' AND MONTH(`created_at`)='$month' AND YEAR (created_at)= '$year' ";
 					$resultset=$this->db->query($sql);
 					$res=$resultset->result();
 					if(empty($res))
@@ -429,12 +429,243 @@ Class Staffmodel extends CI_Model
 				$task_title = "";
 			}
 
-			 $query="UPDATE mobilizer_attendance SET mobilizer_id='$mob_id',pia_id='$user_id',work_type_id='$select_type',title='$task_title',comments='$task_desc',attendance_date='$sdate',status='$status',updated_at='NOW()', updated_by = '$user_id' WHERE id='$job_id'";
+			 echo $query="UPDATE mobilizer_attendance SET mobilizer_id='$mob_id',pia_id='$user_id',work_type_id='$select_type',title='$task_title',comments='$task_desc',attendance_date='$sdate',status='$status',updated_at=NOW(), updated_by = '$user_id' WHERE id='$job_id'";
 			$resultset=$this->db->query($query);
 
 			$data= array("status"=>"Success");
 			return $data;
 	}
 	
+	function consolidate_report_details($staff_id,$month,$year){
+		
+			$id=base64_decode($staff_id)/98765;
+		
+			$sql="SELECT
+				A.*,
+				B.user_master_id,
+				B.user_id
+			FROM
+				edu_staff_details A,
+				edu_users B
+			WHERE
+				B.user_id  = '$id' AND A.id = B.user_master_id";
+			$resultset=$this->db->query($sql);
+			$res=$resultset->result();
+			foreach($res as $rows){
+					$pia_id = $rows->pia_id;
+					$mob_name = $rows->name;
+				}
+	
+			$sql="SELECT * FROM edu_users WHERE user_id = '$pia_id' AND user_type = '3'";
+			$resultset=$this->db->query($sql);
+			$res=$resultset->result();
+			foreach($res as $rows){
+					$pia_name = $rows->name;
+				}
+			
+			
+			
+			$month_name = date("F", mktime(0, 0, 0, $month, 10)); 
+			$total_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' GROUP BY attendance_date";
+			$total_count_res = $this->db->query($total_count);
+			$total_count = $total_count_res->num_rows();
+									
+			$office_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '1'";
+			$office_count_res = $this->db->query($office_count);
+			$office_count = $office_count_res->num_rows();
+			
+			$field_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '2'";
+			$field_count_res = $this->db->query($field_count);
+			$field_count = $field_count_res->num_rows();
+			
+			$holiday_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '3'";
+			$holiday_count_res = $this->db->query($holiday_count);
+			$holiday_count = $holiday_count_res->num_rows();
+			
+			$leave_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '4'";
+			$leave_count_res = $this->db->query($leave_count);
+			$leave_count = $leave_count_res->num_rows();
+			
+			$sql="SELECT user_id,sum((6371 * ACOS(
+					COS( RADIANS(to_lat) )
+				  * COS( RADIANS( user_lat ) )
+				  * COS( RADIANS( user_long ) - RADIANS(to_long) )
+				  + SIN( RADIANS(to_lat) )
+				  * SIN( RADIANS( user_lat ) )
+					) )) AS km
+					FROM
+						edu_tracking_details
+					WHERE
+						user_id = '$id' AND MONTH(`created_at`)='$month' AND YEAR (created_at)= '$year' ";
+					$resultset=$this->db->query($sql);
+					$res=$resultset->result();
+					if(empty($res))
+					{
+							$km_travel = '0';
+					}else{
+						foreach($res as $rows){
+							$km_travel=$rows->km;
+						}
+					}
+			$count_result  = array(
+					"pia_name" => $pia_name,
+					"mob_name" => $mob_name,
+					"year" => $year,
+					"month_name" => $month_name,
+					"total_count" => $total_count,
+					"office_count" => $office_count,
+					"field_count" => $field_count,
+					"holiday_count" => $holiday_count,
+					"leave_count" => $leave_count,
+					"km_travel" => $km_travel
+				); 
+					
+			return $count_result;
+    }
+	
+	function detailed_report_details($staff_id,$month,$year){
+		
+			$id=base64_decode($staff_id)/98765;
+		
+			$sql="SELECT
+				A.*,
+				B.user_master_id,
+				B.user_id
+			FROM
+				edu_staff_details A,
+				edu_users B
+			WHERE
+				B.user_id  = '$id' AND A.id = B.user_master_id";
+			$resultset=$this->db->query($sql);
+			$res=$resultset->result();
+			foreach($res as $rows){
+					$pia_id = $rows->pia_id;
+					$mob_name = $rows->name;
+				}
+	
+			$sql="SELECT * FROM edu_users WHERE user_id = '$pia_id' AND user_type = '3'";
+			$resultset=$this->db->query($sql);
+			$res=$resultset->result();
+			foreach($res as $rows){
+					$pia_name = $rows->name;
+				}
+			
+			
+			
+			$month_name = date("F", mktime(0, 0, 0, $month, 10)); 
+			$total_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' GROUP BY attendance_date";
+			$total_count_res = $this->db->query($total_count);
+			$total_count = $total_count_res->num_rows();
+									
+			$office_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '1'";
+			$office_count_res = $this->db->query($office_count);
+			$office_count = $office_count_res->num_rows();
+			
+			$field_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '2'";
+			$field_count_res = $this->db->query($field_count);
+			$field_count = $field_count_res->num_rows();
+			
+			$holiday_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '3'";
+			$holiday_count_res = $this->db->query($holiday_count);
+			$holiday_count = $holiday_count_res->num_rows();
+			
+			$leave_count = "SELECT * FROM mobilizer_attendance WHERE MONTH(attendance_date)='$month' AND YEAR (attendance_date)= '$year' AND mobilizer_id = '$id' AND work_type_id = '4'";
+			$leave_count_res = $this->db->query($leave_count);
+			$leave_count = $leave_count_res->num_rows();
+			
+			$sql="SELECT user_id,sum((6371 * ACOS(
+					COS( RADIANS(to_lat) )
+				  * COS( RADIANS( user_lat ) )
+				  * COS( RADIANS( user_long ) - RADIANS(to_long) )
+				  + SIN( RADIANS(to_lat) )
+				  * SIN( RADIANS( user_lat ) )
+					) )) AS km
+					FROM
+						edu_tracking_details
+					WHERE
+						user_id = '$id' AND MONTH(`created_at`)='$month' AND YEAR (created_at)= '$year' ";
+					$resultset=$this->db->query($sql);
+					$res=$resultset->result();
+					if(empty($res))
+					{
+							$km_travel = '0';
+					}else{
+						foreach($res as $rows){
+							$km_travel=$rows->km;
+						}
+					}
+			$count_result  = array(
+					"pia_name" => $pia_name,
+					"mob_name" => $mob_name,
+					"year" => $year,
+					"month_name" => $month_name,
+					"total_count" => $total_count,
+					"office_count" => $office_count,
+					"field_count" => $field_count,
+					"holiday_count" => $holiday_count,
+					"leave_count" => $leave_count,
+					"km_travel" => $km_travel
+				); 
+					
+			return $count_result;
+    }
+	
+	function detailed_report_list($staff_id,$month,$year){
+		$id=base64_decode($staff_id)/98765;
+		$select="SELECT
+					ma.id,
+					ma.mobilizer_id,
+					ma.work_type_id,
+					wtm.work_type,
+					ma.title,
+					ma.comments,
+					ma.mobilizer_comments,
+					ma.attendance_date,
+					ma.created_at,
+					ma.updated_at,
+					ma.updated_by,
+					SUM(
+						(
+							6371 * ACOS(
+								COS(RADIANS(to_lat)) * COS(RADIANS(user_lat)) * COS(
+									RADIANS(user_long) - RADIANS(to_long)
+								) + SIN(RADIANS(to_lat)) * SIN(RADIANS(user_lat))
+							)
+						)
+					) AS km
+				FROM
+					mobilizer_attendance AS ma
+				LEFT JOIN work_type_master AS wtm
+				ON
+				ma.work_type_id = wtm.id
+				LEFT JOIN edu_users AS eu
+				ON
+					eu.user_id = ma.mobilizer_id AND eu.user_type = 5
+				LEFT JOIN edu_tracking_details AS etd
+				ON
+					etd.user_id = eu.user_id AND DATE(ma.attendance_date) = DATE(etd.created_at) AND MONTH(etd.created_at) = '$month' AND YEAR(etd.created_at) = '$year'
+				WHERE
+					ma.mobilizer_id = '$id' AND MONTH(ma.attendance_date) = '$month' AND YEAR(ma.attendance_date) = '$year'
+				GROUP BY
+					ma.id";
+		  $get_result=$this->db->query($select);
+		  return $get_result->result();
+	}
+	
+	function calc_distance($mob_id,$sdate){
+			$select="SELECT user_id,created_at,sum((6371 * ACOS(
+					COS( RADIANS(to_lat) )
+				  * COS( RADIANS( user_lat ) )
+				  * COS( RADIANS( user_long ) - RADIANS(to_long) )
+				  + SIN( RADIANS(to_lat) )
+				  * SIN( RADIANS( user_lat ) )
+					) )) AS km
+					FROM
+						edu_tracking_details
+					WHERE
+						user_id = '$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d') = '$sdate' GROUP BY DATE_FORMAT(created_at, '%Y-%m-%d')";
+		  $get_result=$this->db->query($select);
+		  return $get_result->result();
+	}
 }
 ?>
