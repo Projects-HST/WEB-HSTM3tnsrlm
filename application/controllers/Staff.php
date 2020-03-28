@@ -10,6 +10,7 @@ class Staff extends CI_Controller {
 			$this->load->model('staffmodel');
 	}
 
+
 	public function home(){
 			$datas=$this->session->userdata();
 		$user_id=$this->session->userdata('user_id');
@@ -454,9 +455,8 @@ class Staff extends CI_Controller {
 			$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 			$datas['consolidate_report']=$this->staffmodel->consolidate_report_details($staff_id,$month,$year);
 			//print_r ($datas['consolidate_report']);
-			//$this->load->view('pia/pia_header');
 			$this->load->view('pia/staff/consolidated_report',$datas);
-			 //$this->load->view('pia/pia_footer');
+			
 		 }else{
 				redirect('/');
 		 }
@@ -486,7 +486,179 @@ class Staff extends CI_Controller {
 		 }
 	}
 	
+		// create xlsx
+    public function consolidate_generateXls() {
+		// create file name
+        $fileName = 'data-'.time().'.xlsx';  
+		// load excel library
+        $this->load->library('excel');
+        //$listInfo = $this->staffmodel->exportList();
+		$staff_id=$this->uri->segment(3);
+		$year=$this->uri->segment(4);
+		$month=$this->uri->segment(5);
+		
+		$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+		$consolidate_report=$this->staffmodel->consolidate_report_details($staff_id,$month,$year);
+		//print_r ($consolidate_report);
+		//exit;
+			$km_traveled = $consolidate_report['km_travel']; 
+			if ($km_traveled >0) { 
+				 $disp_kms = number_format($km_traveled,3).' Kms'; 
+			} else { 
+				$disp_kms =  "0";
+			 }
+		
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+		
+		$objPHPExcel->setActiveSheetIndex(0)->mergeCells('D11:E11');
+		$objPHPExcel->getActiveSheet()->getStyle('D11')->getAlignment()->applyFromArray(array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER));
+		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth("35");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth("35");
+		
+		
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('D6', 'PIA Name');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E6', $consolidate_report['pia_name']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('D7', 'Mobilizer Name');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E7', $consolidate_report['mob_name']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('D8', 'Reporting Manager');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E8', '');
+		$objPHPExcel->getActiveSheet()->SetCellValue('D11', $consolidate_report['month_name'].' '.$consolidate_report['year']. '- Consolidated Report');
+		$objPHPExcel->getActiveSheet()->SetCellValue('D14', $consolidate_report['month_name'].' '.$consolidate_report['year']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('E14', $consolidate_report['total_count']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D15', 'Field work (in days)');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E15', $consolidate_report['field_count']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D16', 'Distance Travelled (in kms)');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E16', $disp_kms);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D17', 'Office work (in days)');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E17', $consolidate_report['office_count']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D18', 'Leave (in days)');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E18', $consolidate_report['leave_count']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D19', 'Holiday (in days)');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E19', $consolidate_report['holiday_count']);
+		$objPHPExcel->getActiveSheet()->SetCellValue('D28', 'Signature of the Mobilizer');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E28', 'Signature of the Reporting Manager');
+		$objPHPExcel->getActiveSheet()->SetCellValue('D29', 'Date');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E29', 'Date');
+     
+        $filename = "report". date("Y-m-d-H-i-s").".xlsx";
+		header('Content-Type: application/vnd.ms-excel'); 
+		header('Content-Disposition: attachment;filename="'.$filename.'"');
+		header('Cache-Control: max-age=0'); 
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter->save('php://output'); 
+
+    }
 	
+	
+	 function detailed_generateXls() {
+		// create file name
+        $fileName = 'data-'.time().'.xlsx';  
+		// load excel library
+        $this->load->library('excel');
+        //$listInfo = $this->staffmodel->exportList();
+		$staff_id=$this->uri->segment(3);
+		$year=$this->uri->segment(4);
+		$month=$this->uri->segment(5);
+		
+		$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+		$detailed_report =$this->staffmodel->detailed_report_details($staff_id,$month,$year);
+		$detailed_job_list = $this->staffmodel->detailed_report_list($staff_id,$month,$year);
+		
+        $objPHPExcel = new PHPExcel();
+        
+		$objPHPExcel->setActiveSheetIndex(0);
+		$objPHPExcel->setActiveSheetIndex(0)->mergeCells('D11:N11');
+		$objPHPExcel->setActiveSheetIndex(0)->mergeCells('K28:L28');
+		$objPHPExcel->setActiveSheetIndex(0)->mergeCells('K29:L29');
+		$objPHPExcel->getActiveSheet()->getStyle('D11')->getAlignment()->applyFromArray(array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)); 
+		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth("20");
+		$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth("27");
+		
+		
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('D6', 'PIA Name');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E6', $detailed_report['pia_name']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('D7', 'Mobilizer Name');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E7', $detailed_report['mob_name']);
+        $objPHPExcel->getActiveSheet()->SetCellValue('D8', 'Reporting Manager');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E8', '');
+		$objPHPExcel->getActiveSheet()->SetCellValue('D11', $detailed_report['month_name'].' '.$detailed_report['year']. '- Monthly Report');
+
+		$objPHPExcel->getActiveSheet()->SetCellValue('D14', 'Date');
+		$objPHPExcel->getActiveSheet()->SetCellValue('E14', 'Day');
+        $objPHPExcel->getActiveSheet()->SetCellValue('F14', 'Task Type');
+		$objPHPExcel->getActiveSheet()->SetCellValue('G14', 'Distance Travelled');
+        $objPHPExcel->getActiveSheet()->SetCellValue('H14', 'Task Title');
+		$objPHPExcel->getActiveSheet()->SetCellValue('I14', 'Task Details');
+		$objPHPExcel->getActiveSheet()->SetCellValue('J14', 'Mobilizer Comments');
+		$objPHPExcel->getActiveSheet()->SetCellValue('K14', 'Task Added & Edited');
+		$objPHPExcel->getActiveSheet()->SetCellValue('L14', 'Review by Reporting Manager');
+		
+		// set Row
+        $rowCount = 15;
+		
+         foreach ($detailed_job_list as $list) {
+			
+			$mob_id = $list->mobilizer_id;
+			$sdate = $list->attendance_date;
+			$km_traveled = $list->km;
+			$nameOfDay = date('l', strtotime($sdate));
+			$date=date_create($list->attendance_date);
+			$disp_date = date_format($date,"d-m-Y");
+			if ($km_traveled >0) 
+			{ 
+				$disp_km = number_format($km_traveled,3)." Kms"; 
+			} else {
+				$disp_km =  "N/A";
+			}
+			$created_at = $list->created_at;
+			$updated_by = $list->updated_by;  
+			
+			if ($updated_by != 0) { 
+					$disp_updated = $list->updated_at; 
+					$created_at = $created_at.' - '.$disp_updated;
+			}
+			
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $disp_date);
+            $objPHPExcel->getActiveSheet()->SetCellValue('E' . $rowCount, $nameOfDay);
+            $objPHPExcel->getActiveSheet()->SetCellValue('F' . $rowCount, $list->work_type);
+            $objPHPExcel->getActiveSheet()->SetCellValue('G' . $rowCount, $disp_km);
+            $objPHPExcel->getActiveSheet()->SetCellValue('H' . $rowCount, $list->title);
+			$objPHPExcel->getActiveSheet()->SetCellValue('I' . $rowCount, $list->comments);
+			$objPHPExcel->getActiveSheet()->getStyle('I'.$rowCount)->getAlignment()->setWrapText(true);
+            $objPHPExcel->getActiveSheet()->SetCellValue('J' . $rowCount, $list->mobilizer_comments);
+            $objPHPExcel->getActiveSheet()->SetCellValue('K' . $rowCount, $created_at);
+			$objPHPExcel->getActiveSheet()->getStyle('K'.$rowCount)->getAlignment()->setWrapText(true);
+            $objPHPExcel->getActiveSheet()->SetCellValue('L' . $rowCount, '');
+            
+            $rowCount++;
+        } 
+		
+		$objPHPExcel->getActiveSheet()->SetCellValue('D28', 'Signature of the Mobilizer');
+		$objPHPExcel->getActiveSheet()->SetCellValue('K28', 'Signature of the Reporting Manager');
+		$objPHPExcel->getActiveSheet()->SetCellValue('D29', 'Date');
+		$objPHPExcel->getActiveSheet()->SetCellValue('K29', 'Date');
+		
+        $filename = "report". date("Y-m-d-H-i-s").".xlsx";
+		
+		
+		
+		header('Content-Type: application/vnd.ms-excel'); 
+		header('Content-Disposition: attachment;filename="'.$filename.'"');
+		header('Cache-Control: max-age=0'); 
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter->save('php://output');
+
+    }
 	
 	/* function convertpdf(){
 

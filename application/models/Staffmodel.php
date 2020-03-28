@@ -647,7 +647,7 @@ Class Staffmodel extends CI_Model
 				WHERE
 					ma.mobilizer_id = '$id' AND MONTH(ma.attendance_date) = '$month' AND YEAR(ma.attendance_date) = '$year'
 				GROUP BY
-					ma.id";
+					ma.id ORDER BY ma.attendance_date";
 		  $get_result=$this->db->query($select);
 		  return $get_result->result();
 	}
@@ -667,5 +667,12 @@ Class Staffmodel extends CI_Model
 		  $get_result=$this->db->query($select);
 		  return $get_result->result();
 	}
+	
+	public function exportList() {
+	        $this->db->select(array('id', 'first_name', 'last_name', 'email', 'dob', 'contact_no'));
+	        $this->db->from('import');
+	        $query = $this->db->get();
+	        return $query->result();
+	    }
 }
 ?>
