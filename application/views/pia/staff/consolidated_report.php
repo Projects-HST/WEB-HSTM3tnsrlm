@@ -2,9 +2,8 @@
 foreach($mobilizer_details as $mobi){
 	$mobi_id = $mobi->user_id; 
 } 
-$month = $consolidate_report['month_name'];
-	$sMonth = date("m", strtotime("$month"));
-	
+$month_id = trim($consolidate_report['month_id']);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -89,7 +88,7 @@ $month = $consolidate_report['month_name'];
 							</tr>
 							</table>
 						</div>
-						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"><a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url(); ?>staff/consolidate_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $consolidate_report['year'];?>/<?php echo $sMonth; ?>"><i class="fa fa-file-excel-o"></i> Export Data</a></div>
+						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"><a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url(); ?>staff/consolidate_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $consolidate_report['year'];?>/<?php echo $month_id; ?>"><i class="fa fa-file-excel-o"></i> Export Data</a></div>
 						
 				   </div>
 		</div>

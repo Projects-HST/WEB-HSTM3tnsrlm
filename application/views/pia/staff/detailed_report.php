@@ -3,9 +3,7 @@ foreach($mobilizer_details as $mobi){
 	$mobi_id = $mobi->user_id; 
 } 
 
-$month = $detailed_report['month_name'];
-	$sMonth = date("m", strtotime("$month"));
-	$month_id = $date['month'];
+$month_id = trim($detailed_report['month_id']);
 ?>
 <!doctype html>
 <html class="no-js" lang="">
