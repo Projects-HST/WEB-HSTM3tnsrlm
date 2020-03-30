@@ -4,6 +4,7 @@ foreach($mobilizer_details as $mobi){
 } 
 $month = $consolidate_report['month_name'];
 	$sMonth = date("m", strtotime("$month"));
+	
 ?>
 <!doctype html>
 <html class="no-js" lang="">
