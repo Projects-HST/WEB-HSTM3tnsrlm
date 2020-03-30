@@ -8,6 +8,7 @@ class Staff extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->library('session');
 			$this->load->model('staffmodel');
+			$this->load->library('excel');
 	}
 
 
@@ -487,20 +488,15 @@ class Staff extends CI_Controller {
 	}
 	
 		// create xlsx
-    public function consolidate_generateXls() {
-		// create file name
-        $fileName = 'data-'.time().'.xlsx';  
-		// load excel library
-        $this->load->library('excel');
-        //$listInfo = $this->staffmodel->exportList();
+    public function consolidate_generateXls() {      
+        
 		$staff_id=$this->uri->segment(3);
 		$year=$this->uri->segment(4);
 		$month=$this->uri->segment(5);
 		
-		$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+		//$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 		$consolidate_report=$this->staffmodel->consolidate_report_details($staff_id,$month,$year);
-		//print_r ($consolidate_report);
-		//exit;
+
 			$km_traveled = $consolidate_report['km_travel']; 
 			if ($km_traveled >0) { 
 				 $disp_kms = number_format($km_traveled,3).' Kms'; 
@@ -542,7 +538,9 @@ class Staff extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('D29', 'Date');
 		$objPHPExcel->getActiveSheet()->SetCellValue('E29', 'Date');
      
+
         $filename = "report". date("Y-m-d-H-i-s").".xlsx";
+		
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
@@ -553,16 +551,13 @@ class Staff extends CI_Controller {
 	
 	
 	 function detailed_generateXls() {
-		// create file name
-        $fileName = 'data-'.time().'.xlsx';  
-		// load excel library
-        $this->load->library('excel');
-        //$listInfo = $this->staffmodel->exportList();
+
+
 		$staff_id=$this->uri->segment(3);
 		$year=$this->uri->segment(4);
 		$month=$this->uri->segment(5);
 		
-		$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
+		//$datas['mobilizer_details']=$this->staffmodel->get_all_staff_details_by_id($staff_id);
 		$detailed_report =$this->staffmodel->detailed_report_details($staff_id,$month,$year);
 		$detailed_job_list = $this->staffmodel->detailed_report_list($staff_id,$month,$year);
 		
@@ -649,8 +644,6 @@ class Staff extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('K29', 'Date');
 		
         $filename = "report". date("Y-m-d-H-i-s").".xlsx";
-		
-		
 		
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
