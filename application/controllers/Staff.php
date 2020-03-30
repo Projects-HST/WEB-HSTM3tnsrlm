@@ -504,6 +504,7 @@ class Staff extends CI_Controller {
 				$disp_kms =  "0";
 			 }
 		
+		
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->setActiveSheetIndex(0);
 		
@@ -541,21 +542,11 @@ class Staff extends CI_Controller {
 
         $filename = "report". date("Y-m-d-H-i-s").".xlsx";
 	
-		/* $newpdf = $time.".pdf";
-		$objPHPExcel = PHPExcel_IOFactory::load($newxlsx);
-		$objPHPExcel->getActiveSheet(0)->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-		$objPHPExcel->getActiveSheet(0)->getPageSetup()->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
-		$objPHPExcel->getActiveSheet(0)->getPageSetup()->setFitToWidth(true);
-		$objPHPExcel->getActiveSheet(0)->getPageSetup()->setFitToHeight(true);
-		$objPHPExcel->getActiveSheet(0)->setShowGridlines(false);
-
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
-		$objWriter->save($newpdf); */
 
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'HTML');  
 		$objWriter->save('php://output'); 
 
     }
@@ -659,7 +650,7 @@ class Staff extends CI_Controller {
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'HTML');  
 		$objWriter->save('php://output');
 
     }
