@@ -23,8 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://localhost/M3TNSRLM/';
-$config['base_url'] = 'http://localhost/m3/';
+
+$config['base_url'] = 'https://m3tnsrlm.happysanz.net/';
+//$config['base_url'] = 'http://localhost/m3/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
