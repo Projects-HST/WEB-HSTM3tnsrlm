@@ -543,7 +543,8 @@ class Staff extends CI_Controller {
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'HTML');
+		//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
 		//ob_clean();
 		$objWriter->save('php://output'); 
     }
@@ -560,6 +561,7 @@ class Staff extends CI_Controller {
 		$detailed_report =$this->staffmodel->detailed_report_details($staff_id,$month,$year);
 		$detailed_job_list = $this->staffmodel->detailed_report_list($staff_id,$month,$year);
 		
+		$filename = date("Y-m-d-H-i-s").".xlsx";
         $objPHPExcel = new PHPExcel();
         
 		$objPHPExcel->setActiveSheetIndex(0);
@@ -642,13 +644,14 @@ class Staff extends CI_Controller {
 		$objPHPExcel->getActiveSheet()->SetCellValue('D29', 'Date');
 		$objPHPExcel->getActiveSheet()->SetCellValue('K29', 'Date');
 		
-        $filename = date("Y-m-d-H-i-s").".xlsx";
+        
 		
 		
 		header('Content-Type: application/vnd.ms-excel'); 
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'HTML');  
+		//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
 		//ob_clean();
 		$objWriter->save('php://output');
 
