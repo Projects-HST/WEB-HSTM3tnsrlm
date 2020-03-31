@@ -544,7 +544,7 @@ class Staff extends CI_Controller {
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
-		ob_clean();
+		//ob_clean();
 		$objWriter->save('php://output'); 
     }
 	
@@ -649,7 +649,7 @@ class Staff extends CI_Controller {
 		header('Content-Disposition: attachment;filename="'.$filename.'"');
 		header('Cache-Control: max-age=0'); 
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
-		ob_clean();
+		//ob_clean();
 		$objWriter->save('php://output');
 
     }
