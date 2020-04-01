@@ -88,8 +88,11 @@ $month_id = trim($consolidate_report['month_id']);
 							</tr>
 							</table>
 						</div>
-						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"><a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url(); ?>staff/consolidate_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $consolidate_report['year'];?>/<?php echo $month_id; ?>"><i class="fa fa-file-excel-o"></i> Export Data</a></div>
-						
+						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+							<div class="modal-inner-pro" style="background:#848585;padding:5px;">
+								<a href="<?php echo base_url(); ?>staff/consolidate_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $consolidate_report['year'];?>/<?php echo $month_id; ?>" style="font-size:12px;font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/download_w.png" alt="Export Consolidated Report" title="Export Consolidated Report">&nbsp; Consolidated Report</a>
+							</div>
+						</div>
 				   </div>
 		</div>
 </div>

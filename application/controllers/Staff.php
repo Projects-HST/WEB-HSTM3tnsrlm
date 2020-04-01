@@ -511,6 +511,7 @@ class Staff extends CI_Controller {
 		
 		$objPHPExcel->setActiveSheetIndex(0)->mergeCells('D11:E11');
 		$objPHPExcel->getActiveSheet()->getStyle('D11')->getAlignment()->applyFromArray(array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER));
+		$objPHPExcel->getActiveSheet()->getStyle('D11')->getAlignment()->applyFromArray(array('vertical' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER));
 		$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth("35");
 		$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth("35");
 		

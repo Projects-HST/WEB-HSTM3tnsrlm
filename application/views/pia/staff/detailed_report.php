@@ -44,7 +44,11 @@ $month_id = trim($detailed_report['month_id']);
 								
 							<table class="table table-bordered" cellspacing="0" cellpadding="0">
 							<tr>
-								 <td colspan="2" style="font-weight:bold;">PIA Name</td><td colspan="6"><?php echo $detailed_report['pia_name']; ?></td><td style="text-align:right;"><a class="pull-right btn btn-primary btn-xs" href="<?php echo base_url(); ?>staff/detailed_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $detailed_report['year'];?>/<?php echo $month_id; ?>"><i class="fa fa-file-excel-o"></i> Export Data</a></td>
+								 <td colspan="2" style="font-weight:bold;">PIA Name</td><td colspan="6"><?php echo $detailed_report['pia_name']; ?></td><td style="width:13%;">
+								 <div class="modal-inner-pro" style="background:#848585;padding:5px;">
+								<a href="<?php echo base_url(); ?>staff/detailed_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $detailed_report['year'];?>/<?php echo $month_id; ?>" style="font-size:12px;font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/download_w.png" alt="Export Consolidated Report" title="Export Consolidated Report">&nbsp; Detailed Report</a>
+							</div>
+							</td>
 								 
 							</tr>
 							<tr>

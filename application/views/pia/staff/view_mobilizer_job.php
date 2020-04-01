@@ -81,7 +81,7 @@
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="text-align:center;">
                                        <div class="modal-inner-pro" style="background:#848585;padding:5px;">
-											<a href="<?php echo base_url(); ?>staff/add_mobilizer_job/<?php echo base64_encode($mobi->user_id*98765); ?>" style="font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Add Work" title="Download">&nbsp; Add Work</a>
+											<a href="<?php echo base_url(); ?>staff/add_mobilizer_job/<?php echo base64_encode($mobi->user_id*98765); ?>" style="font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/add.png" alt="Add Work" title="Download">&nbsp; Add Work</a>
 										</div>
                                     </div>
                            </div>
