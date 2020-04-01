@@ -1315,7 +1315,7 @@ function prospects_document($prospect_id){
       $res = $this->db->query($query);
         $result= $res->result();
       if($res->num_rows()==0){
-        $response = array("status" => "error", "msg" => "Mobilizer list not found");
+        $response = array("status" => "error", "msg" => "Mobilizer year list not found");
      }else{
 
        $response = array("status" => "success", "msg" => "Mobilizer found", "result"=>$result);
@@ -1435,7 +1435,7 @@ function prospects_document($prospect_id){
         }
 
 
-        $query_photo="SELECT * FROM edu_task_photos where task_id='$mobilizer_id'";
+        $query_photo="SELECT * FROM edu_task_photos where task_id='$attendance_id'";
         $res_photo = $this->db->query($query_photo);
 
          if($res_photo->num_rows()==0){
