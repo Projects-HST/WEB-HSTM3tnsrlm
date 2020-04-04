@@ -127,12 +127,12 @@
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="text-align:center;">
                                         <div class="modal-inner-pro" style="background:#e0e1e2;">
-											<a href="<?php echo base_url(); ?>staff/consolidated_report/<?php echo base64_encode($mobi->user_id*98765); ?>/<?php echo $year; ?>/<?php echo $month; ?>" style="font-weight:bold;" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download">&nbsp;Consolidated Report</a>
+											<a href="<?php echo base_url(); ?>staff/consolidated_report/<?php echo base64_encode($mobi->user_id*98765); ?>/<?php echo $year; ?>/<?php echo $month; ?>" style="font-weight:bold;font-size:15px;" target="_blank">Consolidated Report</a>
 										</div>
                                     </div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="text-align:center;">
 									 <div class="modal-inner-pro" style="background:#e0e1e2;">
-											<a href="<?php echo base_url(); ?>staff/detailed_report/<?php echo base64_encode($mobi->user_id*98765); ?>/<?php echo $year; ?>/<?php echo $month; ?>" style="font-weight:bold;" target="_blank"><img src="<?php echo base_url(); ?>assets/images/download.png" alt="Download" title="Download">&nbsp; Detailed Report</a>
+											<a href="<?php echo base_url(); ?>staff/detailed_report/<?php echo base64_encode($mobi->user_id*98765); ?>/<?php echo $year; ?>/<?php echo $month; ?>" style="font-weight:bold;font-size:15px;" target="_blank">Detailed Report</a>
 										</div>
                                     </div>
                            </div>
