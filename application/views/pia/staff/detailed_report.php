@@ -35,7 +35,7 @@ $month_id = trim($detailed_report['month_id']);
 		     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 		    } */
 				td{
-					width: 80px;
+					width: 100px;
 				}
 		</style>
 </head>
@@ -97,7 +97,7 @@ $month_id = trim($detailed_report['month_id']);
 								 <td style="font-weight:bold;">Distance <br>Travelled</td>
 								 <td style="font-weight:bold;">Task Title</td>
 								 <td style="font-weight:bold;width:200px;">Task Details</td>
-								 <td style="font-weight:bold;">Mobilizer <br>Comments</td>
+								 <td style="font-weight:bold;width:150px;">Mobilizer <br>Comments</td>
 								 <td style="font-weight:bold;">Task Added & <br>Edited </td>
 								 <td style="font-weight:bold;">Review by <br>Reporting Manager</td>
 							</tr>
