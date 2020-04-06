@@ -1441,12 +1441,12 @@ function prospects_document($prospect_id){
          if($res_photo->num_rows()==0){
            $field_work_details_report = array("status" => "error", "msg" => "Field work images not  found");
         }else{
-          $result_photo= $res->result();
+          $result_photo= $res_photo->result();
           foreach($result_photo as $rows){
             $field_work_details[]=array(
               "id"=>$rows->id,
               "task_id"=>$rows->task_id,
-              "task_image"=>$rows->task_image,
+              "task_image" => $rows->task_image,
               "task_lat"=>$rows->task_lat,
               "task_long"=>$rows->task_long,
               "task_location"=>$rows->task_location,
