@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 	
 		if($result['status']=='Error'){
 			//$datas['user_data']=array("status"=>$result['status'],"msg"=>$result['msg']);
-			$this->session->set_flashdata('msg', 'Invalid Login');
+			$this->session->set_flashdata('msg', "Invalid username/passsword. Kindly ensure they're correct.");
 			redirect('/');
 		}
 		

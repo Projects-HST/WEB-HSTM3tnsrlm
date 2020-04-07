@@ -67,7 +67,7 @@ class Center extends CI_Controller {
 					$datas=$this->centermodel->create_center($center_name,$center_info,$center_address,$center_logo,$status,$user_id);
 					
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Created Successfully');
+						$this->session->set_flashdata('msg', 'You have just created a new training center profile!');
 						redirect('center/home');
 					}else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
@@ -122,7 +122,7 @@ class Center extends CI_Controller {
 					$datas=$this->centermodel->add_video_link($center_id,$video_title,$video_link,$user_id);
 					
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Added Successfully');
+						$this->session->set_flashdata('msg', 'Video uploaded to gallery.');
 						redirect('center/create_videos/'.$center_id.'');
 					}else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
@@ -173,7 +173,7 @@ class Center extends CI_Controller {
 
 				$datas=$this->centermodel->update_center($center_id,$center_name,$center_info,$center_address,$center_logo,$status,$user_id);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Changes made in the profile of training center are saved.');
 					redirect('center/home');
 				}else{
 					$this->session->set_flashdata('msg', 'Failed to Add');
@@ -216,7 +216,7 @@ class Center extends CI_Controller {
 					}
 				$datas=$this->centermodel->create_gallery($center_id,$file_name,$user_id);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Gallery Updated Successfully');
+					$this->session->set_flashdata('msg', 'Image(s) uploaded to gallery.');
 					redirect('center/create_gallery/'.$center_id.'');
 				}else if($datas['status']=="limit"){
 					$this->session->set_flashdata('msg', 'Center Gallery  Maximum  images Exceeds');

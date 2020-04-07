@@ -25,7 +25,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>scheme/update" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Scheme Details</h2>
+                            <h2>Edit Scheme</h2>
                         </div>
 						
                         <div class="form-example-int form-horizental">
@@ -44,7 +44,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                          <label class="hrzn-fm">Scheme Details</label>
+                                          <label class="hrzn-fm">Description</label>
                                     </div>
                                     <div class="col-lg-8 col-md-3 col-sm-3 col-xs-12">
 									 <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="scheme_info" placeholder="Scheme Info"><?php echo $res->scheme_info;  ?></textarea><script>CKEDITOR.replace( 'scheme_info' );</script>                        
@@ -62,7 +62,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Scheme Video Link</label>
+                                        <label class="hrzn-fm">URL</label>
                                     </div>
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Scheme Video Link" name="scheme_video_link" id="scheme_video_link" class="form-control input-sm" value="<?php echo $res->scheme_video; ?>"><br>Ex : https://www.youtube.com/watch?v=<span style="font-weight:bold;color:#e02329;;">SjYesmO0bBE</span>
@@ -85,7 +85,7 @@
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
 										<input type="hidden" name="scheme_id" value=<?php echo $res->id;  ?>>
-										<button class="btn btn-success notika-btn-success waves-effect">Update</button>
+										<button class="btn btn-success notika-btn-success waves-effect">Save</button>
                                     </div>
 								
                                 </div>
@@ -106,7 +106,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>scheme/add_update_gallery" class="form-horizontal" enctype="multipart/form-data">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Scheme Gallery</h2>
+                            <h2>Gallery</h2>
                         </div>
 						
                         <div class="form-example-int form-horizental">
@@ -218,11 +218,11 @@
 				status:{ required: true}
 			},
 			messages: {
-					scheme_name: "Enter Scheme name",
+					scheme_name: "Enter scheme name",
 					 scheme_info:{
-                        required:"Enter Scheme info"
+                        required:"Give a brief about the scheme"
 					 },
-					scheme_video_link: "Enter Scheme video link",
+					scheme_video_link: "Paste URL for the scheme",
 					status:"Select Status"
 			}
 		});

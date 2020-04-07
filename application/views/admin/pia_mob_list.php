@@ -13,19 +13,18 @@
 
 		<div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Mobilizer List ( <?php echo $row->pia_name; ?> )</h2>
+                 <h2>Mobilizers ( <?php echo $row->pia_name; ?> )</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-                             <th>S.no</th>
-
-                             <th>Mobilizer name</th>
-                             <th>Mobile</th>
-							  <th>Email</th>
+                             <th>S.No</th>
+                             <th>Mobilizer</th>
+                             <th>Mobile Number</th>
+							  <th>Email ID</th>
                               <th>Status</th>
-							  <th>Tracking </th>
+							  <th>Actions</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -39,7 +38,7 @@
                              <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
                             </td>
 							<td>
-							<a href="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>
+							<a href="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo base64_encode($rows->pia_id*98765); ?>/<?php echo base64_encode($rows->user_id*98765); ?>" data-toggle="tooltip" title="Track mobilizer"><img src="<?php echo base_url(); ?>assets/images/tracking.png" alt="Download" height="25" width="25"></a> </td>
                             
 <?php  $i++; } ?>
 

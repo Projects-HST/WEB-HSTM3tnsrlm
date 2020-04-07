@@ -18,7 +18,7 @@
 			
 			<form method="post" action="<?php echo base_url(); ?>center/create_center" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Create Center</h2>
+					<h2>Create Training Center Profile</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -38,7 +38,7 @@
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Address <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" class="form-control  input-sm" name="center_address" maxlength="100">
@@ -48,7 +48,7 @@
 							
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Info <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Introduction <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" class="form-control  input-sm" name="center_info" maxlength="100">
@@ -58,7 +58,7 @@
 							
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Logo <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Profile Picture <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											  <input type="file" class="form-control" name="center_banner">
@@ -108,7 +108,7 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	  <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>List Centers</h2>
+                 <h2>Training Centers</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
@@ -117,7 +117,7 @@
 							<th>S.No</th>
 							<th>Center Name</th>
 							<th>Status</th>
-							<th>Action</th>
+							<th>Actions</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -170,15 +170,15 @@ $("#myformsection").validate({
            status:{required:true}
        },
        messages: {
-            center_name: { required:"Enter center name",remote:"Center name already exist" },
+            center_name: { required:"Enter name of your training center",remote:"Center name already exist" },
 			center_banner:{
-				  required:"Select logo or banner",
+				  required:"Set a profile picture for your center",
 				  accept:"Please upload .jpg or .png",
 				  fileSize:"File must be JPG or PNG, less than 1MB"
 			},
-            center_info:"Enter center info",
-            center_address:"Enter center address",
-            status:"Select status"
+            center_info:"Give a brief introduction about your center",
+            center_address:"Enter the address",
+            status:"Set a status"
 
            }
    });

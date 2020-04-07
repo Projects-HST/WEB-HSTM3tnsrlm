@@ -17,14 +17,14 @@
 			
 					<form method="post" action="<?php echo base_url(); ?>center/videos" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 					<div class="cmp-tb-hd cmp-int-hd">
-						<h2>Center Videos</h2>
+						<h2>Upload Videos</h2>
 					</div>
 						
 					<div class="form-example-int form-horizental">
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Video Title <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Title <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" name="video_title" id="video_title" class="form-control" maxlength="30">
@@ -33,7 +33,7 @@
                             </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">video URL Link <span class="error">*</span></label>
+                                        <label class="hrzn-fm">URL <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" name="video_link" id="video_link" class="form-control" placeholder="Youtube Token E.g=d3OZVsHG9TM" maxlength="30">
@@ -82,12 +82,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>S.No</th>
-                                                    <th>Video title</th>
-
-                                                    <th>vidoe link</th>
-
+                                                    <th>Title</th>
+                                                    <th>Video</th>
                                                     <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -133,8 +131,8 @@
            video_link:{required:true },
        },
        messages: {
-            video_title:"Enter video title",
-            video_link:"Enter video URL link"
+            video_title:"Give your video a title.",
+            video_link:"Enter the URL"
            }
    });
    
@@ -149,8 +147,8 @@ function delete_videos(id) {
 
 			if (response == 'success') {
 			  $.toast({
-						heading: 'Deleted successfully',
-						text: response,
+						heading: 'Video deleted',
+						text: '',
 						position: 'mid-center',
 						icon:'success',
 						stack: false

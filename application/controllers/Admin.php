@@ -108,7 +108,7 @@ class Admin extends CI_Controller {
 						$datas=$this->adminmodel->profile_update($name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$staff_prof_pic,$user_id,$staff_id);
 							
 						if($datas['status']=="success"){
-							$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
+							$this->session->set_flashdata('msg', 'Profile Updated');
 							redirect('admin/profile');
 						}else{
 							$this->session->set_flashdata('msg', 'Failed');
@@ -164,7 +164,7 @@ class Admin extends CI_Controller {
 				$datas=$this->adminmodel->password_update($new_password,$user_id,$user_type);
 
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Your password has been reset.');
 					redirect('admin/password_change');
 				}else{
 					$this->session->set_flashdata('msg', 'Failed to Update');
@@ -266,7 +266,7 @@ class Admin extends CI_Controller {
 					}
 					$datas=$this->adminmodel->create_staff_details($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Staff Created Successfully');
+						$this->session->set_flashdata('msg', 'You have just created a profile for your staff!');
 						redirect('admin/view_staff');
 					}else if($datas['status']=="already"){
 						$this->session->set_flashdata('msg', 'User Already Exists');
@@ -381,7 +381,7 @@ class Admin extends CI_Controller {
 						$datas=$this->adminmodel->update_staff_details_id($select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id);
 							
 						if($datas['status']=="success"){
-							$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
+							$this->session->set_flashdata('msg', 'Changes to profile of '.$name.' are saved.');
 							redirect('admin/view_staff');
 						}else{
 							$this->session->set_flashdata('msg', 'Failed to Add');
@@ -455,7 +455,7 @@ class Admin extends CI_Controller {
 
 					$datas=$this->adminmodel->create_pia_details($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id);
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'PIA Created Successfully');
+						$this->session->set_flashdata('msg', 'You have just created a profile for '.$name.'!');
 						redirect('admin/view_pia');
 					}else if($datas['status']=="already"){
 						$this->session->set_flashdata('msg', 'PIA Already Exists');
@@ -548,7 +548,7 @@ class Admin extends CI_Controller {
 					$datas=$this->adminmodel->update_pia_details_id($unique_number,$name,$mobile,$email,$state,$address,$scheme,$status,$staff_prof_pic,$user_id,$pia_id);
 
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', ''.$name.' Updated Successfully');
+						$this->session->set_flashdata('msg', 'Changes to profile of '.$name.' are saved.');
 						redirect('admin/view_pia');
 					}else{
 						$this->session->set_flashdata('msg', 'Failed to Update');

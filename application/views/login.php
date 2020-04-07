@@ -111,7 +111,7 @@
             <div class="nk-form">
                 <form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div>
-					<p style="font-size:15px;font-weight:bold;">Enter your Username to reset your password.</p>
+					<p style="font-size:15px;font-weight:bold;">Enter your username to reset your password.</p>
 			 </div>
 
                 <div class="input-group">
@@ -252,7 +252,7 @@ $("#myformsection").validate({
                      }else{
                        $.toast({
                                  heading: 'Error',
-                                 text: response,
+                                 text: "Your username doesn't match our records. Please check.",
                                  position: 'mid-center',
                                  icon:'error',
                                  stack: false

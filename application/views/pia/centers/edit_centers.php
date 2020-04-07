@@ -19,7 +19,7 @@
 			
 			<form method="post" action="<?php echo base_url(); ?>center/update_center" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Update Center</h2>
+					<h2>Edit Training Center Profile</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -35,7 +35,7 @@
 										 
                                     </div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Address <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Address <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" class="form-control  input-sm" name="center_address" value="<?php echo $rows->center_address; ?>" maxlength="100">
@@ -45,13 +45,13 @@
 							
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Info <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Introduction <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" class="form-control  input-sm" name="center_info" value="<?php echo $rows->center_info; ?>" maxlength="100">
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Center Logo</label>
+                                        <label class="hrzn-fm">Profile Picture</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											  <input type="file" class="form-control" name="center_banner">
@@ -81,7 +81,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="hidden" class="form-control" name="center_banner_old" value="<?php echo $rows->center_banner; ?>" >
 										<input type="hidden" class="form-control" name="center_id" value="<?php echo base64_encode($rows->id*98765); ?>">
-										<button class="btn btn-success notika-btn-success waves-effect">Update</button>
+										<button class="btn btn-success notika-btn-success waves-effect">Save</button>
                                     </div>
 								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
 								</div>
@@ -125,15 +125,15 @@ $("#myformsection").validate({
            status:{required:true}
        },
        messages: {
-            center_name: { required:"Enter center name",remote:"Center name already exist" },
-            center_info:"Enter center info",
-            center_address:"Enter center address",
+            center_name: { required:"Enter name of your training center",remote:"Center name already exist" },
+            center_info:"Give a brief introduction about your center",
+            center_address:"Enter the address",
 			center_banner:{
 				  required:"",
 				  accept:"Please upload .jpg or .png .",
 				  fileSize:"File must be JPG or PNG, less than 1MB"
 			},
-            status:"Select status"
+            status:"Set a status"
 
            }
    });

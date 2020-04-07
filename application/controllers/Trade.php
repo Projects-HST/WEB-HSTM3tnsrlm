@@ -40,7 +40,7 @@ class Trade extends CI_Controller
 				$datas = $this->trademodel->add_trade($tradename,$status,$user_id);
 				
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Added Successfully');
+					$this->session->set_flashdata('msg', 'You have just created a new course!');
 					redirect('trade/home');
 				}else{
 					$this->session->set_flashdata('msg', 'Trade Already Exist');
@@ -84,7 +84,7 @@ class Trade extends CI_Controller
 			$datas = $this->trademodel->update_trade_details($trade_name,$trade_id,$status,$user_id);
 			
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Changes made in your course are saved.');
 					redirect('trade/home');
 				}else{
 					$this->session->set_flashdata('msg', 'Trade Already Exist');

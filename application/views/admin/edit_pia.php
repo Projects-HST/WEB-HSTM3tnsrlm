@@ -7,7 +7,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>admin/update_pia_details" class="form-horizontal" enctype="multipart/form-data" id="piaform" name="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Update Training Partner</h2>
+                            <h2>Edit Training Provider</h2>
                         </div>
 
                         <div class="form-example-int form-horizental">
@@ -29,16 +29,16 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" value="<?php echo $rows->pia_phone; ?>" maxlength="10">
                                     </div>
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Email ID <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
+                                            <input type="text" placeholder="Email ID" name="email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
                                     </div>
                                 </div>
 								
@@ -101,7 +101,7 @@
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="hidden" name="pia_id" value="<?php  echo base64_encode($rows->id); ?>">
 										<input type="hidden" name="staff_old_pic" value="<?php  echo $rows->profile_pic; ?>">
-										<button class="btn btn-success notika-btn-success waves-effect">Update</button>
+										<button class="btn btn-success notika-btn-success waves-effect">Save</button>
                                     </div>
                                 </div>
 								
@@ -174,22 +174,22 @@
 		},
 		messages: {
 				unique_number: {
-					required: "Enter PRN Number",
+					required: "Enter PRN number",
 					maxlength:"Maximum 12 digits",
 					minlength:"Minimum 20 digits",
 					remote: "PRN number already exist!",
 					alphanumeric:"Enter alphanumeric values"
 				 },
 				//unique_number: "Enter Unique Number",
-				name: "Enter Name",
+				name: "Enter name",
 				mobile: {
 						required: "Enter mobile number",
-						maxlength:"Maximum 10 digits",
-						minlength:"Minimum 10 digits",
-						number:"Enter only numbers"
+						maxlength:"Invalid mobile number",
+						minlength:"Invalid mobile number",
+						number:"Invalid mobile number"
 				 },
 				email: {
-						 required: "Enter email address",
+						 required: "Enter email ID",
 						 email: "Enter valid email address"
 				 },
 				state: "Enter state",

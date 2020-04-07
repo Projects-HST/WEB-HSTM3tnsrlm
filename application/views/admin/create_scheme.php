@@ -35,7 +35,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                          <label class="hrzn-fm">Scheme Details <span class="error">*</span></label>
+                                          <label class="hrzn-fm">Description <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-8 col-md-3 col-sm-3 col-xs-12">
                                                 <textarea name="scheme_info" class="form-control" rows="10" cols="80" id="scheme_info" placeholder="Scheme Info"></textarea><script>CKEDITOR.replace( 'scheme_info' );</script>
@@ -45,7 +45,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Scheme Video Link <span class="error">*</span></label>
+                                        <label class="hrzn-fm">URL <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
 										<input type="text" placeholder="Scheme Video Link" name="scheme_video_link" id="scheme_video_link" class="form-control input-sm" value="<?php //echo $res->scheme_video; ?>"><br>Ex : https://www.youtube.com/watch?v=<span style="font-weight:bold;color:#e02329;;">SjYesmO0bBE</span>
@@ -110,11 +110,11 @@
 				status:{ required: true}
 			},
 			messages: {
-					scheme_name: "Enter Scheme name",
+					scheme_name: "Enter scheme name",
 					 scheme_info:{
-                        required:"Enter Scheme info"
+                        required:"Give a brief about the scheme"
 					 },
-					scheme_video_link: "Enter Scheme video link",
+					scheme_video_link: "Paste URL for the scheme",
 					status:"Select Status"
 			}
 		});

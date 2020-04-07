@@ -18,7 +18,7 @@
 			
 			<form method="post" action="<?php echo base_url(); ?>staff/update_staff_details" class="form-horizontal" enctype="multipart/form-data" id="staffform">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Update Staff</h2>
+					<h2>Edit Staff Profile</h2>
 				</div>
 						
 				<div class="form-example-int form-horizental">

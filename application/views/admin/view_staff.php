@@ -4,8 +4,7 @@
         
 			<?php if($this->session->flashdata('msg')): ?>
 			<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-			×</button>
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			<?php echo $this->session->flashdata('msg'); ?>
 			</div>
 			<?php endif; ?>
@@ -18,12 +17,12 @@
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-                             <th>S.no</th>
+                             <th>S.No</th>
                              <th>Name</th>
-                             <th>Email id</th>
+                             <th>Email ID</th>
                              <th>Mobile</th>
                              <th>Status</th>
-                              <th>Action</th>
+                              <th>Actions</th>
 
 
                          </tr>

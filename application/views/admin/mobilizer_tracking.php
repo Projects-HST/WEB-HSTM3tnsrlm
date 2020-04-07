@@ -17,7 +17,7 @@
 					
 					<form method="post" action="<?php echo base_url(); ?>admin/pia_mobilizer_track/<?php echo $piaid; ?>/<?php echo $mobid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Mobilizer Tracking</h2>
+                            <h2>Track Mobilizer</h2>
                         </div>
                         <div class="form-example-int form-horizental">
                             <div class="form-group">
@@ -43,7 +43,7 @@
                                          <div id="map" style="width:750px; height:400px;"></div>
                                     </div>
 				
-									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"> <p>Total KM  Travelled</p>
+									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"> <p>Kilometers travelled</p>
 										<?php
 												$lats= json_encode( $res, JSON_NUMERIC_CHECK );
 												if(empty($kms_using_lat)){

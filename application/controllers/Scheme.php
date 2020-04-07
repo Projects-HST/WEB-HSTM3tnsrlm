@@ -57,7 +57,7 @@ class Scheme extends CI_Controller {
 				
 					$datas=$this->schememodel->create_scheme($scheme_name,$scheme_info,$scheme_video_link,$status,$user_id);
 					if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Created Successfully');
+						$this->session->set_flashdata('msg', 'Information about ' .$scheme_name.' is saved.');
 						redirect('scheme/view_scheme');
 					}else{
 						$this->session->set_flashdata('msg', 'Failed to Add');
@@ -139,7 +139,7 @@ class Scheme extends CI_Controller {
 				
 				$datas=$this->schememodel->update_scheme($scheme_id,$scheme_name,$scheme_info,$scheme_video_link,$status,$user_id);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Updated Successfully');
+					$this->session->set_flashdata('msg', 'Information about '.$scheme_name.' is saved.');
 					redirect('scheme/view_scheme');
 				}else{
 					$this->session->set_flashdata('msg', 'Failed to Add');
@@ -190,7 +190,7 @@ class Scheme extends CI_Controller {
 					}
 				$datas=$this->schememodel->create_gallery($scheme_id,$file_name,$user_id);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('gallery', 'Gallery Updated Successfully');
+					$this->session->set_flashdata('gallery', 'Image(s) uploaded to gallery.');
 					redirect('scheme/view_scheme');
 				}else if($datas['status']=="limit"){
 					$this->session->set_flashdata('gallery', 'Gallery Maximum images Exceeds');

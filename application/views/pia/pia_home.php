@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> no. of centers</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> training centers</p>
                         </div>
                         <h2><span class="counter"><?php echo $result['center_count']; ?></span></h2>
                     </div>
@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> no. of trades</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> courses offered</p>
                         </div>
                         <h2><span class="counter"><?php echo $result['trade_count']; ?></span></h2>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> Mobilizers</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> mobilizers deployed</p>
                         </div>
                         <h2><span class="counter"><?php echo $result['mobilizer_count']; ?></span></h2>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:20px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> registered students</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> registered candidates</p>
                         </div>
                         <h2><span class="counter"><?php echo $result['student_count']; ?></span></h2>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="sale-statistic-inner notika-shadow mg-tb-30">
                         <div class="curved-inner-pro">
                             <div class="curved-ctn">
-                                 <h2>Graph and data on students registered every month.</h2>
+                                 <h2>Statistics</h2>
                             </div>
                         </div>
 						<?php if (count($pia_graph_details) >0) { ?>
@@ -62,7 +62,7 @@
 					<div class="rc-it-ltd mg-tb-30" style="min-height:415px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Mobilizers</h2>
+                                    <h2>Recently added mobilizers</h2>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -109,7 +109,7 @@
                         <div class="rc-it-ltd" style="min-height:400px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Task</h2>
+                                    <h2>Recently assigned tasks</h2>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -144,7 +144,7 @@
                         <div class="rc-it-ltd" style="min-height:400px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Trade</h2>
+                                    <h2>Recently added courses</h2>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -181,7 +181,7 @@
                         <div class="rc-it-ltd" style="min-height:400px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Students</h2>
+                                    <h2>Recently registered candidates</h2>
                                 </div>
                             </div>
                             <div class="recent-items-inn">
@@ -229,7 +229,7 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ['Month', 'Students'],
+          ['Month', 'Candidates'],
           <?php if (count($pia_graph_details) >0) { 
 			$i=1;
 			$rec_count = count($pia_graph_details);
@@ -242,7 +242,7 @@
 
         var options = {
           title : '',
-          vAxis: {title: 'Students Count',format: '0'},
+          vAxis: {title: 'Candidates',format: '0'},
           hAxis: {title: 'Month'},
           seriesType: 'bars',
           series: {5: {type: 'line'}}        };

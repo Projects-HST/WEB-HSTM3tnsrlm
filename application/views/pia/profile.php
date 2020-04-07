@@ -18,7 +18,7 @@
 			
 			<form method="post" action="<?php echo base_url(); ?>dashboard/profile_update" class="form-horizontal" enctype="multipart/form-data" id="myformsection">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Profile Update</h2>
+					<h2>Profile</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -55,11 +55,11 @@
                                     </div>
 									
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Email ID <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
-										<input type="text" placeholder="Email Address" name="pia_email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
+										<input type="text" placeholder="Email ID" name="pia_email" class="form-control input-sm" value="<?php echo $rows->pia_email; ?>" maxlength="100">
                                         </div>
                                     </div>
                                 </div>
@@ -156,18 +156,18 @@
          messages: {
                pia_name:"Please enter name",
                pia_email: {
-                    required: "Please enter your email address.",
-                    email: "Please enter a valid email address.",
-                    remote: "Email already in use!"
+                    required: "Please enter your email ID",
+                    email: "Please enter a valid email ID",
+                    remote: "Email ID already in use!"
                 },
                pia_address:"Please enter address",
 			   pia_state:"Please enter state",
                pia_phone: {
                  required: "Enter mobile number",
-                 maxlength:"Maximum 10 digits",
-                 minlength:"Minimum 10 digits",
-                 remote: "Mobile number Already Exist",
-                 number:"Only Numbers"
+                 maxlength:"Invalid mobile number",
+                 minlength:"Invalid mobile number",
+                 remote: "Mobile number already exist",
+                 number:"Invalid mobile numbers"
                 },
 				staff_new_pic:{
 				  accept:"Please upload .jpg or .png .",

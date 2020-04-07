@@ -8,7 +8,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>scheme/add_update_gallery" class="form-horizontal" enctype="multipart/form-data">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Scheme Gallery</h2>
+                            <h2>Gallery</h2>
                         </div>
 						
                         <div class="form-example-int form-horizental">
@@ -16,7 +16,7 @@
 							
                                 <div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Scheme Picture</label>
+                                        <label class="hrzn-fm">Upload Images</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="nk-int-st">
@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="hidden" name="scheme_id" value=<?php echo $res->id;  ?>>
-									<button class="btn btn-success notika-btn-success waves-effect" id='scheme_gallery'>Add Gallery</button>
+									<button class="btn btn-success notika-btn-success waves-effect" id='scheme_gallery'>Upload</button>
                                     </div>
 									 <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
                                     </div>
@@ -116,8 +116,8 @@
             success: function(response) {
                 if (response == 'success') {
                     $.toast({
-                        heading: 'Deleted successfully',
-                        text: response,
+                        heading: 'Image deleted',
+                        text: '',
                         position: 'mid-center',
                         icon: 'success',
                         stack: false

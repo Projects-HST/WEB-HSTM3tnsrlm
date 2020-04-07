@@ -14,15 +14,15 @@
 			
 			 <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Center List ( <?php echo $row->pia_name; ?>)</h2>
+                 <h2>Training Centers ( <?php echo $row->pia_name; ?>)</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-                             <th>S.no</th>
-                             <th>Center name</th>
-                             <th>Center address</th>
+                             <th>S.No</th>
+                             <th>Center Name</th>
+                             <th>Address</th>
                               <th>Status</th>
                          </tr>
                      </thead>

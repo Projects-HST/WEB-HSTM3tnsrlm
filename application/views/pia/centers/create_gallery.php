@@ -17,17 +17,18 @@
 			
 					<form method="post" action="<?php echo base_url(); ?>center/gallery" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 					<div class="cmp-tb-hd cmp-int-hd">
-						<h2>Center Photos</h2>
+						<h2>Upload Pictures</h2>
 					</div>
 						
 					<div class="form-example-int form-horizental">
                        <div class="form-group">
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Upload Multiple Photos <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Upload images <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="center_photos[]" multiple="multiple">
+										<p style="font-size:10px;padding-top:11px;margin:0px;">Note: You can choose multiple images.</p>
                                     </div>
 									<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"> </div>
                             </div>							
@@ -59,7 +60,7 @@
 			<div class="form-example-wrap">
 
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>List Photos</h2>
+					<h2>Photo Gallery</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -155,8 +156,8 @@
           success: function(response) {
               if (response == 'success') {
                 $.toast({
-                          heading: 'Deleted successfully',
-                          text: response,
+                          heading: 'Image deleted',
+                          text: '',
                           position: 'mid-center',
                           icon:'success',
                           stack: false

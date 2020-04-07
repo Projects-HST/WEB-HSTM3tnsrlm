@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> Training Partners</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> training providers</p>
                         </div>
                         <h2><span class="counter"><?php echo $dashboard['pia_count']; ?></span></h2>
                     </div>
@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> TNSRLM staffs</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;"> No of <br> staff involved</p>
                         </div>
                         <h2><span class="counter"><?php echo $dashboard['staff_count']; ?></span></h2>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:30px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> Mobilizers</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> mobilizers deployed</p>
                         </div>
                         <h2><span class="counter"><?php echo $dashboard['mobilizer_count']; ?></span></h2>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
                         <div class="website-traffic-ctn" style="padding-right:20px;">
-                            <p style="font-size:16px;font-weight:bold;line-height:17px;">Data on<br> registered students</p>
+                            <p style="font-size:16px;font-weight:bold;line-height:17px;">No of <br> registered candidates</p>
                         </div>
                         <h2><span class="counter"><?php echo $dashboard['student_count']; ?></span></h2>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="sale-statistic-inner notika-shadow mg-tb-30">
                         <div class="curved-inner-pro">
                             <div class="curved-ctn">
-                                <h2>Graph and data on students registered every month.</h2>
+                                <h2>Statistics</h2>
                             </div>
                         </div>
 						<?php if (count($admin_graph_details) >0) { ?>
@@ -74,7 +74,7 @@
                         <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Training Partners</h2>
+                                    <h2>Recently added training providers</h2>
                                 </div>
                             </div>
 							
@@ -111,7 +111,7 @@
                         <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Mobilizers</h2>
+                                    <h2>Recently added mobilizers</h2>
                                 </div>
                             </div>
 							
@@ -148,7 +148,7 @@
                         <div class="rc-it-ltd" style="min-height:410px;">
                             <div class="recent-items-ctn">
                                 <div class="recent-items-title">
-                                    <h2>Recent Students</h2>
+                                    <h2>Recently registered candidates</h2>
                                 </div>
                             </div>
 							
@@ -197,7 +197,7 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ['Months', 'Students'],
+          ['Months', 'Candidates'],
 		<?php if (count($admin_graph_details) >0) { 
 			$i=1;
 			$rec_count = count($admin_graph_details);
@@ -209,7 +209,7 @@
 		?>]);
         var options = {
           title : '',
-          vAxis: {title: 'Students Count',format: '0'},
+          vAxis: {title: 'Candidates',format: '0'},
           hAxis: {title: 'Months'},
           seriesType: 'bars',
           series: {5: {type: 'line'}} 

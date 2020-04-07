@@ -22,17 +22,17 @@
 			
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>List Scheme</h2>
+                            <h2>Skill Development Schemes</h2>
                         </div>
                         <div class="table-responsive">
 							
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                    <tr>
-									 <th width="5%">S.no</th>
-									 <th width="70%">Scheme Name</th>
+									 <th width="5%">S.No</th>
+									 <th width="70%">Scheme</th>
 									 <th width="10%">Status</th>
-									 <th width="15%">Action</th>
+									 <th width="15%">Actions</th>
 								</tr>
                                 </thead>
                                 <tbody>

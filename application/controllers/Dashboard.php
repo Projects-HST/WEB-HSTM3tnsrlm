@@ -109,7 +109,7 @@ class Dashboard extends CI_Controller {
 					$datas=$this->loginmodel->profile_update($pia_name,$pia_phone,$pia_email,$pia_address,$pia_state,$pia_id,$user_id,$staff_prof_pic);
 
 					if($datas['status']=="success"){
-							$this->session->set_flashdata('msg', ''.$pia_name.' Updated Successfully');
+							$this->session->set_flashdata('msg', 'Changes to your profile are saved.');
 							redirect('dashboard/profile/');
 						}else{
 							$this->session->set_flashdata('msg', 'Failed');
@@ -172,7 +172,7 @@ class Dashboard extends CI_Controller {
 				$datas=$this->loginmodel->password_update($new_password,$user_id,$user_type);
 
 				if($datas['status']=="success"){
-						$this->session->set_flashdata('msg', 'Updated Successfully');
+						$this->session->set_flashdata('msg', 'Your password has been reset.');
 						redirect('dashboard/password_change');
 				}else{
 						$this->session->set_flashdata('msg', 'Failed to Update');

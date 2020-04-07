@@ -18,7 +18,7 @@
 			
 			<form method="post" action="<?php echo base_url(); ?>years/create" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2> Period Plan</h2>
+					<h2>Create Project Timeline</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -27,7 +27,7 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">From <span class="error">*</span></label>
+                                        <label class="hrzn-fm">From Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="text"  name="from_month" id="from_year" class="form-control from_date input-sm" maxlength="15" >
@@ -37,7 +37,7 @@
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">To <span class="error">*</span></label>
+                                        <label class="hrzn-fm">To Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" name="end_month" id="to_year"  class="form-control from_date input-sm" maxlength="15">
@@ -87,15 +87,15 @@
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	  <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>List Period Plans</h2>
+                 <h2>Project Timelines</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-							<th>S.no</th>
-							<th>Period From</th>
-							<th>Period To</th>
+							<th>S.No</th>
+							<th>From</th>
+							<th>To</th>
 							<th>Status</th>
 							<th>Action</th>
                          </tr>
@@ -111,7 +111,7 @@
                              <td> <?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?></td>
                              <td> <?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?></td>
                              <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
-                             <td><a href="<?php echo base_url(); ?>years/edit_years/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Period Plan"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
+                             <td><a href="<?php echo base_url(); ?>years/edit_years/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit project timeline"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:22px;"></i></a></td>
                          </tr>
 						<?php  $i++; } ?>
 
@@ -143,9 +143,9 @@ $("#myformsection").validate({
 		   status:{required:true}
        },
        messages: {
-             from_month:"Select from period",
-             end_month:"Select end period",
-			  status:"Select status"
+             from_month:"Select 'From' date",
+             end_month:"Select 'To' date",
+			  status:"Set a status"
        },
 	
 		submitHandler: function(form) {
@@ -157,7 +157,7 @@ $("#myformsection").validate({
                      if (response=="success") {
                        $.toast({
                                  heading: 'Success',
-                                 text: 'Period Plan Created',
+                                 text: 'You have just created a project timeline!',
                                  position: 'mid-center',
                                  icon:'success',
                                  stack: false

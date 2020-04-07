@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                <label class="hrzn-fm">Scheme Info</label>
+                                                <label class="hrzn-fm">Description</label>
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st" style="text-align:justify;">
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                                <label class="hrzn-fm">Scheme Video</label>
+                                                <label class="hrzn-fm">Video</label>
                                             </div>
                                             <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="nk-int-st">
@@ -66,7 +66,7 @@
 			<div class="form-example-wrap">
                 
 				<div class="cmp-tb-hd cmp-int-hd">
-                    <h2>Scheme Photos</h2>
+                    <h2>Gallery</h2>
                 </div>
 				
 				<div class="row page_row" style="margin-top:20px;">

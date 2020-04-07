@@ -21,7 +21,7 @@
 			
 			<form method="post" action="#" class="" enctype="multipart/form-data" id="myformsection" name="myformsection">
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Update Period Plan</h2>
+					<h2>Edit Project Timeline</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -30,7 +30,7 @@
 		   
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">From <span class="error">*</span></label>
+                                        <label class="hrzn-fm">From Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="text"  name="from_month" id="from_year" class="form-control from_date input-sm" value="<?php $date1=date_create($frm_date);echo date_format($date1,"d-m-Y");  ?>" maxlength="15">
@@ -40,7 +40,7 @@
 								
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">To <span class="error">*</span></label>
+                                        <label class="hrzn-fm">To Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											 <input type="text" name="end_month" id="to_year"  class="form-control from_date input-sm" value="<?php $date2=date_create($to_date);echo date_format($date2,"d-m-Y");  ?>" maxlength="15">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="hidden"  name="year_id" id="year_id" class="" value="<?php echo base64_encode($rows->id*98765); ?>" >
-                                           <button class="btn btn-success notika-btn-success waves-effect">Update</button>
+                                           <button class="btn btn-success notika-btn-success waves-effect">Save</button>
                                     </div>
 								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
 								</div>
@@ -97,9 +97,9 @@
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-							<th>S.no</th>
-							<th>Period From</th>
-							<th>Period To</th>
+							<th>S. No</th>
+							<th>From</th>
+							<th>To</th>
 							<th>Status</th>
 							<th>Action</th>
                          </tr>
@@ -150,9 +150,9 @@ $("#myformsection").validate({
 		   status:{required:true}
        },
        messages: {
-             from_month:"Select from period",
-             end_month:"Select end period",
-			  status:"Select status"
+             from_month:"Select 'From' date",
+             end_month:"Select 'To' date",
+			  status:"Set a status"
        },
 		submitHandler: function(form) {
 		$.ajax({
@@ -163,7 +163,7 @@ $("#myformsection").validate({
                      if (response=="updated") {
                        $.toast({
                                  heading: 'Success',
-                                 text: 'Period Plan Updated',
+                                 text: 'Changes made in the project timeline are saved.',
                                  position: 'mid-center',
                                  icon:'success',
                                  stack: false

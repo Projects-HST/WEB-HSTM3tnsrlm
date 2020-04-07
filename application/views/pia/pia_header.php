@@ -105,7 +105,7 @@
                             <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/profile/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
                                     <div class="hd-message-info">
-										<a href="<?php echo base_url(); ?>dashboard/profile/"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Profile Update</p></div></div></a>
+										<a href="<?php echo base_url(); ?>dashboard/profile/"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Profile </p></div></div></a>
 										<a href="<?php echo base_url(); ?>dashboard/password_change/"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Change Password</p></div></div></a>
 										<a href="<?php echo base_url(); ?>logout"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Logout</p></div></div></a>
 									</div>
@@ -137,10 +137,10 @@
 				<div class="tab-content custom-menu-content">
                       <div id="mastersmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="<?php echo base_url(); ?>years/config" id="period_plan">Period Plan</a></li>
-                              <li><a href="<?php echo base_url(); ?>centers" id="centers">Centers</a></li>
+                              <li><a href="<?php echo base_url(); ?>years/config" id="period_plan">Project Timeline</a></li>
+                              <li><a href="<?php echo base_url(); ?>centers" id="centers">Training Centers</a></li>
                               <li><a href="<?php echo base_url(); ?>scheme" id="schemes">Schemes</a></li>
-                              <li><a href="<?php echo base_url(); ?>trade/home" id="trade">Trade </a>
+                              <li><a href="<?php echo base_url(); ?>trade/home" id="trade">Courses</a>
                               </li>
                           </ul>
                       </div>
@@ -155,10 +155,10 @@
                       </div>
                       <div id="staffmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="<?php echo base_url(); ?>staff/home" id="create_staff">Create Staff</a></li>
-                              <li><a href="<?php echo base_url(); ?>staff/view" id="view_staff">All Staffs</a></li>
-                              <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">List Trainers</a></li>
-                              <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">List Mobilizers</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/home" id="create_staff">Create Staff Profile</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/view" id="view_staff">View Staff</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">Trainers</a></li>
+                              <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">Mobilizers</a></li>
 							  <li><a href="<?php echo base_url(); ?>staff/view_mobilizer_list" id="view_mobilizer_list">Mobilizers Work</a></li>
                           </ul>
                       </div>

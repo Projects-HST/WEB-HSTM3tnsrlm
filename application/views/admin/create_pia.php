@@ -16,7 +16,7 @@
                     <div class="form-example-wrap">
 					<form method="post" action="<?php echo base_url(); ?>admin/createpia" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Create Training Partner</h2>
+                            <h2>Create Training Provider</h2>
                         </div>
 						
                         <div class="form-example-int form-horizental">
@@ -40,7 +40,7 @@
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Mobile <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             <input type="text" placeholder="Mobile Number" name="mobile" class="form-control input-sm" maxlength="10">
@@ -48,10 +48,10 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Email ID <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Email Address" name="email" class="form-control input-sm" maxlength="100">
+                                            <input type="text" placeholder="Email ID" name="email" class="form-control input-sm" maxlength="100">
                                     </div>
                                 </div>
 								
@@ -79,7 +79,7 @@
                                            <input type="file" name="staff_pic" placeholder="" class="form-control" accept="image/*" data-msg-accept="Please Select Image Files" >
                                     </div>
 									  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Scheme <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Scheme <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                           <select name="scheme" class="form-control input-sm" id="scheme" style="width:360px;">
@@ -188,25 +188,25 @@
 					remote: "PRN number already exist!",
 					alphanumeric:"Enter alphanumeric values"
 				 },
-				name: "Enter Name",
+				name: "Enter name",
 				mobile: {
 						required: "Enter mobile number",
-						maxlength:"Maximum 10 digits",
-						minlength:"Minimum 10 digits",
-						number:"Enter only numbers"
+						maxlength:"Invalid mobile number",
+						minlength:"Invalid mobile number",
+						number:"Invalid mobile number"
 				 },
 				email: {
-						 required: "Enter email address",
+						 required: "Enter email ID",
 						 email: "Enter valid email address"
 				 },
 				state: "Enter state",
 				address: "Enter address",
 				staff_pic:{
-								  required:"Select training partner picture",
+								  required:"Set a profile picture",
 								  accept:"Please upload .jpg or .png .",
 								  filesize:"File must be JPG or PNG, less than 1MB"
 								},
-				scheme: "Select Scheme",
+				scheme: "Choose a scheme",
 				status: "Select Status"
 			}
 		});
