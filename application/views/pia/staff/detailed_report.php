@@ -1,7 +1,7 @@
-<?php   
+<?php
 foreach($mobilizer_details as $mobi){
-	$mobi_id = $mobi->user_id; 
-} 
+	$mobi_id = $mobi->user_id;
+}
 
 $month_id = trim($detailed_report['month_id']);
 ?>
@@ -23,22 +23,32 @@ $month_id = trim($detailed_report['month_id']);
 		============================================ -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/bootstrap.min.css">
     <!-- Bootstrap CSS
-		============================================ -->	
+		============================================ -->
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/style.css">
-  
+		<style type="text/css" media="print">
+		    /* .page
+		    {
+		     -webkit-transform: rotate(-90deg);
+		     -moz-transform:rotate(-90deg);
+		     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		    } */
+				td{
+					width: 100px;
+				}
+		</style>
 </head>
 
 <body>
 
 
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 page">
 			<div class="form-example-wrap">
 				<div class="form-example-int">
 				<div class="page_row">
 					<div class="col-lg-8 col-md-3 col-sm-3 col-xs-12"></div>
-					
+
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 							<div class="modal-inner-pro" style="background:#848585;padding:5px;">
 								<a href="<?php echo base_url(); ?>staff/detailed_generateXls/<?php echo base64_encode($mobi_id*98765);?>/<?php echo $detailed_report['year'];?>/<?php echo $month_id; ?>" style="font-size:14px;font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/excel_icon.png" alt="Export Detailed Report" title="Export Detailed Report">&nbsp; Download EXCEL</a>
@@ -51,16 +61,16 @@ $month_id = trim($detailed_report['month_id']);
 					</div>
 				</div>
 							<div class="row page_row">
-								
+
 							<div class="col-lg-12 col-md-3 col-sm-3 col-xs-12" id="printableArea">
 
 							<table class="table table-bordered" cellspacing="0" cellpadding="0">
 							<tr>
 								 <td colspan="2" style="font-weight:bold;">PIA Name</td><td colspan="6"><?php echo $detailed_report['pia_name']; ?></td><td style="width:13%;">
-								 
+
 							</div>
 							</td>
-								 
+
 							</tr>
 							<tr>
 								 <td colspan="2" style="font-weight:bold;">Mobilizer Name</td><td colspan="7" style=""><?php echo $detailed_report['mob_name']; ?></td>
@@ -77,8 +87,8 @@ $month_id = trim($detailed_report['month_id']);
 							<tr style="height:50px;">
 								 <td colspan ="9"></td>
 							</tr>
-							<?php if (count($detailed_report_list) >0 ){ 
-							
+							<?php if (count($detailed_report_list) >0 ){
+
 							?>
 							<tr >
 								 <td style="font-weight:bold;">Date</td>
@@ -86,22 +96,22 @@ $month_id = trim($detailed_report['month_id']);
 								 <td style="font-weight:bold;">Task Type</td>
 								 <td style="font-weight:bold;">Distance <br>Travelled</td>
 								 <td style="font-weight:bold;">Task Title</td>
-								 <td style="font-weight:bold;">Task Details</td>
-								 <td style="font-weight:bold;">Mobilizer <br>Comments</td>
+								 <td style="font-weight:bold;width:200px;">Task Details</td>
+								 <td style="font-weight:bold;width:150px;">Mobilizer <br>Comments</td>
 								 <td style="font-weight:bold;">Task Added & <br>Edited </td>
 								 <td style="font-weight:bold;">Review by <br>Reporting Manager</td>
 							</tr>
-								<?php 
+								<?php
 									$i=1;
 									$km_traveled = 0;
-									foreach($detailed_report_list as $rows){  
+									foreach($detailed_report_list as $rows){
 										$mob_id = $rows->mobilizer_id;
 										$sdate = $rows->attendance_date;
 										$km_traveled = $rows->km;
 										$nameOfDay = date('l', strtotime($sdate));
-										
+
 										/* $km_cal = $this->staffmodel->calc_distance($mob_id,$sdate);
-										foreach($km_cal as $km){  
+										foreach($km_cal as $km){
 											$km_traveled = $km->km;
 										} */
 								?>
@@ -134,13 +144,13 @@ $month_id = trim($detailed_report['month_id']);
                            </table>
 
 								</div>
-								
+
                            </div>
 				</div>
 
 			</div>
 		</div>
-		
+
 
 <script>
 function printDiv(divName) {
@@ -153,4 +163,3 @@ function printDiv(divName) {
 </script>
 </body>
 </html>
-

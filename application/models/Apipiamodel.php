@@ -1409,7 +1409,7 @@ function prospects_document($prospect_id){
       //#################### attendance day report details ####################//
 
       function get_month_day_report_details($mobilizer_id,$user_id,$attendance_id){
-        $query="SELECT ma.id,wtm.work_type,ma.task_id,ma.title,ma.comments,ma.work_type_id,ma.attendance_date,ma.status,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
+        $query="SELECT ma.id,wtm.work_type,ma.mobilizer_comments,ma.task_id,ma.title,ma.comments,ma.work_type_id,ma.attendance_date,ma.status,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
         left join edu_task as et on et.id=ma.task_id
         left join work_type_master as wtm on wtm.id=ma.work_type_id
         where  ma.id='$attendance_id'";
@@ -1426,6 +1426,7 @@ function prospects_document($prospect_id){
               "task_id"=>$rows_details->task_id,
               "title"=>$rows_details->title,
               "comments"=>$rows_details->comments,
+              "mobilizer_comments"=>$rows_details->mobilizer_comments,
               "work_type_id"=>$rows_details->work_type_id,
               "attendance_date"=>$rows_details->attendance_date,
               "status"=>$rows_details->status,
@@ -1441,12 +1442,12 @@ function prospects_document($prospect_id){
          if($res_photo->num_rows()==0){
            $field_work_details_report = array("status" => "error", "msg" => "Field work images not  found");
         }else{
-          $result_photo= $res->result();
+          $result_photo= $res_photo->result();
           foreach($result_photo as $rows){
             $field_work_details[]=array(
               "id"=>$rows->id,
               "task_id"=>$rows->task_id,
-              "task_image"=>$rows->task_image,
+              "task_image" => $rows->task_image,
               "task_lat"=>$rows->task_lat,
               "task_long"=>$rows->task_long,
               "task_location"=>$rows->task_location,
