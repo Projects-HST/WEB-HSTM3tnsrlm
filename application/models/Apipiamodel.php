@@ -1063,7 +1063,7 @@ class Apipiamodel extends CI_Model {
         etd.user_location AS address,
         etd.user_lat AS lat,
         etd.user_long AS lng,
-        etd.created_at
+        DATE_FORMAT(etd.created_at, '%h:%s %p') as start_stop_time
       FROM  edu_users AS eu
       LEFT JOIN edu_tracking_details AS etd
       ON  eu.user_id = etd.user_id
