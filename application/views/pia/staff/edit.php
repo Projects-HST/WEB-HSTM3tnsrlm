@@ -69,19 +69,19 @@
 									
 									
 									 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Secondary Mobile</label>
+                                        <label class="hrzn-fm">Alternate Mobile Number</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            <input type="text" placeholder="Secondary Mobile" name="sec_phone" class="form-control input-sm" value="<?php echo $rows->sec_phone; ?>" maxlength="10">
+                                            <input type="text" placeholder="Alternate Mobile Number" name="sec_phone" class="form-control input-sm" value="<?php echo $rows->sec_phone; ?>" maxlength="10">
                                     </div>
                                 </div>
 								
 								<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Email Address <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Email ID <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Email Address" name="email" class="form-control input-sm" value="<?php echo $rows->email; ?>" maxlength="30">
+										<input type="text" placeholder="Email ID" name="email" class="form-control input-sm" value="<?php echo $rows->email; ?>" maxlength="30">
                                     </div>
 									
 									
@@ -270,15 +270,14 @@
 							}
 					},
 					messages: {
-							name: "Enter name",
+							name: " Enter staff name",
 							select_role: "Select role",
 							address: "Enter address",
 							admission_date: "Select Admission Date",
-							
 							email: {
-									 required: "Enter email address.",
-									 email: "Enter valid email address.",
-									 remote: "Email already in use!"
+									 required: "Enter email ID",
+									 email: "Enter valid Enter email ID",
+									 remote: "Email ID already in use!"
 							 },
 							sex: "Select gender",
 							dob: "Select date of birth",
@@ -289,10 +288,10 @@
 							qualification: "Enter qualification ",
 							mobile: {
 								required: "Enter mobile number",
-								maxlength:"Maximum 10 digits",
-								minlength:"Minimum 10 digits",
+								maxlength:"Invalid mobile number",
+								minlength:"Invalid mobile number",
 								remote: "Mobile number already exist",
-								number:"Enter only numbers"
+								number:"Invalid mobile number"
 
 							 },
 							 staff_new_pic:{
@@ -300,7 +299,7 @@
 								  accept:"Please upload .jpg or .png .",
 								  filesize:"File must be JPG or PNG, less than 1MB"
 								},
-							status: "Select status"
+							status: "Set a status"
 					}
 		});
 

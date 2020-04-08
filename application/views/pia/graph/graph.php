@@ -22,7 +22,7 @@
                     <div class="sale-statistic-inner notika-shadow mg-tb-30">
                         <div class="curved-inner-pro">
                             <div class="curved-ctn">
-                                <h2>Yearly Students</h2>
+                                <h2>Candidate Profile Statistics</h2>
                             </div>
                         </div>
 						<?php if (count($yearly_graph) >0) { ?>
@@ -68,7 +68,7 @@
 
         var options = {
           title : '',
-          vAxis: {title: 'Students',format: '0'},
+          vAxis: {title: 'Candidates',format: '0'},
           hAxis: {title: 'Years'},
           seriesType: 'bars',
           series: {3: {type: 'line'}}        };

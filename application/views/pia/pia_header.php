@@ -127,9 +127,9 @@
                       <li id="dashboard"><a href="<?php echo base_url(); ?>dashboard/home"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a></li>
                       <li id="masters"><a data-toggle="tab" href="#mastersmenu"><i class="fa fa-sitemap" aria-hidden="true"></i> Masters</a></li>
 					  <li id="staff"><a data-toggle="tab" href="#staffmenu"><i class="fa fa-users" aria-hidden="true"></i> Staff</a></li>
-                      <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Prospects</a></li>
-                      <li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a></li>
-					  <!--<li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>-->
+                      <li id="prospects"><a data-toggle="tab" href="#prospectsmenu"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Candidates</a></li>
+                      <!--<li id="task"><a data-toggle="tab" href="#taskmenu"><i class="fa fa-file-text-o" aria-hidden="true"></i> Task</a></li>
+					  <li id="mobilization_plan"><a data-toggle="tab" href="#mobilization_planmenu"><i class="fa fa-file" aria-hidden="true"></i> Mobilization Plan</a></li>-->
 					  <li id="tracking"><a href="<?php echo base_url();?>tracking/home"><i class="fa fa-map" aria-hidden="true"></i> Tracking</a></li>
 					  <li id="graph"><a href="<?php echo base_url();?>graph/home"><i class="fa fa fa-bar-chart" aria-hidden="true"></i> Graph</a></li>
                   </ul>
@@ -146,11 +146,11 @@
                       </div>
                       <div id="prospectsmenu" class="tab-pane notika-tab-menu-bg animated flipInX">
                           <ul class="notika-main-menu-dropdown">
-                              <li><a href="<?php echo base_url(); ?>admission/home" id="add_prospect">Add Prospects</a></li>
-                              <li><a href="<?php echo base_url(); ?>admission/view" id="all_prospect">All Prospects</a></li>
-                              <li><a href="<?php echo base_url(); ?>admission/pending" id="pend_prospect">Pending Prospects</a></li>
-                              <li><a href="<?php echo base_url(); ?>admission/confirmed" id="confirm_prospect">Confirmed Prospects</a></li>
-                              <li><a href="<?php echo base_url(); ?>admission/rejected" id="reject_prospect">Rejected Prospects</a></li>
+                              <li><a href="<?php echo base_url(); ?>admission/home" id="add_prospect">Create Profile</a></li>
+                              <li><a href="<?php echo base_url(); ?>admission/view" id="all_prospect">View Candidates</a></li>
+                              <li><a href="<?php echo base_url(); ?>admission/pending" id="pend_prospect">Unverified Profiles</a></li>
+                              <li><a href="<?php echo base_url(); ?>admission/confirmed" id="confirm_prospect">Qualified Profiles</a></li>
+                              <li><a href="<?php echo base_url(); ?>admission/rejected" id="reject_prospect">Unqualified Profiles</a></li>
                           </ul>
                       </div>
                       <div id="staffmenu" class="tab-pane notika-tab-menu-bg animated flipInX">

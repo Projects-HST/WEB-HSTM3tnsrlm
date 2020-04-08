@@ -1,24 +1,34 @@
 <div class="container">
+
 <div class="row page_row">
 <div class="data-table-area">
 <div class="container">
+			
  <div class="row page_row">
+			
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>List All Prospects</h2>
+                 <h2>Candidates</h2>
              </div>
+			 <?php if($this->session->flashdata('msg')): ?>
+     <div class="alert alert-success">
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+             ×</button>
+         <?php echo $this->session->flashdata('msg'); ?>
+     </div>
+     <?php endif; ?>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-                             <th>S.no</th>
-                             <th>Name</th>
+                             <th>S.No</th>
+                             <th>Candidate</th>
                              <th>Aadhaar Card Number</th>
-                              <th>Mobile</th>
+                              <th>Mobile Number</th>
                              <th>Status</th>
-                             <th>Added by</th>
-                              <th>Action</th>
+                             <th> Profile Created By</th>
+                              <th>Actions</th>
 
 
                          </tr>
@@ -38,7 +48,7 @@
 									<?php if($rows->status=='Pending'){ ?><span class="blue">Pending</span><?php } ?>
 								</td>
 								<td><?php echo $rows->added_by; ?></td>
-                             <td><a href="<?php echo base_url(); ?>admission/view_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Prospects"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Prospects"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
+                             <td><a href="<?php echo base_url(); ?>admission/view_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Candidate Profile"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Candidate Profile"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
 
 
                          </tr>

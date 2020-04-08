@@ -17,7 +17,7 @@
 					
 					<form method="post" action="<?php echo base_url(); ?>tracking/pia_mobilizer_track/<?php echo $mobid; ?>" class="form-horizontal" enctype="multipart/form-data" id="piaform">
                         <div class="cmp-tb-hd cmp-int-hd">
-                            <h2>Mobilizer Tracking - <?php   echo $mobdetails->name; ?><span style="float:right;"><a href="<?php echo base_url(); ?>tracking/mobilizer_track_report/<?php echo base64_encode($mobdetails->user_id*98765); ?>">Download</a></span></h2>
+                            <h2>Tracking <?php echo $mobdetails->name; ?>'s Travel<span style="float:right;"><a href="<?php echo base_url(); ?>tracking/mobilizer_track_report/<?php echo base64_encode($mobdetails->user_id*98765); ?>"> Download Report</a></span></h2>
                         </div>
                         <div class="form-example-int form-horizental">
                             <div class="form-group">
@@ -42,7 +42,7 @@
 				
 									 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
 										 <div>
-										 <h1 style="font-size:18px;">Total Travelled : <span style="font-size:16px;color:#e02329;">
+										 <h1 style="font-size:18px;">Distance Travelled: <span style="font-size:16px;color:#e02329;">
 											<?php
 													//$lats= json_encode( $res, JSON_NUMERIC_CHECK );
 													if(empty($kms_using_lat)){

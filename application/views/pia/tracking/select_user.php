@@ -15,17 +15,16 @@
 
 		<div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>Mobilizer List</h2>
+                 <h2>Track Mobilizers</h2>
              </div>
              <div class="table-responsive">
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
                              <th>S.no</th>
-
-                             <th>Mobilizer name</th>
-                             <th>Mobile</th>
-								<th>Email</th>
+                             <th>Mobilizer</th>
+                             <th>Mobile Number</th>
+							  <th>Email ID</th>
                               <th>Status</th>
 							  <th>Tracking </th>
                          </tr>

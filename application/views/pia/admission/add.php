@@ -12,7 +12,11 @@
                     <div class="form-example-wrap">
 					
 					<div class="cmp-tb-hd cmp-int-hd">
-						<h2>Personal Details</h2>
+						<h2>Create Candidate Profile</h2>
+					</div>
+					<hr>
+					<div class="cmp-tb-hd cmp-int-hd">
+						<h2 style="font-size:18px;">Personal Details</h2>
 					</div>
 
 					<div class="form-example-int">
@@ -42,7 +46,7 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Attach Aadhaar Card <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Upload Aadhar Card <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="aadhar_card_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -51,10 +55,10 @@
 								
 							<div class="row page_row">
                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Candidate Name <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Candidate's Name <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" name="name" class="form-control input-sm" placeholder="Candidate Name" maxlength="100"/>
+											<input type="text" name="name" class="form-control input-sm" placeholder="Candidate's Name" maxlength="100"/>
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -71,17 +75,17 @@
 							
 							<div class="row page_row">
 							   <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Father Name <span class="error">*</span></label>
+									<label class="hrzn-fm">Father's Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="fname" class="form-control input-sm" placeholder="Father Name" maxlength="100"/>
+										<input type="text" name="fname" class="form-control input-sm" placeholder="Father's Name" maxlength="100"/>
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Mother Name <span class="error">*</span></label>
+									<label class="hrzn-fm">Mother's Name <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother Name" maxlength="100"/>
+									<input type="text" name="mname" class="form-control input-sm" placeholder="Mother's Name" maxlength="100"/>
 								</div>
 							</div>
 							
@@ -104,30 +108,30 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Candidate Mobile No. <span class="error">*</span></label>
+									<label class="hrzn-fm">Mobile Number <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Candidate Mobile No" name="mobile"  class="form-control input-sm" maxlength="12">
+										<input type="text" placeholder="Candidate's Mobile Number" name="mobile"  class="form-control input-sm" maxlength="12">
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                     <label class="hrzn-fm">Candidate E-Mail ID <span class="error">*</span></label>
+                                     <label class="hrzn-fm">Email ID <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<input type="text" placeholder="Candidate E-Mail ID" name="email"  class="form-control input-sm" maxlength="100">
+									<input type="text" placeholder="Candidate's Email ID" name="email"  class="form-control input-sm" maxlength="100">
 								</div>
                            </div>
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Father Mobile No.</label>
+									<label class="hrzn-fm">Father's Mobile No</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="text" placeholder="Father Mobile Number" name="father_mobile" class="form-control input-sm" maxlength="12">
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Mother Mobile No.</label>
+									<label class="hrzn-fm">Mother's Mobile No</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="text" placeholder="Mother Mobile Number" name="mother_mobile"  class="form-control input-sm" maxlength="12">
@@ -140,23 +144,23 @@
 									<label class="hrzn-fm">Head of the Family </label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Name of the Head of the Family" name="head_family"  class="form-control input-sm" maxlength="100">
+										<input type="text" placeholder="Name of the head of the family" name="head_family"  class="form-control input-sm" maxlength="100">
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Highest Education</label>
+                                        <label class="hrzn-fm">Highest Graduation</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Education of the Head of the Family" name="head_education"  class="form-control input-sm" maxlength="100">
+										<input type="text" placeholder="Highest graduation in the family" name="head_education"  class="form-control input-sm" maxlength="100">
                                     </div>
                            </div>
 						
 						<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Yearly Income</label>
+									<label class="hrzn-fm">Annual Income</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Yearly Income of the Family" name="yearly_income" class="form-control input-sm" maxlength="20">
+										<input type="text" placeholder=" Annual income of family" name="yearly_income" class="form-control input-sm" maxlength="20">
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -172,7 +176,7 @@
 									<label class="hrzn-fm">Languages Known</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Languages Known" name="languages" class="form-control input-sm" maxlength="100">
+										<input type="text" placeholder="Languages known" name="languages" class="form-control input-sm" maxlength="100">
 								</div>
 								
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
@@ -186,10 +190,10 @@
 						   
 						   <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">City Name <span class="error">*</span></label>
+									<label class="hrzn-fm">City <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="City Name" name="city" class="form-control input-sm" maxlength="100">
+										<input type="text" placeholder="City" name="city" class="form-control input-sm" maxlength="100">
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
@@ -333,7 +337,7 @@
 									</div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Preferred Trade <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Preferred Course <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									 <select name="prefer_trade" class="form-control" id="prefer_trade">
@@ -347,7 +351,7 @@
 						   
 						   <div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Disability <span class="error">*</span></label>
+									<label class="hrzn-fm">Are you a person with disability? <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="disability" class="form-control" id="disability">
@@ -369,14 +373,13 @@
 							
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Passport Size Photo <span class="error">*</span></label>
+									<label class="hrzn-fm">Profile Picture <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="student_pic" accept="image/*" data-msg-accept="Please Select Image Files">
 								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-									<p style="color:#e3242b;">Also ensure it is in passport size</p>
-                                    </div>
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><p style="color:#e3242b;font-size:11px;">Note: Profile picture should be in passport size format.</p>
+                                </div>
 							</div>
 						</div>	
    
@@ -392,12 +395,12 @@
 			<div class="form-example-wrap">
 			
 				<div class="cmp-tb-hd cmp-int-hd">
-                    <h2>Educational Details</h2>
+                    <h2 style="font-size:18px;">Educational Details</h2>
                 </div>
 				<div class="form-example-int">
 				<div class="row page_row">
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Qualification</label>
+                                        <label class="hrzn-fm">Education Level</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="qualification" class="form-control" id="qualification">
@@ -411,16 +414,16 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Qualification Details</label>
+                                        <label class="hrzn-fm">Qualification</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="qualification_details" class="form-control input-sm" placeholder="Qualification Details" maxlength="100" />
+										<input type="text" name="qualification_details" class="form-control input-sm" placeholder="Ex: 10th/12th/BA/BE/MSc/Mtech" maxlength="100" />
 									</div>
 									
                            </div>
 						   <div class="row page_row">
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Qualified Promotion</label>
+                                        <label class="hrzn-fm">Education Status</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="promotion_status" class="form-control" id="promotion_status">
@@ -432,28 +435,28 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Years</label>
+                                        <label class="hrzn-fm">Duration of Study</label>
                                     </div>
                                     <div class="col-lg-1 col-md-3 col-sm-3 col-xs-12" style="margin-right:40px;">
-										<input type="text" name="year_education" class="form-control date-own input-sm" placeholder="Education Year" style="width:120px;"/>
+										<input type="text" name="year_education" class="form-control date-own input-sm" placeholder="Year of admission" style="width:120px;"/>
 									</div>
 									 <div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" name="year_passing" class="form-control date-own input-sm" placeholder="Passing Year" style="width:120px;"/>
+										<input type="text" name="year_passing" class="form-control date-own input-sm" placeholder="Year of graduation" style="width:120px;"/>
                                     </div>
                            </div>
 
 						   <div class="row page_row">
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Previous Institute</label>
+                                        <label class="hrzn-fm">School/College</label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-										<input type="text" placeholder="Previous Institute" name="institute_name" class="form-control input-sm" maxlength="100">
+										<input type="text" placeholder="School/College" name="institute_name" class="form-control input-sm" maxlength="100">
                                     </div>
                            </div>
 
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Type <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Choose a document for proof <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="radio" id="edu_doc_type" name="edu_doc_type" value="TC" checked>Transfer Certificate &nbsp;&nbsp;
@@ -461,7 +464,7 @@
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select Document <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Upload Document <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="edu_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -478,20 +481,20 @@
 		<div class="form-example-wrap">
 				
 			<div class="cmp-tb-hd cmp-int-hd">
-				<h2>Documents for Proof</h2>
+				<h2 style="font-size:18px;">Documents for Proof</h2>
 			</div>
 				
 				<div class="form-example-int">
 						<div class="row page_row">
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-								<label class="hrzn-fm">Ration Card <span class="error">*</span></label>
+								<label class="hrzn-fm">Upload Ration Card <span class="error">*</span></label>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="file" class="form-control" name="rationcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
 							</div>
 							<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Voter ID</label>
+									<label class="hrzn-fm">Upload Voter ID</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<input type="file" class="form-control" name="voterid_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -499,7 +502,7 @@
 						</div>
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Type <span class="error">*</span></label>
+									<label class="hrzn-fm">Employment ID <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 									<input type="radio" id="job_type" name="job_type" value="MG" checked>MGNRGEA Job Card &nbsp;
@@ -507,7 +510,7 @@
 								</div>
 								<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">&nbsp;</div>
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Select Document <span class="error">*</span></label>
+									<label class="hrzn-fm">Upload ID <span class="error">*</span></label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										 <input type="file" class="form-control" name="jobcard_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -515,7 +518,7 @@
 					   </div>
 						<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-									<label class="hrzn-fm">Bank Account Details (Front Page)</label>
+									<label class="hrzn-fm">Upload Bank Passbook (Front page)</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										  <input type="file" class="form-control" name="bankac_doc" accept="application/pdf" data-msg-accept="Please Select PDF Files">
@@ -537,7 +540,7 @@
 						<div class="row page_row">
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-								   <button class="btn btn-success notika-btn-success waves-effect">SUBMIT</button>
+								   <button class="btn btn-success notika-btn-success waves-effect">Create</button>
 							</div>
 							<div class="col-lg-6 col-md-3 col-sm-3 col-xs-12">
 							</div>
@@ -706,82 +709,82 @@ $('#admissionform').validate({ // initialize the plugin
      },
  messages: {
      aadhar_card_num: {
-          required: "Enter Aadhar Card Number",
-          remote: "Aadhar Card Number Already Exist",
-          maxlength:"Maximum 12 digits",
-          minlength:"Minimum 12 digits",
-          number:"Enter Only Numbers"
+          required: "Enter aadhaar card number",
+          remote: "Aadhar card number already exist",
+          maxlength:"Aadhar number not valid!",
+          minlength:"Aadhar number not valid!",
+          number:"Aadhar number not valid!"
       },
 	  aadhar_card_doc:{
-		  required:"Select Aadhar Card",
+		  required:"Upload aadhar card",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
-     admission_location: "Enter Admission Location",
-     admission_date: "Select Admission Date",
-     name: "Enter Full Name",
-     fname: "Enter Father Name",
-     mname:"Enter Mother Name",
-     sex: "Select Gender",
-     address:"Enter Address",
+     admission_location: "Enter admission location",
+     admission_date: "Select admission date",
+     name: "Enter candidate's name",
+     fname: "Enter father's name",
+     mname:"Enter mother's name",
+     sex: "Select gender",
+     address:"Enter candidate's address",
      //dob: "Select Date of Birth",
 	 email:{
-          required: "Enter Email id",
-          remote: "Email Already Exist"
+          required: "Enter candidate's email ID",
+          remote: "Email already exist"
       },
      dob:{
-          required: "Select Date of Birth",
+          required: "Select date of birth",
           validDOB: "Age must be at least 15 years old!"
       },
-     disability:"Select Disability",
-     age: "Enter Age",
-     nationality: "Select Nationality",
-     religion: "Enter Religion",
-     community:"Enter Caste",
-     community_class:"Select Community",
-     blood_group:"Select Blood Group",
-	 prefer_trade:"Select Preferred Trade",
+     disability:"Select the disablity status",
+     age: "Enter the age",
+     nationality: "Select candidate's nationality",
+     religion: "Enter candidate's religion",
+     community:"Enter candidate's caste",
+     community_class:"Select his/her community",
+     blood_group:" Choose candidate's blood group",
+	 prefer_trade:"Choose the preferred course",
     /*  prefer_time:"Select Preferred Time", */
-     city:"Enter City",
-     state:"Select State",
+     city:"Enter city",
+     state:"Select the state",
     /*  course:"Select Course", */
-     mother_tongue:"Enter Mother Tongue",
+     mother_tongue:"Enter candidate's mother tongue",
      mobile: {
-          required: "Enter Mobile number",
-          maxlength:"Maximum 10 digits",
-          minlength:"Minimum 10 digits",
-          remote: "Mobile Number Already Exist",
-          number:"Enter Only Numbers"
+          required: "Enter candidate's mobile number",
+          maxlength:"Invalid mobile number",
+          minlength:"Invalid mobile number",
+          remote: "Mobile number already exist",
+          number:"Invalid mobile number"
 
       },
 	father_mobile: {
           required: "",
-          maxlength:"Maximum 10 digits",
-          minlength:"Minimum 10 digits",
-          number:"Enter Only Numbers"
+          maxlength:"Invalid mobile number",
+          minlength:"Invalid mobile number",
+          number:"Invalid mobile number"
       },
 	  mother_mobile: {
           required: "",
-          maxlength:"Maximum 10 digits",
-          minlength:"Minimum 10 digits",
-          number:"Enter Only Numbers"
+          maxlength:"Invalid mobile number",
+          minlength:"Invalid mobile number",
+          number:"Invalid mobile number"
       },
 	  yearly_income: {
           required: "",
           number:"Enter Only Numbers"
       },
 	student_pic:{
-		  required:"Selectpassport size photo",
+		  required:"Upload a passport size image of the candidate",
 		  accept:"Please upload .jpg or .png .",
 		  filesize:"File must be JPG or PNG, less than 1MB"
 		},
 	rationcard_doc:{
-		  required:"Select Ration Card",
+		  required:"Upload ration card",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	edu_doc:{
-		  required:"Select Educational Documents",
+		  required:"Upload the document",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},
@@ -801,7 +804,7 @@ $('#admissionform').validate({ // initialize the plugin
 		  filesize:"File must be PDF, less than 2MB"
 		},
 	jobcard_doc:{
-		  required:"Select Job Card",
+		  required:"Upload employment ID",
 		  accept:"Please upload .pdf Files",
 		  filesize:"File must be PDF, less than 2MB"
 		},

@@ -203,7 +203,7 @@ class Staff extends CI_Controller {
 				}
 				$datas=$this->staffmodel->update_staff_details_to_id($old_role,$select_role,$name,$address,$email,$class_tutor,$mobile,$sec_phone,$sex,$dob,$nationality,$religion,$community_class,$community,$qualification,$status,$staff_prof_pic,$user_id,$staff_id);
 				if($datas['status']=="success"){
-					$this->session->set_flashdata('msg', 'Changes to profile of '.$name.' are saved.');
+					$this->session->set_flashdata('msg', 'Changes made in staff profile are saved.');
 					redirect('staff/view');
 				}else{
 					$this->session->set_flashdata('msg', 'Failed to Add');

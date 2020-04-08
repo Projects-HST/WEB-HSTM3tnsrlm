@@ -190,10 +190,10 @@ class Admission extends CI_Controller
 
 			$datas=$this->admissionmodel->ad_create($had_aadhar_card,$aadhar_card_num,$admission_location,$admission_date,$name,$sex,$fname,$mname,$dob_date,$age,$mobile,$sec_mobile,$email,$father_mobile,$mother_mobile,$head_family,$head_education,$yearly_income,$no_family,$languages,$address,$city,$state,$nationality,$religion,$mother_tongue,$community,$community_class,$identification_marks1,$identification_marks2,$blood_group,$prefer_trade,$disability,$qualification,$qualification_details,$promotion_status,$year_education,$year_passing,$institute_name,$edu_doc_type,$job_type,$status,$user_id,$aadhar_cardName,$community_docName,$disability_docName,$userPicName,$edu_docName,$rationcard_docName,$voterid_docName,$jobcard_docName,$bankac_docName);
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg', 'Added Successfully');
+				$this->session->set_flashdata('msg', 'You have just created a new candidate profile!');
 					redirect('admission/view');
 			}else if($datas['status']=="already"){
-				$this->session->set_flashdata('msg', 'Student Already Exist');
+				$this->session->set_flashdata('msg', 'Candidate Already Exist');
 				redirect('admission/home');
 			}else{
 				$this->session->set_flashdata('msg', 'Failed to Add');
@@ -506,7 +506,7 @@ class Admission extends CI_Controller
 			$datas=$this->admissionmodel->update_details($admission_id,$had_aadhar_card,$aadhar_card_num,$admission_location,$admission_date,$name,$sex,$fname,$mname,$dob_date,$age,$mobile,$sec_mobile,$email,$father_mobile,$mother_mobile,$head_family,$head_education,$yearly_income,$no_family,$languages,$address,$city,$state,$nationality,$religion,$mother_tongue,$community,$community_class,$identification_marks1,$identification_marks2,$blood_group,$prefer_trade,$disability,$qualification,$qualification_details,$promotion_status,$year_education,$year_passing,$institute_name,$edu_doc_type,$job_type,$userPicName,$status,$user_id);
 			
 			if($datas['status']=="success"){
-				$this->session->set_flashdata('msg', 'Updated Successfully');
+				$this->session->set_flashdata('msg', 'Changes made to the candidate profile are saved.');
 				redirect('admission/view');
 			}else{
 				$this->session->set_flashdata('msg', 'Failed to Add');
