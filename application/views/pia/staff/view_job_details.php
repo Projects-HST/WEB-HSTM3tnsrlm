@@ -12,7 +12,7 @@ foreach($job_details as $job){
 			
 			
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>View Mobilizers Work</h2>
+					<h2>Mobilizer's Schedule</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -20,7 +20,7 @@ foreach($job_details as $job){
            
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Date : </label>
+                                        <label class="hrzn-fm">Date : </label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<?php $date=date_create($job->attendance_date);echo date_format($date,"d-m-Y");  ?>
@@ -29,7 +29,7 @@ foreach($job_details as $job){
                                 </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select type : </label>
+                                        <label class="hrzn-fm">Work/Break : </label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<?php echo $job->work_type; ?>
@@ -40,7 +40,7 @@ foreach($job_details as $job){
 								<div id="other_work" class="other_work">
 									<div class="row page_row">
 										<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-											<label class="hrzn-fm">Task Title : </label>
+											<label class="hrzn-fm">Title : </label>
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<?php echo $job->title; ?>
@@ -51,7 +51,7 @@ foreach($job_details as $job){
 								
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Description : </label>
+                                        <label class="hrzn-fm">Brief : </label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
                                            <?php echo $job->comments; ?>

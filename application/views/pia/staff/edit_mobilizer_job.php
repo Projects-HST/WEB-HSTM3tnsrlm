@@ -11,7 +11,7 @@
 			
 			 <form method="post" action="<?php echo base_url(); ?>staff/update_mobilizer_job" class="form-horizontal" enctype="multipart/form-data" id="staffform" >
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Edit Mobilizers Work</h2>
+					<h2>Edit Mobilizer's Work</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -19,7 +19,7 @@
            
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Date <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" placeholder="Task date" name="task_date" id="task_date" class="form-control track_date input-sm" value="<?php $date=date_create($job->attendance_date);echo date_format($date,"d-m-Y");  ?>" />
@@ -28,7 +28,7 @@
                                 </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select type <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Work/Break <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="select_type" class="form-control" id="select_type">
@@ -44,10 +44,10 @@
 								<div id="other_work" class="other_work">
 									<div class="row page_row">
 										<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-											<label class="hrzn-fm">Task Title <span class="error">*</span></label>
+											<label class="hrzn-fm">Title <span class="error">*</span></label>
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" placeholder="Task Title" name="task_title" class="form-control input-sm" maxlength="50" value="<?php echo $job->title; ?>">
+											<input type="text" placeholder="Title" name="task_title" class="form-control input-sm" maxlength="50" value="<?php echo $job->title; ?>">
 										</div>
 										<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 									</div>
@@ -55,10 +55,10 @@
 								
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Description <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Brief <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
-                                           <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Task Description"><?php echo $job->comments; ?></textarea>
+                                           <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Give a brief"><?php echo $job->comments; ?></textarea>
                                     </div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
                             </div>
@@ -68,7 +68,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										   <input type="hidden" name="mob_id" id="mob_id" value="<?php echo $job->mobilizer_id; ?>">
 										    <input type="hidden" name="job_id" id="job_id" value="<?php echo $job->id; ?>">
-                                           <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Update</button>
+                                           <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Save</button>
 										  <!--<a href="<?php echo base_url(); ?>task/home" class="btn btn-success notika-btn-success waves-effect" id="task_btn">Add Task</a>-->								   
                                     </div>
 								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
@@ -138,10 +138,10 @@
 			}
       },
       messages: {
-		  task_date: "Select date",
-          select_type: "Select Type",
-          task_title: "Enter title",
-          task_desc: "Enter description",
+		  task_date: "Select the date",
+          select_type: "Select work/break",
+          task_title: "Type the title",
+          task_desc: "Give a brief about the activity scheduled for the day",
           task_status: "Select status"
       }
 	});

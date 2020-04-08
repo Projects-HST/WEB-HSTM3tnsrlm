@@ -159,7 +159,7 @@
                               <li><a href="<?php echo base_url(); ?>staff/view" id="view_staff">View Staff</a></li>
                               <li><a href="<?php echo base_url(); ?>staff/view_trainer" id="view_trainer">Trainers</a></li>
                               <li><a href="<?php echo base_url(); ?>staff/view_mobilizer" id="view_mobilizer">Mobilizers</a></li>
-							  <li><a href="<?php echo base_url(); ?>staff/view_mobilizer_list" id="view_mobilizer_list">Mobilizers Work</a></li>
+							  <li><a href="<?php echo base_url(); ?>staff/view_mobilizer_list" id="view_mobilizer_list">Mobilizer Work Profile</a></li>
                           </ul>
                       </div>
                       <div id="taskmenu" class="tab-pane notika-tab-menu-bg animated flipInX">

@@ -1,4 +1,4 @@
-<?php   foreach($mobilizer_details as $mobi){} ?>
+<?php foreach($mobilizer_details as $mobi){} ?>
 	<div class="container">
 		<div class="row page_row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -18,7 +18,7 @@
                     <div class="form-example-wrap">
 					
 					<div class="cmp-tb-hd cmp-int-hd">
-						<h2>Mobilizer - <?php echo $mobi->name;; ?></h2>
+						<h2>Mobilizer Work Profile - <?php echo $mobi->name;?></h2>
 					</div>
 					<div class="form-example-int">
 
@@ -56,7 +56,7 @@
 									</select><script>$('#month').val('<?php echo $month; ?>');</script>
                                     </div>
 									<div class="col-lg-1 col-md-3 col-sm-3 col-xs-12">
-											<button class="btn btn-success notika-btn-success waves-effect">SEARCH</button>
+											<button class="btn btn-success notika-btn-success waves-effect">Submit</button>
 									</div>
 									 <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
 							</div>
@@ -81,7 +81,7 @@
                                     <div class="col-lg-6 col-md-3 col-sm-3 col-xs-12"></div>
 									<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="text-align:center;">
                                        <div class="modal-inner-pro" style="background:#848585;padding:5px;">
-											<a href="<?php echo base_url(); ?>staff/add_mobilizer_job/<?php echo base64_encode($mobi->user_id*98765); ?>" style="font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/add.png" alt="Add Work" title="Download">&nbsp; Add Work</a>
+											<a href="<?php echo base_url(); ?>staff/add_mobilizer_job/<?php echo base64_encode($mobi->user_id*98765); ?>" style="font-weight:bold;color:#ffffff;"><img src="<?php echo base_url(); ?>assets/images/add.png" alt="Add Work" title="Download">&nbsp; Schedule Work</a>
 										</div>
                                     </div>
                            </div>
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                         <div class="modal-inner-pro" style="border:1px solid #d1d2d4;">
-											<p style="margin:10px;font-weight:bold;">Field work <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['field_count']; ?> Days</span></p>
+											<p style="margin:10px;font-weight:bold;">Fieldwork <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['field_count']; ?> Days</span></p>
 										</div>
                                     </div>
 									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
@@ -107,17 +107,17 @@
 						  <div class="row page_row" style="padding-bottom:10px;">
 									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                         <div class="modal-inner-pro" style="border:1px solid #d1d2d4;">
-											<p style="margin:10px;font-weight:bold;">Office work <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['office_count']; ?> Days</span></p>
+											<p style="margin:10px;font-weight:bold;">Office Work <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['office_count']; ?> Days</span></p>
 										</div>
                                     </div>
                                     <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                         <div class="modal-inner-pro" style="border:1px solid #d1d2d4;">
-											<p style="margin:10px;font-weight:bold;">Leave <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['leave_count']; ?> Days</span></p>
+											<p style="margin:10px;font-weight:bold;">Leaves <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['leave_count']; ?> Days</span></p>
 										</div>
                                     </div>
 									<div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
                                         <div class="modal-inner-pro" style="border:1px solid #d1d2d4;">
-											<p style="margin:10px;font-weight:bold;">Holiday <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['holiday_count']; ?> Days</span></p>
+											<p style="margin:10px;font-weight:bold;">Holidays <span style="float:right;color:#e3242b;"><?php echo $consolidate_report['holiday_count']; ?> Days</span></p>
 										</div>
                                     </div>
                            </div>
@@ -147,7 +147,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="normal-table-list">
                         <div class="basic-tb-hd">
-                            <h2>Work Details</h2>
+                            <h2>Work Overview</h2>
                         </div>
                         <div class="bsc-tbl">
                             <table class="table table-sc-ex">
@@ -155,11 +155,11 @@
 							<?php if (count($mob_jobs) >0 ){ ?>
                                 <thead>
                                     <tr>
-										<th width="5%">S.no</th>
+										<th width="5%">S.No</th>
 										<th width="10%">Date</th>
 										<th width="10%">Day</th>
-										<th width="15%">Task Type</th>
-										<th width="35%">Task Title</th>
+										<th width="15%">Work/Break</th>
+										<th width="35%">Title</th>
 										<th width="15%">Status</th>
 										<th width="10%">Action</th>
                                     </tr>
@@ -178,7 +178,7 @@
 								 <td><?php echo $rows->title; ?></td>
 								  <td><?php echo $rows->status; ?></td>
 								  <td>
-								  <a href="<?php echo base_url(); ?>staff/view_job_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Work"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mobilizer_job/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Work"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
+								  <a href="<?php echo base_url(); ?>staff/view_job_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="View Details"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> &nbsp;&nbsp; <a href="<?php echo base_url(); ?>staff/edit_mobilizer_job/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size:20px;"></i></a></td>
 							</tr>
 							<?php  $i++; } ?>
 							<?php } else { ?>

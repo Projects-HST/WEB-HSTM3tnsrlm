@@ -341,10 +341,11 @@ class Staff extends CI_Controller {
 				 $user_master_id=$this->input->post('user_master_id');
 				 
 				$datas=$this->staffmodel->add_mob_job($task_date,$select_type,$task_title_id,$task_desc,$mob_id,$user_id,$user_master_id);
+				print_r($datas['mobilizer_details']);
 				$red_id = base64_encode($mob_id*98765);
 				
 				if($datas['status']=="Success"){
-					$this->session->set_flashdata('msg', 'Work Assigned');
+					$this->session->set_flashdata('msg', 'You have scheduled work for mobilizer');
 					redirect('staff/view_mobilizer_job/'.$red_id);
 				}else if($datas['status']=="Already"){
 					$this->session->set_flashdata('msg', 'Work Already Exists');
@@ -393,7 +394,7 @@ class Staff extends CI_Controller {
 				$red_id = base64_encode($mob_id*98765);
 				
 				if($datas['status']=="Success"){
-					$this->session->set_flashdata('msg', 'Work Update');
+					$this->session->set_flashdata('msg', 'Changes made in the work are saved');
 					redirect('staff/view_mobilizer_job/'.$red_id);
 				}else if($datas['status']=="Already"){
 					$this->session->set_flashdata('msg', 'Work Already Exists');

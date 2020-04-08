@@ -6,7 +6,7 @@
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="data-table-list">
              <div class="basic-tb-hd">
-                 <h2>List Mobilizers</h2>
+                 <h2>Mobilizers</h2>
              </div>
              <?php if($this->session->flashdata('msg')): ?>
      <div class="alert alert-success">
@@ -19,12 +19,12 @@
                  <table id="data-table-basic" class="table table-striped">
                      <thead>
                          <tr>
-                             <th>S.no</th>
-                             <th>Name</th>
-                             <th>Email id</th>
-                             <th>Mobile</th>
-                             <th>status</th>
-                              <th>Action</th>
+                             <th>S.No</th>
+                             <th>Mobilizer</th>
+                             <th>Email ID</th>
+                             <th>Mobile Number</th>
+                             <th>Status</th>
+                              <th>Actions</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -35,7 +35,7 @@
                              <td><?php echo $rows->email; ?></td>
                              <td><?php echo $rows->phone; ?></td>
                              <td><?php if($rows->status=='Active'){ ?><span class="green">Active</span><?php }else{ ?><span class="red">Inactive</span><?php } ?></td>
-                              <td><a href="<?php echo base_url(); ?>staff/view_mobilizer_job/<?php echo base64_encode($rows->user_id*98765); ?>" data-toggle="tooltip" title="View Mobilizer Job"><i class="fa fa-calendar-check-o" style="font-size:20px;"></i></a></td>
+                              <td><a href="<?php echo base_url(); ?>staff/view_mobilizer_job/<?php echo base64_encode($rows->user_id*98765); ?>" data-toggle="tooltip" title="View Work Profile"><i class="fa fa-calendar-check-o" style="font-size:20px;"></i></a></td>
                          </tr>
 <?php  $i++; } ?>
                      </tbody>

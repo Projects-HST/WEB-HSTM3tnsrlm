@@ -19,7 +19,7 @@
 			
 			 <form method="post" action="<?php echo base_url(); ?>staff/add_mob_job" class="form-horizontal" enctype="multipart/form-data" id="staffform" >
 				<div class="cmp-tb-hd cmp-int-hd">
-					<h2>Create Mobilizers Work</h2>
+					<h2>Schedule Mobilizer's Work</h2>
 				</div>
 						
 				 <div class="form-example-int form-horizental">
@@ -27,7 +27,7 @@
            
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Date <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Date <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="text" placeholder="Task date" name="task_date" id="task_date" class="form-control track_date input-sm" />
@@ -36,7 +36,7 @@
                                 </div>
 							<div class="row page_row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Select type <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Work/Break <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 										<select name="select_type" class="form-control" id="select_type">
@@ -52,10 +52,10 @@
 								<div id="other_work" class="other_work">
 									<div class="row page_row">
 										<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-											<label class="hrzn-fm">Task Title <span class="error">*</span></label>
+											<label class="hrzn-fm">Title <span class="error">*</span></label>
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-											<input type="text" placeholder="Task Title" name="task_title" class="form-control input-sm" maxlength="50">
+											<input type="text" placeholder="Title" name="task_title" class="form-control input-sm" maxlength="50">
 										</div>
 									
 										<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12"></div>
@@ -64,10 +64,10 @@
 								
 							<div class="row page_row">
 								<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Task Description <span class="error">*</span></label>
+                                        <label class="hrzn-fm">Brief <span class="error">*</span></label>
                                     </div>
                                     <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
-                                           <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Task Description"></textarea>
+                                           <textarea name="task_desc" MaxLength="150" class="form-control" rows="2" cols="80" placeholder="Give a brief"></textarea>
                                     </div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
                             </div>
@@ -77,7 +77,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 											<input type="hidden" name="mob_id" id="mob_id" value="<?php echo $mobi->user_id; ?>">
 											<input type="hidden" name="user_master_id" id="user_master_id" value="<?php echo $mobi->user_master_id; ?>">
-                                           <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Assign</button>
+                                           <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="assign_btn">Schedule</button>
 										  <!--<a href="<?php echo base_url(); ?>task/home" class="btn btn-success notika-btn-success waves-effect" id="task_btn">Add Task</a>-->								   
                                     </div>
 								<div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
@@ -142,10 +142,10 @@
 			}
       },
       messages: {
-		  task_date: "Select date",
-          select_type: "Select Type",
-          task_title: "Enter title",
-          task_desc: "Enter description",
+		  task_date: "Select the date",
+          select_type: "Select work/break",
+          task_title: "Type the title",
+          task_desc: "Give a brief about the activity scheduled for the day",
           task_status: "Select status"
       }
 	});
