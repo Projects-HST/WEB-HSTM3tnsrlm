@@ -1142,9 +1142,9 @@ class Apimobilizer extends CI_Controller {
 		$location = $this->input->post("location");
 		$miles = $this->input->post("miles");
 		$location_datetime = $this->input->post("location_datetime");
+		$tracking_status= $this->input->post("tracking_status");
 
-
-		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
+		$data['result']=$this->apimobilizermodel->addMobilocation($user_id,$tracking_status,$latitude,$longitude,$location,$miles,$location_datetime,$pia_id);
 		$response = $data['result'];
 		echo json_encode($response);
 	}
