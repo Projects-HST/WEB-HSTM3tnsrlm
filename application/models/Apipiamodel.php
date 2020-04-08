@@ -1020,13 +1020,13 @@ class Apipiamodel extends CI_Model {
 //#################### User Tracking ####################//
 	public function userTracking($mob_id,$track_date)
 	{
-		 //$track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id'  AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' group by minute(created_at) ORDER BY created_at ASC";
+
 		    $track_query = "SELECT etd.user_location AS address,etd.user_lat AS lat ,etd.user_long AS lng FROM edu_users AS eu LEFT JOIN edu_tracking_details AS etd ON eu.user_id=etd.user_id  WHERE eu.user_id='$mob_id' AND DATE_FORMAT(created_at, '%Y-%m-%d')='$track_date' ORDER BY created_at ASC";
 			$track_res = $this->db->query($track_query);
 			$track_result= $track_res->result();
 
 			 if($track_res->num_rows()==0){
-				 $response = array("status" => "error", "msg" => "Track Not Found");
+				 $res = array("status" => "error", "msg" => "Track Not Found");
 			}else{
 
 			foreach($track_result as $rows){
@@ -1052,8 +1052,30 @@ class Apipiamodel extends CI_Model {
 				$km_result=$this->db->query($km_query);
 				$km_distance_calc= $km_result->result();
 
-				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
+				$res = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address, "Distance"=>$km_distance_calc);
 			}
+
+
+      $select="SELECT
+        etd.id,
+        etd.user_id,
+        etd.tracking_status,
+        etd.user_location AS address,
+        etd.user_lat AS lat,
+        etd.user_long AS lng,
+        etd.created_at
+      FROM  edu_users AS eu
+      LEFT JOIN edu_tracking_details AS etd
+      ON  eu.user_id = etd.user_id
+      WHERE eu.user_id = '$mob_id' AND DATE_FORMAT(etd.created_at, '%Y-%m-%d') = '$track_date' AND (etd.tracking_status = 'Start' OR etd.tracking_status='Stop')
+      ORDER BY id";
+      $get_result=$this->db->query($select);
+      if($get_result->num_rows()==0){
+        $res_start=array("status"=>"error");
+      }else{
+        $res_start=array("status"=>"success","start_stop_data"=>$get_result->result());
+      }
+      $response=array("status"=>"success","tracking_status"=>$res,"start_stop_status"=>$res_start);
 			return $response;
 
 	}
@@ -1108,6 +1130,7 @@ class Apipiamodel extends CI_Model {
              }
 				$response = array("status" => "success", "msg" => "Trackinng Details", "trackingDetails"=>$address);
 			}
+
 			return $response;
 
 	}
