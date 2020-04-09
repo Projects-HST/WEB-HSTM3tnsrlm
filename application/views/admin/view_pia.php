@@ -13,7 +13,7 @@
 			
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>List Training Providers</h2>
+                            <h2>Training Providers</h2>
                         </div>
                         <div class="table-responsive">
 							
