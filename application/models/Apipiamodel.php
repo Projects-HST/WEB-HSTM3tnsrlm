@@ -1071,11 +1071,11 @@ class Apipiamodel extends CI_Model {
       ORDER BY id";
       $get_result=$this->db->query($select);
       if($get_result->num_rows()==0){
-        $res_start=array("status"=>"error");
+        $res_start=array("status"=>"error","msg" => "Track Not Found");
       }else{
-        $res_start=array("status"=>"success","start_stop_data"=>$get_result->result());
+        $res_start=array("status"=>"success","msg" => "Tracking Found","start_stop_data"=>$get_result->result());
       }
-      $response=array("status"=>"success","tracking_status"=>$res,"start_stop_status"=>$res_start);
+      $response=array("status"=>"success","msg" => "Tracking Found","tracking_status"=>$res,"start_stop_status"=>$res_start);
 			return $response;
 
 	}
