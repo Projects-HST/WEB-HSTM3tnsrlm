@@ -1221,7 +1221,7 @@ function prospects_document($prospect_id){
     function add_attendance_task($mobilizer_id,$task_type,$task_id,$attendance_date,$title,$comments,$status,$user_id,$created_at){
       $date=date_create($attendance_date);
       $atten_date= date_format($date,"Y-m-d");
-    echo  $query="INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by) VALUES('$mobilizer_id','$user_id','$task_type','$task_id','$title','$comments','$atten_date','Active',NOW(),'$user_id')";
+      $query="INSERT INTO mobilizer_attendance(mobilizer_id,pia_id,work_type_id,task_id,title,comments,attendance_date,status,created_at,created_by) VALUES('$mobilizer_id','$user_id','$task_type','$task_id','$title','$comments','$atten_date','Active',NOW(),'$user_id')";
       $result = $this->db->query($query);
 
       if($result) {
