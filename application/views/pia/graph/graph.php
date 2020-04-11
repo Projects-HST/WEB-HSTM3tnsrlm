@@ -55,7 +55,7 @@
       function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ['Years', 'Confirmed', 'Rejected', 'Pending','Average'],
+          ['Years', 'Qualified', 'Unqualified', 'Unverified','Average'],
           <?php if (count($yearly_graph) >0) { 
 			$i=1;
 			$rec_count = count($yearly_graph);
