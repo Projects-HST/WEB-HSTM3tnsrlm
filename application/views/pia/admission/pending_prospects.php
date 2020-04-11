@@ -31,9 +31,9 @@
                              <td><?php echo $rows->aadhaar_card_number; ?></td>
                              <td><?php echo $rows->mobile; ?></td>
                              <td>
-								<?php if($rows->status=='Confirmed'){ ?> <span class="green">Confirmed</span><?php } ?>
-								<?php if($rows->status=='Rejected'){ ?><span class="red">Rejected</span><?php } ?>
-								<?php if($rows->status=='Pending'){ ?><span class="blue">Pending</span><?php } ?>
+								<?php if($rows->status=='Confirmed'){ ?> <span class="green">Qualified</span><?php } ?>
+									<?php if($rows->status=='Rejected'){ ?><span class="red">Unqualified</span><?php } ?>
+									<?php if($rows->status=='Pending'){ ?><span class="blue">Unverified</span><?php } ?>
 							 </td>
                               <td><?php echo $rows->added_by; ?></td>
 							   <td><a href="<?php echo base_url(); ?>admission/edit_stu_details/<?php echo base64_encode($rows->id*98765); ?>" data-toggle="tooltip" title="Edit Candidate Profile"><i class="notika-icon notika-edit" style="font-size:22px;"></i></a></td>

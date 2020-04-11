@@ -604,9 +604,9 @@ foreach($doc as $row){
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 								<select name="status" class="form-control" id="status">
-										<option value="Pending">Pending</option>
-										<option value="Confirmed">Confirmed</option>
-										<option value="Rejected">Rejected</option>
+										<option value="Pending">Unverified</option>
+										<option value="Confirmed">Qualified</option>
+										<option value="Rejected">Unqualified</option>
 								</select><script> $('#status').val('<?php echo $rows->status; ?>');</script>
 							</div>
 					   </div>
