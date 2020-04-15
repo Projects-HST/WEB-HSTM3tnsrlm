@@ -1497,15 +1497,20 @@ function prospects_document($prospect_id){
         foreach($result_km as $rows_km){}
           $km_details=$rows_km->km;
           if($km_details='NULL'){
-            $res_km=array("status"=>"error","msg"=>"No KM details found");
+            $details=array(
+              "user_id"=>" ",
+              "km"=>" "
+            );
+
+            // $res_km=array("status"=>"error","msg"=>"No KM details found");
           }else{
             $details=array(
               "user_id"=>$rows_km->user_id,
               "km"=>$rows_km->km
             );
-            $res_km=array("status"=>"success","msg"=>"KM details found","km_data"=>$details);
-          }
 
+          }
+            $res_km=array("status"=>"success","msg"=>"KM details found","km_data"=>$details);
 
 
         $response=array("status"=>"success","msg"=>"attedance details","field_work_images"=>$field_work_details_report,"attedance_details"=>$response_attedance,"km_data_details"=>$res_km);
