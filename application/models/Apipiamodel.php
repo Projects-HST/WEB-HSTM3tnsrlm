@@ -1371,7 +1371,7 @@ function prospects_document($prospect_id){
         $query="SELECT ma.*,wtm.work_type,IFNULL(et.task_title,'') as task_title FROM mobilizer_attendance as ma
         left join work_type_master as wtm on wtm.id=ma.work_type_id
         left join edu_task as et on et.id=ma.task_id
-        where ma.mobilizer_id='$mobilizer_id' and Month(attendance_date)='$month_id'";
+        where ma.mobilizer_id='$mobilizer_id' and Month(attendance_date)='$month_id' order by ma.attendance_date ASC";
         $res = $this->db->query($query);
           $result= $res->result();
         if($res->num_rows()==0){
