@@ -399,7 +399,7 @@ class Apimainmodel extends CI_Model {
 						return $response;
 				  }
 		} else {
-			 			$response = array("status" => "error", "msg" => "Invalid login");
+			 			$response = array("status" => "error", "msg" => "Invalid username/passsword. Kindly ensure they're correct");
 						return $response;
 			 }
 	}
@@ -515,7 +515,7 @@ class Apimainmodel extends CI_Model {
 
                 $response = array("status" => "sucess", "msg" => "Password Updated");
 			} else {
-				$response = array("status" => "error", "msg" => "User-name is wrong.");
+				$response = array("status" => "error", "msg" => "Your username doesn't match our records. Please check.");
 			}
 
 			return $response;
