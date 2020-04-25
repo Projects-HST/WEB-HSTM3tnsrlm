@@ -1145,7 +1145,7 @@ class Apipiamodel extends CI_Model {
 			if($result) {
 			    $response = array("status" => "success", "msg" => "Document uploaded","doc_file_name"=>$documentFileName);
 			}else{
-				$response = array("status" => "error");
+				$response = array("status" => "Check the file size and the format.");
 			}
 
 			return $response;
@@ -1161,7 +1161,7 @@ function prospects_document($prospect_id){
   $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status,dm.doc_name,dm.doc_type FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id  where dd.status='Active' and dd.prospect_student_id='$prospect_id' GROUP BY dd.doc_master_id";
   $result=$this->db->query($query);
   if($result->num_rows()==0){
-      $response = array("status" => "error", "msg" => "Something Went Wrong");
+      $response = array("status" => "error", "msg" => "Unable to process the file!");
   }else{
     $res=$result->result();
     foreach($res as $rows){
@@ -1191,7 +1191,7 @@ function prospects_document($prospect_id){
 			if($result) {
 			    $response = array("status" => "success", "msg" => "Document Updated","doc_file_name"=>$userFileName);
 			}else{
-				$response = array("status" => "error");
+				$response = array("status" => "Check the file size and the format.");
 			}
 
 			return $response;

@@ -1090,7 +1090,7 @@ function prospects_document($prospect_id){
   $query="SELECT dd.id,dd.doc_proof_number,dd.file_name,dd.doc_master_id,dd.status,dm.doc_name,dm.doc_type FROM document_details as dd left join document_master as dm on dm.id=dd.doc_master_id  where dd.status='Active' and dd.prospect_student_id='$prospect_id'";
   $result=$this->db->query($query);
   if($result->num_rows()==0){
-      $response = array("status" => "error", "msg" => "Something Went Wrong");
+      $response = array("status" => "error", "msg" => "Unable to process the file! Check the file size and the format.");
   }else{
     $res=$result->result();
     foreach($res as $rows){
