@@ -481,7 +481,23 @@ class Apimainmodel extends CI_Model {
 						  $email = $rows->pia_email;
 						}
 					}
-				} else {
+				}else if($user_type==1){
+
+          $staff_query = "SELECT * FROM edu_staff_details WHERE role_type  ='1' and status='Active'";
+
+          $staff_res = $this->db->query($staff_query);
+          $staff_result= $staff_res->result();
+
+          if($staff_res->num_rows()==1)
+          {
+            foreach ($staff_result as $rows)
+            {
+              $email = $rows->email;
+              $phone = $rows->phone;
+            }
+          }
+
+        } else {
 
 				 	$staff_query = "SELECT * FROM edu_staff_details WHERE id  ='$user_master_id' and status='Active'";
 
