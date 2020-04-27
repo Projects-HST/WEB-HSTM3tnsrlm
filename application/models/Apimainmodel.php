@@ -513,7 +513,7 @@ class Apimainmodel extends CI_Model {
 				$update_sql = "UPDATE edu_users SET user_password = md5('$OTP'),updated_date=NOW() WHERE user_id='$user_id'";
 				$update_result = $this->db->query($update_sql);
 
-                $response = array("status" => "sucess", "msg" => "Password Updated");
+                $response = array("status" => "success", "msg" => "Password Updated");
 			} else {
 				$response = array("status" => "error", "msg" => "Your username doesn't match our records. Please check.");
 			}
@@ -534,7 +534,7 @@ class Apimainmodel extends CI_Model {
 				$update_sql = "UPDATE edu_users SET user_password = md5('$password'),updated_date=NOW() WHERE user_id='$user_id'";
 				$update_result = $this->db->query($update_sql);
 
-                $response = array("status" => "sucess", "msg" => "Password Updated");
+                $response = array("status" => "success", "msg" => "Password Updated");
 			} else {
 				$response = array("status" => "error", "msg" => "Entered Current Password is wrong.");
 			}
