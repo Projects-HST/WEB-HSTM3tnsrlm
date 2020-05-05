@@ -1486,23 +1486,24 @@ function prospects_document($prospect_id){
 
 
 
-        $km_query="SELECT et.user_id,Round(sum((6371 * ACOS(
+       $km_query="SELECT IFNULL(et.user_id,'') as user_id,IFNULL(Round(sum((6371 * ACOS(
                 COS( RADIANS(to_lat) )
               * COS( RADIANS( user_lat ) )
               * COS( RADIANS( user_long ) - RADIANS(to_long) )
               + SIN( RADIANS(to_lat) )
               * SIN( RADIANS( user_lat ) )
-            ) )),2) AS km
+            ) )),2),' ') AS km
         FROM edu_tracking_details as et left join edu_users as eu on eu.user_id=et.user_id WHERE eu.user_id='$mobilizer_id' and DATE(created_at)='$rows_details->attendance_date'";
         $re_km_query=$this->db->query($km_query);
         $result_km=$re_km_query->result();
         foreach($result_km as $rows_km){}
-          $km_details=$rows_km->km;
-          if($km_details='NULL'){
+        $km_details=$rows_km->km;
+          if($km_details=='null'){
             $details=array(
-              "user_id"=>" ",
-              "km"=>" "
+              "user_id"=>$rows_km->user_id,
+              "km"=>$rows_km->km
             );
+
 
             // $res_km=array("status"=>"error","msg"=>"No KM details found");
           }else{
