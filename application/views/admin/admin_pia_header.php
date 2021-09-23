@@ -93,14 +93,14 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="<?php echo base_url(); ?>admin/home""><img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class="logo_admin" /></a>
+                        <a href="<?php echo base_url(); ?>admin/home"><img src="<?php echo base_url(); ?>assets/logo_red.png" alt="" class="logo_admin" /></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
 							<li class="nav-item"><a style="padding-top:40px;"><span><?php echo $this->session->userdata('name'); ?></span></a></li>
-                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/staff/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
+                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><div class="recent-post-img"><img src="<?php echo base_url(); ?>assets/profile/<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="45px" height="45px"></div></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
                                     <div class="hd-message-info">
 										<a href="<?php echo base_url(); ?>admin/profile/"><div class="hd-message-sn"><div class="hd-mg-ctn"><p>Profile</p></div></div></a>
